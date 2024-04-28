@@ -5,7 +5,7 @@
         <h1>Edit Gallery </h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('gallery.index') }}">Home</a></li>
                 <li class="breadcrumb-item">Gallery</li>
                 {{-- <li class="breadcrumb-item active">Elements</li> --}}
             </ol>
