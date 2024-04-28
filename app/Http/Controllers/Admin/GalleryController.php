@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\GalleryRequest;
+use App\Models\TravelPackage;
 
 class GalleryController extends Controller
 {
@@ -25,15 +27,25 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        $travel_packages = TravelPackage::all();
+        return view('pages.admin.gallery.create', [
+            'travel_packages' => $travel_packages,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/gallery', 'public'
+        );
+
+        Gallery::create($data);
+        return redirect()->route('gallery.index');
+
     }
 
     /**
