@@ -116,11 +116,11 @@
         </li><!-- End Forms Nav --> --}}
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#travelpackage-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Travel Package</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="travelpackage-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('travel-package.create') }}">
                         <i class="bi bi-circle"></i><span>Add Travel Package</span>
@@ -129,6 +129,25 @@
                 <li>
                     <a href="{{ route('travel-package.index') }}">
                         <i class="bi bi-circle"></i><span>Data Travel Package</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Tables Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#gallery-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Gallery</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="gallery-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('gallery.create') }}">
+                        <i class="bi bi-circle"></i><span>Add Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('gallery.index') }}">
+                        <i class="bi bi-circle"></i><span>Data Gallery</span>
                     </a>
                 </li>
             </ul>
