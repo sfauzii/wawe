@@ -18,7 +18,7 @@ class GalleryController extends Controller
         $items = Gallery::with(['travel_package'])->get();
 
         return view('pages.admin.gallery.index', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
@@ -39,13 +39,10 @@ class GalleryController extends Controller
     public function store(GalleryRequest $request)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
+        $data['image'] = $request->file('image')->store('assets/gallery', 'public');
 
         Gallery::create($data);
         return redirect()->route('gallery.index');
-
     }
 
     /**
@@ -66,7 +63,7 @@ class GalleryController extends Controller
 
         return view('pages.admin.gallery.edit', [
             'item' => $item,
-            'travel_packages' => $travel_packages
+            'travel_packages' => $travel_packages,
         ]);
     }
 
@@ -76,9 +73,7 @@ class GalleryController extends Controller
     public function update(GalleryRequest $request, string $id)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
+        $data['image'] = $request->file('image')->store('assets/gallery', 'public');
 
         $item = Gallery::findOrFail($id);
 
@@ -92,6 +87,9 @@ class GalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = Gallery::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('gallery.index');
     }
 }
