@@ -63,15 +63,26 @@ class TransactionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Transaction::findOrfail($id);
+
+        return view('pages.admin.transaction.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TransactionRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+
+        $item = Transaction::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('transaction.index');
     }
 
     /**
