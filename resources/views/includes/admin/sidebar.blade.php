@@ -134,6 +134,7 @@
             </ul>
         </li>
         <!-- End Tables Nav -->
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#gallery-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Gallery</span><i
@@ -148,6 +149,25 @@
                 <li>
                     <a href="{{ route('gallery.index') }}">
                         <i class="bi bi-circle"></i><span>Data Gallery</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#transaction-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Transaction</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="transaction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                {{-- <li>
+                    <a href="{{ route('transaction.create') }}">
+                        <i class="bi bi-circle"></i><span>Add Transaction</span>
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{ route('transaction.index') }}">
+                        <i class="bi bi-circle"></i><span>Data Transaction</span>
                     </a>
                 </li>
             </ul>
