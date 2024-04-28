@@ -30,21 +30,34 @@
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'today']) }}">Today</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_month']) }}">This Month</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_year']) }}">This Year</a></li>
                                 </ul>
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Sales <span>| Today</span></h5>
+                                <h5 class="card-title">Sales <span>|
+                                        @if ($filter == 'today')
+                                            Today
+                                        @elseif($filter == 'this_month')
+                                            This Month
+                                        @elseif($filter == 'this_year')
+                                            This Year
+                                        @else
+                                            All Time <!-- Default jika tidak ada filter yang dipilih -->
+                                        @endif
+                                    </span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <h6>{{ $transaction }}</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span> <span
                                             class="text-muted small pt-2 ps-1">increase</span>
 
@@ -67,21 +80,34 @@
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'today']) }}">Today</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_month']) }}">This Month</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_year']) }}">This Year</a></li>
                                 </ul>
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                                <h5 class="card-title">Revenue <span>|
+                                        @if ($filter == 'today')
+                                            Today
+                                        @elseif($filter == 'this_month')
+                                            This Month
+                                        @elseif($filter == 'this_year')
+                                            This Year
+                                        @else
+                                            All Time <!-- Default jika tidak ada filter yang dipilih -->
+                                        @endif
+                                    </span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
+                                        <h6>IDR {{ $transaction_total }}</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span> <span
                                             class="text-muted small pt-2 ps-1">increase</span>
 
@@ -94,9 +120,8 @@
 
                     <!-- Customers Card -->
                     <div class="col-xxl-4 col-xl-12">
-
                         <div class="card info-card customers-card">
-
+                            <!-- Filter section for Customers Card -->
                             <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
@@ -104,31 +129,42 @@
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
                                     </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'today']) }}">Today</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_month']) }}">This Month</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['filter' => 'this_year']) }}">This Year</a></li>
                                 </ul>
                             </div>
-
+                            <!-- Card body for Customers Card -->
                             <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
-
+                                <!-- Title and filter information for Customers Card -->
+                                <h5 class="card-title">Customers <span>|
+                                        @if ($filter == 'today')
+                                            Today
+                                        @elseif($filter == 'this_month')
+                                            This Month
+                                        @elseif($filter == 'this_year')
+                                            This Year
+                                        @else
+                                            All Time <!-- Default jika tidak ada filter yang dipilih -->
+                                        @endif
+                                    </span></h5>
                                 <div class="d-flex align-items-center">
+                                    <!-- Icon for Customers Card -->
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
+                                    <!-- Content for Customers Card -->
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
-
+                                        <!-- Total customers and other relevant information for Customers Card -->
+                                        <h6>{{ $customers }}</h6>
+                                        <!-- Jika ingin menampilkan persentase perubahan, kamu bisa tambahkan di sini -->
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div><!-- End Customers Card -->
 
                     <!-- Reports -->
@@ -160,13 +196,13 @@
                                         new ApexCharts(document.querySelector("#reportsChart"), {
                                             series: [{
                                                 name: 'Sales',
-                                                data: [31, 40, 28, 51, 42, 82, 56],
+                                                data: {!! json_encode($sales_data) !!}
                                             }, {
                                                 name: 'Revenue',
-                                                data: [11, 32, 45, 32, 34, 52, 41]
+                                                data: {!! json_encode($revenue_data) !!}
                                             }, {
                                                 name: 'Customers',
-                                                data: [15, 11, 32, 18, 9, 24, 11]
+                                                data: {!! json_encode($customer_data) !!}
                                             }],
                                             chart: {
                                                 height: 350,
@@ -197,11 +233,7 @@
                                             },
                                             xaxis: {
                                                 type: 'datetime',
-                                                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z",
-                                                    "2018-09-19T06:30:00.000Z"
-                                                ]
+                                                categories: {!! json_encode($chart_categories) !!}
                                             },
                                             tooltip: {
                                                 x: {
@@ -221,23 +253,8 @@
                     <!-- Recent Sales -->
                     <div class="col-12">
                         <div class="card recent-sales overflow-auto">
-
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
-
                             <div class="card-body">
-                                <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                                <h5 class="card-title">Recent Sales</h5>
 
                                 <table class="table table-borderless datatable">
                                     <thead>
@@ -250,42 +267,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2457</a></th>
-                                            <td>Brandon Jacob</td>
-                                            <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                            <td>$64</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2147</a></th>
-                                            <td>Bridie Kessler</td>
-                                            <td><a href="#" class="text-primary">Blanditiis dolor omnis
-                                                    similique</a></td>
-                                            <td>$47</td>
-                                            <td><span class="badge bg-warning">Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2049</a></th>
-                                            <td>Ashleigh Langosh</td>
-                                            <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                            <td>$147</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2644</a></th>
-                                            <td>Angus Grady</td>
-                                            <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                            <td>$67</td>
-                                            <td><span class="badge bg-danger">Rejected</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2644</a></th>
-                                            <td>Raheem Lehner</td>
-                                            <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                            <td>$165</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
+                                        @foreach ($recent_sales as $sale)
+                                            <tr>
+                                                <th scope="row"><a href="#">{{ $sale->id }}</a></th>
+                                                <td>{{ $sale->user->name }}</td>
+                                                <td><a href="#" class="text-primary">{{ $sale->travel_package->title }}</a>
+                                                </td>
+                                                <td>IDR {{ $sale->transaction_total }}</td>
+                                                <td>
+                                                    @if ($sale->transaction_status === 'SUCCESS')
+                                                        <span class="badge bg-success">{{ $sale->transaction_status }}</span>
+                                                    @elseif($sale->transaction_status === 'IN_CART')
+                                                        <span class="badge bg-primary">{{ $sale->transaction_status }}</span>
+                                                    @elseif($sale->transaction_status === 'PENDING')
+                                                        <span class="badge bg-warning">{{ $sale->transaction_status }}</span>
+                                                    @elseif($sale->transaction_status === 'CANCEL')
+                                                        <span class="badge bg-secondary">{{ $sale->transaction_status }}</span>
+                                                    @elseif($sale->transaction_status === 'FAILED')
+                                                        <span class="badge bg-danger">{{ $sale->transaction_status }}</span>
+                                                    @else
+                                                        <span class="badge bg-dark">{{ $sale->transaction_status }}</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 
@@ -459,80 +464,6 @@
 
                     </div>
                 </div><!-- End Recent Activity -->
-
-                <!-- Budget Report -->
-                <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="card-body pb-0">
-                        <h5 class="card-title">Budget Report <span>| This Month</span></h5>
-
-                        <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                                    legend: {
-                                        data: ['Allocated Budget', 'Actual Spending']
-                                    },
-                                    radar: {
-                                        // shape: 'circle',
-                                        indicator: [{
-                                                name: 'Sales',
-                                                max: 6500
-                                            },
-                                            {
-                                                name: 'Administration',
-                                                max: 16000
-                                            },
-                                            {
-                                                name: 'Information Technology',
-                                                max: 30000
-                                            },
-                                            {
-                                                name: 'Customer Support',
-                                                max: 38000
-                                            },
-                                            {
-                                                name: 'Development',
-                                                max: 52000
-                                            },
-                                            {
-                                                name: 'Marketing',
-                                                max: 25000
-                                            }
-                                        ]
-                                    },
-                                    series: [{
-                                        name: 'Budget vs spending',
-                                        type: 'radar',
-                                        data: [{
-                                                value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                                name: 'Allocated Budget'
-                                            },
-                                            {
-                                                value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                                name: 'Actual Spending'
-                                            }
-                                        ]
-                                    }]
-                                });
-                            });
-                        </script>
-
-                    </div>
-                </div><!-- End Budget Report -->
 
                 <!-- Website Traffic -->
                 <div class="card">
