@@ -61,15 +61,30 @@ class GalleryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Gallery::findOrfail($id);
+        $travel_packages = TravelPackage::all();
+
+        return view('pages.admin.gallery.edit', [
+            'item' => $item,
+            'travel_packages' => $travel_packages
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(GalleryRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/gallery', 'public'
+        );
+
+        $item = Gallery::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('gallery.index');
     }
 
     /**
