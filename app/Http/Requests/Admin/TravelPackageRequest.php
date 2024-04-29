@@ -25,6 +25,7 @@ class TravelPackageRequest extends FormRequest
             'title' => 'required|max:255',
             'location' => 'required|max:255',
             'about' => 'required',
+            'features' => 'required',
             'departure_date' => 'required|date',
             'duration' => 'required|max:255',
             'type' => 'required|max:255',

@@ -57,6 +57,13 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="features" class="col-sm-2 col-form-label">Features</label>
+                                <div class="col-sm-10">
+                                    <textarea  name="features" class="form-control" style="height: 80px">{{ $item->features }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="departure_date" class="col-sm-2 col-form-label">Departure Date</label>
                                 <div class="col-sm-10">
                                     <input type="date" class="form-control" name="departure_date" placeholder="Departure Date" value="{{ $item->departure_date }}">
