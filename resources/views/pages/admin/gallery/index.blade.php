@@ -12,6 +12,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -44,7 +50,8 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->travel_package->title }}</td>
                                         <td>
-                                            <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px" class="img-thumbnail" />
+                                            <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px"
+                                                class="img-thumbnail" />
                                         </td>
                                         <td>
                                             <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">

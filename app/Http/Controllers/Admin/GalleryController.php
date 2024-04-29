@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\GalleryRequest;
 use App\Models\TravelPackage;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\Admin\GalleryRequest;
 
 class GalleryController extends Controller
 {
@@ -42,6 +43,9 @@ class GalleryController extends Controller
         $data['image'] = $request->file('image')->store('assets/gallery', 'public');
 
         Gallery::create($data);
+
+        Session::flash('success', 'Gallery package created successfully.');
+        
         return redirect()->route('gallery.index');
     }
 
@@ -79,6 +83,8 @@ class GalleryController extends Controller
 
         $item->update($data);
 
+        Session::flash('success', 'Gallery package updated successfully.');
+
         return redirect()->route('gallery.index');
     }
 
@@ -90,6 +96,8 @@ class GalleryController extends Controller
         $item = Gallery::findOrFail($id);
         $item->delete();
 
+        Session::flash('success', 'Gallery package created successfully.');
+        
         return redirect()->route('gallery.index');
     }
 }

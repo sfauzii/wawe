@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Admin\TravelPackageRequest;
 
 class TravelPackageController extends Controller
@@ -18,7 +19,7 @@ class TravelPackageController extends Controller
         $items = TravelPackage::all();
 
         return view('pages.admin.travel-package.index', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
@@ -34,12 +35,15 @@ class TravelPackageController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(TravelPackageRequest $request)
-
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
 
         TravelPackage::create($data);
+
+        // Flash a success message to the session
+        Session::flash('success', 'Travel package created successfully.');
+
         return redirect()->route('travel-package.index');
     }
 
@@ -59,7 +63,7 @@ class TravelPackageController extends Controller
         $item = TravelPackage::findOrFail($id);
 
         return view('pages.admin.travel-package.edit', [
-            'item' => $item
+            'item' => $item,
         ]);
     }
 
@@ -75,6 +79,9 @@ class TravelPackageController extends Controller
 
         $item->update($data);
 
+        // Flash a success message to the session
+        Session::flash('success', 'Travel package updated successfully.');
+
         return redirect()->route('travel-package.index');
     }
 
@@ -85,6 +92,9 @@ class TravelPackageController extends Controller
     {
         $item = TravelPackage::findOrFail($id);
         $item->delete();
+
+        // Flash a success message to the session
+        Session::flash('success', 'Travel package deleted successfully.');
 
         return redirect()->route('travel-package.index');
     }

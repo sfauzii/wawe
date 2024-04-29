@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Admin\TransactionRequest;
 
 class TransactionController extends Controller
@@ -82,6 +83,8 @@ class TransactionController extends Controller
 
         $item->update($data);
 
+        Session::flash('success', 'Transaction updated successfully.');
+        
         return redirect()->route('transaction.index');
     }
 
@@ -92,6 +95,8 @@ class TransactionController extends Controller
     {
         $item = Transaction::findOrFail($id);
         $item->delete();
+
+        Session::flash('success', 'Transaction deleted successfully.');
 
         return redirect()->route('transaction.index');
     }
