@@ -24,7 +24,7 @@
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
 
                 <div class="card">
                     <div class="card-body">
@@ -35,10 +35,11 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="travel_packages_id" class="col-sm-2 col-form-label">Travel Package</label>
+                                <label for="travel_packages_id" class="col-sm-2 col-form-label">Travel Package <span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="travel_packages_id" class="form-select"
                                         aria-label="Default select example">
+
                                         <option selected>Open this select travel package</option>
                                         @foreach ($travel_packages as $travel_package)
                                             <option value="{{ $travel_package->id }}">
@@ -46,17 +47,21 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    <small class="form-text text-muted">Package. Contoh: Candi Borobuddur. Wajib diisi</small>
+
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="image" class="col-sm-2 col-form-label">Image</label>
+                                <label for="image" class="col-sm-2 col-form-label">Image <span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" name="image" placeholder="Image">
+                                <small class="form-text text-muted">Foto. img, jpg, jpeg, png. Wajib diisi</small>
+
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">
+                            <button type="submit" class="btn btn-primary btn-block w-100">
                                 Simpan
                             </button>
                         </form><!-- End General Form Elements -->

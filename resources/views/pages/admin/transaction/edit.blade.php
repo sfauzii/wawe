@@ -36,7 +36,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="transaction_status" class="col-sm-2 col-form-label">Travel Package</label>
+                                <label for="transaction_status" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-10">
                                     <select name="transaction_status" class="form-select"
                                         aria-label="Default select example">
