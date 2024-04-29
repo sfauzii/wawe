@@ -47,7 +47,21 @@
                                     <td>{{ $item->user->name }}</td>
                                     <td>IDR{{ $item->additional_visa }}</td>
                                     <td>IDR{{ $item->transaction_total }}</td>
-                                    <td>{{ $item->transaction_status }}</td>
+                                    <td>
+                                        @if ($item->transaction_status === 'SUCCESS')
+                                            <span class="badge rounded-pill text-bg-success">{{ $item->transaction_status }}</span>
+                                        @elseif($item->transaction_status === 'IN_CART')
+                                            <span class="badge rounded-pill text-bg-primary">{{ $item->transaction_status }}</span>
+                                        @elseif($item->transaction_status === 'PENDING')
+                                            <span class="badge rounded-pill text-bg-warning">{{ $item->transaction_status }}</span>
+                                        @elseif($item->transaction_status === 'CANCEL')
+                                            <span class="badge rounded-pill text-bg-secondary">{{ $item->transaction_status }}</span>
+                                        @elseif($item->transaction_status === 'FAILED')
+                                            <span class="badge rounded-pill text-bg-danger">{{ $item->transaction_status }}</span>
+                                        @else
+                                            <span class="badge rounded-pill text-bg-dark">{{ $item->transaction_status }}</span>
+                                        @endif
+                                    </td>
                                         <td>
                                             <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success">
                                                 <i class="fa fa-eye">Show</i>
