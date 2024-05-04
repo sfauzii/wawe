@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
    Route::resource('travel-package', TravelPackageController::class);
    Route::resource('gallery', GalleryController::class);
    Route::resource('transaction', TransactionController::class);
+   Route::resource('user', UserController::class);
 });
 
 
