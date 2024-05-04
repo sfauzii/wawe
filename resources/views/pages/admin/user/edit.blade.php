@@ -124,7 +124,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span >Created At: <span style="color: #012970; font-weight: bold   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span> <i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #012970; font-weight: bold   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span >Updated At: <span style="color: #012970; font-weight: bold   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #012970; font-weight: bold   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>
