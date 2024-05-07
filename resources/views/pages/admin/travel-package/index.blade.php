@@ -56,10 +56,10 @@
                                         <td>{{ $item->type }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
-                                            <a href="{{ route('travel-package.edit', $item->id) }}" class="btn btn-info">
+                                            <a href="{{ route('travel-package.edit', encrypt($item->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
-                                            <form action="{{ route('travel-package.destroy', $item->id) }}" method="POST"
+                                            <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}" method="POST"
                                                 class="d-inline">
 
                                                 @csrf

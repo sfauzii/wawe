@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Edit User</h1>
+        <h1>Edit User {{ $user->name }}</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Home</a></li>
@@ -31,7 +31,7 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('user.update', $user->id) }}" method="POST">
+                        <form action="{{ route('user.update', encrypt($user->id)) }}" method="POST">
                             @method('PUT')
                             @csrf
 

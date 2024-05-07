@@ -31,7 +31,7 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('gallery.update', $item->id ) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('gallery.update', encrypt($item->id) ) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
 

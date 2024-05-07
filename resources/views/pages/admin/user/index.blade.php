@@ -63,10 +63,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">
+                                            <a href="{{ route('user.edit', encrypt($user->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
-                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                            <form action="{{ route('user.destroy', encrypt($user->id)) }}" method="POST"
                                                 class="d-inline">
 
                                                 @csrf

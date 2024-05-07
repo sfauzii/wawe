@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(decrypt($id));
 
         return view('pages.admin.user.edit', [
             'user' => $user,
@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(decrypt($id));
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -132,7 +132,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(decrypt($id));
         $user->delete();
 
         // Flash a success message to the session

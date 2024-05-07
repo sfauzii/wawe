@@ -54,10 +54,10 @@
                                                 class="img-thumbnail" />
                                         </td>
                                         <td>
-                                            <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">
+                                            <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
-                                            <form action="{{ route('gallery.destroy', $item->id) }}" method="POST"
+                                            <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST"
                                                 class="d-inline">
 
                                                 @csrf

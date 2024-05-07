@@ -31,7 +31,7 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('travel-package.update', $item->id ) }}" method="POST">
+                        <form action="{{ route('travel-package.update', encrypt($item->id) ) }}" method="POST">
                             @method('PUT')
                             @csrf
 

@@ -62,7 +62,7 @@ class GalleryController extends Controller
      */
     public function edit(string $id)
     {
-        $item = Gallery::findOrfail($id);
+        $item = Gallery::findOrfail(decrypt($id));
         $travel_packages = TravelPackage::all();
 
         return view('pages.admin.gallery.edit', [
@@ -79,7 +79,7 @@ class GalleryController extends Controller
         $data = $request->all();
         $data['image'] = $request->file('image')->store('assets/gallery', 'public');
 
-        $item = Gallery::findOrFail($id);
+        $item = Gallery::findOrFail(decrypt($id));
 
         $item->update($data);
 
@@ -93,7 +93,7 @@ class GalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = Gallery::findOrFail($id);
+        $item = Gallery::findOrFail(decrypt($id));
         $item->delete();
 
         Session::flash('success', 'Gallery package created successfully.');

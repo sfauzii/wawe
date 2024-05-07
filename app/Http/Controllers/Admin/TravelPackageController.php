@@ -60,7 +60,7 @@ class TravelPackageController extends Controller
      */
     public function edit(string $id)
     {
-        $item = TravelPackage::findOrFail($id);
+        $item = TravelPackage::findOrFail(decrypt($id));
 
         return view('pages.admin.travel-package.edit', [
             'item' => $item,
@@ -75,7 +75,7 @@ class TravelPackageController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
 
-        $item = TravelPackage::findOrFail($id);
+        $item = TravelPackage::findOrFail(decrypt($id));
 
         $item->update($data);
 
@@ -90,7 +90,7 @@ class TravelPackageController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = TravelPackage::findOrFail($id);
+        $item = TravelPackage::findOrFail(decrypt($id));
         $item->delete();
 
         // Flash a success message to the session
