@@ -86,7 +86,31 @@
                 </li>
             </ul>
         </li><!-- End Tables Nav -->
+
+        <li class="nav-heading">REPORT</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#report-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i><span>Report</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('report-transaction') }}">
+                        <i class="bi bi-circle"></i><span>Transaction</span>
+                    </a>
+                </li>
+            </ul>
+            <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('report-travel-package') }}">
+                        <i class="bi bi-circle"></i><span>Travel Package</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
 {{-- 
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>

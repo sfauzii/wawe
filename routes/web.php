@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\Admin\UserController;
@@ -35,6 +36,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
    Route::resource('gallery', GalleryController::class);
    Route::resource('transaction', TransactionController::class);
    Route::resource('user', UserController::class);
+
+   Route::get('report-transaction', [ReportController::class, 'showFormTransaction'])->name('report-transaction');
+   Route::get('report-transaction/download', [ReportController::class, 'generatePDF'])->name('report-transaction-download');
+
+   Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
+   
+   Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
 });
 
 

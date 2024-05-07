@@ -8,4 +8,4 @@
     <script src="{{ url('backend/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ url('backend/assets/js/main.js') }}"></script>url
+    <script src="{{ url('backend/assets/js/main.js') }}"></script>
