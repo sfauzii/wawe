@@ -42,17 +42,21 @@ class UserController extends Controller
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'photos' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Menambahkan validasi untuk field photos
         ]);
 
         if ($validator->fails()) {
             return redirect()->route('user.create')->withErrors($validator)->withInput();
         }
 
+        $path = $request->file('photos') ? $request->file('photos')->store('public/photos') : null; // Menyimpan file photo jika ada
+
         User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
+            'photos' => $path, // Menambahkan path photo ke dalam database
         ]);
 
         Session::flash('success', 'User created successfully.');
@@ -65,7 +69,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail(decrypt($id));
+
+        return view('pages.admin.user.show', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -92,6 +100,7 @@ class UserController extends Controller
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'photos' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Menambahkan validasi untuk field photos
         ]);
 
         if ($validator->fails()) {
@@ -108,6 +117,10 @@ class UserController extends Controller
             $userData['password'] = bcrypt($request->password);
         }
 
+        $path = $request->file('photos') ? $request->file('photos')->store('public/photos') : $user->photos; // Menyimpan file photo jika ada atau menggunakan yang lama
+
+        $userData['photos'] = $path;
+
         DB::transaction(function () use ($user, $userData, $request) {
             $user->update($userData);
 
@@ -121,8 +134,6 @@ class UserController extends Controller
         });
 
         Session::flash('success', 'User updated successfully.');
-
-        return redirect()->route('user.index');
 
         return redirect()->route('user.index');
     }

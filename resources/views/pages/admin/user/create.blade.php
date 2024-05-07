@@ -31,7 +31,7 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('user.store') }}" method="POST">
+                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -66,6 +66,13 @@
                                 <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Passowrd  <span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input  name="password_confirmation" type="password" placeholder="Confirm Password" class="form-control" required autocomplete="new-password" {{ old('password-confirm') }}></input>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label for="photos" class="col-sm-2 col-form-label">Photos</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="photos" class="form-control" accept="image/*">
                                 </div>
                             </div>
 

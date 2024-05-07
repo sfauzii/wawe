@@ -63,6 +63,9 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success">
+                                                <i class="fa fa-eye">Show</i>
+                                            </a>
                                             <a href="{{ route('user.edit', encrypt($user->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
