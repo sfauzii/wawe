@@ -49,4 +49,17 @@ class LoginController extends Controller
         // For other roles, redirect to default home page
         return redirect('/');
     }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
 }
