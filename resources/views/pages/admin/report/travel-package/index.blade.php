@@ -18,13 +18,13 @@
         <div class="row mb-3">
             <label for="startDate" class="col-sm-2 col-form-label">Star Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="startDate" class="form-control" name="start_date" value="{{ $startDate }}">
+                <input type="date" id="startDate" class="form-control" name="start_date" required value="{{ $startDate }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="endDate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="endDate" class="form-control" name="end_date" value="{{ $endDate }}">
+                <input type="date" id="endDate" class="form-control" name="end_date" required value="{{ $endDate }}">
             </div>
         </div>
 
