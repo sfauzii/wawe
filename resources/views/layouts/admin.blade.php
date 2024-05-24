@@ -37,6 +37,8 @@
 
         @yield('content')
 
+        @include('sweetalert::alert')
+
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

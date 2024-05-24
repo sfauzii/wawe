@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -59,7 +60,8 @@ class UserController extends Controller
             'photos' => $path, // Menambahkan path photo ke dalam database
         ]);
 
-        Session::flash('success', 'User created successfully.');
+        // Session::flash('success', 'User created successfully.');
+        Alert::success('Success', 'User created successfully.');
 
         return redirect()->route('user.index');
     }
@@ -133,7 +135,8 @@ class UserController extends Controller
             }
         });
 
-        Session::flash('success', 'User updated successfully.');
+        // Session::flash('success', 'User updated successfully.');
+        Alert::success('Success', 'User has been updated successfully');
 
         return redirect()->route('user.index');
     }
@@ -147,7 +150,8 @@ class UserController extends Controller
         $user->delete();
 
         // Flash a success message to the session
-        Session::flash('success', 'User deleted successfully.');
+        // Session::flash('success', 'User deleted successfully.');
+        Alert::success('Success', 'User has been deleted successfully');
 
         return redirect()->route('user.index');
     }

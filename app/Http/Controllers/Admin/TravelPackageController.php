@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TravelPackageRequest;
 
 class TravelPackageController extends Controller
@@ -42,7 +43,8 @@ class TravelPackageController extends Controller
         TravelPackage::create($data);
 
         // Flash a success message to the session
-        Session::flash('success', 'Travel package created successfully.');
+        // Session::flash('success', 'Travel package created successfully.');
+        Alert::success('Success', 'Travel package created successfully.');
 
         return redirect()->route('travel-package.index');
     }
@@ -80,7 +82,8 @@ class TravelPackageController extends Controller
         $item->update($data);
 
         // Flash a success message to the session
-        Session::flash('success', 'Travel package updated successfully.');
+        // Session::flash('success', 'Travel package updated successfully.');
+        Alert::success('Success', 'Travel package updated successfully.');
 
         return redirect()->route('travel-package.index');
     }
@@ -94,7 +97,8 @@ class TravelPackageController extends Controller
         $item->delete();
 
         // Flash a success message to the session
-        Session::flash('success', 'Travel package deleted successfully.');
+        // Session::flash('success', 'Travel package deleted successfully.');
+        Alert::success('Success', 'Travel package deleted successfully.');
 
         return redirect()->route('travel-package.index');
     }

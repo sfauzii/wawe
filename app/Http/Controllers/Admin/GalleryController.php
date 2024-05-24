@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\GalleryRequest;
 
 class GalleryController extends Controller
@@ -44,7 +45,8 @@ class GalleryController extends Controller
 
         Gallery::create($data);
 
-        Session::flash('success', 'Gallery package created successfully.');
+        // Session::flash('success', 'Gallery package created successfully.');
+        Alert::flash('Success', 'Gallery package created successfully.');
         
         return redirect()->route('gallery.index');
     }
@@ -83,7 +85,8 @@ class GalleryController extends Controller
 
         $item->update($data);
 
-        Session::flash('success', 'Gallery package updated successfully.');
+        // Session::flash('success', 'Gallery package updated successfully.');
+        Alert::success('Success', 'Gallery package updated successfully');
 
         return redirect()->route('gallery.index');
     }
@@ -96,7 +99,8 @@ class GalleryController extends Controller
         $item = Gallery::findOrFail(decrypt($id));
         $item->delete();
 
-        Session::flash('success', 'Gallery package created successfully.');
+        // Session::flash('success', 'Gallery package created successfully.');
+        Alert::success('Success', 'Gallery package created successfully');
         
         return redirect()->route('gallery.index');
     }
