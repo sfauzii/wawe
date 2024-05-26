@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('travel_packages_id');
-            $table->integer('users_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->uuid('travel_packages_id');
+            $table->uuid('users_id')->nullable();
             $table->integer('additional_visa');
             $table->integer('transaction_total');
             $table->string('transaction_status'); //IN_CART, PENDING, SUCCESS, CANCAEL, FAILED
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('travel_packages_id')->references('id')->on('travel_packages')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

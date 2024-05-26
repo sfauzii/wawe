@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->id();
-            $table->integer('transactions_id');
+            $table->uuid('id')->primary();
+            $table->uuid('transactions_id');
             $table->string('username');
             $table->string('nationality');
             $table->boolean('is_visa');
             $table->date('doe_passport');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('transactions_id')->references('id')->on('transactions')->onDelete('cascade');
         });
     }
 

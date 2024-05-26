@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('galleries', function (Blueprint $table) {
-            $table->id();
-            $table->integer('travel_packages_id');
+            $table->uuid('id')->primary();
+            $table->uuid('travel_packages_id');
             $table->text('image');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('travel_packages_id')->references('id')->on('travel_packages')->onDelete('cascade');
         });
     }
 
