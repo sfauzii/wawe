@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        ID
+                                        #
                                     </th>
                                     <th>Name</th>
                                     <th>Username</th>
@@ -50,7 +50,7 @@
                             <tbody>
                                 @forelse ($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>

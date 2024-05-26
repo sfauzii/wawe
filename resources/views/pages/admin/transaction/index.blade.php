@@ -36,7 +36,7 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Travel</th>
                                     <th>User</th>
                                     {{-- <th>Visa</th> --}}
@@ -48,7 +48,7 @@
                             <tbody>
                                 @forelse ($items as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->travel_package->title }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     {{-- <td>IDR{{ $item->additional_visa }}</td> --}}
