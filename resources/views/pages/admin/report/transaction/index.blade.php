@@ -30,7 +30,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary btn-block w-100">
+        <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970">
             Tampilkan Laporan
         </button>
     </form>
@@ -74,7 +74,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $transaction->created_at->format('d F Y, H:i') }} WIB</td>
-                                        <td>{{ $transaction->transaction_total }}</td>
+                                        <td>{{ number_format($transaction->transaction_total) }}</td>
                                         <td>{{ $transaction->user->name }}</td>
                                         <td>{{ $transaction->travel_package->title }}</td>
                                         <td>{{ $transaction->transaction_status }}</td>

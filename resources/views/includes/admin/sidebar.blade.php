@@ -91,7 +91,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#report-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person"></i><span>Report</span><i
+                <i class="bi bi-file-earmark-text"></i><span>Report</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

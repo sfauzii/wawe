@@ -62,8 +62,8 @@
         <h1>Laporan Package</h1>
     </div>
 
-    <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($startDate)->format('d F Y') }}</strong> sampai
-        <strong>{{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</strong>
+    <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($start_date)->format('d F Y') }}</strong> sampai
+        <strong>{{ \Carbon\Carbon::parse($end_date)->format('d F Y') }}</strong>
     </p>
     <table>
         <thead>

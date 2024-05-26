@@ -18,19 +18,19 @@
         <div class="row mb-3">
             <label for="startDate" class="col-sm-2 col-form-label">Star Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="startDate" class="form-control" name="start_date" required value="{{ $startDate }}">
+                <input type="date" id="startDate" class="form-control" name="start_date" required value="{{ $start_date }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="endDate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="endDate" class="form-control" name="end_date" required value="{{ $endDate }}">
+                <input type="date" id="endDate" class="form-control" name="end_date" required value="{{ $end_date }}">
             </div>
         </div>
 
 
 
-        <button type="submit" class="btn btn-primary btn-block w-100">
+        <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970">
             Tampilkan Laporan
         </button>
     </form>
@@ -38,8 +38,8 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-                <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($startDate)->format('d F Y') }}</strong> sampai
-                    <strong>{{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</strong> Last Report
+                <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($start_date)->format('d F Y') }}</strong> sampai
+                    <strong>{{ \Carbon\Carbon::parse($end_date)->format('d F Y') }}</strong> Last Report
                 </p>
                 <div class="card">
                     <div class="card-body">
@@ -52,8 +52,8 @@
                                     @if ($packages->isNotEmpty())
                                         <form action="{{ route('report-travel-package-download') }}" method="GET"
                                             class="no-print">
-                                            <input type="hidden" name="start_date" value="{{ $startDate }}">
-                                            <input type="hidden" name="end_date" value="{{ $endDate }}">
+                                            <input type="hidden" name="start_date" value="{{ $start_date }}">
+                                            <input type="hidden" name="end_date" value="{{ $end_date }}">
                                             <button class="btn btn-danger" type="submit"><i
                                                     class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
                                         </form>

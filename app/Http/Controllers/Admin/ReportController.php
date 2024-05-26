@@ -37,26 +37,26 @@ class ReportController extends Controller
 
     public function showFormPackage(Request $request)
     {
-        $startDate = $request->input('start_date', ''); // Default kosong jika tidak ada input
-        $endDate = $request->input('end_date', ''); // Default kosong jika tidak ada input
+        $start_date = $request->input('start_date', ''); // Default kosong jika tidak ada input
+        $end_date = $request->input('end_date', ''); // Default kosong jika tidak ada input
 
         $packages = collect();
-        if ($startDate && $endDate) {
+        if ($start_date && $end_date) {
             $packages = TravelPackage::with('galleries')
-            ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->get();
+            ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
         }
 
-        return view('pages.admin.report.travel-package.index', compact('startDate', 'endDate', 'packages'));
+        return view('pages.admin.report.travel-package.index', compact('start_date', 'end_date', 'packages'));
     }
 
     public function generatePackagePDF(Request $request)
     {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
         $packages = TravelPackage::with('galleries')
-        ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->get();
+        ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
 
-        $pdf = FacadePdf::loadView('pages.admin.report.travel-package.pdf', compact('packages', 'startDate', 'endDate'))->setPaper('a4', 'portrait');
+        $pdf = FacadePdf::loadView('pages.admin.report.travel-package.pdf', compact('packages', 'start_date', 'end_date'))->setPaper('a4', 'portrait');
         return $pdf->stream('laporan_paket_perjalanan.pdf');
     }
 }
