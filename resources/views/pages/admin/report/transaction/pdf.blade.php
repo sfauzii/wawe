@@ -73,7 +73,21 @@
                 <td>Rp {{ number_format($transaction->transaction_total, 2, ',', '.') }}</td>
                 <td>{{ $transaction->user->name }}</td>
                 <td>{{ $transaction->travel_package->title }}</td>
-                <td>{{ $transaction->transaction_status }}</td>
+                <td>
+                    @if ($transaction->transaction_status === 'SUCCESS')
+                        <span class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>
+                    @elseif($transaction->transaction_status === 'IN_CART')
+                        <span class="badge rounded-pill text-bg-primary">{{ $transaction->transaction_status }}</span>
+                    @elseif($transaction->transaction_status === 'PENDING')
+                        <span class="badge rounded-pill text-bg-warning">{{ $transaction->transaction_status }}</span>
+                    @elseif($transaction->transaction_status === 'CANCEL')
+                        <span class="badge rounded-pill text-bg-secondary">{{ $transaction->transaction_status }}</span>
+                    @elseif($transaction->transaction_status === 'FAILED')
+                        <span class="badge rounded-pill text-bg-danger">{{ $transaction->transaction_status }}</span>
+                    @else
+                        <span class="badge rounded-pill text-bg-dark">{{ $transaction->transaction_status }}</span>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>
