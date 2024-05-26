@@ -36,7 +36,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="travel_packages_id" class="col-sm-2 col-form-label">Travel Package</label>
+                                <label for="travel_packages_id" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Travel Package</label>
                                 <div class="col-sm-10">
                                     <select name="travel_packages_id" class="form-select"
                                         aria-label="Default select example">
@@ -51,13 +51,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="image" class="col-sm-2 col-form-label">Image</label>
+                                <label for="image" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Image</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" name="image" placeholder="Image">
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block w-100">
+                            <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970;">
                                 Edit
                             </button>
                         </form><!-- End General Form Elements -->
@@ -80,7 +80,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span ><i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #012970; font-weight: bold   ">{{ $item->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"><i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #000000; font-weight: 400   ">{{ $item->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span ><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #012970; font-weight: bold   ">{{ $item->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #000000; font-weight: 400   ">{{ $item->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>

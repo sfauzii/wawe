@@ -56,6 +56,9 @@
                                         <td>{{ $item->type }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
+                                            <a href="{{ route('travel-package.show', encrypt($item->id)) }}" class="btn btn-success">
+                                                <i class="fa fa-pencil-alt">Show</i>
+                                            </a>
                                             <a href="{{ route('travel-package.edit', encrypt($item->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>

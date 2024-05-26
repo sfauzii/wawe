@@ -54,7 +54,9 @@ class TravelPackageController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $travelPackage = TravelPackage::findOrFail(decrypt($id));
+
+        return view('pages.admin.travel-package.show', compact('travelPackage'));
     }
 
     /**

@@ -36,7 +36,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-sm-2 col-form-label">Name <span
+                                <label for="name" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Name <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" placeholder="name"
@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="username" class="col-sm-2 col-form-label">Username <span
+                                <label for="username" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Username <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="username" placeholder="Username"
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="email" class="col-sm-2 col-form-label">Email <span
+                                <label for="email" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Email <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input name="email" type="email" placeholder="Email" class="form-control"
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Roles</label>
+                                <label class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Roles</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="roles" id="admin_role"
@@ -87,7 +87,7 @@
 
 
                             <div class="row mb-3">
-                                <label for="password" class="col-sm-2 col-form-label">Password <span
+                                <label for="password" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Password <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input name="password" type="password" class="form-control"
@@ -96,7 +96,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Password <span
+                                <label for="password-confirm" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Confirm Password <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input name="password_confirmation" type="password" class="form-control"
@@ -105,13 +105,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="photos" class="col-sm-2 col-form-label">Photos</label>
+                                <label for="photos" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Photos</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="photos" class="form-control" accept="image/*">
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block w-100">
+                            <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970">
                                 Simpan
                             </button>
                         </form><!-- End General Form Elements -->
@@ -132,7 +132,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span> <i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #012970; font-weight: bold   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"> <i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #000000; font-weight: 400   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #012970; font-weight: bold   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #000000; font-weight: 400   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>

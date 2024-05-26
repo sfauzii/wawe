@@ -52,7 +52,7 @@
                                     <td>{{ $item->travel_package->title }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     {{-- <td>IDR{{ $item->additional_visa }}</td> --}}
-                                    <td>IDR{{ $item->transaction_total }}</td>
+                                    <td>IDR {{ number_format($item->transaction_total) }}</td>
                                     <td>
                                         @if ($item->transaction_status === 'SUCCESS')
                                             <span class="badge rounded-pill text-bg-success">{{ $item->transaction_status }}</span>

@@ -31,7 +31,45 @@
                     </div>
                 </div>
 
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 flex flex-column align-items center">
+                            <form>
+                                <!-- Created At -->
+                                <div class="row mb-5">
+                                    <div class="col-sm-10">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
+                                            <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
+                                                Created At: <span
+                                                    style="color: #000000; font-weight: 400   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
+                                            <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Updated At -->
+                                <div class="row mb-5">
+                                    <div class="col-sm-10">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
+                                            <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
+                                                Updated At: <span
+                                                    style="color: #000000; font-weight: 400   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
+                                            <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
 
             <div class="col-xl-8">
 
@@ -54,24 +92,54 @@
                                 <h5 class="card-title">Profile Details</h5>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                    <div class="col-lg-3 col-md-4 label " style="color: #000000; font-weight: bold; ">ID
+                                    </div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->id }}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label " style="color: #000000; font-weight: bold; ">Full
+                                        Name</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                                    <div class="col-lg-3 col-md-4 label " style="color: #000000; font-weight: bold; ">
+                                        Username</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->username }}</div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-3 col-md-4 label" style="color: #000000; font-weight: bold; ">Email
+                                    </div>
                                     <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Phone</div>
-                                    <div class="col-lg-9 col-md-8">{{ $user->phone }}</div>
+                                    <div class="col-lg-3 col-md-4 label" style="color: #000000; font-weight: bold;">Phone
+                                    </div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if (!empty($user->phone))
+                                            {{ $user->phone }}
+                                        @else
+                                            <span style="color: red;">Pengguna belum melengkapi</span>
+                                        @endif
+                                    </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label" style="color: #000000; font-weight: bold;">Email
+                                        Verified</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if (!empty($user->email_verified_at))
+                                            <span
+                                                style="color: #000000; font-weight: 400">{{ $user->email_verified_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span>
+                                        @else
+                                            <span style="color: red;">Not Verified</span>
+                                        @endif
+                                    </div>
+                                </div>
+
 
                             </div>
 
