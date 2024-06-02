@@ -65,6 +65,117 @@
     <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($start_date)->format('d F Y') }}</strong> sampai
         <strong>{{ \Carbon\Carbon::parse($end_date)->format('d F Y') }}</strong>
     </p>
+
+    <div class="tab-content pt-2" id="borderedTabContent">
+        <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+            @foreach ($packages as $package )
+            <table class="table">
+                <tr>
+                    <th>No</th>
+                    <th>{{ $loop->iteration }}</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ $package->id }}</td>
+                </tr>
+                <tr>
+                    <th>Judul</th>
+                    <td>{{ $package->title }}</td>
+                </tr>
+                <tr>
+                    <th>Lokasi</th>
+                    <td>{{ $package->location }}</td>
+                </tr>
+                <tr>
+                    <th>Tentang</th>
+                    <td>{{ $package->about }}</td>
+                </tr>
+                <tr>
+                    <th>Fasilitas</th>
+                    <td>
+                        @php $features = explode(',', $package->features); @endphp
+                        <ul>
+                            @foreach ($features as $feature)
+                                <li>{{ $feature }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <th>Tanggal Keberangkatan</th>
+                    <td>{{ $package->departure_date }}</td>
+                </tr>
+                <tr>
+                    <th>Durasi</th>
+                    <td>{{ $package->duration }}</td>
+                </tr>
+                <tr>
+                    <th>Kuota</th>
+                    <td>{{ $package->kuota }}</td>
+                </tr>
+                <tr>
+                    <th>Tipe</th>
+                    <td>{{ $package->type }}</td>
+                </tr>
+                <tr>
+                    <th>Harga</th>
+                    <td>{{ number_format($package->price) }}</td>
+                </tr>
+                <tr>
+                    <th>Gallery</th>
+                    <td>
+                        {{-- @foreach ($package->galleries as $gallery)
+                            <img src="{{ asset('storage/' . $gallery->image) }}" alt="" class="x-zoom" style="width: 200px; height: auto;">
+                        @endforeach --}}
+
+                        @if ($package->galleries->count())
+                            <div class="gallery">
+                                <div class="xzoom-container">
+                                    {{-- <img src="{{ Storage::url($package->galleries->first()->image) }}" alt="Details gambar"
+                                    class="xzoom" style="width: 200px; height: auto;" id="xzoom-default"
+                                    xoriginal="{{ Storage::url($package->galleries->first()->image) }}"> --}}
+                                </div>
+                                <div class="xzoom-thumbs">
+                                    @foreach ($package->galleries as $gallery)
+                                        <a href="{{ Storage::url($gallery->image) }}">
+                                            <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery"
+                                                width="128" xpreview="{{ Storage::url($gallery->image) }}"
+                                                alt="">
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </td>
+                </tr>
+            </table>
+            <div class="mt-5">
+                <hr>
+            </div>
+            @endforeach
+        </div>
+        {{-- <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
+            @if ($testimonies->isEmpty())
+                <div class="alert alert-info">Tidak ada testimoni.</div>
+            @else
+                <div class="testimonial-wrapper">
+                    @foreach ($testimonies as $testimony)
+                        <div class="testimonial-item">
+                            <blockquote class="blockquote">
+                                <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
+                                    alt="User Photo" class="user-photo">
+                                <p class="mb-0">{{ $testimony->message }}</p>
+                                <footer class="blockquote-footer">{{ $testimony->user->name }}</footer>
+                            </blockquote>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div> --}}
+
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -85,6 +196,7 @@
                     <td>{{ \Carbon\Carbon::parse($package->departure_date)->format('d F Y') }}</td>
                     {{-- <td><img src="{{ $package->travel_package->galleries->count() ? Storage::url($package->travel_package->galleries->first()->image) : '' }}"
                             alt="Package Image" style="width: 100px; height: auto;"></td> --}}
+                    
                 </tr>
             @endforeach
         </tbody>
