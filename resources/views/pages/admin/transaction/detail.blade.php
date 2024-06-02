@@ -62,17 +62,17 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nama</th>
-                                                <th>Nationality</th>
+                                                {{-- <th>Nationality</th>
                                                 <th>Visa</th>
-                                                <th>DOE Passport</th>
+                                                <th>DOE Passport</th> --}}
                                             </tr>
                                             @foreach ($item->details as $detail)
                                                 <tr>
                                                     <td>{{ $detail->id }}</td>
                                                     <td>{{ $detail->username }}</td>
-                                                    <td>{{ $detail->nationality }}</td>
+                                                    {{-- <td>{{ $detail->nationality }}</td>
                                                     <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
-                                                    <td>{{ $detail->doe_passport }}</td>
+                                                    <td>{{ $detail->doe_passport }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </table>
