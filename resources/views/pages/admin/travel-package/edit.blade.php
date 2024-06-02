@@ -84,6 +84,14 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="kuota" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Kuota <span class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="kuota" name="kuota" placeholder="Kuota" value="{{ $item->kuota }}" min="0" oninput="validateKuota(this)">
+                                    <small class="form-text text-muted">Durasi. Contoh: 10. Wajib diisi</small>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="type" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Type <span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="type" placeholder="Type" value="{{ $item->type }}">

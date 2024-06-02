@@ -14,7 +14,7 @@ class TravelPackage extends Model
 
     protected $fillable =[
         'title', 'slug', 'location', 'about', 'features', 'departure_date', 'duration',
-        'type', 'price'
+        'kuota', 'type', 'price'
     ];
 
     protected $hidden = [

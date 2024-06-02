@@ -28,6 +28,7 @@ class TravelPackageRequest extends FormRequest
             'features' => 'required',
             'departure_date' => 'required|date',
             'duration' => 'required|max:255',
+            'kuota' => 'required|integer',
             'type' => 'required|max:255',
             'price' => 'required|integer',
         ];
