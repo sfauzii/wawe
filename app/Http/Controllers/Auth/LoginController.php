@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,14 +41,26 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // Check if user has 'ADMIN' role
-        if ($user->roles === 'ADMIN') {
-            // Redirect to admin dashboard
-            return redirect()->route('dashboard');
+
+        $user = Auth::user();
+
+        if($user) {
+            if($user->hasRole('super-admin')) {
+                return redirect('/admin');
+            } elseif ($user->hasRole('admin')) {
+                return redirect('/admin');
+            }
         }
 
-        // For other roles, redirect to default home page
         return redirect('/');
+        // // Check if user has 'ADMIN' role
+        // if ($user->roles === 'ADMIN') {
+        //     // Redirect to admin dashboard
+        //     return redirect()->route('dashboard');
+        // }
+
+        // // For other roles, redirect to default home page
+        // return redirect('/');
     }
 
     protected function validateLogin(Request $request)

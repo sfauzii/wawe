@@ -87,6 +87,36 @@
             </ul>
         </li><!-- End Tables Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#roles-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i><span>Roles</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="roles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                
+                <li>
+                    <a href="{{ route('roles.index') }}">
+                        <i class="bi bi-circle"></i><span>Data Roles</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#permissions-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i><span>Permissions</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="permissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                
+                <li>
+                    <a href="{{ route('permissions.index') }}">
+                        <i class="bi bi-circle"></i><span>Data Permissions</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
         <li class="nav-heading">REPORT</li>
 
         <li class="nav-item">

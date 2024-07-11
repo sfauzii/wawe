@@ -173,7 +173,12 @@
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
                     <h6>{{ Auth::user()->name }}</h6>
-                    <span>{{ Auth::user()->roles }}</span>
+                    <span>
+                        @foreach (Auth::user()->getRoleNames() as $role)
+                            <span class="badge bg-primary">{{ $role }}</span>
+                        @endforeach
+                    </span>
+                    {{-- <span>{{ Auth::user()->roles }}</span> --}}
                 </li>
                 <li>
                     <hr class="dropdown-divider">

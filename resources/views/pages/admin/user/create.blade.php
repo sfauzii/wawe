@@ -68,13 +68,26 @@
                                     <input  name="password_confirmation" type="password" placeholder="Confirm Password" class="form-control" required autocomplete="new-password" {{ old('password-confirm') }}></input>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
+                                <label for="name" class="col-sm-2 col-form-label">Roles <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <select name="roles[]" class="form-control" multiple>
+                                        <option value="">Select Roles</option>
+                                        @foreach ($roles as $id => $role)
+                                            <option value="{{ $id }}">{{ $role }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            {{-- <div class="row mb-3">
                                 <label for="photos" class="col-sm-2 col-form-label">Photos</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="photos" class="form-control" accept="image/*">
                                 </div>
-                            </div>
+                            </div> --}}
 
                            
 

@@ -64,6 +64,21 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="name" class="col-sm-2 col-form-label">Roles <span class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <select name="roles[]" class="form-control" multiple>
+                                        <option value="">Select Roles</option>
+                                        @foreach ($roles as $role => $roleName)
+                                            <option value="{{ $role }}" {{ in_array($role, $userRoles) ? 'selected' : '' }}>
+                                                {{ $roleName }}
+                                            </option>
+                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Roles</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
@@ -81,7 +96,7 @@
                                         </label>
                                     </div>
                                     <!-- Add more radio buttons as needed -->
-                                </div>
+                                </div> --}}
                             </div>
 
 
@@ -104,12 +119,12 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <label for="photos" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Photos</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="photos" class="form-control" accept="image/*">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970">
                                 Simpan

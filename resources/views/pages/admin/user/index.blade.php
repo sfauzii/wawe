@@ -55,30 +55,46 @@
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
+                                            @if (!empty($user->roles) && $user->roles->count() > 0)
+                                                @foreach ($user->roles as $role)
+                                                    <span class="badge bg-primary">{{ $role->name }}</span>
+                                                @endforeach
+                                            @else
+                                                <span class="badge bg-black">No roles assigned</span>
+                                            @endif
+                                        </td>
+
+                                        {{-- <td>
                                             @if ($user->roles === 'ADMIN')
                                                 <span class="badge rounded-pill text-bg-success">{{ $user->roles }}</span>
                                             
                                             @else
                                                 <span class="badge rounded-pill text-bg-dark">{{ $user->roles }}</span>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td>
                                             <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success">
                                                 <i class="fa fa-eye">Show</i>
                                             </a>
-                                            <a href="{{ route('user.edit', encrypt($user->id)) }}" class="btn btn-info">
-                                                <i class="fa fa-pencil-alt">Edit</i>
-                                            </a>
-                                            <form action="{{ route('user.destroy', encrypt($user->id)) }}" method="POST"
-                                                class="d-inline">
 
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fas-trash">Delete</i>
+                                            @can('edit user')
+                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">
+                                                    <i class="fa fa-pencil-alt">Edit</i>
+                                                </a>
+                                            @endcan
 
-                                                </button>
-                                            </form>
+                                            @can('delete user')
+                                                <form action="{{ route('user.destroy', encrypt($user->id)) }}" method="POST"
+                                                    class="d-inline">
+
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fas-trash">Delete</i>
+
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty
