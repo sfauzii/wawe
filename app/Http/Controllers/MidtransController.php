@@ -54,6 +54,9 @@ class MidtransController extends Controller
             $transaction->transaction_status = 'CANCEL';
         }
 
+        // simpan transaksi
+        $transaction->save();
+
         // kirimkan email
         if ($transaction) {
             if ($status == 'capture' && $fraud == 'accept') {

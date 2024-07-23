@@ -57,7 +57,10 @@
                         <a class="dropdown-item" href="dashboard.html">My Ticket</a>
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <form action="{{ url('logout') }}" method="POST">
+                            @csrf
+                            <button class="dropdown-item" type="submit">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>
