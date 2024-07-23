@@ -30,5 +30,11 @@
         "500": "D:\\VS Code\\Project\\wawe\\storage\\fonts\/poppins_500_90dcab88268cf6d3f77b33841917903c",
         "600": "D:\\VS Code\\Project\\wawe\\storage\\fonts\/poppins_600_ab2317e82e93420e320bf10d17d6c75b",
         "bold": "poppins_bold_cc53e8e8659afa950c49e4494cbb2708"
+    },
+    "ubuntu": {
+        "300": "D:\\VS Code\\Project\\wawe\\storage\\fonts\/ubuntu_300_6853395806f26ea96622b7d7ed589eef",
+        "normal": "D:\\VS Code\\Project\\wawe\\storage\\fonts\/ubuntu_normal_de3bd9cac4dd30ea4cc4e73c24e9f8d8",
+        "500": "D:\\VS Code\\Project\\wawe\\storage\\fonts\/ubuntu_500_a2b721aa8b573ae4e993309d614d3d20",
+        "bold": "ubuntu_bold_102fbdc70ebc97d5aacdcb5ef9ac8de3"
     }
 }

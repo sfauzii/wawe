@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\User\MyTicketController;
 use App\Http\Controllers\User\OverviewController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -63,6 +64,10 @@ Route::get('/checkout/confirm/{id}', [CheckoutController::class, 'success'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/overview/{username}/{id}', [OverviewController::class, 'index'])->name('overview');
+
+    Route::get('/overview/my-ticket/{username}/{id}', [MyTicketController::class, 'index'])->name('my-ticket');
+    Route::get('/my-ticket/ticket-detail/{id}', [MyTicketController::class, 'detail'])->name('ticket-detail');
+    Route::get('/my-ticket/download/{id}', [MyTicketController::class, 'ticketPdf'])->name('ticket-download');
 });
 
 

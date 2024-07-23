@@ -1,3 +1,7 @@
+@php
+    $currentUrl = request()->url();
+@endphp
+
 <!-- aside section start -->
 <aside>
     <div class="top">
@@ -16,15 +20,15 @@
         </div> -->
     </div>
     <div class="sidebar">
-        <a href="dashboard.html" class="active">
+        <a href="{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}" class="{{ $currentUrl == route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) ? 'active' : '' }}">
             <!-- <span class="material-icons">grid_view</span> -->
 
             <img src="{{ url('frontend/images/icons/category.png') }}" class="icon-sidebar">
             <h3>Overview</h3>
         </a>
-        <a href="ticket.html">
+        <a href="{{ route('my-ticket', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}" class="{{ $currentUrl == route('my-ticket', ['username' => Auth::user()->username, 'id' => Auth::id()]) ? 'active' : '' }}">
             <!-- <span class="material-icons">receipt_long</span> -->
-            <img src="{{ url('frontend/images/icons/ticket-discount.png') }}" class="icon-sidebar">
+             <img src="{{ url('frontend/images/icons/ticket-discount.png') }}" class="icon-sidebar">
             <h3>My Ticket</h3>
         </a>
         <a href="transaction.html">
