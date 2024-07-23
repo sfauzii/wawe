@@ -47,7 +47,7 @@
             @endphp --}}
                 @foreach ($items as $item)
                     <a href="{{ route('details', $item->slug) }}" class="card-link">
-                        <div class="card">
+                        <div class="card-catalogue">
                             <div class="card-background"
                                 style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }} ');">
                                 <div class="card-overlay"></div>

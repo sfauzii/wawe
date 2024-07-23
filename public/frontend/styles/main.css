@@ -2666,7 +2666,7 @@ footer .container-fluid {
   /* Ensure no background color change */
 }
 
-.card {
+.card-catalogue {
   position: relative;
   width: calc(25% - 20px);
   /* 4 cards per row, accounting for gaps */
@@ -2680,7 +2680,7 @@ footer .container-fluid {
   transition: transform 0.3s ease;
 }
 
-.card:hover {
+.card-catalogue:hover {
   transform: translateY(-10px); /* Lift card on hover */
 }
 
@@ -2838,7 +2838,7 @@ footer .container-fluid {
     grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
     gap: 20px; /* Space between cards */
   }
-  .card {
+  .card-catalogue {
     width: 100%; /* Full width for cards */
   }
   .mobile-menu {
@@ -2861,7 +2861,7 @@ footer .container-fluid {
     flex-direction: column;
     gap: 20px;
   }
-  .card {
+  .card-catalogue {
     width: 100%;
   }
   .menu-button {

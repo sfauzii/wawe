@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Midtrans\Config;
+use Midtrans\Notification;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+use App\Mail\TransactionSuccess;
+use Illuminate\Support\Facades\Mail;
+
+class MidtransController extends Controller
+{
+    public function notificationHandler(Request $request)
+    {
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
+
+        // Buat instance midtrans notification
+        $notification = new Notification();
+
+        // $order = explode('-', $notification->order_id);
+
+        // Assign ke variable
+        $status = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
+        $order_id = $notification->order_id;
+        // $order_id = $order[1];
+
+        // cari transaksi berdasarkan id
+        $transaction = Transaction::findOrFail($order_id);
+
+        // Handle notification status midtrans
+        if ($status == 'capture') {
+            if ($type == 'credit_card') {
+                if ($fraud == 'challenge') {
+                    $transaction->transaction_status = 'CHALLENG';
+                } else {
+                    $transaction->transaction_status = 'SUCCESS';
+                }
+            }
+        } elseif ($status == 'settlement') {
+            $transaction->transaction_status = 'SUCCESS';
+        } elseif ($status == 'pending') {
+            $transaction->transaction_status = 'PENDING';
+        } elseif ($status == 'deny') {
+            $transaction->transaction_status = 'FAILED';
+        } elseif ($status == 'expire') {
+            $transaction->transaction_status = 'EXPIRED';
+        } elseif ($status == 'cancel') {
+            $transaction->transaction_status = 'CANCEL';
+        }
+
+        // kirimkan email
+        if ($transaction) {
+            if ($status == 'capture' && $fraud == 'accept') {
+                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+            } elseif ($status == 'settlement') {
+                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+            } elseif ($status == 'success') {
+                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+            } elseif ($status == 'capture' && $fraud == 'challenge') {
+                return response()->json([
+                    'meta' => [
+                        'code' => 200,
+                        'message' => 'Midtrans Payment Challenge',
+                    ],
+                ]);
+            } else {
+                return response()->json([
+                    'meta' => [
+                        'code' => 200,
+                        'message' => 'Midtrans Payment not settlement',
+                    ],
+                ]);
+            }
+
+            return response()->json([
+                'meta' => [
+                    'code' => 200,
+                    'message' => 'Midtrans notification success',
+                ],
+            ]);
+        }
+    }
+
+    public function finishRedirect(Request $request)
+    {
+        $orderId = $request->input('order_id');
+        $statusCode = $request->input('status_code');
+        $transactionStatus = $request->input('transaction_status');
+
+        // Ambil transaksi berdasarkan ID order
+        $transaction = Transaction::where('id', $orderId)->first();
+
+        // Jika pembayaran berhasil (status "settlement"), arahkan pengguna ke halaman success
+        if ($statusCode == 200 && $transactionStatus == 'settlement') {
+            return view('pages.success', [
+                'items' => $transaction,
+            ]);
+        } elseif ($statusCode == 201 && $transactionStatus == 'pending') {
+            return view('pages.unfinish');
+        } else {
+            return view('pages.failed');
+        }
+    }
+
+    public function unfinishRedirect(Request $request)
+    {
+        $orderId = $request->input('order_id');
+        $statusCode = $request->input('status_code');
+        $transactionStatus = $request->input('transaction_status');
+
+        // Jika pembayaran berhasil (status "settlement"), arahkan pengguna ke halaman success
+        if ($statusCode == 201 && $transactionStatus == 'pending') {
+            return view('pages.unfinish');
+        }
+    }
+
+    public function errorRedirect(Request $request)
+    {
+        return view('pages.failed');
+    }
+}

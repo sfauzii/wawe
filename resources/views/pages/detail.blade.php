@@ -180,7 +180,20 @@
                             <h4>Type</h4>
                             <p>{{ $item->type }}</p>
                         </div>
-                        <button class="purchase-btn" onclick="window.location.href = 'checkout.html';">Join Now</button>
+
+
+                        @auth
+                            <form action="{{ route('checkout_process', $item->id) }}" method="POST">
+                                @csrf
+                                <button class="purchase-btn" type="submit">Join Now</button>
+                            </form>
+                        @endauth
+
+
+                        @guest
+                            <button type="button" class="purchase-btn"
+                                onclick="window.location.href='{{ route('login') }}';">Login or Register to Join</button>
+                        @endguest
                     </aside>
                 </div>
 

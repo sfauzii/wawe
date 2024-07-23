@@ -3249,7 +3249,7 @@ footer {
 }
 
 
-.card {
+.card-catalogue {
     position: relative;
     width: calc(25% - 20px);
     /* 4 cards per row, accounting for gaps */
@@ -3264,7 +3264,7 @@ footer {
     transition: transform 0.3s ease;
 }
 
-.card:hover {
+.card-catalogue:hover {
     transform: translateY(-10px); /* Lift card on hover */
 }
 
@@ -3429,7 +3429,7 @@ footer {
         gap: 20px; /* Space between cards */
     }
 
-    .card {
+    .card-catalogue {
         width: 100%; /* Full width for cards */
     }
 
@@ -3458,7 +3458,7 @@ footer {
         gap: 20px;
     }
 
-    .card {
+    .card-catalogue {
         width: 100%;
     }
 
