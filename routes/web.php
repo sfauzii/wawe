@@ -10,6 +10,7 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\User\SettingController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\User\MyTicketController;
 use App\Http\Controllers\User\OverviewController;
@@ -74,6 +75,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('invoice/{id}', [MyTransactionController::class, 'invoice'])->name('invoice');
     Route::get('invoice-download/{id}', [MyTransactionController::class, 'invoicepdf'])->name('invoice.download');
+
+    Route::get('/overview/settings/{username}/{id}', [SettingController::class, 'index'])->name('settings');
 });
 
 

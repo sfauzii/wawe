@@ -37,9 +37,9 @@
             <h3>My Transaction</h3>
         </a>
 
-        <a href="settings.html">
+        <a href="{{ route('settings', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}" class="{{ $currentUrl == route('settings', ['username' => Auth::user()->username, 'id' => Auth::id()]) ? 'active' : '' }}">
             <!-- <span class="material-icons">settings</span> -->
-            <img src="{{ url('frontend/images/icons/setting-3.png') }}" class="icon-sidebar">
+             <img src="{{ url('frontend/images/icons/setting-3.png') }}" class="icon-sidebar" >
             <h3>Settings</h3>
         </a>
     </div>
