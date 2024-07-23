@@ -31,9 +31,9 @@
              <img src="{{ url('frontend/images/icons/ticket-discount.png') }}" class="icon-sidebar">
             <h3>My Ticket</h3>
         </a>
-        <a href="transaction.html">
+        <a href="{{ route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}" class="{{ $currentUrl == route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) ? 'active' : '' }}">
             <!-- <span class="material-icons">payments</span> -->
-            <img src="{{ url('frontend/images/icons/empty-wallet.png') }}" class="icon-sidebar">
+             <img src="{{ url('frontend/images/icons/empty-wallet.png') }}" class="icon-sidebar">
             <h3>My Transaction</h3>
         </a>
 

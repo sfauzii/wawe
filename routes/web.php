@@ -16,6 +16,7 @@ use App\Http\Controllers\User\OverviewController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 
 /*
@@ -68,6 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/overview/my-ticket/{username}/{id}', [MyTicketController::class, 'index'])->name('my-ticket');
     Route::get('/my-ticket/ticket-detail/{id}', [MyTicketController::class, 'detail'])->name('ticket-detail');
     Route::get('/my-ticket/download/{id}', [MyTicketController::class, 'ticketPdf'])->name('ticket-download');
+
+    Route::get('/overview/my-transaction/{username}/{id}', [MyTransactionController::class, 'index'])->name('my-transaction');
+
+    Route::get('invoice/{id}', [MyTransactionController::class, 'invoice'])->name('invoice');
+    Route::get('invoice-download/{id}', [MyTransactionController::class, 'invoicepdf'])->name('invoice.download');
 });
 
 

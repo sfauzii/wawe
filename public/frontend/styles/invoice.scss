@@ -25,216 +25,307 @@
 
 // *** INVOICE *** //
 
-main {
-    grid-column: 2 / 10;
-    padding: 1rem;
-    overflow-y: auto; /* Agar konten yang panjang bisa di-scroll */
-  }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: 0;
-    list-style: none;
-    appearance: none;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
-    width: 100vw;
-    height: 100vh;
-    font-size: 0.88rem;
-    user-select: none;
-    overflow-x: hidden;
-    background: var(--clr-color-background);
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
 }
 
-.container {
-    display: grid;
-    margin-top: 2rem;
-    width: 96%;
-    gap: 1.8rem;
-    grid-template-columns: 14rem auto 14rem;
-    margin: 0 auto;
+.background-container {
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    padding: 50px;
+    width: 640px;
+    height: 660px;
+    margin-bottom: 50px;
+    max-width: 100%;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .title-section {
-    margin-bottom: 2rem;
-    
+    width: 600px;
+    max-width: 100%;
+    margin-top: 50px;
+    left: 50px !important;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.title-section h1 {
+    margin: 0;
 }
 
 .title-section p {
-   font-weight: 400;
-   color: var(--clr-dark);
-
+    margin: 5px 0 0 0;
+    color: #555;
 }
-.invoice-container {
+
+.invoice-card {
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 80%;
-    height: 570px;
-    max-width: 800px;
-    margin-bottom: 2rem;
+    width: 600px;
+    max-width: 100%;
 }
 
 .invoice-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 5px;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+.invoice-header .left h3 {
+    font-size: 22px;
+    margin-bottom: 0;
 }
 
-.logo img {
-    max-width: 100px;
-    margin-right: 10px;
+.invoice-header .left {
+    width: 48%;
 }
 
-.invoice-info {
-    flex: 1; /* Menggunakan flex-grow untuk mengisi ruang tersisa */
-    text-align: left; /* Menyesuaikan posisi teks invoice-info ke kiri */
+.invoice-header .left img {
+    width: 100px;
 }
 
-.id-invoice {
-    font-size: 18px;
-    margin: 0;
+.invoice-header .left p {
+    margin: 5px 0;
 }
 
-.invoice-info p {
-    font-size: 14px;
-    margin: 0;
-}
-
-.invoice-details {
+.invoice-header .right {
+    width: 48%;
     text-align: right;
 }
 
-.separator {
-    border: none;
-    border-top: 1px solid #ddd;
+.invoice-header .right p {
+    margin: 5px 0;
+}
+
+.divider {
+    border-bottom: 1px solid #e0e0e0;
     margin: 20px 0;
 }
 
-.invoice-section {
+.billing-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.invoice-section h3 {
+.b-color {
+    color: coral;
+}
+
+.billing-info .bill-from,
+.billing-info .bill-to {
+    width: 48%;
+}
+
+
+.billing-info h3 {
+    margin: 0;
     font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
+    margin-bottom: 0;
 }
 
-.invoice-section p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
+.billing-info .bill-to {
+    text-align: right;
 }
 
-.invoice-table {
-    margin-top: 20px;
+.billing-info .bill-from p,
+.billing-info .bill-to p {
+    margin: 2px 0;
 }
 
-.invoice-table table {
+table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-.invoice-table th, .invoice-table td {
+table th,
+table td {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
-.invoice-table th {
+table th {
     background-color: #f0f0f0;
+    border-top: none;
 }
 
-.invoice-table td {
-    background-color: #fff;
-}
-
-.invoice-footer {
+.thank-you {
     text-align: center;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.print-button {
-    padding: 10px 20px;
-    margin-top: 20px;
+.thank-you p {
+    margin: 0;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
     background-color: coral;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 700;
-    color: #fff;
     border: none;
-    border-radius: 20px;
+    color: white;
+    padding: 15px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-.print-button:hover {
-    background-color: rgb(241, 160, 131);
+.button-container button:hover {
+    background-color: rgb(253, 114, 63);
 }
 
 
-// *** END INVOICE *** //
-
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr; /* Satu kolom untuk tampilan mobile */
-        gap: 1rem; /* Mengurangi jarak antar elemen */
-        width: 90%; /* Lebar kontainer menjadi 90% */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .background-container {
+        padding: 30px;
+        width: 90%; /* Adjust width to fit tablets */
+        height: auto; /* Allow height to adjust based on content */
+        margin-bottom: 30px;
     }
 
-    .invoice-container {
-        width: 100%; /* Konten invoice mengambil lebar penuh */
-        max-width: 100%; /* Maksimum lebar tetap penuh */
-        height: auto; /* Tinggi disesuaikan dengan konten */
-        margin-bottom: 1rem; /* Jarak bawah yang lebih kecil */
+    .title-section {
+        width: 100%;
+        margin-top: 30px;
+        left: 0; /* Remove the left offset */
+        text-align: center;
     }
 
-    .logo img {
-        max-width: 80px; /* Logo lebih kecil di tampilan mobile */
+    .title-section h1 {
+        font-size: 28px; /* Adjust font size for tablets */
     }
 
-    .invoice-info {
-        margin-left: 0; /* Margin kiri dihilangkan untuk mengatur ulang posisi */
-        text-align: left; /* Teks invoice-info ditengahkan */
-        margin-top: 1rem; /* Jarak atas ditambahkan */
+    .title-section p {
+        font-size: 16px; /* Adjust font size for tablets */
     }
 
-    .invoice-details {
-        text-align: center; /* Detail invoice ditengahkan */
-        margin-top: 1rem; /* Jarak atas ditambahkan */
+    .invoice-card {
+        width: 100%;
+        padding: 15px;
     }
 
-    .invoice-section {
-        flex-direction: column; /* Susunan vertikal untuk bagian invoice-section */
+    .invoice-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .invoice-section h3 {
-        margin-bottom: 0.5rem; /* Jarak bawah judul dikurangi */
+    .invoice-header .left,
+    .invoice-header .right {
+        width: 100%;
+        text-align: left;
     }
 
-    .invoice-table {
-        overflow-x: auto; /* Pengguliran horizontal untuk tabel jika melebihi lebar layar */
+    .invoice-header .right {
+        text-align: left;
     }
 
-    .invoice-table table {
-        min-width: 100%; /* Tabel minimal lebar 100% */
+    .billing-info {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .print-button {
-        width: 100%; /* Tombol print mengambil lebar penuh */
-        margin-top: 1rem; /* Jarak atas ditambahkan */
+    .billing-info .bill-from,
+    .billing-info .bill-to {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .billing-info .bill-to {
+        text-align: left;
+    }
+
+    table {
+        font-size: 16px; /* Adjust table font size for tablets */
+    }
+
+    .button-container button {
+        padding: 14px 28px;
+        font-size: 17px; /* Adjust button font size for tablets */
+    }
+}
+
+@media (max-width: 767px) {
+    .background-container {
+        padding: 20px;
+        width: 100%;
+        height: auto; /* Allow the height to adjust based on content */
+        margin-bottom: 20px;
+    }
+
+    .title-section {
+        width: 100%;
+        margin-top: 20px;
+        left: 0; /* Remove the left offset */
+        text-align: center;
+    }
+
+    .title-section h1 {
+        font-size: 24px; /* Adjust font size for smaller screens */
+    }
+
+    .title-section p {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    .invoice-card {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .invoice-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .invoice-header .left,
+    .invoice-header .right {
+        width: 100%;
+        text-align: left;
+    }
+
+    .invoice-header .right {
+        text-align: left;
+    }
+
+    .billing-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .billing-info .bill-from,
+    .billing-info .bill-to {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .billing-info .bill-to {
+        text-align: left;
+    }
+
+    table {
+        font-size: 14px; /* Adjust table font size for smaller screens */
+    }
+
+    .button-container button {
+        padding: 12px 25px;
+        font-size: 16px; /* Adjust button font size for smaller screens */
     }
 }

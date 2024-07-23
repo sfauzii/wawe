@@ -65,6 +65,13 @@ nav {
   color: #333;
 }
 
+.dropdown-divider {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+
 nav .logo h1 {
   font-size: 1.5rem;
   margin: 0;
@@ -492,11 +499,25 @@ main .recent_order a {
 }
 
 main .recent_order .detail-button {
-  background-color: var(--clr-primary); /* Warna latar belakang tombol */
-  color: white;
+  background-color: #e5e9f2; /* Warna latar belakang tombol */
+  color: #071C4D;
   font-family: "Poppins", sans-serif;
-  font-weight: 700;
   border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.detail-button {
+  font-weight: bold;
+}
+
+.paynow-button {
+  background-color: coral; /* Warna latar belakang tombol */
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
@@ -1254,7 +1275,7 @@ main .settings .edit-profile-button {
     padding-right: 1rem;
   }
   .detail-button {
-    background-color: var(--clr-primary); /* Warna latar belakang tombol */
+    background-color: #e5e9f2; /* Warna latar belakang tombol */
     color: white;
     border: none;
     padding: 0.5rem 1rem;
