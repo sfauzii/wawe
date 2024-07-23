@@ -2,28 +2,48 @@
 
 @section('content')
     <!-- Header -->
-    <header class="text-center">
-        <h1>
-            Mulai
-            <br />
-            Langkahmu!
-        </h1>
-        <p class="mt-3">
-            Beban hidup jadi ringan dan
-            <br />
-            capai kebahagian bareng Poling
-        </p>
-        <!-- <a href="#" class="btn btn-get-started px-4 mt-4">
-            Get Started
-        </a> -->
-        <!-- Tombol Search -->
-        <div class="search-container">
-            <form action="#" method="get" class="search-form">
-                <input type="text" name="search" placeholder="Search..." class="search-input" />
-                <button type="submit" class="btn-search">Search</button>
-            </form>
+
+    <section class="curved-header">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{ url('frontend/images/landing-1.jpg') }}" alt="First slide" />
+                    <div class="overlay">
+                        <h1>Judul Utama 1</h1>
+                        <p>Deskripsi singkat di bawah judul 1</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ url('frontend/images/landing.png') }}" alt="Second slide" />
+                    <div class="overlay">
+                        <h1>Judul Utama 2</h1>
+                        <p>Deskripsi singkat di bawah judul 2</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ url('frontend/images/regis.jpg') }}" alt="Third slide" />
+                    <div class="overlay">
+                        <h1>Judul Utama 3</h1>
+                        <p>Deskripsi singkat di bawah judul 3</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </header>
+    </section>
+
 
     <main>
         <div class="container">
@@ -73,25 +93,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- <section class="section-stats row justify-content-center" id="stats">
-                <div class="col-3 col-md-2 stats-detail">
-                    <h2>20K</h2>
-                    <p>Members</p>
-                </div>
-                <div class="col-3 col-md-2 stats-detail">
-                    <h2>13</h2>
-                    <p>Countries</p>
-                </div>
-                <div class="col-3 col-md-2 stats-detail">
-                    <h2>3K</h2>
-                    <p>Hotel</p>
-                </div>
-                <div class="col-3 col-md-2 stats-detail">
-                    <h2>72</h2>
-                    <p>Partners</p>
-                </div>
-            </section> -->
         </div>
 
         <!-- Popular -->
@@ -113,80 +114,34 @@
         <section class="section-popular-content" id="popularContent">
             <div class="container">
                 <div class="section-popular-travel row justify-content-center">
-                    @foreach ($items as $item )
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <a href="{{ route('details', $item->slug) }}" class="card-link">
-                            <div class="card-travel text-center d-flex flex-column"
-                                style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}');">
-                                <div class="travel-location">{{ $item->location }}</div>
-                                <div class="travel-price">Rp {{ $item->price }}</div>
-                                <div class="travel-icons">
-                                    <ion-icon name="calendar-outline"></ion-icon>
-                                    <span>{{ $item->duration }}</span>
-                                    <ion-icon name="people-outline"></ion-icon>
-                                    <span>{{ $item->kuota }} Persons</span>
-                                    <ion-icon name="star-outline"></ion-icon> <span>129</span>
+                    @foreach ($items as $item)
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <a href="{{ route('details', $item->slug) }}" class="card-link">
+                                <div class="card-travel text-center d-flex flex-column"
+                                    style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}');">
+                                    <div class="overlay"></div>
+                                    <div class="card-travel-content">
+                                        <div class="travel-location">{{ $item->location }}</div>
+                                        <div class="travel-price">Rp {{ $item->price }}</div>
+                                        <div class="travel-icons">
+                                            <ion-icon name="calendar-outline"></ion-icon>
+                                            <span>{{ $item->duration }}</span>
+                                            <ion-icon name="people-outline"></ion-icon>
+                                            <span>{{ $item->kuota }} Persons</span>
+                                            <ion-icon name="star-outline"></ion-icon> <span>129</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                        
+                            </a>
+                        </div>
                     @endforeach
 
-                    
+
                 </div>
             </div>
         </section>
 
-        <!-- <section class="section-popular-content" id="popularContent">
-            <div class="container">
-                <div class="section-popular-travel row justify-content-center">
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card-travel text-center d-flex flex-column"
-                            style="background-image: url('frontend/images/header.jpg');">
-                            <div class="travel-country">INDONESIA</div>
-                            <div class="travel-location">Bali</div>
-                            <div class="travel-button mt-auto">
-                                <a href="details.html" class="btn btn-travel-details px-4">View details</a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card-travel text-center d-flex flex-column"
-                            style="background-image: url('frontend/images/header.jpg');">
-                            <div class="travel-country">INDONESIA</div>
-                            <div class="travel-location">Bali</div>
-                            <div class="travel-button mt-auto">
-                                <a href="details.html" class="btn btn-travel-details px-4">View details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card-travel text-center d-flex flex-column"
-                            style="background-image: url('frontend/images/header.jpg');">
-                            <div class="travel-country">INDONESIA</div>
-                            <div class="travel-location">Bali</div>
-                            <div class="travel-button mt-auto">
-                                <a href="details.html" class="btn btn-travel-details px-4">View details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card-travel text-center d-flex flex-column"
-                            style="background-image: url('frontend/images/header.jpg');">
-                            <div class="travel-country">INDONESIA</div>
-                            <div class="travel-location">Bali</div>
-                            <div class="travel-button mt-auto">
-                                <a href="details.html" class="btn btn-travel-details px-4">View details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <!-- Our Network -->
         <section class="section-networks" id="networks">
@@ -377,7 +332,23 @@
                     <button class="get-started-button">Get Started</button>
                 </div>
                 <div class="my-service-image">
-                    <img src="frontend/images/services.png"Service Image">
+                    <img src="frontend/images/services-copy.png" alt="Service Image"/>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- QUESTION -->
+        <section class="question-section">
+            <div class="question-card">
+                <img src="{{ url('frontend/images/cu.png') }}" alt="Overlay Image" class="overlay-image" />
+                <div class="question-content">
+                    <h1>Have a Question?</h1>
+                    <p>
+                        If you have any questions or need further information, <br />feel
+                        free to contact us.
+                    </p>
+                    <button class="btn btn-primary">Contact Us</button>
                 </div>
             </div>
         </section>

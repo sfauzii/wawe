@@ -184,6 +184,15 @@ input[type=password]:focus {
   opacity: 0.8;
 }
 
+.custom-link {
+  color: #666; /* Ubah warna sesuai kebutuhan */
+  margin-bottom: 8px;
+}
+
+.custom-link:hover {
+  color: coral; /* Ubah warna saat hover jika diperlukan */
+}
+
 /* Styles for tablets and larger smartphones (widths up to 1024px) */
 @media (max-width: 1024px) {
   .login-container {

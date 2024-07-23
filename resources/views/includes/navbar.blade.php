@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <div class="container">
-    <nav class="row navbar navbar-expand-lg navbar-light bg-white" id="navbar">
+    <nav class="row navbar navbar-expand-lg navbar-light" id="navbar">
         <a href="{{ route('home') }}" class="navbar-brand">
             <img src="{{ url('frontend/images/logo.png') }}" alt="Logo Poling" />
         </a>
@@ -44,7 +44,7 @@
         <div class="navbar-profile d-none d-lg-flex align-items-center ml-auto">
             <span class="profile-name ml-2">John Doe</span>
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{ url('frontend/images/member.png') }}" alt="Profile Photo" class="profile-photo" />
                 </button>
