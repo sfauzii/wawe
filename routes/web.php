@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\User\OverviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::get('/details/{slug}', [DetailController::class, 'index'])->name('details
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/overview/{username}/{id}', [OverviewController::class, 'index'])->name('overview');
+});
+
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');

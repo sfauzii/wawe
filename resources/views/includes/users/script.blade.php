@@ -1,0 +1,1 @@
+<script src="{{ url('frontend/scripts/dashboard.js') }}"></script>
