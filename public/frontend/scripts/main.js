@@ -48,3 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+
+  // TOMBOL FILTER CATALOG DI MOBILE
+function toggleMobileMenu() {
+  const mobileMenu = document.querySelector('.mobile-menu');
+  mobileMenu.classList.toggle('active');
+}
+
+
+// CHECKBOX SORT
+function submitForm(checkbox) {
+  // Check if this checkbox is being checked or unchecked
+  if (checkbox.checked) {
+      // Uncheck other checkboxes
+      document.querySelectorAll('input[name="sort"]').forEach(cb => {
+          if (cb !== checkbox) cb.checked = false;
+      });
+  }
+
+  // Submit the form
+  document.getElementById('sortForm').submit();
+}

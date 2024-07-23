@@ -257,11 +257,12 @@ body {
   .navbar {
     top: 20px;
     /* Maintain top offset for large screens */
-    width: 70%;
+    width: 90%;
     /* Maintain width for large screens */
     border-radius: 30px;
     /* Rounded corners */
     max-width: 1200px;
+    left: 51%;
     /* Limit the maximum width */
   }
   body {

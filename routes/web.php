@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\DetailController;
 
 /*
@@ -29,7 +30,10 @@ use App\Http\Controllers\DetailController;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/details/{slug}', [DetailController::class, 'index'])->name('details');
+
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
