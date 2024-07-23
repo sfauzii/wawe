@@ -1,0 +1,203 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f6f6f9;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center; /* Menyusun card di tengah horizontal */
+  align-items: center; /* Menyusun card di tengah vertikal */
+  height: 100vh; /* Mengisi tinggi layar penuh */
+  margin-bottom: 0; /* Jarak dari card di bawahnya */
+}
+
+.custom-card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  margin-top: 2rem; /* Atur margin top untuk penyesuaian */
+}
+
+.custom-card .card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-card .product-info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.custom-card .product-image {
+  width: 150px;
+  height: 100px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.custom-card .product-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.custom-card .product-details {
+  flex: 1;
+}
+
+.custom-card .product-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-status {
+  background-color: #071C4D;
+  border-radius: 40px;
+  padding: 5px;
+  max-width: 70px; /* Atur lebar maksimum agar tidak terlalu panjang */
+  margin-top: 10px; /* Sesuaikan margin sesuai kebutuhan */
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-status p {
+  font-size: 11px;
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  padding: 5px 10px; /* Sesuaikan padding sesuai kebutuhan */
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.icon {
+  font-size: 24px; /* Sesuaikan ukuran ikon */
+  color: #333; /* Sesuaikan warna ikon */
+  margin-right: 5px; /* Jarak antara ikon dan teks keterangan */
+}
+
+.icon .icon-img-succes {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-description {
+  flex: 1; /* Memanfaatkan flex-grow untuk mengisi ruang tersisa */
+}
+
+.icon-description p {
+  font-size: 14px; /* Sesuaikan ukuran teks keterangan */
+  margin: 0;
+  font-weight: 700;
+  padding-left: 3px; /* Jarak antara ikon dan teks keterangan */
+}
+
+.custom-card .divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.custom-card .description {
+  margin-bottom: 5px;
+}
+
+.custom-card .description h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.custom-card .description p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.custom-card .buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.custom-card .action-button {
+  padding: 10px 20px;
+  background-color: coral;
+  color: white;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-card .action-button-secondary {
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: #071C4D;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-card .action-button:hover {
+  background-color: rgb(253, 182, 155);
+}
+
+.custom-card .action-button-secondary:hover {
+  background-color: rgb(240, 238, 237);
+}
+
+footer {
+  text-align: center;
+}
+
+/* Untuk perangkat mobile */
+@media (max-width: 768px) {
+  .custom-card {
+    width: 90%; /* Mengurangi lebar maksimum kartu */
+    padding: 15px; /* Mengurangi padding pada kartu */
+  }
+  .custom-card .product-image {
+    width: 100px; /* Mengurangi ukuran gambar produk */
+    margin-right: 15px; /* Mengurangi margin kanan pada gambar produk */
+  }
+  .custom-card .product-title {
+    font-size: 16px; /* Mengurangi ukuran font judul produk */
+  }
+  .product-status p {
+    font-size: 10px; /* Mengurangi ukuran font status produk */
+  }
+  .icon {
+    font-size: 20px; /* Mengurangi ukuran ikon */
+  }
+  .icon-description p {
+    font-size: 12px; /* Mengurangi ukuran teks keterangan ikon */
+  }
+  .custom-card .description h3 {
+    font-size: 14px; /* Mengurangi ukuran font judul deskripsi */
+  }
+  .custom-card .description p {
+    font-size: 12px; /* Mengurangi ukuran font teks deskripsi */
+  }
+  .custom-card .action-button,
+  .custom-card .action-button-secondary {
+    padding: 8px 15px; /* Mengurangi padding tombol aksi */
+    font-size: 12px; /* Mengurangi ukuran font pada tombol aksi */
+  }
+}/*# sourceMappingURL=ticket-detail.css.map */
