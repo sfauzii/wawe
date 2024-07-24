@@ -10,6 +10,7 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SettingController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\User\MyTicketController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
+use App\Http\Controllers\User\ProfileController as ProfileUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +79,13 @@ Route::middleware('auth')->group(function () {
     Route::get('invoice-download/{id}', [MyTransactionController::class, 'invoicepdf'])->name('invoice.download');
 
     Route::get('/overview/settings/{username}/{id}', [SettingController::class, 'index'])->name('settings');
+
+    Route::get('/edit-profile/{id}', [ProfileController::class, 'edit'])->name('edit-profile');
+    Route::put('/edit-profile', [ProfileController::class, 'update'])->name('edit-profile.update');
+
+    Route::get('/edit-password/{id}', [ProfileController::class, 'editPassword'])->name('edit-password');
+    Route::post('/edit/password', [ProfileController::class, 'updatePassword'])->name('edit-password.update');
+    
 });
 
 

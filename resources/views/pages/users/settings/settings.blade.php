@@ -10,7 +10,7 @@
                     <input type="date">
                 </div> -->
     <div class="settings">
-        <div class="my-profile" onclick="window.location.href='#';">
+        <div class="my-profile" onclick="window.location.href='{{ route('edit-profile', ['id' => $user->id]) }}';">
             <span class="material-icons">account_circle</span>
             <div class="middle">
                 <div class="left">
@@ -18,12 +18,12 @@
                     <p>Ubah data diri kamu</p>
                 </div>
                 <div class="right">
-                    <button class="edit-profile-button" onclick="window.location.href='#';">Edit
+                    <button class="edit-profile-button" onclick="window.location.href='{{ route('edit-profile', ['id' => $user->id]) }}';">Edit
                         Profile</button>
                 </div>
             </div>
         </div>
-        <div class="my-password" onclick="window.location.href = '#';">
+        <div class="my-password" onclick="window.location.href = '{{ route('edit-password', ['id' => $user->id]) }}';">
             <span class="material-icons">password</span>
             <div class="middle">
                 <div class="left">
@@ -31,7 +31,7 @@
                     <p>Ganti kata sandimu</p>
                 </div>
                 <div class="right">
-                    <button class="edit-profile-button" onclick="window.location.href = '#';">Edit
+                    <button class="edit-profile-button" onclick="window.location.href = '{{ route('edit-password', ['id' => $user->id]) }}';">Edit
                         Password</button>
                 </div>
             </div>
