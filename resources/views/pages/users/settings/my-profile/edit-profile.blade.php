@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required />
+                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" readonly required />
                 </div>
                 <div class="form-group">
                     <label for="full-name">Username</label>
