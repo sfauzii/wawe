@@ -56,7 +56,7 @@
                     </div>
                     <div class="buttons">
                         <button class="action-button"
-                            onclick="window.location.href = '#';">Testimonies</button>
+                            onclick="window.location.href = '{{ route('testimony.create', $item->id) }}';">Testimonies</button>
                         <button class="action-button-secondary" onclick="window.location.href = '{{ route('ticket-download', $item->id) }}';">Download Ticket</button>
                     </div>
                 </div>

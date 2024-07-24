@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
+use App\Http\Controllers\User\TestimonyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/edit-password/{id}', [ProfileController::class, 'editPassword'])->name('edit-password');
     Route::post('/edit/password', [ProfileController::class, 'updatePassword'])->name('edit-password.update');
+
+    Route::get('/testimony/create/{id}', [TestimonyController::class, 'create'])->name('testimony.create');
+    Route::post('/testimony/store', [TestimonyController::class, 'store'])->name('testimony.store');
     
 });
 
