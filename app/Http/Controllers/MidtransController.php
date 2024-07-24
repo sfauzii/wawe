@@ -7,6 +7,7 @@ use Midtrans\Notification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Mail\TransactionSuccess;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Mail;
 
 class MidtransController extends Controller
@@ -101,8 +102,12 @@ class MidtransController extends Controller
 
         // Jika pembayaran berhasil (status "settlement"), arahkan pengguna ke halaman success
         if ($statusCode == 200 && $transactionStatus == 'settlement') {
+
+            $transactionDetails = TransactionDetail::where('transactions_id', $transaction->id);
+
             return view('pages.success', [
                 'items' => $transaction,
+                'transactionDetails' => $transactionDetails,
             ]);
         } elseif ($statusCode == 201 && $transactionStatus == 'pending') {
             return view('pages.unfinish');

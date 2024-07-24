@@ -39,7 +39,7 @@
                                 <img src="{{ url('frontend/images/icons/people.png') }}" alt="Check Icon" class="icon-img-succes">
                         </span>
                         <div class="icon-description">
-                            <p>1 person</p>
+                            <p>{{ $transactionDetails->count() }} person</p>
                         </div>
                         <span class="icon">
                             <!-- <ion-icon name="pricetag-outline"></ion-icon>Ganti dengan ikon Font Awesome yang sesuai -->
@@ -67,51 +67,14 @@
                     <div class="buttons">
                         <button class="action-button">Message Owner</button>
                         <button class="action-button-secondary" onclick="window.location.href='{{ route('home') }}';">Explore Again</button>
-                        <button class="action-button-secondary" onclick="window.location.href = 'dashboard.html';">My
+                        <button class="action-button-secondary" onclick="window.location.href = '{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}';">My
                             Dashboard</button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <!-- <div class="section-success d-flex align-items-center">
-            <div class="col text-center">
-                <img src="frontend/images/success.png" alt="">
-                <h1>Yay! Success</h1>
-                <p>
-                    We've sent you email for trip instruction
-                    <br>
-                    please read it as well
-                </p>
-                <a href="index.html" class="btn btn-home-page mt-3 px-5">
-                    Home Page
-                </a>
-            </div>
-        </div> -->
-
-        <!-- Footer -->
-        <!-- <footer>
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-        </footer> -->
-
     </main>
 
-{{-- <main>
-    <div class="section-success d-flex align-items-center">
-        <div class="col text-center">
-            <img src="{{ url('frontend/images/success.png') }}" alt="" style="width: 300px; height: auto;">
-            <h1>Yay! Success</h1>
-            <p>
-                We've sent you email for trip instruction
-                <br>
-                please read it as well
-            </p>
-            <a href="{{ url('/')}}" class="btn btn-home-page mt-3 px-5">
-                Home Page
-            </a>
-        </div>
-    </div>
-</main> --}}
     
 @endsection

@@ -9,7 +9,7 @@
     
     <link rel="icon" type="image/png" href="{{ url('frontend/images/logo.ico')}}">
     @stack('prepend-style')
-    @include('includes.style')
+    @include('includes.success.style')
     @stack('addon-style')
 </head>
 

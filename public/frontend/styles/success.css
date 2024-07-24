@@ -1,0 +1,619 @@
+@charset "UTF-8";
+body {
+  background-color: #FFF;
+  font-family: "Poppins", sans-serif;
+  color: #071C4D;
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  /* Make the navbar fixed at the top */
+  top: 20px;
+  /* Position it at the top */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Center the navbar horizontally */
+  width: 70%;
+  /* Set initial width */
+  max-width: 1280px;
+  /* Optional: Limit the maximum width */
+  z-index: 1000;
+  /* Ensure it is above other elements */
+  border-radius: 30px;
+  /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Add shadow for better visibility */
+  transition: all 0.3s ease;
+  /* Smooth transition for appearance changes */
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  /* Efek blur */
+  -webkit-backdrop-filter: blur(10px);
+  /* Background color for visibility */
+}
+
+/* Mengubah padding body agar konten tidak tertutup navbar */
+body {
+  padding-top: 100px;
+  /* Sesuaikan dengan tinggi navbar dan jarak dari atas */
+}
+
+/* Responsive Navbar */
+@media (max-width: 1280px) {
+  .navbar {
+    width: 100%;
+    /* Full width on screens up to 1280px */
+  }
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .navbar {
+    width: 70%;
+    /* Maintain 70% width between 1025px and 1280px */
+  }
+}
+@media (max-width: 1024px) and (min-width: 769px) {
+  .navbar {
+    width: 80%;
+    /* Maintain 80% width between 1024px and 769px */
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    /* Full width on smaller screens */
+    border-radius: 0;
+    /* Remove border-radius on smaller screens */
+    left: 0;
+    /* Full width positioning */
+    transform: none;
+    /* Remove centering transform */
+    top: 0;
+    /* Navbar sticks to the top of the screen on smaller screens */
+  }
+}
+/* Styling tambahan untuk navbar saat aktif atau di-scroll */
+.navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  /* Sedikit transparan saat di-scroll */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Menambah bayangan saat di-scroll */
+}
+
+/* Responsive Navbar */
+/* Ganti warna teks untuk item menu normal */
+.nav-link {
+  color: #333;
+  /* Warna teks default */
+}
+
+.nav-link:hover {
+  color: coral;
+  /* Warna teks saat hover */
+}
+
+/* Navbar Brand */
+.navbar-brand img {
+  max-height: 40px;
+}
+
+/* Navbar Links */
+.navbar-light .navbar-nav .nav-link {
+  color: #071C4D;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #071C4D !important;
+}
+
+/* Button Navbar Right */
+.btn-navbar-right {
+  margin-top: -10px !important;
+  margin-bottom: -8px !important;
+  margin-right: -18px !important;
+  height: 70px;
+  border-radius: 0;
+}
+
+/* Login Button */
+/* Styling dasar untuk tombol login */
+.btn-login {
+  background-color: coral;
+  /* Warna latar belakang tombol */
+  color: #fff;
+  /* Warna teks */
+  padding: 6px 15px;
+  /* Padding untuk ukuran tombol, ditambahkan lebih besar untuk kapsul */
+  border: none;
+  /* Menghapus border default */
+  border-radius: 30px;
+  /* Membuat sudut melengkung besar untuk efek kapsul */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Bayangan seperti navbar */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* Animasi transisi */
+  cursor: pointer;
+  font-size: 14px;
+  /* Menambahkan pointer pada mouse saat hover */
+  font-weight: bold;
+}
+
+/* Hover effect untuk tombol login */
+.btn-login:hover {
+  background-color: #FF9E53;
+  /* Warna latar belakang saat di-hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /* Bayangan lebih jelas saat di-hover */
+  color: #fff;
+  /* Warna teks tetap putih */
+}
+
+.btn-register {
+  background-color: coral;
+  /* Warna latar belakang tombol */
+  color: #fff;
+  /* Warna teks */
+  padding: 6px 15px;
+  /* Padding untuk ukuran tombol, ditambahkan lebih besar untuk kapsul */
+  border: none;
+  /* Menghapus border default */
+  border-radius: 30px;
+  /* Membuat sudut melengkung besar untuk efek kapsul */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Bayangan seperti navbar */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* Animasi transisi */
+  cursor: pointer;
+  font-size: 14px;
+  /* Warna border untuk tombol Register */
+  font-weight: bold;
+}
+
+.btn-register:hover {
+  background-color: #071C4D;
+  /* Warna latar belakang saat di-hover */
+  border-color: #FF9E53;
+  /* Warna border saat di-hover */
+}
+
+/* Styling dasar untuk foto profil dan nama */
+.navbar-profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 40px;
+  /* Ukuran foto profil */
+  height: 40px;
+  /* Ukuran foto profil */
+  border-radius: 50%;
+  /* Membuat foto menjadi lingkaran */
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* Memastikan gambar terisi penuh dalam lingkaran */
+}
+
+.profile-name {
+  font-size: 16px;
+  /* Ukuran font nama pengguna */
+  color: #071C4D;
+  /* Warna teks */
+  font-weight: 600;
+  /* Tebal font */
+  margin-left: 10px;
+  /* Spasi antara foto dan nama */
+}
+
+/* Responsif untuk profil di layar besar */
+.navbar-profile {
+  display: none;
+  /* Sembunyikan di layar kecil */
+}
+
+.d-lg-flex .navbar-profile {
+  display: flex;
+  /* Tampilkan di layar besar */
+}
+
+/* Profil mobile */
+.navbar-profile-mobile {
+  display: none;
+  /* Sembunyikan di layar besar */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: coral;
+  color: #fff;
+}
+
+/* Optional: Menyesuaikan tombol di layar kecil */
+/* Large Screens (Desktops) and Above (≥ 992px) */
+@media (min-width: 992px) {
+  .navbar {
+    top: 20px;
+    /* Maintain top offset for large screens */
+    width: 70%;
+    /* Maintain width for large screens */
+    border-radius: 30px;
+    /* Rounded corners */
+    max-width: 1200px;
+    /* Limit the maximum width */
+  }
+  body {
+    padding-top: 90px;
+    /* Adjust padding based on the navbar height and offset */
+  }
+  .navbar-profile {
+    display: flex;
+    /* Sembunyikan profil desktop di layar kecil */
+  }
+  .navbar-profile-mobile {
+    display: none;
+    /* Tampilkan profil mobile */
+    justify-content: center;
+    /* Pusatkan gambar profil */
+  }
+  .navbar-collapse {
+    flex-direction: column;
+    /* Susun konten dalam kolom */
+    align-items: center;
+    /* Pusatkan elemen dalam kolom */
+  }
+}
+/* Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar {
+    top: 15px;
+    /* Reduce the top offset for tablets */
+    width: 80%;
+    /* Increase width for better fit on tablets */
+    border-radius: 25px;
+    /* Slightly reduce the border-radius */
+    max-width: 90%;
+    /* Remove max-width restriction */
+  }
+  body {
+    padding-top: 80px;
+    /* Adjust padding for tablet screens */
+  }
+  .navbar-profile {
+    display: none;
+    /* Sembunyikan profil desktop di layar kecil */
+  }
+  .navbar-profile-mobile {
+    display: flex;
+    /* Tampilkan profil mobile */
+    justify-content: left;
+    /* Pusatkan gambar profil */
+  }
+  .navbar-profile-mobile .profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .navbar-profile-mobile .profile-name {
+    display: block;
+    margin-top: 10px;
+  }
+  /* Style for dropdown items */
+  .dropdown-menu {
+    width: 100%;
+    text-align: left;
+  }
+  .dropdown-item {
+    text-align: left;
+  }
+  .dropdown-divider {
+    margin: 0;
+  }
+}
+/* Mobile Devices (Up to 767px) */
+@media (max-width: 767px) {
+  .navbar {
+    top: 10px;
+    /* Align the navbar closer to the top for mobile screens */
+    width: 90%;
+    /* Almost full width for mobile */
+    max-width: 100%;
+    /* Remove any width restrictions */
+    border-radius: 20px;
+    /* Reduce the border-radius for mobile */
+  }
+  body {
+    padding-top: 70px;
+    /* Adjust padding for mobile screens */
+  }
+  .navbar-profile-mobile {
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+    /* Posisikan gambar dan teks dari kiri ke kanan */
+  }
+  .navbar-profile-mobile .profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .navbar-profile-mobile .profile-name {
+    display: block;
+    margin-top: 10px;
+  }
+  /* Style for dropdown items */
+  .dropdown-menu {
+    width: 100%;
+    text-align: left;
+  }
+  .dropdown-item {
+    text-align: left;
+  }
+  .dropdown-divider {
+    margin: 0;
+  }
+}
+/* Extra Small Devices (Up to 576px) */
+@media (max-width: 576px) {
+  .navbar {
+    top: 10px;
+    /* Align the navbar flush with the top for extra small screens */
+    left: 54%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Ensure it is centered */
+    width: 95%;
+    /* Almost full width on extra small devices */
+    max-width: 95%;
+    /* Ensure it uses most of the screen width */
+    border-radius: 15px;
+    /* Further reduce the border-radius */
+  }
+  body {
+    padding-top: 60px;
+    /* Adjust padding for extra small screens */
+  }
+}
+.section-scs-header {
+  min-height: 400px;
+  height: 300px;
+  background: #E4E6EB;
+  margin-top: -290px;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Mengatur posisi vertikal ke tengah */
+  align-items: center;
+  /* Mengatur posisi horizontal ke tengah */
+  text-align: center;
+  /* Mengatur teks ke tengah */
+  margin-bottom: 1rem;
+  /* Jarak bawah dari .success-message */
+  padding: 40px;
+  /* Atur jarak antara isi dan tepi */
+}
+
+.success-message h1 {
+  font-weight: bold;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  /* Mengatur posisi horizontal ke tengah */
+  align-items: center;
+  /* Mengatur posisi vertikal ke tengah */
+  height: 15vh;
+  /* Mengisi tinggi layar penuh */
+  margin-top: 1rem;
+  /* Jarak atas dari .card-container */
+}
+
+.custom-card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.custom-card .card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-card .product__info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.custom-card .product-image {
+  width: 150px;
+  height: auto;
+  border-radius: 20%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.custom-card .product-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.custom-card .product-details {
+  flex: 1;
+}
+
+.custom-card .product-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-status {
+  background-color: #071C4D;
+  border-radius: 40px;
+  padding: 5px;
+  max-width: 80px;
+  /* Atur lebar maksimum agar tidak terlalu panjang */
+  margin-top: 10px;
+  /* Sesuaikan margin sesuai kebutuhan */
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-status p {
+  font-size: 11px;
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  padding: 5px 10px;
+  /* Sesuaikan padding sesuai kebutuhan */
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.icon {
+  font-size: 24px;
+  /* Sesuaikan ukuran ikon */
+  color: #333;
+  /* Sesuaikan warna ikon */
+  margin-right: 5px;
+  /* Jarak antara ikon dan teks keterangan */
+}
+
+.icon .icon-img-succes {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-description {
+  flex: 1;
+  /* Memanfaatkan flex-grow untuk mengisi ruang tersisa */
+}
+
+.icon-description p {
+  font-size: 14px;
+  /* Sesuaikan ukuran teks keterangan */
+  margin: 0;
+  font-weight: 700;
+  padding-left: 3%;
+  /* Jarak antara ikon dan teks keterangan */
+}
+
+.custom-card .divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.custom-card .description {
+  margin-bottom: 5px;
+}
+
+.custom-card .description h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.custom-card .description p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.custom-card .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-card .action-button {
+  padding: 10px 20px;
+  background-color: coral;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-card .action-button-secondary {
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: #071C4D;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-card .action-button:hover {
+  background-color: rgb(253, 182, 155);
+}
+
+.custom-card .action-button-secondary:hover {
+  background-color: rgb(240, 238, 237);
+}
+
+/* Untuk perangkat mobile */
+@media (max-width: 768px) {
+  .custom-card {
+    width: 90%;
+    /* Mengurangi lebar maksimum kartu */
+    padding: 15px;
+    /* Mengurangi padding pada kartu */
+  }
+  .custom-card .product-image {
+    width: 100px;
+    /* Mengurangi ukuran gambar produk */
+    margin-right: 15px;
+    /* Mengurangi margin kanan pada gambar produk */
+  }
+  .custom-card .product-title {
+    font-size: 16px;
+    /* Mengurangi ukuran font judul produk */
+  }
+  .product-status p {
+    font-size: 10px;
+    /* Mengurangi ukuran font status produk */
+  }
+  .icon {
+    font-size: 20px;
+    /* Mengurangi ukuran ikon */
+  }
+  .icon-description p {
+    font-size: 12px;
+    /* Mengurangi ukuran teks keterangan ikon */
+  }
+  .custom-card .description h3 {
+    font-size: 14px;
+    /* Mengurangi ukuran font judul deskripsi */
+  }
+  .custom-card .description p {
+    font-size: 12px;
+    /* Mengurangi ukuran font teks deskripsi */
+  }
+  .custom-card .action-button,
+  .custom-card .action-button-secondary {
+    padding: 8px 15px;
+    /* Mengurangi padding tombol aksi */
+    font-size: 12px;
+    /* Mengurangi ukuran font pada tombol aksi */
+  }
+}/*# sourceMappingURL=success.css.map */
