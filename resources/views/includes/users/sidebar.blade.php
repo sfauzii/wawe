@@ -7,17 +7,11 @@
     <div class="top">
         <div class="logo">
             <!-- <h3><span class="danger">Wawe</span></h3> -->
-            <a href="index.html"><img src="{{ url('frontend/images/logo.png') }}" alt=""></a>
+            <a href="{{ route('home') }}"><img src="{{ url('frontend/images/logo.png') }}" alt="Logo WaWe"></a>
         </div>
         <div class="close" id="close_btn">
             <span class="material-icons">close</span>
         </div>
-        <!-- <div class="close" id="close_btn">
-            <span class="material-icons">close</span>
-        </div>
-        <div class="toggle-btn" id="toggle_btn">
-            <span class="material-icons">menu</span>
-        </div> -->
     </div>
     <div class="sidebar">
         <a href="{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}" class="{{ $currentUrl == route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) ? 'active' : '' }}">
