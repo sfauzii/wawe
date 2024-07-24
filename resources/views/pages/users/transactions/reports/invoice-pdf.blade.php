@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Card</title>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,20 +16,21 @@
         .invoice-card {
             background-color: #fff;
             border-radius: 15px;
-            padding: 20px;
+            padding: 10px;
+            /* Reduce padding */
             width: 100%;
-            max-width: 800px;
-            /* Adjust width for better fit in PDF */
+            max-width: 750px;
+            /* Slightly smaller max-width for better A4 fit */
             margin: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* Optional: Add a shadow for a better visual effect */
         }
 
         .invoice-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            /* Reduce margin */
         }
 
         .invoice-header .left {
@@ -36,17 +38,20 @@
         }
 
         .b-color {
-            color: coral
+            color: coral;
         }
 
         .invoice-header .left img {
-            width: 120px;
+            width: 80px;
             /* Adjust logo size */
         }
 
         .invoice-header .left p,
         .invoice-header .right p {
-            margin: 5px 0;
+            margin: 1px 0;
+            /* Reduce margin */
+            font-size: 13px;
+            /* Adjust font size */
         }
 
         .invoice-header .right {
@@ -54,18 +59,19 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            /* Align right section to the right */
         }
 
         .divider {
             border-bottom: 1px solid #e0e0e0;
-            margin: 20px 0;
+            margin: 10px 0;
+            /* Reduce margin */
         }
 
         .billing-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            /* Reduce margin */
         }
 
         .billing-info .bill-from,
@@ -74,34 +80,37 @@
         }
 
         .bill-to {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .billing-info .bill-to {
-
             text-align: left;
-            /* Align 'Bill To' text to the right */
         }
 
         .billing-info h3 {
             margin: 0;
-            font-size: 16px margin-bottom: 5px;
+            font-size: 13px;
+            margin-bottom: 5px;
+            /* Fix margin */
         }
 
         .billing-info .bill-from p,
         .billing-info .bill-to p {
-            margin: 2px 0;
+            margin: 1px 0;
+            /* Reduce margin */
+            font-size: 13px;
+            /* Adjust font size */
         }
 
         .billing-info .bill-to p {
             text-align: left;
-            /* Ensure 'Bill To' address is right-aligned */
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            /* Reduce margin */
         }
 
         table th,
@@ -109,8 +118,11 @@
             border: none;
             border-top: 1px solid #e0e0e0;
             border-bottom: 1px solid #e0e0e0;
-            padding: 10px;
+            padding: 5px;
+            /* Reduce padding */
             text-align: left;
+            font-size: 13px;
+            /* Adjust font size */
         }
 
         table th {
@@ -120,32 +132,38 @@
 
         .thank-you {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            /* Reduce margin */
         }
 
         .thank-you p {
             margin: 0;
+            font-size: 13px;
+            /* Adjust font size */
         }
 
         @media print {
             body {
                 background-color: #fff;
-                /* Ensure background is white for print */
             }
 
             .invoice-card {
                 width: 100%;
                 margin: 0;
                 box-shadow: none;
-                /* Remove shadow for print */
                 page-break-inside: avoid;
-                /* Avoid breaking the card across pages */
             }
 
             .invoice-header .right {
                 margin-left: auto;
-                /* Ensure the right section aligns to the right */
                 text-align: right;
+            }
+
+            .invoice-header,
+            .billing-info,
+            table,
+            .thank-you {
+                page-break-inside: avoid;
             }
         }
     </style>
