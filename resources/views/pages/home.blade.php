@@ -121,16 +121,16 @@
                                     style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}');">
                                     <div class="overlay"></div>
                                     <div class="card-travel-content">
-                                        <div class="travel-location">{{ $item->location }}</div>
-                                        <div class="travel-price">Rp {{ $item->price }}</div>
+                                        <div class="travel-location">{{ $item->title }}</div>
+                                        <div class="travel-price">Rp {{ number_format($item->price, 0, ',') }}</div>
                                         <div class="travel-icons">
                                             <ion-icon name="calendar-outline"></ion-icon>
                                             <span>{{ $item->duration }}</span>
                                             <ion-icon name="people-outline"></ion-icon>
                                             <span>{{ $item->kuota }} Persons</span>
-                                            <ion-icon name="star-outline"></ion-icon> <span>129</span>
+                                            <ion-icon name="star-outline"></ion-icon> <span>{{ $item->testimonies_count }}</span>
                                         </div>
-                                    </div>
+                                    </div>  
                                 </div>
                             </a>
                         </div>
@@ -174,53 +174,24 @@
                     </div>
                 </div>
                 <div class="testimonial-right">
+                    @foreach ($testimonies as  $testimony)
+
                     <div class="testimonial-card">
-                        <h3>Curug</h3>
+                        <h3>{{ $testimony->transactionDetail->transaction->travel_package->title }}</h3>
                         <p>
-                            "This service has been life-changing! The team is amazing and
-                            the support is unparalleled."
+                            "{{ $testimony->message }}."
                         </p>
                         <div class="author-info">
-                            <img src="frontend/images/avatar.png" alt="Author Photo" />
+                            <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}" alt="{{ $testimony->user->name }}" alt="Author Photo" style="width: auto;" />
                             <!-- Replace with actual image path -->
                             <div>
-                                <span class="author-name">John Doe</span>
-                                <span class="author-title">CEO, Company XYZ</span>
+                                <span class="author-name">{{ $testimony->user->name }}</span>
+                                <span class="author-title">{{ $testimony->created_at }}</span>
                             </div>
                         </div>
                     </div>
-                    <!-- Add more cards as needed -->
-                    <div class="testimonial-card">
-                        <h3>Candi Prambanan</h3>
-                        <p>
-                            "Absolutely fantastic! They went above and beyond to ensure our
-                            success."
-                        </p>
-                        <div class="author-info">
-                            <img src="frontend/images/member.png" alt="Author Photo" />
-                            <!-- Replace with actual image path -->
-                            <div>
-                                <span class="author-name">Jane Smith</span>
-                                <span class="author-title">Marketing Head, ABC Corp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <h3>Jogja</h3>
-                        <p>
-                            "Absolutely fantastic! They went above and beyond to ensure our
-                            success."
-                        </p>
-                        <div class="author-info">
-                            <img src="frontend/images/member.png" alt="Author Photo" />
-                            <!-- Replace with actual image path -->
-                            <div>
-                                <span class="author-name">Jane Smith</span>
-                                <span class="author-title">Marketing Head, ABC Corp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more testimonial cards here -->
+                        
+                    @endforeach
                 </div>
             </div>
         </section>
