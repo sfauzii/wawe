@@ -1442,6 +1442,10 @@ main .settings .edit-profile-button {
   aside .close {
     display: none; /* Sembunyikan tombol close di perangkat dengan lebar layar lebih dari 992px (laptop dan desktop) */
   }
+  main .ticket > div {
+    width: 290px;
+    height: auto;
+  }
 }
 @media (min-width: 576px) and (max-width: 991px) {
   /* Hide Sidebar by Default */
@@ -1530,6 +1534,10 @@ main .settings .edit-profile-button {
   aside .close .material-icons {
     font-size: 1.5rem;
     color: #333; /* Warna ikon close */
+  }
+  main .ticket > div {
+    width: 240px; /* Adjust width for tablet devices */
+    height: auto;
   }
   .dropdown-content {
     display: none;

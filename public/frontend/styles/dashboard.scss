@@ -1643,6 +1643,11 @@ main .settings .edit-profile-button {
     aside .close {
         display: none; /* Sembunyikan tombol close di perangkat dengan lebar layar lebih dari 992px (laptop dan desktop) */
     }
+
+    main .ticket > div {
+        width: 290px;
+        height: auto;
+    }
 }
 
 // *** DEVICE TABLET (LANDSACPE DAN PORTRAIT) & MOBILE LANDSACPE *** ///
@@ -1751,6 +1756,11 @@ main .settings .edit-profile-button {
         font-size: 1.5rem;
         color: #333; /* Warna ikon close */
         
+    }
+
+    main .ticket > div {
+        width: 240px; /* Adjust width for tablet devices */
+        height: auto;
     }
 
     .dropdown-content {
