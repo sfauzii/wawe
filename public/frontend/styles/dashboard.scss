@@ -586,6 +586,38 @@ main .recent_order .detail-button {
     cursor: pointer;
 }
 
+.table-responsive {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+@media (max-width: 767px) {
+    .table-responsive {
+        width: 100%; /* Ensure the container takes up the full width */
+        margin-bottom: 15px; /* Add some margin below the container */
+    }
+
+    .order-table {
+        min-width: 400px; /* Ensure the table is wider than the container to enable scrolling */
+    }
+
+    .order-table th,
+    .order-table td {
+        white-space: nowrap; /* Prevent table cells from wrapping */
+    }
+
+    .order-table th,
+    .order-table td {
+        padding: 8px 8px; /* Add more padding to table headers and cells on mobile */
+    }
+
+    .order-table th,
+    .order-table td {
+        text-align: left; /* Align text to the left */
+    }
+}
+
+
 // *** END TABLE TRANSACTION ***//
 
 
@@ -1575,6 +1607,7 @@ main .settings .edit-profile-button {
     main .settings > div {
         display: flex; /* Menggunakan flexbox untuk tata letak */
         align-items: center; /* Memusatkan secara vertikal */
+        width: auto;
     }
 
     main .settings > div span {
