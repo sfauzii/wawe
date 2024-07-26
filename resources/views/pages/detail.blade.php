@@ -12,7 +12,7 @@
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    Paket Healing
+                                    Paket {{ $item->title }}
                                 </li>
                                 <li class="breadcrumb-item active">
                                     Details
@@ -49,7 +49,7 @@
                         <div class="category-badge">{{ $item->type }}</div>
                         <div class="title-and-testimonials">
                             <h1 class="product__title">{{ $item->title }}</h1>
-                            <span class="testimonials">123 Testimonials</span>
+                            <span class="testimonials">{{ $testimoniesCount }} Testimonials</span>
                         </div>
                         <div class="product-features">
                             <div class="feature">
@@ -61,7 +61,7 @@
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
                                 <img src="{{ url('frontend/images/icons/people.png') }}" alt="Facebook Icon" class="icon">
-                                <span>{{ $item->kuota }}</span>
+                                <span>{{ $item->kuota }} person</span>
                             </div>
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
@@ -72,7 +72,7 @@
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
                                 <img src="{{ url('frontend/images/icons/dollar-circle.png') }}" alt="Facebook Icon"
                                     class="icon">
-                                <span>{{ $item->price }}</span>
+                                <span>{{ number_format($item->price, 0, ',') }}</span>
                             </div>
 
                             <!-- Tambahkan feature lainnya di sini -->
@@ -121,48 +121,25 @@
                     <!-- Testimonies Section -->
                     <aside class="testimonies-card">
                         <h3 class="testimonies-header">From Happy Customers</h3>
+                        @foreach ($testimonies as $testimony)
                         <div class="testimoni-card">
-                            <img src="{{ url('frontend/images/member.png') }}" alt="User Photo" class="testimonial-photo">
+                            <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}" alt="User Photo {{ $testimony->user->name }}" class="testimonial-photo">
                             <div>
-                                <p>"Great experience!"</p>
-                                <small>- John Doe</small>
+                                <p>"{{ $testimony->message }}"</p>
+                                <small>- {{ $testimony->user->name }}</small>
+                                <small>, {{ $testimony->created_at->format('d M Y') }}</small>
                             </div>
                         </div>
-                        <div class="testimoni-card">
-                            <img src="{{ url('frontend/images/member.png') }}" alt="User Photo" class="testimonial-photo">
-                            <div>
-                                <p>"Amazing service!"</p>
-                                <small>- Jane Doe</small>
-                            </div>
-                        </div>
-                        <div class="testimoni-card">
-                            <img src="{{ url('frontend/images/member.png') }}" alt="User Photo" class="testimonial-photo">
-                            <div>
-                                <p>"Would definitely recommend!"</p>
-                                <small>- Alice Smith</small>
-                            </div>
-                        </div>
-                        <div class="testimoni-card">
-                            <img src="{{ url('frontend/images/member.png') }}" alt="User Photo" class="testimonial-photo">
-                            <div>
-                                <p>"Great value for money!"</p>
-                                <small>- Bob Johnson</small>
-                            </div>
-                        </div>
-                        <div class="testimoni-card">
-                            <img src="{{ url('frontend/images/member.png') }}" alt="User Photo" class="testimonial-photo">
-                            <div>
-                                <p>"Very satisfied!"</p>
-                                <small>- Emily Brown</small>
-                            </div>
-                        </div>
+                            
+                        @endforeach
+                        
                         <!-- Tambahkan lebih banyak testimonial cards jika diperlukan -->
                     </aside>
 
                     <!-- Product Information Section -->
                     <aside class="card-information">
                         <div class="price">
-                            <h3>Rp {{ $item->price }}<span>/day</span></h3>
+                            <h3>Rp {{ number_format($item->price, 0, ',') }}<span>/day</span></h3>
                         </div>
                         <div>
                             Trip Information

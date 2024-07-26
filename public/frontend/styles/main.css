@@ -793,7 +793,7 @@ body {
 .feature {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   margin-right: 10px;
   /* Beri ruang antara ikon dan teks */
@@ -810,9 +810,12 @@ body {
   align-items: center;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   /* Bayangan soft */
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  /* Efek blur */
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .seller-image {
@@ -1153,7 +1156,7 @@ body {
     /* Tempatkan di atas pada perangkat tablet */
   }
   .gallery {
-    width: 100%;
+    width: auto;
     margin: 0 auto;
   }
   .category-badge {
@@ -2126,6 +2129,7 @@ footer .container-fluid {
   padding: 0;
   padding-left: 30px;
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 .section-details-content .breadcrumb-item.active {
   font-weight: bold;

@@ -1068,7 +1068,7 @@ body {
 .feature {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     margin-right: 10px;
     /* Beri ruang antara ikon dan teks */
@@ -1086,9 +1086,12 @@ body {
     // border: 1px solid #ddd;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.050);
     /* Bayangan soft */
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    /* Efek blur */
+    -webkit-backdrop-filter: blur(10px);
     // background: linear-gradient(135deg, coral, #b207c1);
 }
 
@@ -1466,7 +1469,7 @@ body {
     }
 
     .gallery {
-        width: 100%;
+        width: auto;
         margin: 0 auto;
     }
 
@@ -2602,6 +2605,7 @@ footer {
         padding: 0;
         padding-left: 30px;
         margin-bottom: 30px;
+        margin-top: 30px;
     }
 
     .breadcrumb-item {
