@@ -105,7 +105,7 @@
                         </tr>
                     </table>
                 </div>
-                {{-- <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
                     @if ($testimonies->isEmpty())
                         <div class="alert alert-info">Tidak ada testimoni.</div>
                     @else
@@ -113,8 +113,8 @@
                             @foreach ($testimonies as $testimony)
                                 <div class="testimonial-item">
                                     <blockquote class="blockquote">
-                                        <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
-                                            alt="User Photo" class="user-photo">
+                                        <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }} "
+                                            alt="User Photo" class="user-photo" style="height: 50px; width: auto;>
                                         <p class="mb-0">{{ $testimony->message }}</p>
                                         <footer class="blockquote-footer">{{ $testimony->user->name }}</footer>
                                     </blockquote>
@@ -122,7 +122,7 @@
                             @endforeach
                         </div>
                     @endif
-                </div> --}}
+                </div>
 
             </div><!-- End Bordered Tabs -->
 

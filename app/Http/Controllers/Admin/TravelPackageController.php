@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TravelPackageRequest;
+use App\Models\Testimony;
 
 class TravelPackageController extends Controller
 {
@@ -55,8 +56,9 @@ class TravelPackageController extends Controller
     public function show(string $id)
     {
         $travelPackage = TravelPackage::findOrFail(decrypt($id));
-
-        return view('pages.admin.travel-package.show', compact('travelPackage'));
+        // Mengambil testimoni yang hanya terkait dengan paket perjalanan ini
+        $testimonies = Testimony::where('travel_packages_id', $travelPackage->id)->with('user')->get();
+        return view('pages.admin.travel-package.show', compact('travelPackage', 'testimonies'));
     }
 
     /**
