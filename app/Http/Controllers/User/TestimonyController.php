@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Testimony;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\TestimonyCreated;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 
 class TestimonyController extends Controller
 {
@@ -94,6 +98,13 @@ class TestimonyController extends Controller
             'photos' => $photos, // Menyimpan path foto ke dalam kolom 'photos' yang telah di-cast sebagai array
         ]);
 
+        // Mengirim notifikasi ke admin dan super-admin
+        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        $admins = User::whereHas('roles', function ($query) use ($roles) {
+            $query->whereIn('id', $roles->pluck('id'));
+        })->get();
+
+        Notification::send($admins, new TestimonyCreated($testimoni));
         
         Alert::success('Success', 'Horeee!! Kamu berhasil melakukan testimoni');
 
