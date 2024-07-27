@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Role</h5>
                         @can('create role')
-                            <a href="{{ route('roles.create') }}" class="btn btn-primary float-end">Add Role</a>
+                        <a href="{{ route('roles.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add Role</a>
                         @endcan
                         <!-- Table with stripped rows -->
                         <table class="table datatable">

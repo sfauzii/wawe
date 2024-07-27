@@ -27,7 +27,7 @@
                         <h5 class="card-title">Permission</h5>
 
                         @can('create permission')
-                            <a href="{{ route('permissions.create') }}" class="btn btn-primary float-end">Add Permission</a>
+                        <a href="{{ route('permissions.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add Permission</a>
                         @endcan
 
                         <!-- Table with stripped rows -->
