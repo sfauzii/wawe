@@ -69,6 +69,9 @@
                                         @endif
                                     </td>
                                         <td>
+                                            <a href="{{ route('transaction_print', ['id' => $item->id]) }}" class="btn btn-secondary">
+                                                <i class="fa fa-eye">Print</i>
+                                            </a>
                                             <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success">
                                                 <i class="fa fa-eye">Show</i>
                                             </a>

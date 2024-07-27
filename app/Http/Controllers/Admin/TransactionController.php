@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TransactionRequest;
+use App\Models\TransactionDetail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransactionController extends Controller
 {
@@ -104,5 +106,21 @@ class TransactionController extends Controller
         Alert::success('Success', 'Transaction deleted successfully.');
 
         return redirect()->route('transaction.index');
+    }
+
+    public function downloadPdf(string $id) {
+
+        $item = Transaction::with([
+            'details', 'travel_package', 'user'
+        ])->findOrFail($id);
+
+        $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
+
+        $pdf = Pdf::loadView('pages.admin.transaction.reports.invoice-pdf', [
+            'item' => $item,
+            'transactionDetails' => $transactionDetails,
+        ]);
+
+        return $pdf->download('Invoice ' . ucfirst($item->user->name) . '.pdf');
     }
 }
