@@ -17,6 +17,10 @@ return [
         resource_path('views'),
     ],
 
+    'pagination' => [
+        'theme' => 'bootstrap',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

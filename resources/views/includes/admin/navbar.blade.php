@@ -66,14 +66,14 @@
                 </li>
 
                 <li class="dropdown-footer">
-                    <a href="#">Show all notifications</a>
+                    <a href="{{ route('notifications-all') }}">Show all notifications</a>
                 </li>
 
             </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
 
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-chat-left-text"></i>
@@ -137,7 +137,7 @@
 
             </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav --> --}}
 
         <li class="nav-item dropdown pe-3">
 
