@@ -109,7 +109,7 @@ class TransactionController extends Controller
     }
 
     public function downloadPdf(string $id) {
-
+        
         $item = Transaction::with([
             'details', 'travel_package', 'user'
         ])->findOrFail($id);

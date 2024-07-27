@@ -1,12 +1,8 @@
 <!-- Navbar section start -->
 <nav>
-    <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button>
-            <span class="material-icons">search</span>
-            <!-- <img src="frontend/images/icons/search-normal.png" alt="Members Icon" class="search-icon"> -->
-        </button>
-    </div>
+
+    @livewire('search-nav')
+    
     <div class="toggle-btn" id="toggle_btn">
         <span class="material-icons">menu</span>
     </div>
