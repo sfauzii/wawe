@@ -82,11 +82,11 @@
 
                                             @can('delete user')
                                                 <form action="{{ route('user.destroy', encrypt($user->id)) }}" method="POST"
-                                                    class="d-inline">
+                                                    class="d-inline" id="delete-form-{{ $user->id }}">
 
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger">
+                                                    <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')">
                                                         <i class="fa fas-trash">Delete</i>
 
                                                     </button>

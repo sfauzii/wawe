@@ -53,14 +53,11 @@
                                             <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
-                                            <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST"
-                                                class="d-inline">
-
+                                            <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger">
+                                                <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
                                                     <i class="fa fas-trash">Delete</i>
-
                                                 </button>
                                             </form>
                                         </td>

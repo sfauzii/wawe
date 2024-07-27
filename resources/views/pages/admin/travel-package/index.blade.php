@@ -60,11 +60,11 @@
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a>
                                             <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}" method="POST"
-                                                class="d-inline">
+                                                class="d-inline" id="delete-form-{{ $item->id }}">
 
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger">
+                                                <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
                                                     <i class="fa fas-trash">Delete</i>
 
                                                 </button>
