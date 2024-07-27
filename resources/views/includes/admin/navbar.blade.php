@@ -26,69 +26,45 @@
 
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-bell"></i>
-                <span class="badge bg-primary badge-number">4</span>
+                <span class="badge bg-primary badge-number">{{ $notifications->count() }}</span>
             </a><!-- End Notification Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                 <li class="dropdown-header">
-                    You have 4 new notifications
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                    You have {{ $notifications->count() }} new notifications
+                    {{-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> --}}
                 </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
 
-                <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-warning"></i>
-                    <div>
-                        <h4>Lorem Ipsum</h4>
-                        <p>Quae dolorem earum veritatis oditseno</p>
-                        <p>30 min. ago</p>
-                    </div>
-                </li>
+                @foreach ($notifications as $notification)
+                    <li class="notification-item">
+                        <i class="bi bi-info-circle text-primary"></i>
+                        <div>
+                            @if (isset($notification->data['name']))
+                                <h4>{{ $notification->data['name'] }}</h4>
+                            @else
+                                <h4>Notification</h4>
+                            @endif
+                            <p>{{ $notification->data['message'] ?? 'No message available' }}</p>
+                            <p>{{ $notification->created_at->diffForHumans() }}</p>
+                            <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-link p-0">Mark as Read</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                @endforeach
 
                 <li>
                     <hr class="dropdown-divider">
                 </li>
 
-                <li class="notification-item">
-                    <i class="bi bi-x-circle text-danger"></i>
-                    <div>
-                        <h4>Atque rerum nesciunt</h4>
-                        <p>Quae dolorem earum veritatis oditseno</p>
-                        <p>1 hr. ago</p>
-                    </div>
-                </li>
-
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-
-                <li class="notification-item">
-                    <i class="bi bi-check-circle text-success"></i>
-                    <div>
-                        <h4>Sit rerum fuga</h4>
-                        <p>Quae dolorem earum veritatis oditseno</p>
-                        <p>2 hrs. ago</p>
-                    </div>
-                </li>
-
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-
-                <li class="notification-item">
-                    <i class="bi bi-info-circle text-primary"></i>
-                    <div>
-                        <h4>Dicta reprehenderit</h4>
-                        <p>Quae dolorem earum veritatis oditseno</p>
-                        <p>4 hrs. ago</p>
-                    </div>
-                </li>
-
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
                 <li class="dropdown-footer">
                     <a href="#">Show all notifications</a>
                 </li>

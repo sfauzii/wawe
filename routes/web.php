@@ -15,13 +15,14 @@ use App\Http\Controllers\User\SettingController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\User\MyTicketController;
 use App\Http\Controllers\User\OverviewController;
+use App\Http\Controllers\User\TestimonyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
-use App\Http\Controllers\User\TestimonyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +115,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
    
    Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
+
+   Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 });
 
 

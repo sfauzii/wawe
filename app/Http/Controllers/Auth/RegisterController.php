@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\UserRegisteredNotification;
 
 class RegisterController extends Controller
 {
@@ -72,6 +75,14 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('user');
+
+        // kirim notifikasi ke admin dan super-admin
+        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        $admins = User::whereHas('roles', function ($query) use ($roles) {
+            $query->whereIn('id', $roles->pluck('id'));
+        })->get();
+
+        Notification::send($admins, new UserRegisteredNotification($user));
 
         return $user;
     }
