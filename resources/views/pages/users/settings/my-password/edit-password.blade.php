@@ -1,5 +1,9 @@
 @extends('layouts.users')
 
+@section('title')
+    My Password
+@endsection
+
 @section('content')
     <h1>Edit Password</h1>
     <p class="desc-title">

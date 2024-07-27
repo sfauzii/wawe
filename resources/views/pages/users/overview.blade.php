@@ -1,7 +1,7 @@
 @extends('layouts.users')
 
 @section('title')
-    WaWe - User
+    Overview - {{ ucfirst(Auth::user()->name) }}
 @endsection
 
 @section('content')

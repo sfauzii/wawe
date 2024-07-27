@@ -1,5 +1,10 @@
 @extends('layouts.users')
 
+
+@section('title')
+    Settings
+@endsection
+
 @section('content')
     <h1>Settings</h1>
 
@@ -7,8 +12,8 @@
         dibutuhkan selama <br>proses transaksi</p>
 
     <!-- <div class="date">
-                    <input type="date">
-                </div> -->
+                        <input type="date">
+                    </div> -->
     <div class="settings">
         <div class="my-profile" onclick="window.location.href='{{ route('edit-profile', ['id' => $user->id]) }}';">
             <span class="material-icons">account_circle</span>
@@ -18,7 +23,8 @@
                     <p>Ubah data diri kamu</p>
                 </div>
                 <div class="right">
-                    <button class="edit-profile-button" onclick="window.location.href='{{ route('edit-profile', ['id' => $user->id]) }}';">Edit
+                    <button class="edit-profile-button"
+                        onclick="window.location.href='{{ route('edit-profile', ['id' => $user->id]) }}';">Edit
                         Profile</button>
                 </div>
             </div>
@@ -31,7 +37,8 @@
                     <p>Ganti kata sandimu</p>
                 </div>
                 <div class="right">
-                    <button class="edit-profile-button" onclick="window.location.href = '{{ route('edit-password', ['id' => $user->id]) }}';">Edit
+                    <button class="edit-profile-button"
+                        onclick="window.location.href = '{{ route('edit-password', ['id' => $user->id]) }}';">Edit
                         Password</button>
                 </div>
             </div>

@@ -1,5 +1,9 @@
 @extends('layouts.users')
 
+@section('title')
+    My Profile
+@endsection
+
 @section('content')
     <h1>Edit Profile</h1>
     <p class="desc-title">
@@ -33,7 +37,8 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" readonly required />
+                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" readonly
+                        required />
                 </div>
                 <div class="form-group">
                     <label for="full-name">Username</label>
@@ -54,20 +59,20 @@
                 <!-- Icon can be replaced with any other relevant icon -->
                 <img src="{{ url('frontend/images/wa.png') }}" alt="Icon" class="card-icon" />
                 <!-- <div class="icon-container">
-                                    <i class="ri-whatsapp-line"></i>
-                                </div> -->
+                                        <i class="ri-whatsapp-line"></i>
+                                    </div> -->
             </div>
             <p class="card-description">Hubungi via WhatsApp</p>
             <button class="card-button">Contact Us</button>
         </div>
-@endsection
+    @endsection
 
-<script>
-    function loadFile(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
+    <script>
+        function loadFile(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
         }
-    }
-</script>
+    </script>

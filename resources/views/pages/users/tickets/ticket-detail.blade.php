@@ -1,5 +1,9 @@
 @extends('layouts.ticket')
 
+@section('title')
+    Your Ticket - {{ ucfirst(Auth::user()->name) }}
+@endsection
+
 @section('content')
     <main>
         <div class="card-container">

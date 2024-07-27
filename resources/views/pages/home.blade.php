@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+
+@section('title')
+
+WaWe | Purbalingga, Jawa Tengah
+    
+@endsection
+
 @section('content')
     <!-- Header -->
 
@@ -196,6 +203,58 @@
             </div>
         </section>
 
+        
+
+        <!-- MY SERVICE -->
+        <section class="my-service-section">
+            <div class="my-service-container">
+                <div class="my-service-content">
+                    <h2 class="my-service-title">My Services</h2>
+                    <p class="my-service-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <ul class="my-service-list">
+                        <li>
+                            <div class="my-service-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <p>Service 1</p>
+                        </li>
+                        <li>
+                            <div class="my-service-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <p>Service 2</p>
+                        </li>
+                        <li>
+                            <div class="my-service-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <p>Service 3</p>
+                        </li>
+                        <li>
+                            <div class="my-service-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <p>Service 3</p>
+                        </li>
+                        <li>
+                            <div class="my-service-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <p>Service 3</p>
+                        </li>
+                        <!-- Add more services as needed -->
+                    </ul>
+                    <button class="get-started-button">Get Started</button>
+                </div>
+                <div class="my-service-image">
+                    <img src="frontend/images/services-copy.png" alt="Service Image"/>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ -->
         <section class="faq-section">
             <div class="faq-container">
@@ -255,56 +314,6 @@
                 </div>
 
                 <!-- Add more FAQ cards as needed -->
-            </div>
-        </section>
-
-        <!-- MY SERVICE -->
-        <section class="my-service-section">
-            <div class="my-service-container">
-                <div class="my-service-content">
-                    <h2 class="my-service-title">My Services</h2>
-                    <p class="my-service-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <ul class="my-service-list">
-                        <li>
-                            <div class="my-service-icon">
-                                <i class="material-icons">check</i>
-                            </div>
-                            <p>Service 1</p>
-                        </li>
-                        <li>
-                            <div class="my-service-icon">
-                                <i class="material-icons">check</i>
-                            </div>
-                            <p>Service 2</p>
-                        </li>
-                        <li>
-                            <div class="my-service-icon">
-                                <i class="material-icons">check</i>
-                            </div>
-                            <p>Service 3</p>
-                        </li>
-                        <li>
-                            <div class="my-service-icon">
-                                <i class="material-icons">check</i>
-                            </div>
-                            <p>Service 3</p>
-                        </li>
-                        <li>
-                            <div class="my-service-icon">
-                                <i class="material-icons">check</i>
-                            </div>
-                            <p>Service 3</p>
-                        </li>
-                        <!-- Add more services as needed -->
-                    </ul>
-                    <button class="get-started-button">Get Started</button>
-                </div>
-                <div class="my-service-image">
-                    <img src="frontend/images/services-copy.png" alt="Service Image"/>
-                </div>
             </div>
         </section>
 

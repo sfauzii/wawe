@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Wawe - Catalog
+    WaWe - Catalog
 @endsection
 
 

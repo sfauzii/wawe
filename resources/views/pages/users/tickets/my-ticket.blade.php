@@ -1,5 +1,9 @@
 @extends('layouts.users')
 
+@section('title')
+    My Ticket - {{ ucfirst(Auth::user()->name) }}
+@endsection
+
 @section('content')
     <h1>My Ticket</h1>
     <p class="desc-title">Daftar tiket paket perjalanan anda</p>

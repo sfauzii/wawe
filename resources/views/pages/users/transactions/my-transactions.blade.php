@@ -1,5 +1,9 @@
 @extends('layouts.users')
 
+@section('title')
+    My Transactions | {{ ucfirst(Auth::user()->name) }}
+@endsection
+
 @section('content')
     <h1>Transaction</h1>
     <p class="desc-title">Daftar pembelian paket perjalanan anda</p>
@@ -38,7 +42,8 @@
                                     <div class="action">
                                         @if ($item->transaction_status == 'PENDING')
                                             <button class="paynow-button"
-                                                onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay Now</button>
+                                                onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay
+                                                Now</button>
                                         @elseif ($item->transaction_status == 'SUCCESS')
                                             <button class="detail-button"
                                                 onclick="window.open('{{ route('invoice', ['id' => $item->id]) }}', '_blank');">Invoice</button>
@@ -49,7 +54,7 @@
                         @else
                         @endif
                     @endforeach
-    
+
                 </tbody>
             </table>
         </div>

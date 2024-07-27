@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+
+@section('title')
+
+Detail | {{ $item->title }}
+    
+@endsection
+
 @section('content')
 
     <main>
