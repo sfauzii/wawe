@@ -95,7 +95,7 @@ class TestimonyController extends Controller
             'travel_packages_id' => $travelPackageId,
             'message' => $request->message,
             'name' => $request->name,
-            'photos' => $photos, // Menyimpan path foto ke dalam kolom 'photos' yang telah di-cast sebagai array
+            'photos' => $photos, // Menyimpan path foto ke dalam kolom 'photos' yang telah di-cast sebagai array    
         ]);
 
         // Mengirim notifikasi ke admin dan super-admin

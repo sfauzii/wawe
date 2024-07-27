@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Midtrans\Snap;
+use App\Models\Role;
+use App\Models\User;
 use Midtrans\Config;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -11,6 +13,8 @@ use Illuminate\Support\Carbon;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewTransactionNotification;
 
 class CheckoutController extends Controller
 {
@@ -43,6 +47,14 @@ class CheckoutController extends Controller
             'transactions_id' => $transaction->id,
             'username' => Auth::user()->username,
         ]);
+
+        // Kirim notifikasi ke admin dan super-admin
+        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        $admins = User::whereHas('roles', function ($query) use ($roles) {
+            $query->whereIn('id', $roles->pluck('id'));
+        })->get();
+
+        Notification::send($admins, new NewTransactionNotification($transaction));
 
         return redirect()->route('checkout', $transaction->id);
     } else {
@@ -94,6 +106,14 @@ class CheckoutController extends Controller
 
         $transaction->save();
 
+        // Kirim notifikasi ke admin dan super-admin
+        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        $admins = User::whereHas('roles', function ($query) use ($roles) {
+            $query->whereIn('id', $roles->pluck('id'));
+        })->get();
+
+        Notification::send($admins, new NewTransactionNotification($transaction));
+
         return redirect()->route('checkout', $id);
     }
 
@@ -105,6 +125,14 @@ class CheckoutController extends Controller
         $transaction->save();
 
 
+        // Kirim notifikasi ke admin dan super-admin
+        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        $admins = User::whereHas('roles', function ($query) use ($roles) {
+            $query->whereIn('id', $roles->pluck('id'));
+        })->get();
+
+        Notification::send($admins, new NewTransactionNotification($transaction));
+        
         // Set konfigurasi Midtrans
         // Config::$serverKey = config('midtrans.serverKey');
         // Config::$isProduction = config('midtrans.isProduction');
@@ -221,7 +249,5 @@ class CheckoutController extends Controller
         }
     }
 
-    public function check() {
-        return view('pages.checkout');
-    }
+    
 }

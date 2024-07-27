@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Midtrans\Config;
 use Midtrans\Notification;
 use App\Models\Transaction;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Mail\TransactionSuccess;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\TransactionSuccessNotification;
 
 class MidtransController extends Controller
 {
@@ -57,6 +60,17 @@ class MidtransController extends Controller
 
         // simpan transaksi
         $transaction->save();
+
+
+        if ($transaction->transaction_status == 'SUCCESS') {
+            // Kirim notifikasi ke admin dan super-admin
+            $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+            $admins = User::whereHas('roles', function ($query) use ($roles) {
+                $query->whereIn('id', $roles->pluck('id'));
+            })->get();
+
+            \Illuminate\Support\Facades\Notification::send($admins, new TransactionSuccessNotification($transaction));
+        }
 
         // kirimkan email
         if ($transaction) {
