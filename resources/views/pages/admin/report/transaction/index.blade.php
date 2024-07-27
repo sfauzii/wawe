@@ -54,7 +54,7 @@
                                             class="no-print">
                                             <input type="hidden" name="start_date" value="{{ $startDate }}">
                                             <input type="hidden" name="end_date" value="{{ $endDate }}">
-                                            <button class="btn btn-danger" type="submit"><i
+                                            <button class="btn btn-danger" type="submit" style="margin: 30px 0 30px 10px;"><i
                                                     class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
                                         </form>
                                     @endif
