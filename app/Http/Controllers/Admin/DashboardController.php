@@ -26,7 +26,7 @@ class DashboardController extends Controller
         // Filter untuk laporan
         $filter = $request->input('filter', 'today');
         $usersQuery = User::query();
-        $transactionsQuery = Transaction::query();
+        $transactionsQuery = Transaction::where('transaction_status', 'SUCCESS');
 
         switch ($filter) {
             case 'today':
@@ -117,7 +117,7 @@ class DashboardController extends Controller
 
     public function calculateRevenueData($filter_revenue)
     {
-        $salesQuery = Transaction::query();
+        $salesQuery = Transaction::where('transaction_status', 'SUCCESS');
 
         switch ($filter_revenue) {
             case 'today':
