@@ -19,8 +19,11 @@ class GalleryController extends Controller
     {
         $items = Gallery::with(['travel_package'])->get();
 
+        $packages = TravelPackage::withCount('galleries')->get();
+
         return view('pages.admin.gallery.index', [
             'items' => $items,
+            'packages' => $packages,
         ]);
     }
 

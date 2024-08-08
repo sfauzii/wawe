@@ -18,6 +18,31 @@
         </div>
     @endif
 
+    <div class="row">
+        @foreach ($packages as $package)
+            <div class="col-xxl-4 col-md-6 mb-4">
+                <div class="card info-card sales-card h-100">
+                    <div class="card-body d-flex">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+
+                        </div>
+                        <div>
+                            <h5 class="card-title">{{ $package->name }}</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="ps-3">
+                                    <h1 style="font-weight: bold; color: #012970">{{ $package->galleries_count }}</h1>
+                                    <span class="text-muted large pt-1 ps-1" style="font-size: 14px; font-weight: 500;">Gallery in</span>
+                                    <span class="text-success small pt-2 fw-bold">{{ $package->title }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        @endforeach
+    </div>
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
