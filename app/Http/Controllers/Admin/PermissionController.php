@@ -14,7 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::with(['roles', 'users'])->get();
         return view('pages.admin.roles-permissions.permission.index', [
             'permissions' => $permissions
         ]);

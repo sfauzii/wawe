@@ -40,6 +40,7 @@
                                         ID
                                     </th>
                                     <th>Name</th>
+                                    <th>Assigned To</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -48,6 +49,15 @@
                                     <tr>
                                         <td>{{ $permission->id }}</td>
                                         <td>{{ $permission->name }}</td>
+                                        <td>
+                                            @foreach($permission->roles as $role)
+                                                <span class="badge bg-primary">{{ $role->name }}</span>
+                                            @endforeach
+                            
+                                            @foreach($permission->users as $user)
+                                                <span class="badge bg-secondary">{{ $user->name }}</span>
+                                            @endforeach
+                                        </td>
 
                                         <td>
                                             {{-- <a href="{{ route('permissions.show', encrypt($permission->id)) }}" class="btn btn-success">
