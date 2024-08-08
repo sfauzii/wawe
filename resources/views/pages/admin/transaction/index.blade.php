@@ -111,25 +111,22 @@
                                                     class="ri-bank-card-line"></i></a>
                                         @endif
 
-                                        <a href="{{ route('transaction_print', ['id' => encrypt($item->id)]) }}"
+                                        <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
                                             class="btn btn-secondary">
                                             <i class="ri-file-pdf-2-line"></i>
                                         </a>
-                                        <a href="{{ route('transaction.show', encrypt($item->id)) }}"
+                                        <a href="{{ route('transaction.show', $item->id) }}"
                                             class="btn btn-success">
                                             <i class="ri-eye-line"></i>
                                         </a>
-                                        <a href="{{ route('transaction.edit', encrypt($item->id)) }}" class="btn btn-info">
+                                        <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info">
                                             <i class="ri-edit-line" style="color: white;"></i>
                                         </a>
-                                        <form action="{{ route('transaction.destroy', encrypt($item->id)) }}"
-                                            method="POST" class="d-inline">
-
+                                        <form action="{{ route('transaction.destroy', $item->id) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-danger">
-                                                <i class="ri-delete-bin-6-line"></i>
-
+                                            <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
+                                                <i class="fa fas-trash">Delete</i>
                                             </button>
                                         </form>
                                     </td>

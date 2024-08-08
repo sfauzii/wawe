@@ -39,7 +39,7 @@
                                     <th>Title</th>
                                     <th>Location</th>
                                     <th>Type</th>
-                                    {{-- <th data-type="date" data-format="YYYY/DD/MM">Start Date</th> --}}
+                                    <th>Kuota</th>
                                     <th>Departure Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,6 +51,7 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->location }}</td>
                                         <td>{{ $item->type }}</td>
+                                        <td>{{ $item->kuota }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
                                             <a href="{{ route('travel-package.show', encrypt($item->id)) }}" class="btn btn-success">
