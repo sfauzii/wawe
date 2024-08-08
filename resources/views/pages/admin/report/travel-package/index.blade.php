@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Report Travel Package</h1>
+        <h1>Report Travel Packages</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('report-travel-package') }}">Home</a></li>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Transaction</h1>
+        <h1>Transactions</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Home</a></li>
@@ -126,7 +126,7 @@
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
-                                                <i class="fa fas-trash">Delete</i>
+                                                <i class="ri-delete-bin-6-line"></i>
                                             </button>
                                         </form>
                                     </td>

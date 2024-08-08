@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Permission</h1>
+        <h1>Permissions</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
@@ -24,7 +24,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Permission</h5>
+                        <h5 class="card-title"></h5>
+                        <h5 class="card-title"></h5>
 
                         @can('create permission')
                         <a href="{{ route('permissions.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add Permission</a>
@@ -57,7 +58,7 @@
                                             </a> --}}
                                             @can('edit permission')
                                                 <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info">
-                                                    <i class="fa fa-pencil-alt">Edit</i>
+                                                    <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
                                             {{-- <a href="{{ route('permissions.delete', $permission->id) }}" class="btn btn-info">
@@ -71,7 +72,7 @@
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger"
                                                         onclick="confirmDeletion(' {{ $permission->id }} ', 'delete-form-{{ $permission->id }}')">
-                                                        <i class="fa fas-trash">Delete</i>
+                                                        <i class="ri-delete-bin-6-line"></i>
                                                     </button>
 
                                                 </form>

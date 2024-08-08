@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Travel Package</h1>
+        <h1>Travel Packages</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
@@ -55,10 +55,10 @@
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
                                             <a href="{{ route('travel-package.show', encrypt($item->id)) }}" class="btn btn-success">
-                                                <i class="fa fa-pencil-alt">Show</i>
+                                                <i class="ri-eye-line"></i>
                                             </a>
                                             <a href="{{ route('travel-package.edit', encrypt($item->id)) }}" class="btn btn-info">
-                                                <i class="fa fa-pencil-alt">Edit</i>
+                                                <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                             <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}" method="POST"
                                                 class="d-inline" id="delete-form-{{ $item->id }}">
@@ -66,7 +66,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
-                                                    <i class="fa fas-trash">Delete</i>
+                                                    <i class="ri-delete-bin-6-line"></i>
 
                                                 </button>
                                             </form>

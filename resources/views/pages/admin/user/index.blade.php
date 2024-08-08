@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data User</h1>
+        <h1>Users</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
@@ -71,12 +71,12 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success">
-                                                <i class="fa fa-eye">Show</i>
+                                                <i class="ri-eye-line"></i>
                                             </a>
 
                                             @can('edit user')
                                                 <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">
-                                                    <i class="fa fa-pencil-alt">Edit</i>
+                                                    <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
 
@@ -87,7 +87,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')">
-                                                        <i class="fa fas-trash">Delete</i>
+                                                        <i class="ri-delete-bin-6-line"></i>
 
                                                     </button>
                                                 </form>

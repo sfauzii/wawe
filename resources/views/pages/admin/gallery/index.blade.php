@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Gallery</h1>
+        <h1>Galleries</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('gallery.index') }}">Home</a></li>
@@ -76,13 +76,13 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info">
-                                                <i class="fa fa-pencil-alt">Edit</i>
+                                                <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                             <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
-                                                    <i class="fa fas-trash">Delete</i>
+                                                    <i class="ri-delete-bin-6-line"></i>
                                                 </button>
                                             </form>
                                         </td>
