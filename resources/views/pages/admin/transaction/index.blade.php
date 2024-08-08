@@ -25,12 +25,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-                        {{-- <p>Add lightweight datatables to your project with using the <a
-                                href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple
-                                DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to
-                            conver to a datatable. Check for <a
-                                href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more
-                                examples</a>.</p> --}}
+                        <h5 class="card-title"></h5>
+                        
+                        <a href="{{ route('transaction.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Create Transaction</a>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -39,7 +36,7 @@
                                     <th>#</th>
                                     <th>Travel</th>
                                     <th>User</th>
-                                    {{-- <th>Visa</th> --}}
+                                    <th>Date</th>
                                     <th>Total</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -51,7 +48,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->travel_package->title }}</td>
                                     <td>{{ $item->user->name }}</td>
-                                    {{-- <td>IDR{{ $item->additional_visa }}</td> --}}
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i') }}</td>
                                     <td>IDR {{ number_format($item->transaction_total) }}</td>
                                     <td>
                                         @if ($item->transaction_status === 'SUCCESS')
@@ -69,14 +66,19 @@
                                         @endif
                                     </td>
                                         <td>
+                                            @if ($item->transaction_status === 'PENDING')
+                                                    <a href="{{  $item->payment_url }}"
+                                                        class="btn btn-primary"><i class="ri-bank-card-line"></i></a>
+                                                @endif
+
                                             <a href="{{ route('transaction_print', ['id' => $item->id]) }}" class="btn btn-secondary">
-                                                <i class="fa fa-eye">Print</i>
+                                                <i class="ri-file-pdf-2-line"></i>
                                             </a>
                                             <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success">
-                                                <i class="fa fa-eye">Show</i>
+                                                <i class="ri-eye-line"></i>
                                             </a>
                                             <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info">
-                                                <i class="fa fa-pencil-alt">Edit</i>
+                                                <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                             <form action="{{ route('transaction.destroy', $item->id) }}" method="POST"
                                                 class="d-inline" id="delete-form-{{ $item->id }}" >
@@ -84,7 +86,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
-                                                    <i class="fa fas-trash">Delete</i>
+                                                    <i class="ri-delete-bin-6-line"></i>
 
                                                 </button>
                                             </form>

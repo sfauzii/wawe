@@ -102,6 +102,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    Route::resource('transaction', TransactionController::class);
    Route::get('transaction/invoice/{id}/print', [TransactionController::class, 'downloadPdf'])->name('transaction_print');
 
+   Route::get('/transaction/confirm/{id}', [TransactionController::class, 'generatePaymentUrl'])->name('transaction-success');
+
    Route::resource('user', UserController::class);
 
    Route::resource('roles', RoleController::class);

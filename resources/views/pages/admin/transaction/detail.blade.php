@@ -40,12 +40,12 @@
                                     <td>{{ $item->travel_package->title }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Pembeli</th>
-                                    <td>{{ $item->user->name }}</td>
+                                    <th>Price</th>
+                                    <td>IDR {{ number_format($item->travel_package->price, 0, ',') }}/ person</td>
                                 </tr>
                                 <tr>
-                                    <th>Additional Visa</th>
-                                    <td>IDR{{ $item->additional_visa }}</td>
+                                    <th>Pembeli</th>
+                                    <td>{{ $item->user->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Total Transaksi</th>
@@ -56,26 +56,42 @@
                                     <td>{{ $item->transaction_status }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Created At</th>
+                                    <td>{{ $item->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updated At</th>
+                                    <td>{{ $item->updated_at }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Payment URL</th>
+                                    <td>
+                                        @if ($item->payment_url)
+                                            <a href="{{ $item->payment_url }}" target="_blank" rel="noopener noreferrer">
+                                                View Payment URL <br>
+                                            </a>
+                                            <span>{{ $item->payment_url }}</span>
+                                        @else
+                                            Not available
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Pembelian</th>
                                     <td>
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nama</th>
-                                                {{-- <th>Nationality</th>
-                                                <th>Visa</th>
-                                                <th>DOE Passport</th> --}}
                                             </tr>
                                             @foreach ($item->details as $detail)
                                                 <tr>
                                                     <td>{{ $detail->id }}</td>
                                                     <td>{{ $detail->username }}</td>
-                                                    {{-- <td>{{ $detail->nationality }}</td>
-                                                    <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
-                                                    <td>{{ $detail->doe_passport }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </table>
+                                        
                                     </td>
                                 </tr>
                             </table>
