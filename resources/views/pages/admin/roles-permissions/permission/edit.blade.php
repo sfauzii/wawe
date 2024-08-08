@@ -28,7 +28,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
+                        <div class="alert alert-warning my-4"><strong class="font-size: 12px;">Warning</strong> <br>
+                            By editing the permission name, you might break the system permissions functionality. Please ensure you're absolutely certain before proceeding.</div>
 
                         <!-- General Form Elements -->
                         <form action="{{ route('permissions.update', $permission->id) }}" method="POST">
