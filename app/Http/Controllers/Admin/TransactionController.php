@@ -24,10 +24,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $items = Transaction::with(['details', 'travel_package', 'user'])->get();
+        $status = request()->get('status', 'ALL');
+
+        $query = Transaction::with(['details', 'travel_package', 'user']);
+
+        if ($status !== 'ALL') {
+            $query->where('transaction_status', $status);
+        }
+
+        $items = $query->get();
 
         return view('pages.admin.transaction.index', [
             'items' => $items,
+            'selectedStatus' => $status,
         ]);
     }
 
