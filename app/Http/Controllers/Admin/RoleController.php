@@ -16,7 +16,16 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::get();
+        // $roles = Role::get();
+        // return view('pages.admin.roles-permissions.role.index', [
+        //     'roles' => $roles,
+        // ]);
+
+        $roles = Role::with(['users' => function ($query) {
+            $query->select('id', 'name', 'photo'); // Adjust this based on your user model attributes
+        }])->withCount('users')->get();
+
+
         return view('pages.admin.roles-permissions.role.index', [
             'roles' => $roles,
         ]);

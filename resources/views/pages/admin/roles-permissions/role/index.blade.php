@@ -18,6 +18,44 @@
         </div>
     @endif
 
+    <div class="row">
+        @foreach ($roles as $role)
+            <div class="col-xxl-4 col-md-6 mb-4">
+                <div class="card info-card sales-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                                <!-- You can add an icon here if needed -->
+                            </div>
+                            <div>
+                                <h5 class="card-title">{{ $role->name }}</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="ps-3">
+                                        <h1 style="font-weight: bold; color: #012970">{{ $role->users_count }}</h1>
+                                        <span class="text-muted large pt-1 ps-1" style="font-size: 14px; font-weight: 500;">Users in</span>
+                                        <span class="text-success small pt-2 fw-bold">{{ $role->name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="d-flex flex-wrap">
+                                @foreach ($role->users as $user)
+                                <div class="user-photo me-2 mb-2">
+                                    @php
+                                        $photoUrl = $user->photo ? Storage::url($user->photo) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name);
+                                    @endphp
+                                    <img src="{{ $photoUrl }}" alt="{{ $user->name }}" class="rounded-circle" width="auto" height="50">
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
