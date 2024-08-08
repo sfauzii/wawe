@@ -223,8 +223,7 @@
                                 class="btn btn-block btn-join-now mt-3 py-2">Process Payment</a>
                         </div>
                         <div class="text-center mt-3">
-                            <a href="{{ route('details', $item->travel_package->slug) }}" class="text-muted">Cancel
-                                Booking</a>
+                            <a href="{{ route('cancel-booking', $item->id) }}" class="text-muted">Cancel Booking</a>
                         </div>
                     </div>
                 </div>

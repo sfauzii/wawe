@@ -65,8 +65,7 @@ Route::get('/checkout/confirm/{id}', [CheckoutController::class, 'success'])
     ->name('checkout-success')
     ->middleware(['auth', 'verified']);
 
-
-    Route::get('/check', [CheckoutController::class, 'check'])->name('check');
+Route::get('/cancel-booking/{id}', [CheckoutController::class, 'cancelBooking'])->name('cancel-booking');
 
 Route::middleware('auth')->group(function () {
     Route::get('/overview/{username}/{id}', [OverviewController::class, 'index'])->name('overview');

@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewTransactionNotification;
 
@@ -31,36 +32,67 @@ class CheckoutController extends Controller
         $travel_package = TravelPackage::findOrFail($id);
 
         if ($travel_package->kuota > 0) {
-        // Kurangi kuota
-        $travel_package->kuota--;
+            // Kurangi kuota
+            $travel_package->kuota--;
+            $travel_package->save();
+
+            // Buat transaksi
+            $transaction = Transaction::create([
+                'travel_packages_id' => $id,
+                'users_id' => Auth::user()->id,
+                'transaction_total' => $travel_package->price,
+                'transaction_status' => 'IN_CART',
+            ]);
+
+            TransactionDetail::create([
+                'transactions_id' => $transaction->id,
+                'username' => Auth::user()->username,
+            ]);
+
+            // Kirim notifikasi ke admin dan super-admin
+            $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+            $admins = User::whereHas('roles', function ($query) use ($roles) {
+                $query->whereIn('id', $roles->pluck('id'));
+            })->get();
+
+            Notification::send($admins, new NewTransactionNotification($transaction));
+
+            return redirect()->route('checkout', $transaction->id);
+        } else {
+            // Jika kuota sudah habis, kembalikan pengguna ke halaman sebelumnya dengan pesan error
+            return back()->with('error', 'Sorry, the quota for this travel package has been exhausted.');
+        }
+    }
+
+    public function cancelBooking($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        // Check if the logged-in user is the owner of the transaction
+        if ($transaction->users_id != Auth::user()->id) {
+            return back()->with('error', 'You are not authorized to cancel this booking.');
+        }
+
+        // Check if the transaction is still in a cancellable state
+        if ($transaction->transaction_status == 'CANCEL' || $transaction->transaction_status == 'SUCCESS') {
+            return back()->with('error', 'This booking cannot be canceled.');
+        }
+
+        // Get the number of users in the transaction
+        $user_count = TransactionDetail::where('transactions_id', $transaction->id)->count();
+
+        // Increase the quota
+        $travel_package = TravelPackage::findOrFail($transaction->travel_packages_id);
+        $travel_package->kuota += $user_count;
         $travel_package->save();
 
-        // Buat transaksi
-        $transaction = Transaction::create([
-            'travel_packages_id' => $id,
-            'users_id' => Auth::user()->id,
-            'transaction_total' => $travel_package->price,
-            'transaction_status' => 'IN_CART',
-        ]);
+        // Update the transaction status
+        $transaction->transaction_status = 'CANCEL';
+        $transaction->save();
 
-        TransactionDetail::create([
-            'transactions_id' => $transaction->id,
-            'username' => Auth::user()->username,
-        ]);
-
-        // Kirim notifikasi ke admin dan super-admin
-        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-        $admins = User::whereHas('roles', function ($query) use ($roles) {
-            $query->whereIn('id', $roles->pluck('id'));
-        })->get();
-
-        Notification::send($admins, new NewTransactionNotification($transaction));
-
-        return redirect()->route('checkout', $transaction->id);
-    } else {
-        // Jika kuota sudah habis, kembalikan pengguna ke halaman sebelumnya dengan pesan error
-        return back()->with('error', 'Sorry, the quota for this travel package has been exhausted.');
-    }
+        return redirect()
+            ->route('details', $travel_package->slug)
+            ->with('success', 'Booking canceled successfully.');
     }
 
     public function remove(Request $request, $detail_id)
@@ -68,16 +100,23 @@ class CheckoutController extends Controller
         $item = TransactionDetail::findOrFail($detail_id);
 
         $transaction = Transaction::with(['details', 'travel_package'])->findOrFail($item->transactions_id);
+        $travelPackage = $transaction->travel_package;
 
-        if ($item->is_visa) {
-            $transaction->transaction_total -= 190;
-            $transaction->additional_visa -= 190;
-        }
+        // if ($item->is_visa) {
+        //     $transaction->transaction_total -= 190;
+        //     $transaction->additional_visa -= 190;
+        // }
 
-        $transaction->transaction_total -= $transaction->travel_package->price;
+        $transaction->transaction_total -= $travelPackage->price;
 
-        $transaction->save();
+        // Restore the quota
+        $travelPackage->kuota += 1;
+        $travelPackage->save();
+
         $item->delete();
+        $transaction->save();
+
+        toast('User success not added', 'success');
 
         return redirect()->route('checkout', $item->transactions_id);
     }
@@ -90,21 +129,41 @@ class CheckoutController extends Controller
 
         $userPhone = Auth::user()->phone;
 
+        $transaction = Transaction::with(['travel_package'])->find($id);
+        $travelPackage = $transaction->travel_package;
+
+        // Check if there's enough quota available
+        if ($travelPackage->kuota <= 0) {
+            // return back()->withErrors(['message' => 'No more quota available for this travel package.']);
+            Alert::error('Error','No more quota available for this travel package.')
+                // ->position('top-end')
+                ->autoClose(3000)
+                ->timerProgressBar();
+
+            return back();
+
+        }
+
         $data = $request->all();
         $data['transactions_id'] = $id;
 
+        // Create the transaction detail
         TransactionDetail::create($data);
 
-        $transaction = Transaction::with(['travel_package'])->find($id);
+        // Decrement the quota
+        $travelPackage->kuota -= 1;
+        $travelPackage->save();
 
-        if ($request->is_visa) {
-            $transaction->transaction_total += 190;
-            $transaction->additional_visa += 190;
-        }
+        // if ($request->is_visa) {
+        //     $transaction->transaction_total += 190;
+        //     $transaction->additional_visa += 190;
+        // }
 
         $transaction->transaction_total += $transaction->travel_package->price;
 
         $transaction->save();
+
+        toast('User success added', 'success');
 
         // Kirim notifikasi ke admin dan super-admin
         $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();

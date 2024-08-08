@@ -20,6 +20,8 @@
 
     @yield('content')
 
+    @include('sweetalert::alert')
+
     @include('includes.footer')
 
     @stack('prepend-script')
