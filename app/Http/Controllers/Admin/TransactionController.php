@@ -34,9 +34,21 @@ class TransactionController extends Controller
 
         $items = $query->get();
 
+        // Hitung jumlah transaksi berdasarkan status
+        $countPending = Transaction::where('transaction_status', 'PENDING')->count();
+        $countSuccess = Transaction::where('transaction_status', 'SUCCESS')->count();
+        $countFailed = Transaction::where('transaction_status', 'EXPIRED')->count();
+        $countInCart = Transaction::where('transaction_status', 'IN_CART')->count();
+        $countCancelled = Transaction::where('transaction_status', 'CANCEL')->count();
+
         return view('pages.admin.transaction.index', [
             'items' => $items,
             'selectedStatus' => $status,
+            'countPending' => $countPending,
+            'countSuccess' => $countSuccess,
+            'countFailed' => $countFailed,
+            'countInCart' => $countInCart,
+            'countCancelled' => $countCancelled,
         ]);
     }
 

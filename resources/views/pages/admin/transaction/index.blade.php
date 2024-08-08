@@ -18,6 +18,119 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-xxl-4 col-md-6 mb-4">
+            <div class="card info-card sales-card h-100">
+                <div class="card-body d-flex">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                        <!-- Icon can be added here -->
+                    </div>
+                    <div>
+                        <h5 class="card-title">Transactions</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h1 style="font-weight: bold; color: #012970">{{ $countPending }}</h1>
+                                <span class="text-success large  fw-bold"
+                                style="font-size: 14px; font-weight: 500;">Pending</span>
+                            <span class="text-muted large pt-2"
+                                style="font-size: 14px; font-weight: 500;">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6 mb-4">
+            <div class="card info-card sales-card h-100">
+                <div class="card-body d-flex">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                        <!-- Icon can be added here -->
+                    </div>
+                    <div>
+                        <h5 class="card-title">Transactions</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h1 style="font-weight: bold; color: #012970">{{ $countSuccess }}</h1>
+                                <span class="text-success large  fw-bold"
+                                    style="font-size: 14px; font-weight: 500;">Success</span>
+                                <span class="text-muted large pt-2"
+                                    style="font-size: 14px; font-weight: 500;">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6 mb-4">
+            <div class="card info-card sales-card h-100">
+                <div class="card-body d-flex">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                        <!-- Icon can be added here -->
+                    </div>
+                    <div>
+                        <h5 class="card-title">Transactions</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h1 style="font-weight: bold; color: #012970">{{ $countFailed }}</h1>
+                                <span class="text-success large  fw-bold"
+                                    style="font-size: 14px; font-weight: 500;">Expired</span>
+                                <span class="text-muted large pt-2"
+                                    style="font-size: 14px; font-weight: 500;">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6 mb-4">
+            <div class="card info-card sales-card h-100">
+                <div class="card-body d-flex">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                        <!-- Icon can be added here -->
+                    </div>
+                    <div>
+                        <h5 class="card-title">Transactions</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h1 style="font-weight: bold; color: #012970">{{ $countInCart }}</h1>
+                                <span class="text-success large  fw-bold"
+                                    style="font-size: 14px; font-weight: 500;">In Cart</span>
+                                <span class="text-muted large pt-2"
+                                    style="font-size: 14px; font-weight: 500;">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6 mb-4">
+            <div class="card info-card sales-card h-100">
+                <div class="card-body d-flex">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                        <!-- Icon can be added here -->
+                    </div>
+                    <div>
+                        <h5 class="card-title">Transactions</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h1 style="font-weight: bold; color: #012970">{{ $countCancelled }}</h1>
+                                <span class="text-success large  fw-bold"
+                                    style="font-size: 14px; font-weight: 500;">Canceled</span>
+                                <span class="text-muted large pt-2"
+                                    style="font-size: 14px; font-weight: 500;">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="card">
         <div class="card-body pt-3">
             <!-- Bordered Tabs -->
@@ -115,17 +228,18 @@
                                             class="btn btn-secondary">
                                             <i class="ri-file-pdf-2-line"></i>
                                         </a>
-                                        <a href="{{ route('transaction.show', $item->id) }}"
-                                            class="btn btn-success">
+                                        <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success">
                                             <i class="ri-eye-line"></i>
                                         </a>
                                         <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info">
                                             <i class="ri-edit-line" style="color: white;"></i>
                                         </a>
-                                        <form action="{{ route('transaction.destroy', $item->id) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
+                                        <form action="{{ route('transaction.destroy', $item->id) }}" method="POST"
+                                            class="d-inline" id="delete-form-{{ $item->id }}">
                                             @csrf
                                             @method('delete')
-                                            <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
+                                            <button type="button" class="btn btn-danger"
+                                                onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
                                                 <i class="ri-delete-bin-6-line"></i>
                                             </button>
                                         </form>
@@ -161,7 +275,8 @@
                     <!-- Filtered content for SUCCESS -->
                 </div>
 
-                <div class="tab-pane fade {{ $selectedStatus === 'CANCEL' ? 'show active' : '' }}" id="transaction-cancel">
+                <div class="tab-pane fade {{ $selectedStatus === 'CANCEL' ? 'show active' : '' }}"
+                    id="transaction-cancel">
                     <!-- Filtered content for CANCEL -->
                 </div>
 
