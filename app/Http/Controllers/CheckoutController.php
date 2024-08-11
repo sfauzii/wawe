@@ -90,9 +90,12 @@ class CheckoutController extends Controller
         $transaction->transaction_status = 'CANCEL';
         $transaction->save();
 
-        return redirect()
-            ->route('details', $travel_package->slug)
-            ->with('success', 'Booking canceled successfully.');
+        Alert::success('Success', 'Booking canceled successfully.');
+
+        return redirect()->route('details', $travel_package->slug);
+        // return redirect()
+        //     ->route('details', $travel_package->slug)
+        //     ->with('success', 'Booking canceled successfully.');
     }
 
     public function remove(Request $request, $detail_id)

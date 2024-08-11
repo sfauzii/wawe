@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Mail\TransactionSuccess;
 use App\Models\TransactionDetail;
+use App\Models\MidtransNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\TransactionSuccessNotification;
 
@@ -17,6 +18,13 @@ class MidtransController extends Controller
 {
     public function notificationHandler(Request $request)
     {
+
+        // Simpan notifikasi Midtrans
+        $midtransNotification = new MidtransNotification();
+        $midtransNotification->order_id = $request->order_id;
+        $midtransNotification->payload = json_encode($request->all());
+        $midtransNotification->save();
+
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');
         Config::$isSanitized = config('midtrans.isSanitized');

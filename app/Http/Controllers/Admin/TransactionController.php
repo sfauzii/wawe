@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TransactionRequest;
+use App\Models\MidtransNotification;
 
 class TransactionController extends Controller
 {
@@ -203,9 +204,19 @@ class TransactionController extends Controller
 
         $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
 
+        // Ambil semua data notifikasi Midtrans untuk transaksi ini
+        $midtransNotifications = MidtransNotification::where('order_id', $item->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $midtransData = $midtransNotifications->map(function ($notification) {
+        return json_decode($notification->payload, true);
+        });
+        
         return view('pages.admin.transaction.detail', [
             'item' => $item,
             'transactionDetails' => $transactionDetails,
+            'midtransData' => $midtransData,
         ]);
     }
 

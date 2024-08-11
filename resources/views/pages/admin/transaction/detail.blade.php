@@ -30,18 +30,15 @@
                     <div class="card-body">
 
                         <div style="overflow-x: auto;">
-                            <table class="table table-bordered mt-4" style="width:100%; min-width: 100%;">
+                            <table class="table table-bordered mt-4" style="width: 100%; min-width: 100%;">
                                 <tr>
                                     <th>ID</th>
                                     <td>{{ $item->id }}</td>
                                 </tr>
+
                                 <tr>
                                     <th>Paket Travel</th>
                                     <td>{{ $item->travel_package->title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Price</th>
-                                    <td>IDR {{ number_format($item->travel_package->price, 0, ',') }}/ person</td>
                                 </tr>
                                 <tr>
                                     <th>Pembeli</th>
@@ -49,7 +46,7 @@
                                 </tr>
                                 <tr>
                                     <th>Total Transaksi</th>
-                                    <td>IDR {{ number_format($item->transaction_total) }}</td>
+                                    <td>IDR {{ number_format($item->transaction_total, 0, ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status Transaksi</th>
@@ -64,6 +61,60 @@
                                     <td>{{ $item->updated_at }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Midtrans Data</th>
+                                    <td>
+                                        @if ($midtransData->isNotEmpty())
+                                            @foreach ($midtransData as $index => $data)
+                                                {{-- <h4>Notification {{ $index + 1 }}</h4> --}}
+                                                
+                                                <!-- Display full JSON data -->
+                                                <details>
+                                                    <summary>Show Full Midtrans Data</summary>
+                                                    <pre>{{ json_encode($data, JSON_PRETTY_PRINT) }}</pre>
+                                                </details>
+                                
+                                                <!-- Display specific fields -->
+                                                <tr>
+                                                    <th>Transaction ID</th>
+                                                    <td>{{ $data['transaction_id'] ?? 'N/A' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fraud Status</th>
+                                                    <td>{{ strtoupper($data['fraud_status'] ?? 'N/A') }}</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th>Payment Type</th>
+                                                    <td>{{ ucwords(str_replace('_', ' ', $data['payment_type'] ?? 'N/A')) }}</td>
+                                                </tr>
+                                
+                                                @if (isset($data['va_numbers']) && is_array($data['va_numbers']))
+                                                    <tr>
+                                                        <th>VA Number</th>
+                                                        <td>{{ $data['va_numbers'][0]['va_number'] ?? 'N/A' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Bank</th>
+                                                        <td>{{ strtoupper($data['va_numbers'][0]['bank'] ?? 'N/A') }}</td>
+                                                    </tr>
+                                                @endif
+                                               
+
+                                                <tr>
+                                                    <th>Expire Time</th>
+                                                    <td>{{ $data['expiry_time'] ?? 'N/A' }}</td>
+                                                </tr>
+                                
+                                                <!-- Add more specific fields here as needed -->
+                                
+                                            @endforeach
+                                        @else
+                                                <p>No Midtrans data available for this transaction.</p>
+                                        @endif
+                                    </td>
+                                </tr>
+                                
+                                <tr>
                                     <th>Payment URL</th>
                                     <td>
                                         @if ($item->payment_url)
@@ -76,22 +127,26 @@
                                         @endif
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>Pembelian</th>
                                     <td>
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama</th>
-                                            </tr>
-                                            @foreach ($item->details as $detail)
+                                        <div style="overflow-x: auto;">
+                                            <table class="table table-bordered" style="width: 100%; min-width: 100%;">
                                                 <tr>
-                                                    <td>{{ $detail->id }}</td>
+                                                    <th>ID</th>
+                                                    <th>Nama</th>
+                                                    @foreach ($item->details as $detail)
+                                                <tr>
+                                                    <td>{{ str_pad($detail->id, 10, '0', STR_PAD_LEFT) }}</td>
                                                     <td>{{ $detail->username }}</td>
+                                                    {{-- <td>{{ $detail->nationality }}</td>
+                                                        <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
+                                                        <td>{{ $detail->doe_passport }}</td> --}}
                                                 </tr>
-                                            @endforeach
-                                        </table>
-                                        
+                                                @endforeach
+                                            </table>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
