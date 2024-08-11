@@ -1951,7 +1951,8 @@ footer {
   min-height: 350px;
   padding: 3rem 1rem;
   border-radius: 100px 100px 0 0;
-  background: radial-gradient(circle, #ff7e5f, #feb47b);
+  background: radial-gradient(circle, #071C4D, #000000);
+  color: white;
 }
 
 .container .container-footer {
@@ -1983,13 +1984,31 @@ footer .container {
   /* Ensure columns don't get too narrow */
 }
 
+#useful-link .links a {
+  color: white;
+  text-decoration: none;
+}
+
+#useful-link .links a:hover {
+  color: #f0f0f0;
+}
+
+#services .links a {
+  color: white;
+  text-decoration: none;
+}
+
+#services .links a:hover {
+  color: #f0f0f0;
+}
+
 .col-footer .logo-footer {
   width: 100px;
   margin-bottom: 25px;
 }
 
 .col-footer h3 {
-  color: #071C4D;
+  color: white;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -2049,7 +2068,7 @@ footer .container {
   position: absolute;
   top: 5px;
   left: -10px;
-  background-color: #071C4D;
+  background-color: coral;
   transition: 0.5s ease;
   opacity: 0;
 }

@@ -13,11 +13,11 @@
                     <!-- <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
                     <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
                     <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a> -->
-                    <a href="#"><img src="{{ url('frontend/images/icons/facebook.png') }}" alt="Facebook Icon"
+                    <a href="#"><img src="{{ url('frontend/images/icons/facebook-white.png') }}" alt="Facebook Icon"
                             class="social-icon" /></a>
-                    <a href="#"><img src="{{ url('frontend/images/icons/instagram.png') }}" alt="Instagram Icon"
+                    <a href="#"><img src="{{ url('frontend/images/icons/instagram-white.png') }}" alt="Instagram Icon"
                             class="social-icon" /></a>
-                    <a href="#"><img src="{{ url('frontend/images/icons/whatsapp.png') }}" alt="WhatsApp Icon"
+                    <a href="#"><img src="{{ url('frontend/images/icons/whatsapp-white.png') }}" alt="WhatsApp Icon"
                             class="social-icon" /></a>
                 </div>
             </div>
@@ -44,12 +44,12 @@
                 <h3>Contact</h3>
                 <div class="contact-details-footer">
                     <!-- <ion-icon name="location-outline"></ion-icon> -->
-                    <img src="{{ url('frontend/images/icons/location.png') }}" alt="" />
+                    <img src="{{ url('frontend/images/icons/location-white.png') }}" alt="" />
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
                 </div>
                 <div class="contact-details-footer">
                     <!-- <ion-icon name="call-outline"></ion-icon> -->
-                    <img src="{{ url('frontend/images/icons/call.png') }}" alt="" />
+                    <img src="{{ url('frontend/images/icons/call-white.png') }}" alt="" />
                     <p>+62 123 456 7890</p>
                 </div>
             </div>
