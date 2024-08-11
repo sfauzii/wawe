@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Midtrans\Snap;
 use App\Models\User;
 use Midtrans\Config;
 use App\Models\Transaction;
@@ -11,11 +12,11 @@ use App\Models\TravelPackage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\TransactionRequest;
-use Midtrans\Snap;
 
 class TransactionController extends Controller
 {
@@ -200,8 +201,11 @@ class TransactionController extends Controller
     {
         $item = Transaction::with(['details', 'travel_package', 'user'])->findOrFail($id);
 
+        $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
+
         return view('pages.admin.transaction.detail', [
             'item' => $item,
+            'transactionDetails' => $transactionDetails,
         ]);
     }
 
@@ -264,4 +268,21 @@ class TransactionController extends Controller
 
         return $pdf->download('Invoice ' . ucfirst($item->user->name) . '.pdf');
     }
+
+    public function ticketPdf(string $id) {
+
+        $transaction = Transaction::with(['details', 'travel_package'])->findOrFail($id);
+
+        $user = Auth::user();
+
+        $transactionDetails = TransactionDetail::where('transactions_id', $transaction->id);
+
+        $item = Transaction::with(['details', 'travel_package', 'user'])->findOrFail($id);
+
+        $pdf = Pdf::loadView('pages.admin.tickets.ticket-pdf', compact('transaction', 'user', 'item', 'transactionDetails'))->setPaper('a4', 'potrait');
+
+        return $pdf->stream('Ticket ' . $item->details->first()->username . '.pdf');
+        
+    }
+
 }
