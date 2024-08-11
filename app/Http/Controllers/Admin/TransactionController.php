@@ -69,70 +69,70 @@ class TransactionController extends Controller
      */
     public function store(TransactionRequest $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        // $data = $request->all();
+        // $data['slug'] = Str::slug($request->title);
 
-        // Cari atau buat user berdasarkan username
-        $user = User::firstOrCreate(
-            ['username' => $request->input('username')],
-            [
-                'name' => $request->input('username'),
-                'email' => $request->input('username') . '@example.com',
-                'password' => Hash::make('defaultpassword'), // Set password default
-            ],
-        );
+        // // Cari atau buat user berdasarkan username
+        // $user = User::firstOrCreate(
+        //     ['username' => $request->input('username')],
+        //     [
+        //         'name' => $request->input('username'),
+        //         'email' => $request->input('username') . '@example.com',
+        //         'password' => Hash::make('defaultpassword'), // Set password default
+        //     ],
+        // );
 
-        // Pastikan travel_packages_id dan users_id diisi
-        $data['travel_packages_id'] = $request->input('travel_package_id');
-        $data['users_id'] = $user->id;
+        // // Pastikan travel_packages_id dan users_id diisi
+        // $data['travel_packages_id'] = $request->input('travel_package_id');
+        // $data['users_id'] = $user->id;
 
-        // Hitung total transaksi berdasarkan jumlah pengguna dan harga paket
-        $travelPackage = TravelPackage::findOrFail($data['travel_packages_id']);
-        $userCount = count($request->input('users', [])); // +1 to include the main user
-        $data['transaction_total'] = $travelPackage->price * $userCount;
+        // // Hitung total transaksi berdasarkan jumlah pengguna dan harga paket
+        // $travelPackage = TravelPackage::findOrFail($data['travel_packages_id']);
+        // $userCount = count($request->input('users', [])); // +1 to include the main user
+        // $data['transaction_total'] = $travelPackage->price * $userCount;
 
-        // Kurangi kuota travel package
-        if ($travelPackage->kuota < $userCount) {
-            // return redirect()->back()->with('error', 'Not enough quota for the selected travel package.');
-            Alert::error('Error','No more quota available for this travel package.')
-                // ->position('top-end')
-                ->autoClose(3000)
-                ->timerProgressBar();
+        // // Kurangi kuota travel package
+        // if ($travelPackage->kuota < $userCount) {
+        //     // return redirect()->back()->with('error', 'Not enough quota for the selected travel package.');
+        //     Alert::error('Error','No more quota available for this travel package.')
+        //         // ->position('top-end')
+        //         ->autoClose(3000)
+        //         ->timerProgressBar();
 
-            return back();
-        }
-        $travelPackage->kuota -= $userCount;
-        $travelPackage->save();
+        //     return back();
+        // }
+        // $travelPackage->kuota -= $userCount;
+        // $travelPackage->save();
 
-        // Buat transaksi dengan status PENDING secara otomatis
-        $transaction = Transaction::create([
-            'travel_packages_id' => $data['travel_packages_id'],
-            'users_id' => $data['users_id'],
-            'transaction_total' => $data['transaction_total'],
-            'transaction_status' => 'PENDING', // Set status ke PENDING secara otomatis
-        ]);
+        // // Buat transaksi dengan status PENDING secara otomatis
+        // $transaction = Transaction::create([
+        //     'travel_packages_id' => $data['travel_packages_id'],
+        //     'users_id' => $data['users_id'],
+        //     'transaction_total' => $data['transaction_total'],
+        //     'transaction_status' => 'PENDING', // Set status ke PENDING secara otomatis
+        // ]);
 
-        TransactionDetail::create([
-            'transactions_id' => $transaction->id,
-            'username' => $user['username'],
-        ]);
+        // TransactionDetail::create([
+        //     'transactions_id' => $transaction->id,
+        //     'username' => $user['username'],
+        // ]);
 
-        foreach ($request->input('users', []) as $userDetail) {
-            if (isset($userDetail['username']) && !empty($userDetail['username'])) {
-                TransactionDetail::create([
-                    'transactions_id' => $transaction->id,
-                    'username' => $userDetail['username'],
-                    // ... other fields
-                ]);
-            }
-        }
+        // foreach ($request->input('users', []) as $userDetail) {
+        //     if (isset($userDetail['username']) && !empty($userDetail['username'])) {
+        //         TransactionDetail::create([
+        //             'transactions_id' => $transaction->id,
+        //             'username' => $userDetail['username'],
+        //             // ... other fields
+        //         ]);
+        //     }
+        // }
 
-        // $snapToken = $this->generatePaymentUrl($transaction);
+        // // $snapToken = $this->generatePaymentUrl($transaction);
 
-        return view('pages.admin.transaction.payment', [
-            // 'snapToken' => $snapToken,
-            'transaction' => $transaction,
-        ]);
+        // return view('pages.admin.transaction.payment', [
+        //     // 'snapToken' => $snapToken,
+        //     'transaction' => $transaction,
+        // ]);
 
         // $data = $request->all();
         // $data['slug'] = Str::slug($request->title);
@@ -141,6 +141,10 @@ class TransactionController extends Controller
         // return redirect()->route('transaction.index');
     }
 
+    public function payment(Transaction $transaction)
+    {
+        return view('pages.admin.transaction.payment', compact('transaction'));
+    }
     public function generatePaymentUrl(Request $request, $id)
     {
         $transaction = Transaction::with(['details', 'travel_package.galleries', 'user'])->findOrFail($id);
