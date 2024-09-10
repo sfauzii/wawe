@@ -117,6 +117,25 @@
             </ul>
         </li><!-- End Tables Nav -->
 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#carousel-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i><span>Carousels</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="carousel-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                {{-- <li>
+                    <a href="{{ route('user.create') }}">
+                        <i class="bi bi-circle"></i><span>Add User</span>
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{ route('carousels.index') }}">
+                        <i class="bi bi-circle"></i><span>Data Role</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="nav-heading">REPORT</li>
 
         <li class="nav-item">

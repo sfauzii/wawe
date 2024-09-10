@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CarouselController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -124,6 +125,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
    Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
    Route::get('notifications-all', [NotificationController::class, 'index'])->name('notifications-all');
    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+
+   Route::resource('carousels', CarouselController::class);
+   Route::post('/carousels/{id}/toggle-status', [CarouselController::class, 'toggleStatus'])->name('carousels.toggleStatus');
+
 });
 
 

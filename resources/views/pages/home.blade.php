@@ -17,8 +17,22 @@ WaWe | Purbalingga, Jawa Tengah
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
+
+            @php
+                $carousels = \App\Models\Carousel::where('is_active', true)->get();
+            @endphp
+
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                @foreach ($carousels as $index => $carousel)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <img class="d-block w-100" src="{{ Storage::url($carousel->image_carousel) }}" alt="Slide {{ $index + 1 }}" />
+                        <div class="overlay">
+                            <h1>{{ $carousel->title_carousel }}</h1>
+                            <p>{{ $carousel->description_carousel }}</p>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div class="carousel-item active">
                     <img class="d-block w-100" src="{{ url('frontend/images/landing-1.jpg') }}" alt="First slide" />
                     <div class="overlay">
                         <h1>Judul Utama 1</h1>
@@ -38,7 +52,7 @@ WaWe | Purbalingga, Jawa Tengah
                         <h1>Judul Utama 3</h1>
                         <p>Deskripsi singkat di bawah judul 3</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
