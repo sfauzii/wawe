@@ -32,7 +32,7 @@
             </ul>
             <!-- Tambahkan tombol login di dalam collapse agar muncul di mobile -->
             @guest
-                <a href="login.html" class="btn btn-login ml-auto d-lg-none">Login</a>
+                <a href="{{ route('login') }}" class="btn btn-login ml-auto d-lg-none">Login</a>
             @endguest
 
             <!-- Profil untuk mobile di dalam collapse -->
