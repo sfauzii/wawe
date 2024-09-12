@@ -200,7 +200,7 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        $item = Transaction::with(['details', 'travel_package', 'user'])->findOrFail($id);
+        $item = Transaction::with(['details', 'travel_package.galleries', 'user'])->findOrFail($id);
 
         $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
 

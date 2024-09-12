@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <h1>Transaction</h1>
+    <h1>
+        Transaction</h1>
     <p class="desc-title">Daftar pembelian paket perjalanan anda</p>
     <!-- start recent order -->
     <div class="recent_order">
@@ -31,9 +32,25 @@
                                     $shortUuid = $uuidParts[0];
                                 @endphp
                                 <td class="id-number" style="font-weight: bold;">{{ $shortUuid }}</td>
-                                <td><img src="{{ asset('storage/' . $item->travel_package->galleries[0]->image) }}"
-                                        alt="{{ $item->travel_package->title }}" class="cover"
-                                        style="width: 100px; height: auto; border-radius: 8px;"></td>
+                                <td>
+                                    @if ($item->travel_package->galleries->isNotEmpty())
+                                        @php
+                                            $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
+                                            $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
+                                        @endphp
+                                        @if ($firstImagePath)
+                                            <img src="{{ asset('storage/' . $firstImagePath) }}"
+                                                alt="{{ $item->travel_package->title }}" class="cover"
+                                                style="width: 100px; height: auto; border-radius: 8px;">
+                                        @else
+                                            <!-- Fallback content if there is no image -->
+                                            <p>No image available.</p>
+                                        @endif
+                                    @else
+                                        <!-- Fallback content if there are no galleries -->
+                                        <p>No image available.</p>
+                                    @endif
+                                </td>
                                 <td class="product-name">{{ $item->travel_package->title }}</td>
                                 <td class="price">{{ number_format($item->transaction_total, 0, ',') }}</td>
                                 <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>

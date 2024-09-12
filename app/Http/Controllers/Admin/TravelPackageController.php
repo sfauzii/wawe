@@ -18,7 +18,7 @@ class TravelPackageController extends Controller
      */
     public function index()
     {
-        $items = TravelPackage::all();
+        $items = TravelPackage::with('galleries')->get();
 
         return view('pages.admin.travel-package.index', [
             'items' => $items,

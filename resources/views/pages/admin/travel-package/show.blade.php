@@ -54,7 +54,7 @@
                                     @endforeach
                                 </ul>
                             </td>
-                            
+
                         </tr>
                         <tr>
                             <th>Tanggal Keberangkatan</th>
@@ -91,13 +91,17 @@
                                             xoriginal="{{ Storage::url($travelPackage->galleries->first()->image) }}"> --}}
                                         </div>
                                         <div class="xzoom-thumbs">
-                                            @foreach ($travelPackage->galleries as $gallery)
-                                                <a href="{{ Storage::url($gallery->image) }}">
-                                                    <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery"
-                                                        width="128" xpreview="{{ Storage::url($gallery->image) }}"
-                                                        alt="">
-                                                </a>
-                                            @endforeach
+                                            @forelse ($travelPackage->galleries as $gallery)
+                                                @foreach ($gallery->image as $image)
+                                                    <a href="{{ Storage::url($image) }}">
+                                                        <img src="{{ Storage::url($image) }}" alt="Image"
+                                                            style="width: 100px; margin-right: 5px;" class="img-thumbnail"
+                                                            class="xzoom-gallery" xpreview="{{ Storage::url($image) }}" />
+                                                    </a>
+                                                @endforeach
+                                            @empty
+                                                <p>No images</p>
+                                            @endforelse
                                         </div>
                                     </div>
                                 @endif
@@ -114,8 +118,18 @@
                                 <div class="testimonial-item">
                                     <blockquote class="blockquote">
                                         <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }} "
-                                            alt="User Photo" class="user-photo" style="height: 50px; width: auto;>
-                                        <p class="mb-0">{{ $testimony->message }}</p>
+                                            alt="User Photo" class="user-photo"
+                                            style="height: 50px; width: auto;>
+                                        <p class="mb-0">{{ $testimony->message }}
+                                        @if (!empty($testimony->photos) && is_array($testimony->photos))
+                                            @foreach ($testimony->photos as $photo)
+                                                <img src="{{ asset('storage/' . $photo) }}" alt="Photo"
+                                                    style="width: 150px; height: auto;">
+                                            @endforeach
+                                        @else
+                                            <p>No photos available.</p>
+                                        @endif
+                                        </p>
                                         <footer class="blockquote-footer">{{ $testimony->user->name }}</footer>
                                     </blockquote>
                                 </div>

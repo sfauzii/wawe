@@ -90,45 +90,45 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/testimony/create/{id}', [TestimonyController::class, 'create'])->name('testimony.create');
     Route::post('/testimony/store', [TestimonyController::class, 'store'])->name('testimony.store');
-    
 });
 
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
-   Route::resource('travel-package', TravelPackageController::class);
-   Route::resource('gallery', GalleryController::class);
-
-   Route::resource('transaction', TransactionController::class);
-   Route::get('transaction/invoice/{id}/print', [TransactionController::class, 'downloadPdf'])->name('transaction_print');
-   Route::get('transaction/payment/{transaction}', [TransactionController::class, 'payment'])->name('transaction.payment');
-   Route::get('/transaction/confirm/{id}', [TransactionController::class, 'generatePaymentUrl'])->name('transaction-success');
-   Route::get('/transaction-ticket/download/{id}', [TransactionController::class, 'ticketPdf'])->name('download-ticket');
-
-   Route::resource('user', UserController::class);
-
-   Route::resource('roles', RoleController::class);
-   Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionsToRole'])->name('roles.give-permission');
-   Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionsToRole'])->name('roles.update-permission');
-
-   Route::resource('permissions', PermissionController::class);
+    Route::resource('travel-package', TravelPackageController::class);
+    Route::resource('gallery', GalleryController::class);
+    Route::delete('gallery/{id}/image/{index}', [GalleryController::class, 'deleteImage'])->name('gallery.delete_image');
 
 
-   Route::get('report-transaction', [ReportController::class, 'showFormTransaction'])->name('report-transaction');
-   Route::get('report-transaction/download', [ReportController::class, 'generatePDF'])->name('report-transaction-download');
+    Route::resource('transaction', TransactionController::class);
+    Route::get('transaction/invoice/{id}/print', [TransactionController::class, 'downloadPdf'])->name('transaction_print');
+    Route::get('transaction/payment/{transaction}', [TransactionController::class, 'payment'])->name('transaction.payment');
+    Route::get('/transaction/confirm/{id}', [TransactionController::class, 'generatePaymentUrl'])->name('transaction-success');
+    Route::get('/transaction-ticket/download/{id}', [TransactionController::class, 'ticketPdf'])->name('download-ticket');
 
-   Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
-   
-   Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
+    Route::resource('user', UserController::class);
 
-   Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
-   Route::get('notifications-all', [NotificationController::class, 'index'])->name('notifications-all');
-   Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::resource('roles', RoleController::class);
+    Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionsToRole'])->name('roles.give-permission');
+    Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionsToRole'])->name('roles.update-permission');
 
-   Route::resource('carousels', CarouselController::class);
-   Route::post('/carousels/{id}/toggle-status', [CarouselController::class, 'toggleStatus'])->name('carousels.toggleStatus');
+    Route::resource('permissions', PermissionController::class);
 
+
+    Route::get('report-transaction', [ReportController::class, 'showFormTransaction'])->name('report-transaction');
+    Route::get('report-transaction/download', [ReportController::class, 'generatePDF'])->name('report-transaction-download');
+
+    Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
+
+    Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
+
+    Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::get('notifications-all', [NotificationController::class, 'index'])->name('notifications-all');
+    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+
+    Route::resource('carousels', CarouselController::class);
+    Route::post('/carousels/{id}/toggle-status', [CarouselController::class, 'toggleStatus'])->name('carousels.toggleStatus');
 });
 
 

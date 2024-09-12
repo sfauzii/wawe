@@ -49,7 +49,7 @@
                     <a href="{{ route('details', $item->slug) }}" class="card-link">
                         <div class="card-catalogue">
                             <div class="card-background"
-                                style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }} ');">
+                                style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image[0]) : '' }} ');">
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-content">

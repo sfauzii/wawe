@@ -16,6 +16,10 @@ class Gallery extends Model
         'travel_packages_id', 'image',
     ];
 
+    protected $casts = [
+        'image' => 'array',
+    ];
+
     protected $hidden = [
 
     ];

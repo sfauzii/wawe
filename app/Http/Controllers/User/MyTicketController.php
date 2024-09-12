@@ -23,7 +23,7 @@ class MyTicketController extends Controller
         // Ambil data pengguna berdasarkan username dan id
         $user = User::where('username', $username)->where('id', $id)->firstOrFail();
 
-        $transactions = Transaction::with(['details', 'travel_package'])
+        $transactions = Transaction::with(['details', 'travel_package.galleries'])
             ->where('transaction_status', 'SUCCESS')
             ->orderBy('created_at', 'desc')
             ->get();    
@@ -37,7 +37,7 @@ class MyTicketController extends Controller
     public function detail($id) {
 
         
-        $transaction = Transaction::with(['details', 'travel_package'])->findOrFail($id);
+        $transaction = Transaction::with(['details', 'travel_package.galleries'])->findOrFail($id);
 
         $user = Auth::user();
 

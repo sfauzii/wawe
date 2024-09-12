@@ -60,7 +60,10 @@ class CheckoutController extends Controller
             return redirect()->route('checkout', $transaction->id);
         } else {
             // Jika kuota sudah habis, kembalikan pengguna ke halaman sebelumnya dengan pesan error
-            return back()->with('error', 'Sorry, the quota for this travel package has been exhausted.');
+
+            toast('Sorry, the quota for this travel package has been exhausted.', 'error');
+
+            return back();
         }
     }
 

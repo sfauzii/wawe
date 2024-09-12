@@ -55,7 +55,7 @@
                             <div class="row mb-3">
                                 <label for="image" class="col-sm-2 col-form-label">Image <span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="image" placeholder="Image">
+                                    <input class="form-control" type="file" name="images[]" multiple placeholder="Image">
                                 <small class="form-text text-muted">Foto. img, jpg, jpeg, png. Wajib diisi</small>
 
                                 </div>

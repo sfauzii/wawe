@@ -13,14 +13,14 @@
     </div>
 
     @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <section class="section">
         <div class="row">
@@ -31,12 +31,14 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('gallery.update', encrypt($item->id) ) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('gallery.update', encrypt($item->id)) }}" method="POST"
+                            enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="travel_packages_id" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Travel Package</label>
+                                <label for="travel_packages_id" class="col-sm-2 col-form-label"
+                                    style="font-weight: bold; color: #012970;">Travel Package</label>
                                 <div class="col-sm-10">
                                     <select name="travel_packages_id" class="form-select"
                                         aria-label="Default select example">
@@ -51,16 +53,44 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="image" class="col-sm-2 col-form-label" style="font-weight: bold; color: #012970;">Image</label>
+                                <label for="image" class="col-sm-2 col-form-label">Image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="image" placeholder="Image">
+                                    <input class="form-control" type="file" name="images[]" multiple placeholder="Image">
+                                    <small class="text-muted">You can select multiple images. Existing images will be
+                                        preserved unless removed.</small>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970;">
+                            <button type="submit" class="btn btn-primary btn-block w-100"
+                                style="background-color: #012970;">
                                 Edit
                             </button>
                         </form><!-- End General Form Elements -->
+
+                        <div class="row mt-5 mb-3">
+                            <label for="existing_images" class="col-sm-2 col-form-label">Existing Images</label>
+                            <div class="col-sm-10">
+                                @if ($item->image)
+                                    @foreach ($item->image as $index => $image)
+                                        <div class="mb-2 d-inline-block position-relative">
+                                            <img src="{{ Storage::url($image) }}" alt="Image"
+                                                style="width: 150px; height: auto;" class="img-thumbnail">
+                                            <form
+                                                action="{{ route('gallery.delete_image', ['id' => encrypt($item->id), 'index' => $index]) }}"
+                                                method="POST" class="position-absolute top-0 end-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="ri-delete-bin-6-line"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>No existing images.</p>
+                                @endif
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -80,7 +110,9 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span style="font-weight: bold; color: #012970;"><i class="ri-calendar-schedule-line"></i> Created At: <span style="color: #000000; font-weight: 400   ">{{ $item->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"><i
+                                                class="ri-calendar-schedule-line"></i> Created At: <span
+                                                style="color: #000000; font-weight: 400   ">{{ $item->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>
@@ -91,7 +123,9 @@
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
-                                        <span style="font-weight: bold; color: #012970;"><i class="ri-calendar-schedule-line"></i> Updated At: <span style="color: #000000; font-weight: 400   ">{{ $item->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T')  }}</span></span>
+                                        <span style="font-weight: bold; color: #012970;"><i
+                                                class="ri-calendar-schedule-line"></i> Updated At: <span
+                                                style="color: #000000; font-weight: 400   ">{{ $item->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
                                         <!-- Tanggal yang sesuai akan ditampilkan di sini -->
                                     </div>
                                 </div>

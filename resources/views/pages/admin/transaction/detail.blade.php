@@ -66,54 +66,53 @@
                                         @if ($midtransData->isNotEmpty())
                                             @foreach ($midtransData as $index => $data)
                                                 {{-- <h4>Notification {{ $index + 1 }}</h4> --}}
-                                                
+
                                                 <!-- Display full JSON data -->
                                                 <details>
                                                     <summary>Show Full Midtrans Data</summary>
                                                     <pre>{{ json_encode($data, JSON_PRETTY_PRINT) }}</pre>
                                                 </details>
-                                
-                                                <!-- Display specific fields -->
-                                                <tr>
-                                                    <th>Transaction ID</th>
-                                                    <td>{{ $data['transaction_id'] ?? 'N/A' }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Fraud Status</th>
-                                                    <td>{{ strtoupper($data['fraud_status'] ?? 'N/A') }}</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th>Payment Type</th>
-                                                    <td>{{ ucwords(str_replace('_', ' ', $data['payment_type'] ?? 'N/A')) }}</td>
-                                                </tr>
-                                
-                                                @if (isset($data['va_numbers']) && is_array($data['va_numbers']))
-                                                    <tr>
-                                                        <th>VA Number</th>
-                                                        <td>{{ $data['va_numbers'][0]['va_number'] ?? 'N/A' }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Bank</th>
-                                                        <td>{{ strtoupper($data['va_numbers'][0]['bank'] ?? 'N/A') }}</td>
-                                                    </tr>
-                                                @endif
-                                               
 
-                                                <tr>
-                                                    <th>Expire Time</th>
-                                                    <td>{{ $data['expiry_time'] ?? 'N/A' }}</td>
-                                                </tr>
-                                
-                                                <!-- Add more specific fields here as needed -->
-                                
-                                            @endforeach
-                                        @else
-                                                <p>No Midtrans data available for this transaction.</p>
-                                        @endif
-                                    </td>
+                                                <!-- Display specific fields -->
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <td>{{ $data['transaction_id'] ?? 'N/A' }}</td>
                                 </tr>
-                                
+                                <tr>
+                                    <th>Fraud Status</th>
+                                    <td>{{ strtoupper($data['fraud_status'] ?? 'N/A') }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Payment Type</th>
+                                    <td>{{ ucwords(str_replace('_', ' ', $data['payment_type'] ?? 'N/A')) }}</td>
+                                </tr>
+
+                                @if (isset($data['va_numbers']) && is_array($data['va_numbers']))
+                                    <tr>
+                                        <th>VA Number</th>
+                                        <td>{{ $data['va_numbers'][0]['va_number'] ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bank</th>
+                                        <td>{{ strtoupper($data['va_numbers'][0]['bank'] ?? 'N/A') }}</td>
+                                    </tr>
+                                @endif
+
+
+                                <tr>
+                                    <th>Expire Time</th>
+                                    <td>{{ $data['expiry_time'] ?? 'N/A' }}</td>
+                                </tr>
+
+                                <!-- Add more specific fields here as needed -->
+                                @endforeach
+                            @else
+                                <p>No Midtrans data available for this transaction.</p>
+                                @endif
+                                </td>
+                                </tr>
+
                                 <tr>
                                     <th>Payment URL</th>
                                     <td>
@@ -166,8 +165,22 @@
                             <div class="ticket">
                                 <div class="ticket-header">
                                     <div class="alert alert-info">This ticket available for download.</div>
-                                    <img src="{{ asset('storage/' . $item->travel_package->galleries[0]->image) }}"
-                                        alt="Event Image" class="ticket-image">
+                                    @if ($item->travel_package->galleries->isNotEmpty())
+                                        @php
+                                            $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
+                                            $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
+                                        @endphp
+                                        @if ($firstImagePath)
+                                            <img src="{{ asset('storage/' . $firstImagePath) }}"
+                                                alt="{{ $item->travel_package->title }}" class="ticket-image">
+                                        @else
+                                            <!-- Fallback content if there is no image -->
+                                            <p>No image available.</p>
+                                        @endif
+                                    @else
+                                        <!-- Fallback content if there are no galleries -->
+                                        <p>No galleries available.</p>
+                                    @endif
                                     <h1 class="ticket-title">{{ $item->travel_package->title }}</h1>
                                     <p class="ticket-id">Ticket ID: {{ $item->id }}</p>
                                 </div>

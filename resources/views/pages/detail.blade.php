@@ -2,9 +2,7 @@
 
 
 @section('title')
-
-Detail | {{ $item->title }}
-    
+    Detail | {{ $item->title }}
 @endsection
 
 @section('content')
@@ -35,17 +33,25 @@ Detail | {{ $item->title }}
                         <div class="gallery">
                             <div class="xzoom-main">
                                 <div class="xzoom-container">
-                                    <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="Details gambar"
-                                        class="xzoom" id="xzoom-default"
-                                        xoriginal="{{ Storage::url($item->galleries->first()->image) }}">
+                                    @if ($item->galleries->count() > 0)
+                                        <img src="{{ Storage::url($item->galleries->first()->image[0]) }}"
+                                            alt="Details gambar" class="xzoom" id="xzoom-default"
+                                            xoriginal="{{ Storage::url($item->galleries->first()->image[0]) }}">
+                                    @else
+                                        <!-- Fallback or placeholder image -->
+                                        <img src="{{ asset('path/to/placeholder-image.jpg') }}" alt="No image available"
+                                            class="xzoom" id="xzoom-default">
+                                    @endif
                                 </div>
                             </div>
                             <div class="xzoom-thumbs">
                                 @foreach ($item->galleries as $gallery)
-                                    <a href="{{ Storage::url($gallery->image) }}">
-                                        <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery"
-                                            xpreview="{{ Storage::url($gallery->image) }}" alt="">
-                                    </a>
+                                    @foreach ($gallery->image as $image)
+                                        <a href="{{ Storage::url($image) }}">
+                                            <img src="{{ Storage::url($image) }}" class="xzoom-gallery" width="128"
+                                                xpreview="{{ Storage::url($image) }}" alt="">
+                                        </a>
+                                    @endforeach
                                 @endforeach
                                 <!-- Tambahkan gambar thumbnail lainnya di sini -->
                             </div>
@@ -67,7 +73,8 @@ Detail | {{ $item->title }}
                             </div>
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
-                                <img src="{{ url('frontend/images/icons/people.png') }}" alt="Facebook Icon" class="icon">
+                                <img src="{{ url('frontend/images/icons/people.png') }}" alt="Facebook Icon"
+                                    class="icon">
                                 <span>{{ $item->kuota }} person</span>
                             </div>
                             <div class="feature">
@@ -103,21 +110,19 @@ Detail | {{ $item->title }}
                             $features = explode(',', $item->features);
                         @endphp
                         @foreach (array_chunk($features, 4) as $chunk)
-                            @foreach($chunk as $feature)
-                            <div class="info-card">
+                            @foreach ($chunk as $feature)
+                                <div class="info-card">
 
-                                <div class="icons-details">
-                                    <img src="{{ url('frontend/images/icons/tick-circle.png') }}" alt="Check Icon"
-                                        class="icon-detail-img">
+                                    <div class="icons-details">
+                                        <img src="{{ url('frontend/images/icons/tick-circle.png') }}" alt="Check Icon"
+                                            class="icon-detail-img">
+                                    </div>
+
+                                    <div class="info-content">
+                                        <h4>{{ $feature }}</h4>
+                                    </div>
                                 </div>
-    
-                                <div class="info-content">
-                                    <h4>{{ $feature }}</h4>
-                                </div>
-                            </div>
-                                
                             @endforeach
-                            
                         @endforeach
 
 
@@ -129,17 +134,24 @@ Detail | {{ $item->title }}
                     <aside class="testimonies-card">
                         <h3 class="testimonies-header">From Happy Customers</h3>
                         @foreach ($testimonies as $testimony)
-                        <div class="testimoni-card">
-                            <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}" alt="User Photo {{ $testimony->user->name }}" class="testimonial-photo">
-                            <div>
-                                <p>"{{ $testimony->message }}"</p>
-                                <small>- {{ $testimony->user->name }}</small>
-                                <small>, {{ $testimony->created_at->format('d M Y') }}</small>
+                            <div class="testimoni-card">
+                                <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
+                                    alt="User Photo {{ $testimony->user->name }}" class="testimonial-photo">
+                                <div>
+                                    <p>"{{ $testimony->message }}"</p>
+                                    @if (!empty($testimony->photos) && is_array($testimony->photos))
+                                        @foreach ($testimony->photos as $photo)
+                                            <img src="{{ asset('storage/' . $photo) }}" alt="Photo"
+                                                style="width: 80px; height: auto; ">
+                                        @endforeach
+                                    @else
+                                    @endif
+                                    <small>- {{ $testimony->user->name }}</small>
+                                    <small>, {{ $testimony->created_at->format('d M Y') }}</small>
+                                </div>
                             </div>
-                        </div>
-                            
                         @endforeach
-                        
+
                         <!-- Tambahkan lebih banyak testimonial cards jika diperlukan -->
                     </aside>
 

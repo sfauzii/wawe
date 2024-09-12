@@ -24,7 +24,7 @@ class MyTransactionController extends Controller
         $user = User::where('username', $username)->where('id', $id)->firstOrFail();
 
 
-        $transactions = Transaction::with(['details', 'travel_package'])
+        $transactions = Transaction::with(['details', 'travel_package.galleries'])
             ->orderBy('created_at', 'desc')
             ->where('users_id', $user->id)
             ->where('transaction_status', '!=', 'IN_CART')

@@ -31,9 +31,9 @@
                             <div class="ps-3">
                                 <h1 style="font-weight: bold; color: #012970">{{ $countPending }}</h1>
                                 <span class="text-success large  fw-bold"
-                                style="font-size: 14px; font-weight: 500;">Pending</span>
-                            <span class="text-muted large pt-2"
-                                style="font-size: 14px; font-weight: 500;">Transactions</span>
+                                    style="font-size: 14px; font-weight: 500;">Pending</span>
+                                <span class="text-muted large pt-2"
+                                    style="font-size: 14px; font-weight: 500;">Transactions</span>
                             </div>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                         <div class="d-flex align-items-center">
                             <div class="ps-3">
                                 <h1 style="font-weight: bold; color: #012970">{{ $countInCart }}</h1>
-                                <span class="text-success large  fw-bold"
-                                    style="font-size: 14px; font-weight: 500;">In Cart</span>
+                                <span class="text-success large  fw-bold" style="font-size: 14px; font-weight: 500;">In
+                                    Cart</span>
                                 <span class="text-muted large pt-2"
                                     style="font-size: 14px; font-weight: 500;">Transactions</span>
                             </div>
@@ -220,8 +220,16 @@
                                     <td>
 
                                         @if ($item->transaction_status === 'PENDING')
-                                            <a href="{{ $item->payment_url }}" class="btn btn-primary"><i
-                                                    class="ri-bank-card-line"></i></a>
+                                            @if (!empty($item->payment_url))
+                                                <a href="{{ $item->payment_url }}" class="btn btn-primary">
+                                                    <i class="ri-bank-card-line"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
+                                                    class="btn btn-primary">
+                                                    <i class="ri-bank-card-line"></i>
+                                                </a>
+                                            @endif
                                         @endif
 
                                         <a href="{{ route('transaction_print', ['id' => $item->id]) }}"

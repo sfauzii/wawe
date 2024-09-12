@@ -139,7 +139,7 @@ WaWe | Purbalingga, Jawa Tengah
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <a href="{{ route('details', $item->slug) }}" class="card-link">
                                 <div class="card-travel text-center d-flex flex-column"
-                                    style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}');">
+                                    style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image[0]) : '' }}');">
                                     <div class="overlay"></div>
                                     <div class="card-travel-content">
                                         <div class="travel-location">{{ $item->title }}</div>

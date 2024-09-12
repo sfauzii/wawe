@@ -11,8 +11,31 @@
                 <div class="card-content">
                     <div class="product-info">
                         <div class="product-image">
-                            <img src="{{ asset('storage/' . $item->travel_package->galleries[0]->image) }}" alt="{{ $item->travel_package->title }}">
+                            {{-- <img src="{{ asset('storage/' . $item->travel_package->galleries[0]->image) }}" alt="{{ $item->travel_package->title }}"> --}}
+                            @if ($item->travel_package->galleries->isNotEmpty())
+                                @php
+                                    // Get the first gallery item
+                                    $firstGallery = $item->travel_package->galleries->first();
+
+                                    // Ensure image is an array and get the first image path
+                                    $firstImagePath = is_array($firstGallery->image)
+                                        ? $firstGallery->image[0]
+                                        : $firstGallery->image;
+                                @endphp
+
+                                @if ($firstImagePath)
+                                    <img src="{{ asset('storage/' . $firstImagePath) }}"
+                                        alt="{{ $item->travel_package->title }}">
+                                @else
+                                    <!-- Fallback content if there is no image -->
+                                    <p>No image available.</p>
+                                @endif
+                            @else
+                                <!-- Fallback content if there are no galleries -->
+                                <p>No galleries available.</p>
+                            @endif
                         </div>
+
                         <div class="product-details">
                             <h2 class="product-title">{{ $item->travel_package->title }}</h2>
                             <div class="product-status">

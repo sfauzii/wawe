@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\GalleryRequest;
 
@@ -43,14 +44,28 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
-        $data = $request->all();
-        $data['image'] = $request->file('image')->store('assets/gallery', 'public');
+        // Ambil travel_packages_id dari request
+        $travelPackagesId = $request->input('travel_packages_id');
 
-        Gallery::create($data);
+        // Ambil semua file gambar
+        $images = $request->file('images');
+        $imagePaths = [];
+
+        // Simpan setiap gambar dan ambil path-nya
+        foreach ($images as $image) {
+            $path = $image->store('assets/gallery', 'public');
+            $imagePaths[] = $path;
+        }
+
+        // Simpan data ke database dengan array gambar
+        Gallery::create([
+            'travel_packages_id' => $travelPackagesId,
+            'image' => $imagePaths, // Simpan array paths gambar
+        ]);
 
         // Session::flash('success', 'Gallery package created successfully.');
-        Alert::flash('Success', 'Gallery package created successfully.');
-        
+        Alert::success('Success', 'Gallery package created successfully.');
+
         return redirect()->route('gallery.index');
     }
 
@@ -81,15 +96,36 @@ class GalleryController extends Controller
      */
     public function update(GalleryRequest $request, string $id)
     {
-        $data = $request->all();
-        $data['image'] = $request->file('image')->store('assets/gallery', 'public');
-
+        // Find the existing gallery item
         $item = Gallery::findOrFail(decrypt($id));
 
+        // Handle new images
+        $newImages = $request->file('images');
+        $existingImages = $item->image; // Get existing images
+        $imagePaths = [];
+
+        // Process new images if provided
+        if ($newImages) {
+            foreach ($newImages as $image) {
+                $path = $image->store('assets/gallery', 'public');
+                $imagePaths[] = $path;
+            }
+        }
+
+        // Merge new images with existing images
+        $updatedImages = array_merge($existingImages, $imagePaths);
+
+        // Prepare data for update
+        $data = [
+            'travel_packages_id' => $request->input('travel_packages_id'),
+            'image' => $updatedImages
+        ];
+
+        // Update the gallery item
         $item->update($data);
 
+        Alert::success('Success', 'Gallery package updated successfully.');
         // Session::flash('success', 'Gallery package updated successfully.');
-        Alert::success('Success', 'Gallery package updated successfully');
 
         return redirect()->route('gallery.index');
     }
@@ -104,7 +140,37 @@ class GalleryController extends Controller
 
         // Session::flash('success', 'Gallery package created successfully.');
         Alert::success('Success', 'Gallery package created successfully');
-        
+
         return redirect()->route('gallery.index');
+    }
+
+    public function deleteImage(string $id, int $index)
+    {
+        // Decrypt and find the gallery item
+        $item = Gallery::findOrFail(decrypt($id));
+
+        // Get the array of images
+        $images = $item->image;
+
+        // Check if the index is valid
+        if (isset($images[$index])) {
+            // Remove image from storage
+            $imagePath = $images[$index];
+            if (Storage::exists($imagePath)) {
+                Storage::delete($imagePath);
+            }
+
+            // Remove the image from the array using array_splice
+            array_splice($images, $index, 1);
+
+            // Only update the gallery item if there are still images left
+            $item->update(['image' => $images]);
+
+            Alert::success('Success', 'Image deleted successfully.');
+        } else {
+            Alert::error('Error', 'Invalid image index.');
+        }
+
+        return redirect()->back();
     }
 }

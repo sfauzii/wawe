@@ -71,8 +71,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->travel_package->title }}</td>
                                         <td>
-                                            <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px"
-                                                class="img-thumbnail" />
+                                            @foreach ($item->image as $image)
+                                                <img src="{{ Storage::url($image) }}" alt="Image" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 5px; object-fit: cover;"  class="img-thumbnail" />
+                                            @endforeach
                                         </td>
                                         <td>
                                             <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info">

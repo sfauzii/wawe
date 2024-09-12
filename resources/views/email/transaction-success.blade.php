@@ -168,7 +168,7 @@
                           <tbody>
                             <tr>
                               <td style="width:550px;">
-                                <img alt="" src="{{ url($data->travel_package->galleries[0]->image) }}" style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="550" height="auto" />
+                                {{-- <img alt="" src="{{ url($data->travel_package->galleries[0]->image) }}" style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="550" height="auto" /> --}}
                               </td>
                             </tr>
                           </tbody>

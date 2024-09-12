@@ -14,8 +14,21 @@
                 <div class="list-ticket">
                     <a href="{{ route('ticket-detail', ['id' => $item->id]) }}" target="_blank" class="list-ticket"
                         style="text-decoration: none; display: block; cursor: pointer;">
-                        <img src="{{ asset('storage/' . $item->travel_package->galleries[0]->image) }}"
-                            alt="{{ $item->travel_package->title }}">
+                        @if ($item->travel_package->galleries->isNotEmpty())
+                            @php
+                                $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
+                                $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
+                            @endphp
+                            @if ($firstImagePath)
+                                <img src="{{ asset('storage/' . $firstImagePath) }}" alt="{{ $item->travel_package->title }}">
+                            @else
+                                <!-- Fallback content if there is no image -->
+                                <p>No image available.</p>
+                            @endif
+                        @else
+                            <!-- Fallback content if there are no galleries -->
+                            <p>No galleries available.</p>
+                        @endif
                         <div class="middle">
                             <div class="left">
                                 <h2 class="ticket-title">{{ $item->travel_package->title }}</h2>

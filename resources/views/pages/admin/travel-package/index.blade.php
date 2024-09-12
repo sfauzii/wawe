@@ -26,8 +26,9 @@
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <h5 class="card-title"></h5>
-                        
-                        <a href="{{ route('travel-package.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add Package</a>
+
+                        <a href="{{ route('travel-package.create') }}" class="btn btn-primary btn-right"
+                            style="float: right; margin-top: -40px; margin-right: 10px">Add Package</a>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -41,6 +42,7 @@
                                     <th>Type</th>
                                     <th>Kuota</th>
                                     <th>Departure Date</th>
+                                    <th>Gallery</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,18 +56,32 @@
                                         <td>{{ $item->kuota }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
-                                            <a href="{{ route('travel-package.show', encrypt($item->id)) }}" class="btn btn-success">
+                                            @forelse ($item->galleries as $gallery)
+                                                @foreach ($gallery->image as $image)
+                                                    <img src="{{ Storage::url($image) }}" alt="Image"
+                                                        style="width: 80px; height: 80px; border-radius: 50%; margin-right: 5px; object-fit: cover;"
+                                                        class="img-thumbnail" />
+                                                @endforeach
+                                            @empty
+                                                <p>No images</p>
+                                            @endforelse
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
+                                                class="btn btn-success">
                                                 <i class="ri-eye-line"></i>
                                             </a>
-                                            <a href="{{ route('travel-package.edit', encrypt($item->id)) }}" class="btn btn-info">
+                                            <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
+                                                class="btn btn-info">
                                                 <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
-                                            <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}" method="POST"
-                                                class="d-inline" id="delete-form-{{ $item->id }}">
+                                            <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}"
+                                                method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
 
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
                                                     <i class="ri-delete-bin-6-line"></i>
 
                                                 </button>

@@ -23,7 +23,7 @@ class GalleryRequest extends FormRequest
     {
         return [
             'travel_packages_id' => 'required|exists:travel_packages,id',
-            'image' => 'required|image',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
