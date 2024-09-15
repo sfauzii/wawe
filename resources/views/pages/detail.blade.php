@@ -17,7 +17,7 @@
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    Paket {{ $item->title }}
+                                    Paket {{ ucwords($item->title) }}
                                 </li>
                                 <li class="breadcrumb-item active">
                                     Details
@@ -59,9 +59,9 @@
                     @endif
 
                     <div class="product-info">
-                        <div class="category-badge">{{ $item->type }}</div>
+                        <div class="category-badge">{{ ucwords($item->type) }}</div>
                         <div class="title-and-testimonials">
-                            <h1 class="product__title">{{ $item->title }}</h1>
+                            <h1 class="product__title">{{ ucwords($item->title) }}</h1>
                             <span class="testimonials">{{ $testimoniesCount }} Testimonials</span>
                         </div>
                         <div class="product-features">
@@ -80,7 +80,7 @@
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
                                 <img src="{{ url('frontend/images/icons/tag.png') }}" alt="Facebook Icon" class="icon">
-                                <span>{{ $item->location }}</span>
+                                <span>{{ ucwords($item->location) }}</span>
                             </div>
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
@@ -104,7 +104,7 @@
 
                 <section class="product-description">
                     <h3>About the Product</h3>
-                    <p>{!! $item->about !!}</p>
+                    <p>{!! ucfirst($item->about) !!}</p>
                     <div class="additional-info">
                         @php
                             $features = explode(',', $item->features);
@@ -119,7 +119,7 @@
                                     </div>
 
                                     <div class="info-content">
-                                        <h4>{{ $feature }}</h4>
+                                        <h4>{{ ucwords($feature) }}</h4>
                                     </div>
                                 </div>
                             @endforeach
@@ -136,7 +136,7 @@
                         @foreach ($testimonies as $testimony)
                             <div class="testimoni-card">
                                 <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
-                                    alt="User Photo {{ $testimony->user->name }}" class="testimonial-photo">
+                                    alt="User Photo {{ ucfirst($testimony->user->name) }}" class="testimonial-photo">
                                 <div>
                                     <p>"{{ $testimony->message }}"</p>
                                     @if (!empty($testimony->photos) && is_array($testimony->photos))
@@ -146,7 +146,7 @@
                                         @endforeach
                                     @else
                                     @endif
-                                    <small>- {{ $testimony->user->name }}</small>
+                                    <small>- {{ ucfirst($testimony->user->name) }}</small>
                                     <small>, {{ $testimony->created_at->format('d M Y') }}</small>
                                 </div>
                             </div>
@@ -168,13 +168,13 @@
                             <h4>Date</h4>
                             <p>{{ \Carbon\Carbon::create($item->departure_date)->format('d F Y') }}</p>
                             <h4>Location</h4>
-                            <p>{{ $item->location }}</p>
+                            <p>{{ ucwords($item->location) }}</p>
                             <h4>Duration</h4>
                             <p>{{ $item->duration }}</p>
                             <h4>Kuota</h4>
                             <p>{{ $item->kuota }} person</p>
                             <h4>Type</h4>
-                            <p>{{ $item->type }}</p>
+                            <p>{{ ucwords($item->type) }}</p>
                         </div>
 
 

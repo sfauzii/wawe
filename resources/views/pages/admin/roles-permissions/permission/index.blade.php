@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Permission</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -67,7 +66,7 @@
                                                 <i class="fa fa-pencil-alt">Edit</i>
                                             </a> --}}
                                             @can('edit permission')
-                                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info">
+                                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Permission">
                                                     <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
@@ -81,7 +80,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger"
-                                                        onclick="confirmDeletion(' {{ $permission->id }} ', 'delete-form-{{ $permission->id }}')">
+                                                        onclick="confirmDeletion(' {{ $permission->id }} ', 'delete-form-{{ $permission->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Permission">
                                                         <i class="ri-delete-bin-6-line"></i>
                                                     </button>
 

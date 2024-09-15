@@ -6,45 +6,48 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Role</li>
-                {{-- <li class="breadcrumb-item active">Elements</li> --}}
+                <li class="breadcrumb-item active">Create</li>
             </ol>
         </nav>
     </div>
 
     @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form action="{{ route('roles.store') }}" method="POST">
-                            @csrf
+                        <div class="my-4 p-4 pb-0">
+                            <form action="{{ route('roles.store') }}" method="POST">
+                                @csrf
 
-                            <div class="row mb-3">
-                                <label for="name" class="col-sm-2 col-form-label">Name  <span class="text-danger">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
+                                <div class="row mb-3">
+                                    <label for="name" class="col-sm-2 col-form-label">Name <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="name" placeholder="Name"
+                                            value="{{ old('name') }}">
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-block w-100">
-                                Simpan
-                            </button>
-                        </form><!-- End General Form Elements -->
+
+                                <button type="submit" class="btn btn-primary btn-block w-100">
+                                    Simpan
+                                </button>
+                            </form>
+                        </div>
+                        <!-- End General Form Elements -->
 
                     </div>
                 </div>

@@ -2,12 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>Profile {{ ucwords($user->name) }}</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
+                <li class="breadcrumb-item active">User Profile</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,7 +19,7 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="{{ Storage::url($user->photos) }}" alt="Profile" class="rounded-circle">
-                        <h2>{{ $user->name }}</h2>
+                        <h2>{{ ucwords($user->name) }}</h2>
                         <h3>{{ $user->email }}</h3>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -34,35 +33,39 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body profile-card pt-4 flex flex-column align-items center">
-                            <form>
-                                <!-- Created At -->
-                                <div class="row mb-5">
-                                    <div class="col-sm-10">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
-                                            <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
-                                                Created At: <span
-                                                    style="color: #000000; font-weight: 400   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
-                                            <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+
+                            <div class="my-3 p-3 pb-0">
+                                <form>
+                                    <!-- Created At -->
+                                    <div class="row mb-4">
+                                        <div class="col-sm-10">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-calendar-alt mr-2"></i> <!-- Icon untuk tanggal -->
+                                                <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
+                                                    Created At: <span
+                                                        style="color: #000000; font-weight: 400   ">{{ $user->created_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
+                                                <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Updated At -->
-                                <div class="row mb-5">
-                                    <div class="col-sm-10">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
-                                            <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
-                                                Updated At: <span
-                                                    style="color: #000000; font-weight: 400   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
-                                            <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+                                    <!-- Updated At -->
+                                    <div class="row mb-0">
+                                        <div class="col-sm-10">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-calendar-check mr-2"></i> <!-- Icon untuk tanggal -->
+                                                <span style="font-weight: bold"><i class="ri-calendar-schedule-line"></i>
+                                                    Last Update: <span
+                                                        style="color: #000000; font-weight: 400   ">{{ $user->updated_at->setTimezone('Asia/Jakarta')->format('j F Y, H:i T') }}</span></span>
+                                                <!-- Tanggal yang sesuai akan ditampilkan di sini -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                
-                            </form>
+
+                                </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,13 +103,13 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label " style="color: #000000; font-weight: bold; ">Full
                                         Name</div>
-                                    <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ ucwords($user->name) }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label " style="color: #000000; font-weight: bold; ">
                                         Username</div>
-                                    <div class="col-lg-9 col-md-8">{{ $user->username }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ '@' . $user->username }}</div>
                                 </div>
 
                                 <div class="row">

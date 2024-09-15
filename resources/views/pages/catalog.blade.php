@@ -54,7 +54,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="text-content">
-                                    <h3>{{ $item->title }}</h3>
+                                    <h3>{{ ucwords($item->title) }}</h3>
                                     <p class="price">Rp {{ number_format($item->price, 0, ',') }}</p>
                                 </div>
                                 <div class="icons">

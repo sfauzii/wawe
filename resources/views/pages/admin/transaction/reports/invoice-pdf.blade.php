@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Invoice {{ $item->user->name }}</title>
+        <title>Invoice {{ ucwords($item->user->name) }}</title>
         <style>
             body {
                 font-family: Arial, sans-serif;

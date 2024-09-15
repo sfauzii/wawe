@@ -1,11 +1,11 @@
 @extends('layouts.users')
 
 @section('title')
-    Testimonies in {{ $transactionDetail->transaction->travel_package->title }}
+    Testimonies in {{ ucwords($transactionDetail->transaction->travel_package->title) }}
 @endsection
 
 @section('content')
-    <h1>Testimoni {{ $transactionDetail->transaction->travel_package->title }}</h1>
+    <h1>Testimoni {{ ucwords($transactionDetail->transaction->travel_package->title) }}</h1>
     <p class="desc-title">
         Masukkan informasi yang valid <br>agar proses transaksi lebih mudah
     </p>

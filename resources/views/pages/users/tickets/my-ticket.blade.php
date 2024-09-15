@@ -20,7 +20,7 @@
                                 $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
                             @endphp
                             @if ($firstImagePath)
-                                <img src="{{ asset('storage/' . $firstImagePath) }}" alt="{{ $item->travel_package->title }}">
+                                <img src="{{ asset('storage/' . $firstImagePath) }}" alt="{{ ucwords($item->travel_package->title) }}">
                             @else
                                 <!-- Fallback content if there is no image -->
                                 <p>No image available.</p>
@@ -31,7 +31,7 @@
                         @endif
                         <div class="middle">
                             <div class="left">
-                                <h2 class="ticket-title">{{ $item->travel_package->title }}</h2>
+                                <h2 class="ticket-title">{{ ucwords($item->travel_package->title) }}</h2>
                                 <h3 class="date-ticket">
                                     {{ \Carbon\Carbon::create($item->travel_package->departure_date)->format('d F Y') }}
                                 </h3>

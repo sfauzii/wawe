@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Role</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -93,14 +92,14 @@
                                             </a> --}}
                                             @can('manage-role-permission')
                                             <a href="{{ route('roles.give-permission', $role->id) }}"
-                                                class="btn btn-success">
+                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Manage Role">
                                                 <i class="ri-shield-user-line"></i>
                                             </a>
                                             @endcan
 
 
                                             @can('edit role')
-                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info">
+                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Role">
                                                     <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
@@ -117,7 +116,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger"
-                                                        onclick="confirmDeletion(' {{ $role->id }} ', 'delete-form-{{ $role->id }}')">
+                                                        onclick="confirmDeletion(' {{ $role->id }} ', 'delete-form-{{ $role->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Role">
                                                         <i class="ri-delete-bin-6-line"></i>
                                                     </button>
 

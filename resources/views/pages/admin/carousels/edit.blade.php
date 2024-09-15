@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="my-4 p-4">
+                        <div class="my-4 p-4 pb-0">
                             <form action="{{ route('carousels.update', $carousel->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

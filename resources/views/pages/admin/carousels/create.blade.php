@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('carousels.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Carousel</li>
-                {{-- <li class="breadcrumb-item active">Elements</li> --}}
+                <li class="breadcrumb-item active">Create</li>
             </ol>
         </nav>
     </div>
@@ -30,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="my-4 p-4">
+                        <div class="my-4 p-4 pb-0">
                             <form action="{{ route('carousels.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 

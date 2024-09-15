@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
                 <li class="breadcrumb-item">Travel Package</li>
-                <li class="breadcrumb-item active">Detail {{ $travelPackage->title }}</li>
+                <li class="breadcrumb-item active">Detail {{ ucwords($travelPackage->title) }}</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -34,15 +34,15 @@
                     <table class="table">
                         <tr>
                             <th>Judul</th>
-                            <td>{{ $travelPackage->title }}</td>
+                            <td>{{ ucwords($travelPackage->title) }}</td>
                         </tr>
                         <tr>
                             <th>Lokasi</th>
-                            <td>{{ $travelPackage->location }}</td>
+                            <td>{{ ucwords($travelPackage->location) }}</td>
                         </tr>
                         <tr>
                             <th>Tentang</th>
-                            <td>{{ $travelPackage->about }}</td>
+                            <td>{!! ucfirst($travelPackage->about) !!}</td>
                         </tr>
                         <tr>
                             <th>Fasilitas</th>
@@ -50,7 +50,7 @@
                                 @php $features = explode(',', $travelPackage->features); @endphp
                                 <ul>
                                     @foreach ($features as $feature)
-                                        <li>{{ $feature }}</li>
+                                        <li>{{ ucwords($feature) }}</li>
                                     @endforeach
                                 </ul>
                             </td>
@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <th>Tipe</th>
-                            <td>{{ $travelPackage->type }}</td>
+                            <td>{{ ucwords($travelPackage->type) }}</td>
                         </tr>
                         <tr>
                             <th>Harga</th>
@@ -130,7 +130,7 @@
                                             <p>No photos available.</p>
                                         @endif
                                         </p>
-                                        <footer class="blockquote-footer">{{ $testimony->user->name }}</footer>
+                                        <footer class="blockquote-footer">{{ ucwords($testimony->user->name) }}</footer>
                                     </blockquote>
                                 </div>
                             @endforeach

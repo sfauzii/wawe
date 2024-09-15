@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Travel Package</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -50,9 +49,9 @@
                                 @forelse ($items as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->location }}</td>
-                                        <td>{{ $item->type }}</td>
+                                        <td>{{ ucwords($item->title) }}</td>
+                                        <td>{{ ucwords($item->location) }}</td>
+                                        <td>{{ ucwords($item->type) }}</td>
                                         <td>{{ $item->kuota }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>
@@ -68,11 +67,11 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
-                                                class="btn btn-success">
+                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Package">
                                                 <i class="ri-eye-line"></i>
                                             </a>
                                             <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
-                                                class="btn btn-info">
+                                                class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Package">
                                                 <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                             <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}"
@@ -81,7 +80,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')">
+                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
                                                     <i class="ri-delete-bin-6-line"></i>
 
                                                 </button>

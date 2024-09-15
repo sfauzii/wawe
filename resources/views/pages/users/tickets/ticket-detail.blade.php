@@ -25,7 +25,7 @@
 
                                 @if ($firstImagePath)
                                     <img src="{{ asset('storage/' . $firstImagePath) }}"
-                                        alt="{{ $item->travel_package->title }}">
+                                        alt="{{ ucwords($item->travel_package->title) }}">
                                 @else
                                     <!-- Fallback content if there is no image -->
                                     <p>No image available.</p>
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="product-details">
-                            <h2 class="product-title">{{ $item->travel_package->title }}</h2>
+                            <h2 class="product-title">{{ ucwords($item->travel_package->title) }}</h2>
                             <div class="product-status">
                                 <p>{{ $item->transaction_status }}</p>
                             </div>
@@ -64,7 +64,7 @@
                             <img src="{{ url('frontend/images/icons/tag.png') }}" alt="Check Icon" class="icon-img-succes">
                         </span>
                         <div class="icon-description">
-                            <p>{{ $item->travel_package->type }}</p>
+                            <p>{{ ucfirst($item->travel_package->type) }}</p>
                         </div>
                         <span class="icon">
                             <!-- <ion-icon name="cash-outline"></ion-icon> -->

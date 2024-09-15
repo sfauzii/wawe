@@ -3,7 +3,7 @@
     xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
-    <title>Your Ticket - {{ $user->name }}</title>
+    <title>Your Ticket - {{ ucfirst($user->name) }}</title>
     <!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--<![endif]-->
@@ -231,7 +231,7 @@
                                                                 style="font-size:0px;padding:10px 25px;padding-right:25px;padding-left:25px;word-break:break-word;">
                                                                 <div
                                                                     style="font-family:Poppins sans-serif;font-size:18px;line-height:18px;text-align:left;color:#071C4D;">
-                                                                    Hi, <strong>{{ $user->name }}</strong>! <br><br>
+                                                                    Hi, <strong>{{ ucfirst($user->name) }}</strong>! <br><br>
                                                                     Tiket digital kamu
                                                                     sudah berhasil dicetak. <br> Booking ID
                                                                     <strong>#{{ $transaction->id }}</strong>
@@ -250,7 +250,7 @@
                                                                     @foreach ($item->details as $detail)
                                                                     <tr>
                                                                         
-                                                                        <td> <strong>{{ $detail->username }}</strong>  </td>
+                                                                        <td> <strong>{{ '@' . $detail->username }}</strong>  </td>
                                                                         {{-- <td style="text-align: right;"> $item->phone</td> --}}
                                                                     </tr>
                                                                         
@@ -272,7 +272,7 @@
                                                                                 Package</strong>
                                                                         </td>
                                                                         <td style="text-align: right;">
-                                                                            {{ $transaction->travel_package->title }}
+                                                                            {{ ucwords($transaction->travel_package->title) }}
                                                                         </td>
                                                                     </tr>
                                                                     <tr>

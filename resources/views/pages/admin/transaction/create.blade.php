@@ -2,6 +2,17 @@
 
 @section('content')
 
+    <div class="pagetitle">
+        <h1>Transactions</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Home</a></li>
+                <li class="breadcrumb-item">Create</li>
+                {{-- <li class="breadcrumb-item active">Elements</li> --}}
+            </ol>
+        </nav>
+    </div>
+
     @if ($errors->any())
         <div class="alert-alert-danger">
             <ul>
@@ -11,6 +22,7 @@
             </ul>
         </div>
     @endif
+
 
 
     @livewire('transaction-form')

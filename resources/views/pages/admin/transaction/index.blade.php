@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Transaction</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -192,8 +191,8 @@
                                 <tr>
                                     {{-- <td>{{ $item->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->travel_package->title }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ ucwords($item->travel_package->title) }}</td>
+                                    <td>{{ ucwords($item->user->name) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i') }}</td>
                                     <td>IDR {{ number_format($item->transaction_total, 0, ',') }}</td>
                                     <td>
@@ -221,25 +220,25 @@
 
                                         @if ($item->transaction_status === 'PENDING')
                                             @if (!empty($item->payment_url))
-                                                <a href="{{ $item->payment_url }}" class="btn btn-primary">
+                                                <a href="{{ $item->payment_url }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
                                                     <i class="ri-bank-card-line"></i>
                                                 </a>
                                             @else
                                                 <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
-                                                    class="btn btn-primary">
+                                                    class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
                                                     <i class="ri-bank-card-line"></i>
                                                 </a>
                                             @endif
                                         @endif
 
                                         <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
-                                            class="btn btn-secondary">
+                                            class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
                                             <i class="ri-file-pdf-2-line"></i>
                                         </a>
-                                        <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success">
+                                        <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction">
                                             <i class="ri-eye-line"></i>
                                         </a>
-                                        <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Transaction">
                                             <i class="ri-edit-line" style="color: white;"></i>
                                         </a>
                                         <form action="{{ route('transaction.destroy', $item->id) }}" method="POST"
@@ -247,7 +246,7 @@
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="btn btn-danger"
-                                                onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')">
+                                                onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Transaction">
                                                 <i class="ri-delete-bin-6-line"></i>
                                             </button>
                                         </form>

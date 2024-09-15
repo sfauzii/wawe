@@ -4,11 +4,10 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Carousel List</h1>
+        <h1>Carousels</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('carousels.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Carousel</li>
                 <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
@@ -47,10 +46,10 @@
                                 @forelse ($carousels as $carousel)
                                     <tr>
                                         <td><img src="{{ Storage::url($carousel->image_carousel) }}"
-                                                alt="{{ $carousel->title_carousel }}" style="width: 100px; height:auto;">
+                                                alt="{{ ucwords($carousel->title_carousel) }}" style="width: 100px; height:auto;">
                                         </td>
-                                        <td>{{ $carousel->title_carousel }}</td>
-                                        <td>{{ $carousel->description_carousel }}</td>
+                                        <td>{{ ucwords($carousel->title_carousel) }}</td>
+                                        <td>{{ ucfirst($carousel->description_carousel) }}</td>
                                         <td>
                                             <form action="{{ route('carousels.toggleStatus', $carousel->id) }}" method="POST"
                                                 style="display:inline;">
@@ -65,14 +64,14 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Carousel"><i class="ri-edit-line" style="color: white;"></i></a>
                                             <form action="{{ route('carousels.destroy', $carousel->id) }}" method="POST" class="d-inline"
                                                 id="delete-form-{{ $carousel->id }}">
                     
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDeletion('{{ $carousel->id }}', 'delete-form-{{ $carousel->id }}')">
+                                                    onclick="confirmDeletion('{{ $carousel->id }}', 'delete-form-{{ $carousel->id }}')" data-bs-placement="top" title="Delete Carousel">
                                                     <i class="ri-delete-bin-6-line"></i>
                     
                                                 </button>

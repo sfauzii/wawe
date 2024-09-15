@@ -2,12 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Edit Role</h1>
+        <h1>Edit Role {{ $role->name }}</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Role</li>
-                {{-- <li class="breadcrumb-item active">Elements</li> --}}
+                <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
     </div>

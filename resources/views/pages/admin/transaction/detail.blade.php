@@ -2,12 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Detail Transaction {{ $item->user->name }}</h1>
+        <h1>Detail Transaction {{ ucwords($item->user->name) }}</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Home</a></li>
-                <li class="breadcrumb-item">Transaction</li>
-                {{-- <li class="breadcrumb-item active">Elements</li> --}}
+                <li class="breadcrumb-item active">Detail Transaction</li>
             </ol>
         </nav>
     </div>
@@ -38,11 +37,11 @@
 
                                 <tr>
                                     <th>Paket Travel</th>
-                                    <td>{{ $item->travel_package->title }}</td>
+                                    <td>{{ ucwords($item->travel_package->title) }}</td>
                                 </tr>
                                 <tr>
                                     <th>Pembeli</th>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ '@' . $item->user->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Total Transaksi</th>
@@ -138,7 +137,7 @@
                                                     @foreach ($item->details as $detail)
                                                 <tr>
                                                     <td>{{ str_pad($detail->id, 10, '0', STR_PAD_LEFT) }}</td>
-                                                    <td>{{ $detail->username }}</td>
+                                                    <td>{{ '@' . $detail->username }}</td>
                                                     {{-- <td>{{ $detail->nationality }}</td>
                                                         <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
                                                         <td>{{ $detail->doe_passport }}</td> --}}
@@ -172,7 +171,7 @@
                                         @endphp
                                         @if ($firstImagePath)
                                             <img src="{{ asset('storage/' . $firstImagePath) }}"
-                                                alt="{{ $item->travel_package->title }}" class="ticket-image">
+                                                alt="{{ ucwords($item->travel_package->title) }}" class="ticket-image">
                                         @else
                                             <!-- Fallback content if there is no image -->
                                             <p>No image available.</p>
@@ -181,13 +180,13 @@
                                         <!-- Fallback content if there are no galleries -->
                                         <p>No galleries available.</p>
                                     @endif
-                                    <h1 class="ticket-title">{{ $item->travel_package->title }}</h1>
+                                    <h1 class="ticket-title">{{ ucwords($item->travel_package->title) }}</h1>
                                     <p class="ticket-id">Ticket ID: {{ $item->id }}</p>
                                 </div>
                                 <div class="ticket-body">
                                     <div class="ticket-info">
                                         <div class="info-item">
-                                            <strong>Event:</strong> {{ $item->travel_package->title }}
+                                            <strong>Event:</strong> {{ ucwords($item->travel_package->title) }}
                                         </div>
                                         <div class="info-item">
                                             <strong>Date:</strong>
@@ -197,7 +196,7 @@
                                             <strong>Group:</strong> {{ $transactionDetails->count() }} person
                                         </div>
                                         <div class="info-item">
-                                            <strong>Location:</strong> {{ $item->travel_package->location }}
+                                            <strong>Location:</strong> {{ ucwords($item->travel_package->location) }}
                                         </div>
                                         <div class="info-item">
                                             <strong>Attendee:</strong> {{ $item->user->name }}

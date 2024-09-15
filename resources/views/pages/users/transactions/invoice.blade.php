@@ -37,7 +37,7 @@
                             $remainingUuid = implode('-', array_slice($uuidParts, 1));
                         @endphp
                         <h3>#{{ $shortUuid }}</h3>
-                        <p>Product Name: <strong>{{ $transaction->travel_package->title }}</strong></p>
+                        <p>Product Name: <strong>{{ ucwords($transaction->travel_package->title) }}</strong></p>
                     </div>
                     <div class="right">
                         <p>Issued: {{ $transaction->created_at }}</p>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="bill-to">
                         <p class="b-color">Bill To:</p>
-                        <h3>{{ $transaction->user->name }}</h3>
+                        <h3>{{ ucfirst($transaction->user->name) }}</h3>
                         <p>Address Line 1</p>
                         <p>City, State, ZIP</p>
                         <p>Country</p>
@@ -72,10 +72,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $transaction->travel_package->title }}</td>
+                            <td>{{ ucwords($transaction->travel_package->title) }}</td>
                             <td>IDR {{ number_format($transaction->travel_package->price, 0, ',') }}</td>
                             <td>{{ $transactionDetails->count() }}</td>
-                            <td>IDR {{ number_format($transaction->travel_package->price * $transactionDetails->count(), 0, ',') }}</td>
+                            <td>IDR
+                                {{ number_format($transaction->travel_package->price * $transactionDetails->count(), 0, ',') }}
+                            </td>
                         </tr>
                         <tr>
                     </tbody>
@@ -87,9 +89,11 @@
                         WaWe Tour and Travel.</p>
                 </div>
                 <div class="button-container">
-                    <button onclick="window.location.href='{{ route('invoice.download', $transaction->id) }}';">Print Now</button>
+                    <button onclick="window.location.href='{{ route('invoice.download', $transaction->id) }}';">Print
+                        Now</button>
                 </div>
             </div>
         </div>
     </body>
+
 </html>

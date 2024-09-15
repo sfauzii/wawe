@@ -27,8 +27,8 @@ WaWe | Purbalingga, Jawa Tengah
                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                         <img class="d-block w-100" src="{{ Storage::url($carousel->image_carousel) }}" alt="Slide {{ $index + 1 }}" />
                         <div class="overlay">
-                            <h1>{{ $carousel->title_carousel }}</h1>
-                            <p>{{ $carousel->description_carousel }}</p>
+                            <h1>{{ ucwords($carousel->title_carousel) }}</h1>
+                            <p>{{ ucwords($carousel->description_carousel) }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -142,7 +142,7 @@ WaWe | Purbalingga, Jawa Tengah
                                     style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image[0]) : '' }}');">
                                     <div class="overlay"></div>
                                     <div class="card-travel-content">
-                                        <div class="travel-location">{{ $item->title }}</div>
+                                        <div class="travel-location">{{ ucwords($item->title) }}</div>
                                         <div class="travel-price">Rp {{ number_format($item->price, 0, ',') }}</div>
                                         <div class="travel-icons">
                                             <ion-icon name="calendar-outline"></ion-icon>
@@ -198,7 +198,7 @@ WaWe | Purbalingga, Jawa Tengah
                     @foreach ($testimonies as  $testimony)
 
                     <div class="testimonial-card">
-                        <h3>{{ $testimony->transactionDetail->transaction->travel_package->title }}</h3>
+                        <h3>{{ ucwords($testimony->transactionDetail->transaction->travel_package->title) }}</h3>
                         <p>
                             "{{ $testimony->message }}."
                         </p>

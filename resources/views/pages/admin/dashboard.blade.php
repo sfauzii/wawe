@@ -241,11 +241,11 @@
                                                 @endphp
                                                 <th scope="row" style="font-weight: bold;"><a
                                                         href="#">{{ $shortUuid }}</a></th>
-                                                <td>{{ $sale->user->name }}</td>
+                                                <td>{{ ucwords($sale->user->name) }}</td>
                                                 <td><a href="#"
-                                                        class="text-primary">{{ $sale->travel_package->title }}</a>
+                                                        class="text-primary">{{ ucwords($sale->travel_package->title) }}</a>
                                                 </td>
-                                                <td>IDR {{ $sale->transaction_total }}</td>
+                                                <td>IDR {{ number_format($sale->transaction_total, 0, ',') }}</td>
                                                 <td>
                                                     @if ($sale->transaction_status === 'SUCCESS')
                                                         <span
@@ -314,7 +314,7 @@
                                             <!-- Menampilkan detail transaksi -->
                                             <strong>{{ $notification->data['user_name'] }}</strong> made a transaction:
                                             <br>
-                                            Amount: {{ $notification->data['amount'] }} <br>
+                                            Amount: <strong>Rp {{ number_format($notification->data['amount'], 0, ',') }}</strong> <br>
                                             Status:
                                             @if ($notification->data['status'] === 'SUCCESS')
                                                 <span class="badge bg-success">{{ $notification->data['status'] }}</span>

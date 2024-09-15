@@ -40,7 +40,7 @@
                                         @endphp
                                         @if ($firstImagePath)
                                             <img src="{{ asset('storage/' . $firstImagePath) }}"
-                                                alt="{{ $item->travel_package->title }}" class="cover"
+                                                alt="{{ ucwords($item->travel_package->title) }}" class="cover"
                                                 style="width: 100px; height: auto; border-radius: 8px;">
                                         @else
                                             <!-- Fallback content if there is no image -->
@@ -51,7 +51,7 @@
                                         <p>No image available.</p>
                                     @endif
                                 </td>
-                                <td class="product-name">{{ $item->travel_package->title }}</td>
+                                <td class="product-name">{{ ucwords($item->travel_package->title) }}</td>
                                 <td class="price">{{ number_format($item->transaction_total, 0, ',') }}</td>
                                 <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>
                                 <td class="status success">{{ $item->transaction_status }}</td>

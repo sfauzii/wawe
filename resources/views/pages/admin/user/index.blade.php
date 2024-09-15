@@ -6,8 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('travel-package.index') }}">Home</a></li>
-                <li class="breadcrumb-item">User</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -48,8 +47,8 @@
                                 @forelse ($users as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->username }}</td>
+                                        <td>{{ ucwords($user->name) }}</td>
+                                        <td>{{ '@' . $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             @if (!empty($user->roles) && $user->roles->count() > 0)
@@ -70,12 +69,12 @@
                                             @endif --}}
                                         </td>
                                         <td>
-                                            <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success">
+                                            <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show User">
                                                 <i class="ri-eye-line"></i>
                                             </a>
 
                                             @can('edit user')
-                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">
+                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit User">
                                                     <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
@@ -86,7 +85,7 @@
 
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')">
+                                                    <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete User">
                                                         <i class="ri-delete-bin-6-line"></i>
 
                                                     </button>
