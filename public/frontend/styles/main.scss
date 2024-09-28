@@ -375,22 +375,22 @@ body {
         height: 40px;
         border-radius: 50%;
     }
-    
+
     .navbar-profile-mobile .profile-name {
         display: block;
         margin-top: 10px;
     }
-    
+
     /* Style for dropdown items */
     .dropdown-menu {
         width: 100%;
         text-align: left;
     }
-    
+
     .dropdown-item {
         text-align: left;
     }
-    
+
     .dropdown-divider {
         margin: 0;
     }
@@ -429,22 +429,22 @@ body {
         height: 40px;
         border-radius: 50%;
     }
-    
+
     .navbar-profile-mobile .profile-name {
         display: block;
         margin-top: 10px;
     }
-    
+
     /* Style for dropdown items */
     .dropdown-menu {
         width: 100%;
         text-align: left;
     }
-    
+
     .dropdown-item {
         text-align: left;
     }
-    
+
     .dropdown-divider {
         margin: 0;
     }
@@ -583,13 +583,13 @@ body {
 }
 
 .overlay h1 {
-    font-size: 3rem;
+    font-size: 30px;
     margin: 0;
     font-weight: bold;
 }
 
 .overlay p {
-    font-size: 1.2rem;
+    font-size: 20px;
     margin: 10px 0 0;
 }
 
@@ -608,11 +608,11 @@ body {
     }
 
     .overlay h1 {
-        font-size: 2.5rem;
+        font-size: 16px;
     }
 
     .overlay p {
-        font-size: 1rem;
+        font-size: 14px;
     }
 }
 
@@ -650,11 +650,11 @@ body {
     }
 
     .overlay h1 {
-        font-size: 1.5rem;
+        font-size: 14px;
     }
 
     .overlay p {
-        font-size: 0.8rem;
+        font-size: 12px;
     }
 }
 
@@ -1360,6 +1360,14 @@ body {
         /* Menghilangkan kemampuan scroll horizontal */
     }
 
+    .card-information {
+        width: 100%;
+        /* Card akan memenuhi lebar layar */
+        max-width: 100%;
+        /* Menghindari elemen melebihi lebar layar */
+        box-sizing: border-box;
+    }
+
     .details-container {
         flex-direction: column;
         /* Susun vertikal */
@@ -1569,23 +1577,27 @@ body {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Layer of darkness (adjust alpha value as needed) */
+            background: rgba(0, 0, 0, 0.4);
+            /* Layer of darkness (adjust alpha value as needed) */
             z-index: 1;
             transition: background 0.3s ease;
         }
 
         .card-travel:hover .overlay {
-            background: rgba(0, 0, 0, 0.6); /* Darker overlay on hover */
+            background: rgba(0, 0, 0, 0.6);
+            /* Darker overlay on hover */
         }
-        
+
         .card-travel-content {
             position: relative;
             z-index: 2;
         }
 
         .card-travel:hover {
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Bayangan lebih gelap pada hover */
-            transform: translateY(-4px); /* Efek mengangkat card saat hover */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            /* Bayangan lebih gelap pada hover */
+            transform: translateY(-4px);
+            /* Efek mengangkat card saat hover */
         }
 
 
@@ -1681,6 +1693,22 @@ body {
             color: #fff;
         }
     }
+}
+
+@media (max-width: 768px) {
+    .card-travel {
+        min-height: 500px;
+        margin: 0 20px;
+    }
+
+    .section-popular-heading h1 {
+        font-size: 32px;
+    }
+
+    .section-popular-heading p {
+        font-size: 28px;
+    }
+
 }
 
 
@@ -1879,6 +1907,10 @@ body {
         margin-bottom: 30px;
     }
 
+    .my-service-section {
+        margin: 0 40px;
+    }
+
     .my-service-icon {
         width: 20px;
         height: 20px;
@@ -1903,7 +1935,11 @@ body {
     .my-service-section {
         padding: 60px 20px;
         /* Adjusted padding for smaller screens */
+
+        margin: 0 20px
     }
+
+    
 
     .my-service-title {
         font-size: 2em;
@@ -1940,7 +1976,7 @@ body {
 .question-card {
     position: relative;
     /* Agar gambar overlay dapat diposisikan dengan absolute relatif terhadap kartu */
-    background: url('../images/contactus-bgblue.png') no-repeat center center;
+    background: url('../svg/contact-us-dark.svg') no-repeat center center;
     background-size: cover;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -2151,6 +2187,18 @@ body {
 
     img {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .section-networks {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .section-networks h2 {
+        font-size: 30px;
     }
 }
 
@@ -3253,16 +3301,14 @@ footer {
     color: white;
     display: block;
     // margin-left: 0;
-    
+
 }
 
-.card-link + .card-link {
+.card-link+.card-link {
     margin-left: 0;
 }
-.car
 
-
-.card-link:hover,
+.car .card-link:hover,
 .card-link:focus {
     text-decoration: none;
     /* Ensure underline is removed */
@@ -3289,7 +3335,8 @@ footer {
 }
 
 .card-catalogue:hover {
-    transform: translateY(-10px); /* Lift card on hover */
+    transform: translateY(-10px);
+    /* Lift card on hover */
 }
 
 .card-background {
@@ -3314,12 +3361,15 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    transition: background 0.3s ease; /* Add transition for hover effect */
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay */
+    transition: background 0.3s ease;
+    /* Add transition for hover effect */
 }
 
 .card:hover .card-overlay {
-    background: rgba(0, 0, 0, 0.7); /* Darker overlay on hover */
+    background: rgba(0, 0, 0, 0.7);
+    /* Darker overlay on hover */
 }
 
 .card-content {
@@ -3432,29 +3482,36 @@ footer {
 
 @media (min-width: 1025px) {
     .menu-button {
-        display: none; /* Hide menu button on desktop and larger screens */
+        display: none;
+        /* Hide menu button on desktop and larger screens */
     }
 }
 
 /* Responsive styles */
 @media (max-width: 1024px) {
+
     /* Styles for tablets */
     .menu {
-        display: none; /* Hide menu on tablets */
+        display: none;
+        /* Hide menu on tablets */
     }
 
     .content {
-        flex-direction: column; /* Stack content vertically on tablets */
+        flex-direction: column;
+        /* Stack content vertically on tablets */
     }
 
     .catalog-cards {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-        gap: 20px; /* Space between cards */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on tablets */
+        gap: 20px;
+        /* Space between cards */
     }
 
     .card-catalogue {
-        width: 100%; /* Full width for cards */
+        width: 100%;
+        /* Full width for cards */
     }
 
     .mobile-menu {
@@ -3467,6 +3524,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+
     /* Styles for mobile */
     .menu {
         display: none;
@@ -3489,7 +3547,7 @@ footer {
     .menu-button {
         display: flex;
     }
-    
+
     .mobile-menu {
         display: none;
     }
@@ -3498,6 +3556,7 @@ footer {
         font-size: 22px;
         font-weight: bold !important;
     }
+
     .mobile-menu {
         background-color: rgba(255, 255, 255, 0.8);
 

@@ -436,13 +436,13 @@ body {
 }
 
 .overlay h1 {
-  font-size: 3rem;
+  font-size: 30px;
   margin: 0;
   font-weight: bold;
 }
 
 .overlay p {
-  font-size: 1.2rem;
+  font-size: 20px;
   margin: 10px 0 0;
 }
 
@@ -458,10 +458,10 @@ body {
     width: 635px;
   }
   .overlay h1 {
-    font-size: 2.5rem;
+    font-size: 16px;
   }
   .overlay p {
-    font-size: 1rem;
+    font-size: 14px;
   }
 }
 @media (max-width: 768px) {
@@ -492,10 +492,10 @@ body {
     width: 315px;
   }
   .overlay h1 {
-    font-size: 1.5rem;
+    font-size: 14px;
   }
   .overlay p {
-    font-size: 0.8rem;
+    font-size: 12px;
   }
 }
 /* Styling untuk semua device */
@@ -1066,6 +1066,13 @@ body {
     overflow-x: hidden;
     /* Menghilangkan kemampuan scroll horizontal */
   }
+  .card-information {
+    width: 100%;
+    /* Card akan memenuhi lebar layar */
+    max-width: 100%;
+    /* Menghindari elemen melebihi lebar layar */
+    box-sizing: border-box;
+  }
   .details-container {
     flex-direction: column;
     /* Susun vertikal */
@@ -1235,20 +1242,24 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Layer of darkness (adjust alpha value as needed) */
+  background: rgba(0, 0, 0, 0.4);
+  /* Layer of darkness (adjust alpha value as needed) */
   z-index: 1;
   transition: background 0.3s ease;
 }
 .section-popular-content .section-popular-travel .card-travel:hover .overlay {
-  background: rgba(0, 0, 0, 0.6); /* Darker overlay on hover */
+  background: rgba(0, 0, 0, 0.6);
+  /* Darker overlay on hover */
 }
 .section-popular-content .section-popular-travel .card-travel-content {
   position: relative;
   z-index: 2;
 }
 .section-popular-content .section-popular-travel .card-travel:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Bayangan lebih gelap pada hover */
-  transform: translateY(-4px); /* Efek mengangkat card saat hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  /* Bayangan lebih gelap pada hover */
+  transform: translateY(-4px);
+  /* Efek mengangkat card saat hover */
 }
 .section-popular-content .section-popular-travel .travel-price,
 .section-popular-content .section-popular-travel .travel-location {
@@ -1332,6 +1343,18 @@ body {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .card-travel {
+    min-height: 500px;
+    margin: 0 20px;
+  }
+  .section-popular-heading h1 {
+    font-size: 32px;
+  }
+  .section-popular-heading p {
+    font-size: 28px;
+  }
+}
 .faq-section {
   background-color: #f6f8fd;
   /* Background color of the FAQ section */
@@ -1516,6 +1539,9 @@ body {
     padding-right: 0;
     margin-bottom: 30px;
   }
+  .my-service-section {
+    margin: 0 40px;
+  }
   .my-service-icon {
     width: 20px;
     height: 20px;
@@ -1536,6 +1562,7 @@ body {
   .my-service-section {
     padding: 60px 20px;
     /* Adjusted padding for smaller screens */
+    margin: 0 20px;
   }
   .my-service-title {
     font-size: 2em;
@@ -1567,7 +1594,7 @@ body {
 .question-card {
   position: relative;
   /* Agar gambar overlay dapat diposisikan dengan absolute relatif terhadap kartu */
-  background: url("../images/contactus-bgblue.png") no-repeat center center;
+  background: url("../svg/contact-us-dark.svg") no-repeat center center;
   background-size: cover;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1722,6 +1749,15 @@ body {
   max-width: 100%;
 }
 
+@media (max-width: 768px) {
+  .section-networks {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .section-networks h2 {
+    font-size: 30px;
+  }
+}
 /* Testimonial Section Styles */
 .testimonial-section {
   background: linear-gradient(135deg, #0723c1, coral);
@@ -2705,7 +2741,8 @@ footer .container-fluid {
 }
 
 .card-catalogue:hover {
-  transform: translateY(-10px); /* Lift card on hover */
+  transform: translateY(-10px);
+  /* Lift card on hover */
 }
 
 .card-background {
@@ -2730,12 +2767,15 @@ footer .container-fluid {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-  transition: background 0.3s ease; /* Add transition for hover effect */
+  background: rgba(0, 0, 0, 0.5);
+  /* Dark overlay */
+  transition: background 0.3s ease;
+  /* Add transition for hover effect */
 }
 
 .card:hover .card-overlay {
-  background: rgba(0, 0, 0, 0.7); /* Darker overlay on hover */
+  background: rgba(0, 0, 0, 0.7);
+  /* Darker overlay on hover */
 }
 
 .card-content {
@@ -2845,25 +2885,31 @@ footer .container-fluid {
 
 @media (min-width: 1025px) {
   .menu-button {
-    display: none; /* Hide menu button on desktop and larger screens */
+    display: none;
+    /* Hide menu button on desktop and larger screens */
   }
 }
 /* Responsive styles */
 @media (max-width: 1024px) {
   /* Styles for tablets */
   .menu {
-    display: none; /* Hide menu on tablets */
+    display: none;
+    /* Hide menu on tablets */
   }
   .content {
-    flex-direction: column; /* Stack content vertically on tablets */
+    flex-direction: column;
+    /* Stack content vertically on tablets */
   }
   .catalog-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-    gap: 20px; /* Space between cards */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on tablets */
+    gap: 20px;
+    /* Space between cards */
   }
   .card-catalogue {
-    width: 100%; /* Full width for cards */
+    width: 100%;
+    /* Full width for cards */
   }
   .mobile-menu {
     background-color: rgba(255, 255, 255, 0.8);
