@@ -74,9 +74,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $transaction->created_at->format('d F Y, H:i') }} WIB</td>
-                                        <td>{{ number_format($transaction->transaction_total) }}</td>
+                                        <td>{{ number_format($transaction->grand_total) }}</td>
                                         <td>{{ $transaction->user->name }}</td>
-                                        <td>{{ $transaction->travel_package->title }}</td>
+                                        <td>{{ ucwords($transaction->travel_package->title) }}</td>
                                         <td>
                                             @if ($transaction->transaction_status === 'SUCCESS')
                                                 <span class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>

@@ -17,7 +17,9 @@ class ReportController extends Controller
 
         $transactions = collect();
         if ($startDate && $endDate) {
-            $transactions = Transaction::whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->get();
+            $transactions = Transaction::where('transaction_status', 'SUCCESS')
+                ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
+                ->get();
         }
 
         return view('pages.admin.report.transaction.index', compact('startDate', 'endDate', 'transactions'));
@@ -28,6 +30,7 @@ class ReportController extends Controller
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $transactions = Transaction::with('details') // Eager load details
+            ->where('transaction_status', 'SUCCESS')
             ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
             ->get();
 
@@ -43,7 +46,7 @@ class ReportController extends Controller
         $packages = collect();
         if ($start_date && $end_date) {
             $packages = TravelPackage::with('galleries')
-            ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
+                ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
         }
 
         return view('pages.admin.report.travel-package.index', compact('start_date', 'end_date', 'packages'));
@@ -54,7 +57,7 @@ class ReportController extends Controller
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
         $packages = TravelPackage::with('galleries')
-        ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
+            ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
 
         $pdf = FacadePdf::loadView('pages.admin.report.travel-package.pdf', compact('packages', 'start_date', 'end_date'))->setPaper('a4', 'portrait');
         return $pdf->stream('laporan_paket_perjalanan.pdf');

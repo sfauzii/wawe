@@ -18,13 +18,15 @@
         <div class="row mb-3">
             <label for="startDate" class="col-sm-2 col-form-label">Star Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="startDate" class="form-control" name="start_date" required value="{{ $start_date }}">
+                <input type="date" id="startDate" class="form-control" name="start_date" required
+                    value="{{ $start_date }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="endDate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="endDate" class="form-control" name="end_date" required value="{{ $end_date }}">
+                <input type="date" id="endDate" class="form-control" name="end_date" required
+                    value="{{ $end_date }}">
             </div>
         </div>
 
@@ -54,7 +56,8 @@
                                             class="no-print">
                                             <input type="hidden" name="start_date" value="{{ $start_date }}">
                                             <input type="hidden" name="end_date" value="{{ $end_date }}">
-                                            <button class="btn btn-danger" type="submit"><i
+                                            <button class="btn btn-danger" type="submit"
+                                                style="margin: 30px 0 30px 10px;"><i
                                                     class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
                                         </form>
                                     @endif
@@ -73,10 +76,10 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $package->created_at->format('d F Y, H:i') }} WIB</td>
-                                        <td>{{ $package->title }}</td>
-                                        <td>{{ $package->location }}</td>
+                                        <td>{{ ucwords($package->title) }}</td>
+                                        <td>{{ ucwords($package->location) }}</td>
                                         <td>{{ \Carbon\Carbon::parse($package->departure_date)->format('d F Y') }}</td>
-                                        <td><img src="{{ $package->galleries->count() ? Storage::url($package->galleries->first()->image) : '' }}"
+                                        <td><img src="{{ $package->galleries->count() ? Storage::url($package->galleries->first()->image[0]) : '' }}"
                                                 alt="Package Image" style="width: 100px; height: auto;"></td>
                                     </tr>
                                 @endforeach

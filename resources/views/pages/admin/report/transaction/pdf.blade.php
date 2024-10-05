@@ -66,13 +66,13 @@
         <tbody>
             @php $totalTransaction = 0; @endphp
             @foreach ($transactions as $transaction)
-            @php $totalTransaction += $transaction->transaction_total; @endphp
+            @php $totalTransaction += $transaction->grand_total; @endphp
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $transaction->created_at->format('d-m-Y H:i:s') }}</td>
-                <td>Rp {{ number_format($transaction->transaction_total, 2, ',', '.') }}</td>
+                <td>Rp {{ number_format($transaction->grand_total, 0, ',') }}</td>
                 <td>{{ $transaction->user->name }}</td>
-                <td>{{ $transaction->travel_package->title }}</td>
+                <td>{{ ucwords($transaction->travel_package->title) }}</td>
                 <td>
                     @if ($transaction->transaction_status === 'SUCCESS')
                         <span class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>
@@ -93,7 +93,7 @@
         </tbody>
     </table>
     <div class="total">
-        Total Keseluruhan: Rp{{ number_format($totalTransaction, 2, ',', '.') }}
+        Total Keseluruhan: Rp{{ number_format($totalTransaction, 0, ',') }}
     </div>
     <div class="footer">
         Report By: {{ Auth::user()->name }}
