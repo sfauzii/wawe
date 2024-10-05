@@ -39,6 +39,7 @@
                                     <th>Title</th>
                                     <th>Location</th>
                                     <th>Type</th>
+                                    <th>Price</th>
                                     <th>Kuota</th>
                                     <th>Departure Date</th>
                                     <th>Gallery</th>
@@ -52,6 +53,7 @@
                                         <td>{{ ucwords($item->title) }}</td>
                                         <td>{{ ucwords($item->location) }}</td>
                                         <td>{{ ucwords($item->type) }}</td>
+                                        <td>{{ number_format($item->price, 0, ' ') }}</td>
                                         <td>{{ $item->kuota }}</td>
                                         <td>{{ $item->departure_date }}</td>
                                         <td>

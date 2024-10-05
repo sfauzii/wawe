@@ -123,7 +123,7 @@
 
         <table class="invoice-table">
             <thead>
-                
+
             </thead>
             <tbody>
                 <tr>
@@ -131,7 +131,7 @@
                     <td>{{ $item->id }}</td>
                 </tr>
                 <tr>
-                    <th>Product Name</td>
+                    <th>Package Name</td>
                     <td>{{ $item->travel_package->title }}</td>
                 </tr>
                 <tr>
@@ -155,8 +155,12 @@
                     <td>{{ $item->transaction_status }}</td>
                 </tr>
                 <tr>
+                    <th>Payment Method</td>
+                    <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
+                </tr>
+                <tr>
                     <th>Total</td>
-                    <td>IDR {{ number_format($item->transaction_total, 0, ',') }}</td>
+                    <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
                 </tr>
                 <tr>
                     <th>Pembelian</th>

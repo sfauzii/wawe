@@ -35,7 +35,7 @@ class OverviewController extends Controller
         $endDatePrevious = Carbon::now()->subMonth()->endOfMonth();
 
         // Query for current period
-        $currentData = Transaction::select(DB::raw('SUM(transaction_total) as total_income'), DB::raw('COUNT(*) as total_tickets'))
+        $currentData = Transaction::select(DB::raw('SUM(grand_total) as total_income'), DB::raw('COUNT(*) as total_tickets'))
             ->where('users_id', $user->id)
             ->where('transaction_status', 'SUCCESS')
             ->whereBetween('created_at', [$startDateCurrent, $endDateCurrent])
@@ -45,7 +45,7 @@ class OverviewController extends Controller
         $currentTickets = $currentData->total_tickets ?? 0;
 
         // Query for previous period
-        $previousData = Transaction::select(DB::raw('SUM(transaction_total) as total_income'), DB::raw('COUNT(*) as total_tickets'))
+        $previousData = Transaction::select(DB::raw('SUM(grand_total) as total_income'), DB::raw('COUNT(*) as total_tickets'))
             ->where('users_id', $user->id)
             ->where('transaction_status', 'SUCCESS')
             ->whereBetween('created_at', [$startDatePrevious, $endDatePrevious])

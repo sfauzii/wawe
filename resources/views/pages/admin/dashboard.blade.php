@@ -245,7 +245,7 @@
                                                 <td><a href="#"
                                                         class="text-primary">{{ ucwords($sale->travel_package->title) }}</a>
                                                 </td>
-                                                <td>IDR {{ number_format($sale->transaction_total, 0, ',') }}</td>
+                                                <td>IDR {{ number_format($sale->grand_total, 0, ',') }}</td>
                                                 <td>
                                                     @if ($sale->transaction_status === 'SUCCESS')
                                                         <span

@@ -28,7 +28,7 @@ class TransactionController extends Controller
     {
         $status = request()->get('status', 'ALL');
 
-        $query = Transaction::with(['details', 'travel_package', 'user']);
+        $query = Transaction::with(['details', 'travel_package', 'user'])->orderBy('created_at', 'desc');
 
         if ($status !== 'ALL') {
             $query->where('transaction_status', $status);

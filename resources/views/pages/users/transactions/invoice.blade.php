@@ -27,7 +27,7 @@
             <div class="invoice-card">
                 <div class="invoice-header">
                     <div class="left">
-                        <img src="{{ url('frontend/images/logo.png') }}" alt="Company Logo" />
+                        <img src="{{ url('frontend/svg/images/logo.svg') }}" alt="Company Logo" />
                         @php
                             // Pisahkan UUID menjadi bagian-bagian dengan delimiter '-'
                             $uuidParts = explode('-', $transaction->id);
@@ -64,7 +64,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Product</th>
+                            <th>Package</th>
+                            <th>Payment Method</th>
                             <th>Price</th>
                             <th>Qty</th>
                             <th>Total</th>
@@ -73,10 +74,11 @@
                     <tbody>
                         <tr>
                             <td>{{ ucwords($transaction->travel_package->title) }}</td>
+                            <td>{{ ucwords(str_replace('_', ' ', $transaction->payment_method)) }}</td>
                             <td>IDR {{ number_format($transaction->travel_package->price, 0, ',') }}</td>
                             <td>{{ $transactionDetails->count() }}</td>
                             <td>IDR
-                                {{ number_format($transaction->travel_package->price * $transactionDetails->count(), 0, ',') }}
+                                {{ number_format($transaction->grand_total, 0, ',') }}
                             </td>
                         </tr>
                         <tr>

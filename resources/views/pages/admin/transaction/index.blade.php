@@ -181,6 +181,7 @@
                                 <th>Travel</th>
                                 <th>User</th>
                                 <th>Date</th>
+                                <th>Payment Method</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -194,7 +195,8 @@
                                     <td>{{ ucwords($item->travel_package->title) }}</td>
                                     <td>{{ ucwords($item->user->name) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i') }}</td>
-                                    <td>IDR {{ number_format($item->transaction_total, 0, ',') }}</td>
+                                    <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
+                                    <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
                                     <td>
                                         @if ($item->transaction_status === 'SUCCESS')
                                             <span

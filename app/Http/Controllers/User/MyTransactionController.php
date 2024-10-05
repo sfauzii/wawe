@@ -28,7 +28,7 @@ class MyTransactionController extends Controller
             ->orderBy('created_at', 'desc')
             ->where('users_id', $user->id)
             ->where('transaction_status', '!=', 'IN_CART')
-            ->paginate(5);
+            ->get();
 
         return view('pages.users.transactions.my-transactions', [
             'user' => $user,

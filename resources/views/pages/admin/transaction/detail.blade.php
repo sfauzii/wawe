@@ -44,8 +44,12 @@
                                     <td>{{ '@' . $item->user->name }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Payment Method</th>
+                                    <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
+                                </tr>
+                                <tr>
                                     <th>Total Transaksi</th>
-                                    <td>IDR {{ number_format($item->transaction_total, 0, ',') }}</td>
+                                    <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status Transaksi</th>

@@ -47,7 +47,7 @@ class TransactionSuccessNotification extends Notification
             'user_name' => $this->transaction->user->name,
             'message' => 'Transaction by ' . $this->transaction->user->name . ' is now SUCCESS',
             'status' => $this->transaction->transaction_status,
-            'amount' => $this->transaction->transaction_total,
+            'amount' => $this->transaction->grand_total,
             'created_at' => $this->transaction->created_at->format('d M Y H:i'),
         ];
     }

@@ -52,7 +52,7 @@
                                     @endif
                                 </td>
                                 <td class="product-name">{{ ucwords($item->travel_package->title) }}</td>
-                                <td class="price">{{ number_format($item->transaction_total, 0, ',') }}</td>
+                                <td class="price">{{ number_format($item->grand_total, 0, ',') }}</td>
                                 <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>
                                 <td class="status success">{{ $item->transaction_status }}</td>
                                 <td>

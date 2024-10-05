@@ -211,7 +211,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Product</th>
+                        <th>Package</th>
+                        <th>Payment Method</th>
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Total</th>
@@ -220,9 +221,10 @@
                 <tbody>
                     <tr>
                         <td>{{ ucwords($transaction->travel_package->title) }}</td>
+                        <td>{{ ucwords(str_replace('_', ' ', $transaction->payment_method)) }}</td>
                         <td>IDR {{ number_format($transaction->travel_package->price, 0, ',') }}</td>
                         <td>{{ $transactionDetails->count() }}</td>
-                        <td>IDR {{ number_format($transaction->travel_package->price * $transactionDetails->count()) }}
+                        <td>IDR {{ number_format($transaction->grand_total, 0, ',') }}
                         </td>
                     </tr>
                 </tbody>
