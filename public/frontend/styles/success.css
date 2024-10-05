@@ -616,4 +616,197 @@ body {
     font-size: 12px;
     /* Mengurangi ukuran font pada tombol aksi */
   }
+}
+.section-footer a {
+  color: #071C4D;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  min-height: 350px;
+  padding: 3rem 1rem;
+  border-radius: 100px 100px 0 0;
+  background: radial-gradient(circle, #071C4D, #000000);
+  color: white;
+  margin-top: 200px;
+}
+
+.container .container-footer {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+footer .container {
+  margin-top: 10px;
+}
+
+.row .row-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col .col-footer {
+  flex: 1;
+  /* Let the columns grow to fit the available space */
+  margin: 10px;
+  /* Add space around each column */
+  min-width: 200px;
+  /* Ensure columns don't get too narrow */
+}
+
+#useful-link .links a {
+  color: white;
+  text-decoration: none;
+}
+
+#useful-link .links a:hover {
+  color: #f0f0f0;
+}
+
+#services .links a {
+  color: white;
+  text-decoration: none;
+}
+
+#services .links a:hover {
+  color: #f0f0f0;
+}
+
+.col-footer .logo-footer {
+  width: 100px;
+  margin-bottom: 25px;
+}
+
+.col-footer h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.col-footer h3::after {
+  content: "";
+  height: 3px;
+  width: 0px;
+  background-color: coral;
+  position: absolute;
+  bottom: 150px;
+  left: 16px;
+  transition: 0.3s ease;
+}
+
+.col-footer h3:hover::after {
+  width: 30px;
+}
+
+.col-footer .social a .social-icon {
+  width: 24px;
+  /* Adjust the width as needed */
+  height: 24px;
+  /* Adjust the height as needed */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  /* Smooth transition for hover effects */
+}
+
+.col-footer .social a {
+  color: #071C4D;
+  margin-top: 2rem;
+  margin-right: 5px;
+  transition: 0.3s ease;
+}
+
+.col-footer .social a:hover {
+  transform: scale(1.5);
+  filter: grayscale(25);
+  opacity: 0.8;
+  /* Slightly reduce opacity */
+}
+
+.col-footer .links a {
+  display: block;
+  text-decoration: none;
+  color: #071C4D;
+  margin-bottom: 5px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.col-footer .links a:before {
+  content: "";
+  height: 16px;
+  width: 3px;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  background-color: coral;
+  transition: 0.5s ease;
+  opacity: 0;
+}
+
+.col-footer .links a:hover:before {
+  opacity: 1;
+}
+
+.col-footer .links a:hover {
+  transform: translateX(-8px);
+  color: #071C4D;
+}
+
+.col-footer .contact-details-footer {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.contact-details-footer img {
+  margin-right: 10px;
+  /* Adjust as needed for spacing between icon and text */
+  width: 22px;
+  height: 22px;
+}
+
+.contact-details-footer ion-icon {
+  margin-right: 10px;
+  /* Adjust as needed for spacing between icon and text */
+  width: 22px;
+  height: 22px;
+}
+
+footer .container-fluid {
+  width: 100%;
+  margin-top: 50px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  footer .container {
+    margin-top: -20px;
+  }
+  .row-footer {
+    flex-direction: column;
+  }
+  .col-footer {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+  }
+  .col-footer h3::after {
+    content: "";
+    height: 3px;
+    width: 0px;
+    background-color: coral;
+    position: absolute;
+    bottom: 130px;
+    left: 16px;
+    transition: 0.3s ease;
+  }
 }/*# sourceMappingURL=success.css.map */
