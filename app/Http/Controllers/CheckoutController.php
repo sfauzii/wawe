@@ -40,7 +40,7 @@ class CheckoutController extends Controller
             $transaction = Transaction::create([
                 'travel_packages_id' => $id,
                 'users_id' => Auth::user()->id,
-                'transaction_total' => $travel_package->price,
+                // 'transaction_total' => $travel_package->price,
                 'transaction_status' => 'IN_CART',
             ]);
 
@@ -113,7 +113,7 @@ class CheckoutController extends Controller
         //     $transaction->additional_visa -= 190;
         // }
 
-        $transaction->transaction_total -= $travelPackage->price;
+        // $transaction->transaction_total -= $travelPackage->price;
 
         // Restore the quota
         $travelPackage->kuota += 1;
@@ -165,7 +165,7 @@ class CheckoutController extends Controller
         //     $transaction->additional_visa += 190;
         // }
 
-        $transaction->transaction_total += $transaction->travel_package->price;
+        // $transaction->transaction_total += $transaction->travel_package->price;
 
         $transaction->save();
 
@@ -280,7 +280,7 @@ class CheckoutController extends Controller
         $midtrans_params = [
             'transaction_details' => [
                 'order_id' => $transaction->id,
-                'gross_amount' => (int) $transaction->transaction_total,
+                'gross_amount' => (int) $transaction->grand_total,
             ],
             'customer_details' => [
                 'first_name' => $transaction->user->name,

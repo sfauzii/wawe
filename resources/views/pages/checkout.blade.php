@@ -144,79 +144,23 @@
 
 
                     <!-- Card Kanan -->
-                    <div class="col-lg-4">
+                    <div class="pl-2 col-lg-4 mt-0">
                         <div class="card card-details card-right">
-                            <h2>Checkout Information</h2>
-                            <table class="trip-informations">
-                                <tr>
-                                    <th width="50%">Members</th>
-                                    <td width="50%" class="text-right">
-                                        {{ $item->details->count() }} person
-                                    </td>
-                                </tr>
-                                {{-- <tr>
-                                    <th width="50%">Add Visa</th>
-                                    <td width="50%" class="text-right">
-                                        IDR {{ $item->additional_visa }}
-                                    </td>
-                                </tr> --}}
-                                <tr>
-                                    <th width="50%">Tripe Price</th>
-                                    <td width="50%" class="text-right">
-                                        IDR {{ $item->travel_package->price }} / person
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="50%">Sub Total</th>
-                                    <td width="50%" class="text-right">
-                                        IDR {{ $item->transaction_total }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="50%">Total (+Unique)</th>
-                                    <td width="50%" class="text-right text-total">
-                                        <span class="text-blue">IDR {{ $item->transaction_total }}</span>
-                                        <span class="text-orange">{{ mt_rand(0, 99) }}</span>
-                                    </td>
-                                </tr>
-                            </table>
+                            @livewire('checkout-calculator', ['transactionId' => $item->id])
+
                             <hr>
-                            <h2>Payment Instruction</h2>
-                            <p class="payment-instructions">
-                                You will be redirected to another page to pay using GO-PAY
+                            <p style="font-size: 14px;"></p>
+                            Presented By
                             </p>
-                            <img src="{{ url('frontend/images/gopay.png') }}" class="w-50">
 
-
-
-                            {{-- <div class="bank">
+                            <div class="bank">
                                 <div class="bank-item pb-3">
-                                    <img src="{{ url('frontend/images/ic_bank.png') }}" alt="" class="bank-image">
-                                    <div class="description">
-                                        <h3>PT Poling ID</h3>
-                                        <p>
-                                            088 229 877 220
-                                            <br>
-                                            BCA
-                                        </p>
-                                    </div>
+                                    <img src="{{ url('frontend/svg/images/midtrans-logo.svg') }}" alt="" class="bank-image">
+                                    <div class="description"></div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="bank">
-                                <div class="bank-item pb-3">
-                                    <img src="{{ url('frontend/images/ic_bank.png') }}" alt="" class="bank-image">
-                                    <div class="description">
-                                        <h3>PT Poling ID</h3>
-                                        <p>
-                                            088 229 877 220
-                                            <br>
-                                            BCA
-                                        </p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div> --}}
+
                         </div>
                         <div class="join-container">
                             <a href="{{ route('checkout-success', $item->id) }}"
@@ -261,4 +205,3 @@
     </script>
 
 @endsection --}}
-
