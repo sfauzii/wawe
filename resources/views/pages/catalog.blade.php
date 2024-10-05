@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-    WaWe - Catalog
+    WaWe - Destinations
 @endsection
 
 
 @section('content')
     <section class="catalogue">
         <div class="hero-title">
-            <h1>Title Here</h1>
-            <p>Subtitle Here</p>
+            <h1>Destinations</h1>
+            <p>Explore Our Exclusive Travel Packages <br>to the Most Beautiful Places</p>
         </div>
         <div class="content">
             <div class="menu">

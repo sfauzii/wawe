@@ -2,7 +2,7 @@
 <div class="container">
     <nav class="row navbar navbar-expand-lg navbar-light" id="navbar">
         <a href="{{ route('home') }}" class="navbar-brand">
-            <img src="{{ url('frontend/images/logo.png') }}" alt="Logo Poling" />
+            <img src="{{ url('frontend/svg/images/logo.svg') }}" alt="Logo Poling" />
         </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
             <span class="navbar-toggler-icon"></span>
@@ -11,23 +11,30 @@
         <div class="collapse navbar-collapse justify-content-center" id="navb">
             <ul class="navbar-nav">
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link active">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="{{ route('catalog') }}" class="nav-link">Catalog</a>
+                    <a href="{{ route('catalog') }}" class="nav-link {{ Route::currentRouteName() == 'catalog' ? 'active' : '' }}">Destinations</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                        Services
+                        Booking
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Link</a>
-                        <a href="#" class="dropdown-item">Link</a>
-                        <a href="#" class="dropdown-item">Link</a>
+                        @auth
+                            <a href="{{ route('my-ticket', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}"
+                                class="dropdown-item">Ticket
+                            </a>
+                        @endauth
+
+                        @guest
+                            <a href="{{ route('login') }}" class="dropdown-item">Ticket
+                            </a>
+                        @endguest
                     </div>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Testimonial</a>
+                    <a href="{{ route('testimonials') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials' ? 'active' : '' }}">Testimonial</a>
                 </li>
             </ul>
             <!-- Tambahkan tombol login di dalam collapse agar muncul di mobile -->
@@ -49,9 +56,10 @@
                             <a class="dropdown-item"
                                 href="{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">Overview</a>
                             <a class="dropdown-item"
-                                href="{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">My
+                                href="{{ route('my-ticket', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">My
                                 Ticket</a>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item"
+                                href="{{ route('settings', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">Settings</a>
                             <div class="dropdown-divider"></div>
                             <form action="{{ url('logout') }}" method="POST">
                                 @csrf

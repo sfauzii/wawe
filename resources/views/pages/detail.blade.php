@@ -17,7 +17,7 @@
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    Paket {{ ucwords($item->title) }}
+                                    <a href="{{ route('details', $item->slug) }}">Package {{ ucwords($item->title) }}</a> 
                                 </li>
                                 <li class="breadcrumb-item active">
                                     Details
@@ -131,7 +131,7 @@
 
                 <div class="details-container">
                     <!-- Testimonies Section -->
-                    <aside class="testimonies-card">
+                    <aside class="testimonies-card w-100">
                         <h3 class="testimonies-header">From Happy Customers</h3>
                         @foreach ($testimonies as $testimony)
                             <div class="testimoni-card">

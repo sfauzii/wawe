@@ -88,8 +88,8 @@ WaWe | Purbalingga, Jawa Tengah
                             <img src="frontend/images/icons/sun-fog.png" alt="Members Icon" class="icons-stats" />
                         </div>
                         <div class="stats-content">
-                            <h2>13</h2>
-                            <p>Countries</p>
+                            <h2>Good</h2>
+                            <p>Destinations</p>
                         </div>
                     </div>
                     <div class="stats-item border-left">
@@ -98,8 +98,8 @@ WaWe | Purbalingga, Jawa Tengah
                             <img src="frontend/images/icons/global.png" alt="Members Icon" class="icons-stats" />
                         </div>
                         <div class="stats-content">
-                            <h2>3K</h2>
-                            <p>Hotel</p>
+                            <h2>100%</h2>
+                            <p>Trusted</p>
                         </div>
                     </div>
                     <div class="stats-item border-left">
@@ -108,7 +108,7 @@ WaWe | Purbalingga, Jawa Tengah
                             <img src="frontend/images/icons/heart-tick.png" alt="Members Icon" class="icons-stats" />
                         </div>
                         <div class="stats-content">
-                            <h2>72</h2>
+                            <h2>Nice</h2>
                             <p>Partners</p>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ WaWe | Purbalingga, Jawa Tengah
             <div class="container">
                 <div class="row">
                     <div class="col text-center section-popular-heading">
-                        <h1>Wisata Popular</h1>
+                        <h1>Package Popular</h1>
                         <p>
                             Something that you never
                             <br />
@@ -190,8 +190,8 @@ WaWe | Purbalingga, Jawa Tengah
                     <h2>What Our Clients Say</h2>
                     <p>Discover how we have helped our clients achieve their goals.</p>
                     <div class="buttons">
-                        <button class="btn-primary">Get Started</button>
-                        <button class="btn-secondary">Learn More</button>
+                        <button class="btn-primary" onclick="window.location.href = '{{ route('catalog') }}';">Get Started</button>
+                        <button class="btn-secondary" onclick="window.location.href = '{{ route('testimonials') }}';">Learn More</button>
                     </div>
                 </div>
                 <div class="testimonial-right">
@@ -261,7 +261,7 @@ WaWe | Purbalingga, Jawa Tengah
                         </li>
                         <!-- Add more services as needed -->
                     </ul>
-                    <button class="get-started-button">Get Started</button>
+                    <button class="get-started-button" onclick="window.location.href = '{{ route('catalog') }}';">Get Started</button>
                 </div>
                 <div class="my-service-image">
                     <img src="frontend/images/services-copy.png" alt="Service Image"/>
@@ -333,7 +333,7 @@ WaWe | Purbalingga, Jawa Tengah
 
 
         <!-- QUESTION -->
-        <section class="question-section">
+        <section class="question-section" id="contact">
             <div class="question-card">
                 <img src="{{ url('frontend/images/cu.png') }}" alt="Overlay Image" class="overlay-image" />
                 <div class="question-content">
