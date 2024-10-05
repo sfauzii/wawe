@@ -7,7 +7,9 @@
             <div class="card-content">
                 <div class="logo">
                     <!-- Place your logo image here -->
-                    <img src="frontend/images/logo.png" alt="Logo">
+                    <a href="{{ route('home') }}">
+                        <img src="frontend/svg/images/logo.svg" alt="Logo">
+                    </a>
                 </div>
                 <div class="title">
                     <h1>Login</h1>
