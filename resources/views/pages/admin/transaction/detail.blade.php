@@ -34,22 +34,26 @@
                                     <th>ID</th>
                                     <td>{{ $item->id }}</td>
                                 </tr>
-
-                                <tr>
-                                    <th>Paket Travel</th>
-                                    <td>{{ ucwords($item->travel_package->title) }}</td>
-                                </tr>
+                                
                                 <tr>
                                     <th>Pembeli</th>
                                     <td>{{ '@' . $item->user->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Payment Method</th>
-                                    <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
+                                    <th>Package Name</th>
+                                    <td>{{ ucwords($item->travel_package->title) }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Package Price</th>
+                                    <td>IDR {{ number_format($item->travel_package->price, 0, ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th>Total Transaksi</th>
                                     <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Payment Method</th>
+                                    <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status Transaksi</th>

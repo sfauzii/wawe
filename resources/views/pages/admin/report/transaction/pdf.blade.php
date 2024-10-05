@@ -192,9 +192,9 @@
                 </tr>
             </thead>
             <tbody>
-                @php $totalTransaction = 0; @endphp
+                {{-- @php $totalTransaction = 0; @endphp --}}
                 @foreach ($transactions as $transaction)
-                    @php $totalTransaction += $transaction->grand_total; @endphp
+                    {{-- @php $totalTransaction += $transaction->grand_total; @endphp --}}
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         {{-- <td>ORD-001</td> --}}
@@ -215,40 +215,34 @@
             <table class="summary-table">
                 <tr>
                     <td width="25%">
-                        <div class="summary-label">Total Pendapatan:</div>
+                        <div class="summary-label">Total Pendapatan Sukses:</div>
                         <div class="summary-value"><strong>Rp {{ number_format($totalTransaction, 0, ',') }}</strong>
                         </div>
                     </td>
                     <td width="25%">
-                        <div class="summary-label">Jumlah Transaksi:</div>
-                        <div class="summary-value">3</div>
+                        <div class="summary-label">Jumlah Transaksi Sukses:</div>
+                        <div class="summary-value">{{ $transactionCount }}</div>
                     </td>
                     <td width="25%">
-                        <div class="summary-label">Rata-rata per Transaksi:</div>
-                        <div class="summary-value">Rp 750.000</div>
+                        <div class="summary-label">Rata-rata per Transaksi Sukses:</div>
+                        <div class="summary-value">Rp {{ number_format($averagePerTransaction, 0, ',') }}</div>
                     </td>
                     <td width="25%">
-                        <div class="summary-label">Total Produk Terjual:</div>
-                        <div class="summary-value">18 pcs</div>
+                        <div class="summary-label">Total Package Terjual:</div>
+                        <div class="summary-value">{{ $totalPackagesSold }} pcs</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="summary-label">Penjualan Tertinggi:</div>
-                        <div class="summary-value">Rp 1.000.000</div>
+                        <div class="summary-value">Rp {{ number_format($highestTransaction, 0, ',') }}</div>
                     </td>
                     <td>
                         <div class="summary-label">Penjualan Terendah:</div>
-                        <div class="summary-value">Rp 500.000</div>
+                        <div class="summary-value">Rp {{ number_format($lowestTransaction, 0, ',') }}</div>
                     </td>
-                    <td>
-                        <div class="summary-label">Penjualan Di Toko:</div>
-                        <div class="summary-value">1 transaksi</div>
-                    </td>
-                    <td>
-                        <div class="summary-label">Penjualan Dikirim:</div>
-                        <div class="summary-value">2 transaksi</div>
-                    </td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
