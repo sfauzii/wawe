@@ -1,103 +1,262 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: 12px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header img {
-            width: 100px; /* Sesuaikan dengan ukuran yang diinginkan */
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .total {
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: right;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: right;
-            font-size: 14px;
-        }
-    </style> 
-</head>
-<body>
-    <div class="header">
-        {{-- <img src="{{ asset('backend/assets/img/wawe.png') }}" alt="Logo Perusahaan"> --}}
-        <h1>Laporan Transaksi</h1>
-    </div>
-   
-    <p class="mt-4">Periode: <strong>{{ \Carbon\Carbon::parse($startDate)->format('d F Y') }}</strong> sampai
-        <strong>{{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</strong></p>
-    <table>
-        <thead>
+<html lang="id">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Laporan Penjualan</title>
+        <style>
+            @page {
+                size: A4;
+                margin: 15mm 10mm 15mm 10mm;
+                margin: 0 0 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 11px;
+                line-height: 1.3;
+                color: #333;
+            }
+
+            .title {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .title h2 {
+                margin: 0;
+                color: #444;
+                font-size: 18px;
+            }
+
+            .title h5 {
+                margin: 3px 0;
+                color: #666;
+                font-size: 13px;
+            }
+
+            .main-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 15px;
+            }
+
+            .main-table th,
+            .main-table td {
+                border: 1px solid #ddd;
+                padding: 6px;
+                text-align: left;
+            }
+
+            .main-table th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 10px;
+            }
+
+            .main-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .summary-section {
+                margin-top: 20px;
+                border-top: 2px solid #444;
+                padding-top: 15px;
+            }
+
+            .summary-title {
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #444;
+            }
+
+            .summary-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .summary-table td {
+                padding: 5px;
+                vertical-align: top;
+                border: none;
+            }
+
+            .summary-label {
+                font-weight: bold;
+                color: #666;
+                font-size: 10px;
+            }
+
+            .summary-value {
+                color: #333;
+                font-size: 11px;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+
+            @media print {
+                thead {
+                    display: table-header-group;
+                }
+            }
+
+            body {
+                margin-top: 2cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            .header {
+                width: 100%;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+                margin-bottom: 5px;
+            }
+
+            .logo {
+                width: 100px;
+                height: auto;
+            }
+
+            .company-name {
+                font-size: 18pt;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .company-address {
+                font-size: 10pt;
+                line-height: 1.3;
+            }
+
+            .document-title {
+                font-size: 16pt;
+                font-weight: bold;
+                margin-top: 15px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body onload="window.print()">
+
+
+        <table class="header" cellpadding="0" cellspacing="0">
             <tr>
-                <th>No</th>
-                <th>Tanggal</th>
-                <th>Transaksi</th>
-                <th>Pengguna</th>
-                <th>Paket</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php $totalTransaction = 0; @endphp
-            @foreach ($transactions as $transaction)
-            @php $totalTransaction += $transaction->grand_total; @endphp
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $transaction->created_at->format('d-m-Y H:i:s') }}</td>
-                <td>Rp {{ number_format($transaction->grand_total, 0, ',') }}</td>
-                <td>{{ $transaction->user->name }}</td>
-                <td>{{ ucwords($transaction->travel_package->title) }}</td>
-                <td>
-                    @if ($transaction->transaction_status === 'SUCCESS')
-                        <span class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>
-                    @elseif($transaction->transaction_status === 'IN_CART')
-                        <span class="badge rounded-pill text-bg-primary">{{ $transaction->transaction_status }}</span>
-                    @elseif($transaction->transaction_status === 'PENDING')
-                        <span class="badge rounded-pill text-bg-warning">{{ $transaction->transaction_status }}</span>
-                    @elseif($transaction->transaction_status === 'CANCEL')
-                        <span class="badge rounded-pill text-bg-secondary">{{ $transaction->transaction_status }}</span>
-                    @elseif($transaction->transaction_status === 'FAILED')
-                        <span class="badge rounded-pill text-bg-danger">{{ $transaction->transaction_status }}</span>
-                    @else
-                        <span class="badge rounded-pill text-bg-dark">{{ $transaction->transaction_status }}</span>
-                    @endif
+                <td width="25%" style="vertical-align: top; padding-right: 15px; padding-bottom: 10px">
+                    <img src="https://via.placeholder.com/100x100" alt="Logo Perusahaan" class="logo">
+                </td>
+                <td width="75%" style="vertical-align: top;">
+                    <div class="company-name">WaWe Tour and Travel</div>
+                    <div class="company-address">
+                        Jalan Gundul Perkasa (RT 00/RW 00) No. 404, Kel. Botak Cemerlang,<br>
+                        Kec. Bekasi Berkilau, 90210<br>
+                        Telp: 0856-BATU-KECE (0856-2288-5323) | Email: info@batukerenrambut.com
+                    </div>
                 </td>
             </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div class="total">
-        Total Keseluruhan: Rp{{ number_format($totalTransaction, 0, ',') }}
-    </div>
-    <div class="footer">
-        Report By: {{ Auth::user()->name }}
-    </div>
-</body>
-</html>
+        </table>
+
+        <div class="title">
+            <h2>Laporan Transaksi</h2>
+            <h5>Periode <strong>{{ \Carbon\Carbon::parse($startDate)->format('d F Y') }}</strong> -
+                <strong>{{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</strong>
+            </h5>
+            {{-- <h5>Jenis Penjualan: Semua</h5> --}}
+        </div>
+
+        <table class="main-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    {{-- <th>Code</th> --}}
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Package Name</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $totalTransaction = 0; @endphp
+                @foreach ($transactions as $transaction)
+                    @php $totalTransaction += $transaction->grand_total; @endphp
+                    <tr>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        {{-- <td>ORD-001</td> --}}
+                        <td>{{ $transaction->created_at->format('d-m-Y H:i:s') }}</td>
+                        <td>{{ $transaction->user->name }}</td>
+                        <td class="text-center">{{ ucwords($transaction->travel_package->title) }}</td>
+                        <td class="text-right">Rp {{ number_format($transaction->grand_total, 0, '') }}</td>
+                        <td class="text-center">{{ $transaction->transaction_status }}</td>
+                    </tr>
+                @endforeach
+
+
+            </tbody>
+        </table>
+
+        <div class="summary-section">
+            <h3 class="summary-title">Ringkasan Penjualan</h3>
+            <table class="summary-table">
+                <tr>
+                    <td width="25%">
+                        <div class="summary-label">Total Pendapatan:</div>
+                        <div class="summary-value"><strong>Rp {{ number_format($totalTransaction, 0, ',') }}</strong>
+                        </div>
+                    </td>
+                    <td width="25%">
+                        <div class="summary-label">Jumlah Transaksi:</div>
+                        <div class="summary-value">3</div>
+                    </td>
+                    <td width="25%">
+                        <div class="summary-label">Rata-rata per Transaksi:</div>
+                        <div class="summary-value">Rp 750.000</div>
+                    </td>
+                    <td width="25%">
+                        <div class="summary-label">Total Produk Terjual:</div>
+                        <div class="summary-value">18 pcs</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="summary-label">Penjualan Tertinggi:</div>
+                        <div class="summary-value">Rp 1.000.000</div>
+                    </td>
+                    <td>
+                        <div class="summary-label">Penjualan Terendah:</div>
+                        <div class="summary-value">Rp 500.000</div>
+                    </td>
+                    <td>
+                        <div class="summary-label">Penjualan Di Toko:</div>
+                        <div class="summary-value">1 transaksi</div>
+                    </td>
+                    <td>
+                        <div class="summary-label">Penjualan Dikirim:</div>
+                        <div class="summary-value">2 transaksi</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="summary">
+            <p class="text-right">Nama Admin: <strong>{{ Auth::user()->name }}</strong></p>
+            {{-- <p class="text-right">Tanggal Cetak: <strong>31/12/2023 23:59:59</strong></p> --}}
+        </div>
+    </body>
+
 </html>
