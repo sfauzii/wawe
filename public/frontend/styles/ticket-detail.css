@@ -1,203 +1,239 @@
+:root {
+  --clr-primary: coral;
+  --clr-danger: #ff7782;
+  --clr-success: #41f1b6;
+  --clr-white: #fff;
+  --clr-info-dark: #363949;
+  --clr-info-light: #dce1eb;
+  --clr-dark: #363949;
+  --clr-warnig: #ff4edc;
+  --clr-light: rgba(132, 139, 200, 0.18);
+  --clr-primary-variant: #111e88;
+  --clr-dark-variant: #677483;
+  --clr-color-background: #f6f6f9;
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+  --box-shadow: 0 2rem 3rem var(-- clr-light);
+}
+
 body {
   font-family: "Poppins", sans-serif;
-  background: #f6f6f9;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+  /* Maksimum lebar kontainer */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .card-container {
-  display: flex;
-  justify-content: center; /* Menyusun card di tengah horizontal */
-  align-items: center; /* Menyusun card di tengah vertikal */
-  height: 100vh; /* Mengisi tinggi layar penuh */
-  margin-bottom: 0; /* Jarak dari card di bawahnya */
-}
-
-.custom-card {
   background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  margin-top: 2rem; /* Atur margin top untuk penyesuaian */
+  border-radius: 15px;
+  padding: 40px;
+  /* Sesuaikan padding */
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.custom-card .card-content {
+.title-section p {
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 100px;
+  border-radius: 20%;
+  margin-right: 20px;
+}
+
+.header-info {
   display: flex;
   flex-direction: column;
 }
 
-.custom-card .product-info {
-  display: flex;
-  align-items: flex-start;
-}
-
-.custom-card .product-image {
-  width: 150px;
-  height: 100px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-right: 20px;
-}
-
-.custom-card .product-image img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.custom-card .product-details {
-  flex: 1;
-}
-
-.custom-card .product-title {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.product-status {
-  background-color: #071C4D;
-  border-radius: 40px;
-  padding: 5px;
-  max-width: 70px; /* Atur lebar maksimum agar tidak terlalu panjang */
-  margin-top: 10px; /* Sesuaikan margin sesuai kebutuhan */
-}
-
-.product-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.product-status p {
-  font-size: 11px;
+.header-info h2 {
   margin: 0;
-  color: white;
-  font-weight: 700;
-  padding: 5px 10px; /* Sesuaikan padding sesuai kebutuhan */
+  font-size: 1.5rem;
 }
 
-.icon-container {
+.badge {
+  background-color: #071c4d;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* Icon list */
+.icon-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icon-item {
   display: flex;
   align-items: center;
-  margin-top: 15px;
-}
-
-.icon {
-  font-size: 24px; /* Sesuaikan ukuran ikon */
-  color: #333; /* Sesuaikan warna ikon */
-  margin-right: 5px; /* Jarak antara ikon dan teks keterangan */
-}
-
-.icon .icon-img-succes {
-  width: 24px;
-  height: 24px;
-}
-
-.icon-description {
-  flex: 1; /* Memanfaatkan flex-grow untuk mengisi ruang tersisa */
-}
-
-.icon-description p {
-  font-size: 14px; /* Sesuaikan ukuran teks keterangan */
-  margin: 0;
-  font-weight: 700;
-  padding-left: 3px; /* Jarak antara ikon dan teks keterangan */
-}
-
-.custom-card .divider {
-  margin: 20px 0;
-  border: none;
-  border-top: 1px solid #ddd;
-}
-
-.custom-card .description {
-  margin-bottom: 5px;
-}
-
-.custom-card .description h3 {
-  font-size: 16px;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.custom-card .description p {
-  font-size: 14px;
-  line-height: 1.5;
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
-.custom-card .buttons {
+/* Divider styling */
+.divider {
+  width: 100%;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+/* Description styling */
+.description h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.description p {
+  color: #555;
+}
+
+/* Button styling */
+.button-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.custom-card .action-button {
+.action-button,
+.action-button-secondary {
   padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-button {
   background-color: coral;
   color: white;
   font-weight: 700;
-  font-family: "Poppins", sans-serif;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
 }
 
-.custom-card .action-button-secondary {
-  padding: 10px 20px;
+.action-button-secondary {
   background-color: #ddd;
-  color: #071C4D;
+  color: #000;
   font-weight: 700;
-  font-family: "Poppins", sans-serif;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
 }
 
-.custom-card .action-button:hover {
-  background-color: rgb(253, 182, 155);
-}
-
-.custom-card .action-button-secondary:hover {
-  background-color: rgb(240, 238, 237);
-}
-
-footer {
-  text-align: center;
-}
-
-/* Untuk perangkat mobile */
-@media (max-width: 768px) {
-  .custom-card {
-    width: 90%; /* Mengurangi lebar maksimum kartu */
-    padding: 15px; /* Mengurangi padding pada kartu */
+/* Responsive adjustments */
+/* Tablet adjustments */
+@media only screen and (max-width: 1024px) {
+  .card-container {
+    width: 90%;
+    padding: 20px;
   }
-  .custom-card .product-image {
-    width: 100px; /* Mengurangi ukuran gambar produk */
-    margin-right: 15px; /* Mengurangi margin kanan pada gambar produk */
+  .profile-img {
+    width: 120px;
+    height: 80px;
   }
-  .custom-card .product-title {
-    font-size: 16px; /* Mengurangi ukuran font judul produk */
+  .header-info h2 {
+    font-size: 1.3rem;
   }
-  .product-status p {
-    font-size: 10px; /* Mengurangi ukuran font status produk */
+  .icon-list {
+    flex-wrap: wrap;
+  }
+  .icon-item {
+    margin-bottom: 10px;
+  }
+  .action-button,
+  .action-button-secondary {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+}
+/* Mobile adjustments */
+@media only screen and (max-width: 767px) {
+  body {
+    padding: 10px;
+  }
+  .title-section {
+    padding: 10px;
+  }
+  .container {
+    padding: 0;
+  }
+  .card-container {
+    width: 100%;
+    /* Set width to 100% to fit mobile screen */
+    padding: 20px;
+  }
+  .profile-img {
+    width: 100px;
+    height: 70px;
+  }
+  .header-info h2 {
+    font-size: 1.2rem;
+  }
+  .badge {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+  }
+  .icon-list {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .icon-item {
+    width: 45%;
+    margin-bottom: 15px;
   }
   .icon {
-    font-size: 20px; /* Mengurangi ukuran ikon */
+    width: 20px;
+    height: 20px;
   }
-  .icon-description p {
-    font-size: 12px; /* Mengurangi ukuran teks keterangan ikon */
+  .button-container {
+    flex-direction: column;
+    align-items: center;
   }
-  .custom-card .description h3 {
-    font-size: 14px; /* Mengurangi ukuran font judul deskripsi */
+  .action-button,
+  .action-button-secondary {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 12px;
   }
-  .custom-card .description p {
-    font-size: 12px; /* Mengurangi ukuran font teks deskripsi */
-  }
-  .custom-card .action-button,
-  .custom-card .action-button-secondary {
-    padding: 8px 15px; /* Mengurangi padding tombol aksi */
-    font-size: 12px; /* Mengurangi ukuran font pada tombol aksi */
-  }
-}/*# sourceMappingURL=ticket-detail.css.map */
+}
+footer {
+  text-align: center;
+} /*# sourceMappingURL=ticket-detail.css.map */
