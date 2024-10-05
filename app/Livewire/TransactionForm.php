@@ -21,6 +21,10 @@ class TransactionForm extends Component
     public $usernames = [];
     public $totalAmount = 0;
     public $remainingQuota = 0;
+    public $paymentMethod = 'full_payment';
+    public $subTotal = 0;
+    public $ppn = 0;
+    public $grandTotal = 0;
 
     public function mount()
     {
@@ -48,6 +52,11 @@ class TransactionForm extends Component
         $this->calculateTotal();
     }
 
+    public function updatedPaymentMethod() // Update payment method
+    {
+        $this->calculateTotal();
+    }
+
     private function calculateTotal()
     {
         if ($this->selectedPackageId) {
@@ -55,15 +64,30 @@ class TransactionForm extends Component
             $userCount = count($this->usernames);
             $this->totalAmount = $package->price * $userCount;
             $this->remainingQuota = $package->kuota - $userCount;
+
+            // calculate subtotal based on the payment method
+            if ($this->paymentMethod === 'down_payment') {
+                $this->subTotal = $this->totalAmount * 0.3; //down payment
+            } else {
+                $this->subTotal = $this->totalAmount; //full payment
+            }
+
+            // calculate PPN and grand total
+            $this->ppn = $this->subTotal * 0.11;
+            $this->grandTotal = $this->subTotal + $this->ppn;
         } else {
             $this->totalAmount = 0;
             $this->remainingQuota = 0;
+            $this->subTotal = 0;
+            $this->ppn = 0;
+            $this->grandTotal = 0;
         }
     }
 
-    public function createTransaction() {
+    public function createTransaction()
+    {
 
-        if(!$this->selectedPackageId) {
+        if (!$this->selectedPackageId) {
             $this->alert('error', 'Validation Error', [
                 'text' =>  'Please select a travel package'
             ]);
@@ -86,7 +110,7 @@ class TransactionForm extends Component
         $package = TravelPackage::findOrFail($this->selectedPackageId);
         $userCount = count($this->usernames);
 
-        if($package->kuota < $userCount) {
+        if ($package->kuota < $userCount) {
             $this->alert('error', 'Quota Error', [
                 'text' => 'No more quota available for this package.'
             ]);
@@ -104,10 +128,14 @@ class TransactionForm extends Component
             'transaction_total' => $this->totalAmount,
             'transaction_status' => 'PENDING',
             'users_id' => Auth::id(),
+            'payment_method' => $this->paymentMethod,
+            'sub_total' => $this->subTotal,
+            'ppn' => $this->ppn,
+            'grand_total' => $this->grandTotal,
         ]);
 
         // Process each username and add to TransactionDetail
-        foreach($this->usernames as $username) {
+        foreach ($this->usernames as $username) {
             TransactionDetail::create([
                 'transactions_id' => $transaction->id,
                 'username' => $username,
@@ -119,7 +147,6 @@ class TransactionForm extends Component
         ]);
 
         return redirect()->route('transaction.payment', ['transaction' => $transaction]);
-
     }
     public function render()
     {

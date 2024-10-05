@@ -26,6 +26,19 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="paymentMethod" class="col-sm-2 col-form-label">Payment Method<span
+                                        class="text-danger">*</span></label>
+
+                                <div class="col-sm-10">
+                                    <select wire:model.live="paymentMethod" id="paymentMethod" class="form-select">
+                                        <option value="full_payment">Full Payment</option>
+                                        <option value="down_payment">Down Payment (30%)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="newUsername" class="col-sm-2 col-form-label">Username <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
@@ -89,11 +102,35 @@
                             </div>
 
 
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Total Transaction <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="{{ number_format($totalAmount, 0, ',', '.') }}"
+                                        style="font-weight: bold;" class="form-control mb-3" disabled>
+                                </div>
+                            </div> --}}
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Sub Total <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ number_format($subTotal, 0, ',', '.') }}"
+                                        style="font-weight: bold;" class="form-control mb-3" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">PPN (11%) <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ number_format($ppn, 0, ',', '.') }}"
+                                        style="font-weight: bold;" class="form-control mb-3" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Grand Total <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ number_format($grandTotal, 0, ',', '.') }}"
                                         style="font-weight: bold;" class="form-control mb-3" disabled>
                                 </div>
                             </div>
