@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
+use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
 
 /*
@@ -45,6 +46,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/details/{slug}', [DetailController::class, 'index'])->name('details');
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+
+Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('testimonials');
 
 Route::post('/checkout/{id}', [CheckoutController::class, 'process'])
     ->name('checkout_process')
