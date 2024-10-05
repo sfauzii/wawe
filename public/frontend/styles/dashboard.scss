@@ -1,6 +1,3 @@
-
-
-
 :root {
     --clr-primary: coral;
     --clr-danger: #ff7782;
@@ -11,7 +8,7 @@
     --clr-dark: #363949;
     --clr-warnig: #ff4edc;
     --clr-light: rgba(132, 139, 200, 0.18);
-    --clr-primary-variant:  #111e88;
+    --clr-primary-variant: #111e88;
     --clr-dark-variant: #677483;
     --clr-color-background: #f6f6f9;
 
@@ -22,7 +19,7 @@
 
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
-    --box-shadow: 0 2rem 3rem var( -- clr-light);
+    --box-shadow: 0 2rem 3rem var(-- clr-light);
 }
 
 /* CSS untuk Navbar */
@@ -36,11 +33,12 @@ nav {
     padding: 0.5rem;
     border-radius: 20px;
     color: var(--clr-white);
-    margin-bottom: 1rem; /* Memberikan ruang di bawah navbar */
-  }
-  
-  
-  .search-container {
+    margin-bottom: 1rem;
+    /* Memberikan ruang di bawah navbar */
+}
+
+
+.search-container {
     display: flex;
     align-items: center;
     background-color: var(--clr-color-background);
@@ -86,67 +84,72 @@ nav {
 // *** END CONTACT US ***// ***//
 
 
-  nav .logo h1 {
+nav .logo h1 {
     font-size: 1.5rem;
     margin: 0;
-  }
-  
-  nav ul {
+}
+
+nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
     margin: 0;
     padding: 0;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     display: inline;
-  }
-  
-  nav ul li a {
+}
+
+nav ul li a {
     text-decoration: none;
     color: var(--clr-white);
     font-size: 1rem;
     transition: color 0.3s;
-  }
-  
-  nav ul li a:hover {
+}
+
+nav ul li a:hover {
     color: var(--clr-secondary);
-  }
-  
-  nav .user {
+}
+
+nav .user {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
-  
-  nav .user span {
+}
+
+nav .user span {
     font-size: 1.2rem;
-  }
+}
 
 
 .user .profile-image {
-    width: 40px; /* Sesuaikan ukuran foto profil sesuai kebutuhan */
+    width: 40px;
+    /* Sesuaikan ukuran foto profil sesuai kebutuhan */
     height: 40px;
     object-fit: cover;
-    border-radius: 50%; /* Mengubah foto profil menjadi lingkaran */
-    border: 2px solid #ccc; /* Contoh border untuk foto profil */
+    border-radius: 50%;
+    /* Mengubah foto profil menjadi lingkaran */
+    border: 2px solid #ccc;
+    /* Contoh border untuk foto profil */
 }
 
 // *** END NAVBAR ***//
-  
-  
-  
-  main {
+
+
+
+main {
     grid-column: 2 / 3;
     padding: 1rem;
-    overflow-y: auto; /* Agar konten yang panjang bisa di-scroll */
-  }
-  
-  /* Menyesuaikan padding di dalam main untuk navbar */
-  main nav {
-    margin-bottom: 1.5rem; /* Menyediakan ruang di bawah navbar */
-  }
+    overflow-y: auto;
+    /* Agar konten yang panjang bisa di-scroll */
+}
+
+/* Menyesuaikan padding di dalam main untuk navbar */
+main nav {
+    margin-bottom: 1.5rem;
+    /* Menyediakan ruang di bawah navbar */
+}
 
 
 * {
@@ -205,7 +208,7 @@ small {
     font-size: 0.75rem;
 }
 
-.profile-photo img{
+.profile-photo img {
     width: 2.8rem;
     height: 2.8rem;
     border-radius: 50%;
@@ -247,7 +250,7 @@ aside {
     height: 100vh;
 }
 
-aside .top{
+aside .top {
     background-color: var(--clr-white);
     display: flex;
     justify-content: space-around;
@@ -257,11 +260,16 @@ aside .top{
 }
 
 aside .logo img {
-    max-width: 100px;  /* Set the maximum width */
-    max-height: 50px;  /* Set the maximum height */
-    width: auto;  /* Maintain aspect ratio */
-    height: auto;  /* Maintain aspect ratio */
-    object-fit: contain;  /* Ensure the image fits within the given constraints */
+    max-width: 100px;
+    /* Set the maximum width */
+    max-height: 50px;
+    /* Set the maximum height */
+    width: auto;
+    /* Maintain aspect ratio */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: contain;
+    /* Ensure the image fits within the given constraints */
 }
 
 aside .logo {
@@ -287,7 +295,7 @@ aside .sidebar {
 
 
 
-aside h3{
+aside h3 {
     font-weight: 500;
 }
 
@@ -325,7 +333,7 @@ aside .sidebar a.active {
     border-left: 5px solid var(--clr-primary);
 }
 
-aside .sidebar a.active:before{
+aside .sidebar a.active:before {
     content: '';
     width: 6px;
     height: 100%;
@@ -382,7 +390,7 @@ main .date {
 
 main .insights {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.6rem;
 }
 
@@ -393,35 +401,47 @@ main .insights>div {
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
     transition: all .3s ease;
-    align-items: center; /* Memusatkan secara vertikal */
-   
+    align-items: center;
+    /* Memusatkan secara vertikal */
+
 }
 
-main .insights > div:hover {
+main .insights>div:hover {
     box-shadow: none;
 }
 
 main .stats-icon {
-    margin-right: 10px; /* Add space between icon and title */
-    display: inline-block; /* Make icon an inline block */
-    width: 50px; /* Fixed width for the icon circle */
-    height: 50px; /* Fixed height for the icon circle */
-    border-radius: 50%; /* Perfect circle for the icon */
-    background-color: coral; /* Background color for the icon */
-    position: relative; /* Set relative position for absolute positioning of the image */
-    overflow: hidden; /* Ensure the image doesn't overflow the container */
+    margin-right: 10px;
+    /* Add space between icon and title */
+    display: inline-block;
+    /* Make icon an inline block */
+    width: 50px;
+    /* Fixed width for the icon circle */
+    height: 50px;
+    /* Fixed height for the icon circle */
+    border-radius: 50%;
+    /* Perfect circle for the icon */
+    background-color: coral;
+    /* Background color for the icon */
+    position: relative;
+    /* Set relative position for absolute positioning of the image */
+    overflow: hidden;
+    /* Ensure the image doesn't overflow the container */
 }
 
 main .stats-icon .icons-stats {
-    width: 60%; /* Adjust the width of the image as needed */
-    height: 60%; /* Adjust the height of the image as needed */
+    width: 60%;
+    /* Adjust the width of the image as needed */
+    height: 60%;
+    /* Adjust the height of the image as needed */
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the image inside the circle */
+    transform: translate(-50%, -50%);
+    /* Center the image inside the circle */
 }
 
-main .insights > div span {
+main .insights>div span {
     background: coral;
     padding: 0.5rem;
     border-radius: 50%;
@@ -435,13 +455,13 @@ main .insights > div span {
 //     background: var(--clr-danger);
 // }
 
-main .insights > div .middle {
+main .insights>div .middle {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-main .insights > div .middle h1 {
+main .insights>div .middle h1 {
     font-size: 1.6rem;
 }
 
@@ -482,7 +502,7 @@ main .insights svg {
 main .insights svg circle {
     fill: none;
     stroke: var(--clr-primary);
-    transform: rotate(270,80,80);
+    transform: rotate(270, 80, 80);
     stroke-width: 5;
 }
 
@@ -543,7 +563,7 @@ main .recent_order table:hover {
 
 
 
-main table tbody tr{
+main table tbody tr {
     height: 3.8rem;
     border-bottom: 1px solid var(--clr-dark);
     color: var(--clr-dark-variant);
@@ -565,7 +585,8 @@ main .recent_order a {
 }
 
 main .recent_order .detail-button {
-    background-color: var(--clr-primary); /* Warna latar belakang tombol */
+    background-color: var(--clr-primary);
+    /* Warna latar belakang tombol */
     color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -575,35 +596,63 @@ main .recent_order .detail-button {
     cursor: pointer;
 }
 
+main .recent_order .detail-button:hover {
+    background-color: rgb(242, 74, 12);
+}
+
+.paynow-button {
+    background-color: #dce1eb;
+    /* Warna latar belakang tombol */
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.paynow-button:hover {
+    background-color: #677483;
+    color: white;
+}
 
 .table-responsive {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Enable smooth scrolling on iOS */
 }
 
 @media (max-width: 767px) {
     .table-responsive {
-        width: 100%; /* Ensure the container takes up the full width */
-        margin-bottom: 15px; /* Add some margin below the container */
+        width: 100%;
+        /* Ensure the container takes up the full width */
+        margin-bottom: 15px;
+        /* Add some margin below the container */
     }
 
     .order-table {
-        min-width: 400px; /* Ensure the table is wider than the container to enable scrolling */
+        min-width: 400px;
+        /* Ensure the table is wider than the container to enable scrolling */
     }
 
     .order-table th,
     .order-table td {
-        white-space: nowrap; /* Prevent table cells from wrapping */
+        white-space: nowrap;
+        /* Prevent table cells from wrapping */
     }
 
     .order-table th,
     .order-table td {
-        padding: 8px 8px; /* Add more padding to table headers and cells on mobile */
+        padding: 8px 8px;
+        /* Add more padding to table headers and cells on mobile */
     }
 
     .order-table th,
     .order-table td {
-        text-align: left; /* Align text to the left */
+        text-align: left;
+        /* Align text to the left */
     }
 }
 
@@ -615,7 +664,7 @@ main .recent_order .detail-button {
 // *** TICKET ***//
 main .ticket {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.6rem;
 }
 
@@ -626,15 +675,20 @@ main .ticket>div {
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
     transition: all .3s ease;
-    align-items: center; /* Memusatkan secara vertikal */
+    align-items: center;
+    /* Memusatkan secara vertikal */
 }
 
 .list-ticket img {
-    width: 100%; /* Sesuaikan ukuran gambar sesuai kebutuhan */
+    width: 100%;
+    /* Sesuaikan ukuran gambar sesuai kebutuhan */
     border-radius: 10px;
-    height: auto; /* Biarkan tinggi gambar menyesuaikan proporsi */
-    margin-right: 0; /* Menghilangkan margin di sebelah kanan gambar */
-    padding: 0; /* Menghilangkan padding di sekitar gambar */
+    height: auto;
+    /* Biarkan tinggi gambar menyesuaikan proporsi */
+    margin-right: 0;
+    /* Menghilangkan margin di sebelah kanan gambar */
+    padding: 0;
+    /* Menghilangkan padding di sekitar gambar */
     object-fit: cover;
 }
 
@@ -651,10 +705,10 @@ main .ticket>div {
 
 
 // *** SETTINGS ***//
- // settings
- main .settings {
+// settings
+main .settings {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.6rem;
 }
 
@@ -665,15 +719,18 @@ main .settings>div {
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
     transition: all .3s ease;
-    align-items: center; /* Memusatkan secara vertikal */
-    width: 300px; /* Atur lebar sesuai kebutuhan */
-    height: 250px; /* Atur tinggi sesuai kebutuhan */
-    
-    
+    align-items: center;
+    /* Memusatkan secara vertikal */
+    width: 300px;
+    /* Atur lebar sesuai kebutuhan */
+    height: 250px;
+    /* Atur tinggi sesuai kebutuhan */
+
+
 }
 
 
-main .settings > div span {
+main .settings>div span {
     background: coral;
     padding: 0.5rem;
     border-radius: 50%;
@@ -681,28 +738,39 @@ main .settings > div span {
     font-size: 2rem;
 }
 
-main .settings > div .middle {
+main .settings>div .middle {
     display: flex;
-    flex-direction: column; /* Mengatur tata letak menjadi kolom */
-    align-items: flex-start; /* Konten di atasnya ke sebelah kiri */
-    justify-content: flex-start !important; /* Konten di tengah-tengah vertikal */
-    padding: 1rem; /* Padding untuk jarak horizontal */
+    flex-direction: column;
+    /* Mengatur tata letak menjadi kolom */
+    align-items: flex-start;
+    /* Konten di atasnya ke sebelah kiri */
+    justify-content: flex-start !important;
+    /* Konten di tengah-tengah vertikal */
+    padding: 1rem;
+    /* Padding untuk jarak horizontal */
     text-align: left !important;
 }
 
 
 main .settings .middle .left {
-    align-self: flex-start; /* Konten di atas (left) di sebelah kiri */
-    margin-bottom: 0.5rem; /* Jarak antara atas dan judul */
+    align-self: flex-start;
+    /* Konten di atas (left) di sebelah kiri */
+    margin-bottom: 0.5rem;
+    /* Jarak antara atas dan judul */
 }
 
 
 main .settings .middle .right {
-    align-self: center; /* Button di tengah */
-    margin-top: 0.5rem; /* Jarak antara bawah dan tombol */
+    align-self: center;
+    /* Button di tengah */
+    margin-top: 0.5rem;
+    /* Jarak antara bawah dan tombol */
 }
 
-main h1, main .settings h1, main .settings h3, main .settings p {
+main h1,
+main .settings h1,
+main .settings h3,
+main .settings p {
     color: var(--clr-dark);
 }
 
@@ -726,8 +794,10 @@ main .settings p {
     background-color: coral;
     color: white;
     border: none;
-    padding: 0.75rem 2rem; /* Sesuaikan padding sesuai kebutuhan */
-    border-radius: 50px; /* Atur nilai border-radius untuk bentuk kapsul */
+    padding: 0.75rem 2rem;
+    /* Sesuaikan padding sesuai kebutuhan */
+    border-radius: 50px;
+    /* Atur nilai border-radius untuk bentuk kapsul */
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -736,11 +806,12 @@ main .settings p {
 main .settings .edit-profile-button {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    
+
 }
 
 .edit-profile-button:hover {
-    background-color: rgb(236, 188, 129); /* Ubah warna latar saat tombol dihover */
+    background-color: rgb(236, 188, 129);
+    /* Ubah warna latar saat tombol dihover */
 }
 
 // *** END SETTINGS ***//
@@ -756,6 +827,7 @@ main .settings .edit-profile-button {
     width: 400px;
     text-align: center;
 }
+
 .edit-profile-form {
     display: flex;
     flex-direction: column;
@@ -764,7 +836,8 @@ main .settings .edit-profile-button {
 
 .content {
     display: flex;
-    gap: 20px; /* Space between the profile container and the card */
+    gap: 20px;
+    /* Space between the profile container and the card */
 }
 
 .photo-upload {
@@ -823,30 +896,40 @@ main .settings .edit-profile-button {
     width: calc(100% - 20px);
     padding: 10px;
     // border: 1px solid #ccc;
-    border-radius: 20px; /* Rounded corners */
-    background-color: #f0f0f0; /* Gray background */
+    border-radius: 20px;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Gray background */
     font-size: 14px;
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
 }
 
 .form-group textarea {
     width: calc(100% - 20px);
     padding: 10px;
-    border-radius: 20px; /* Rounded corners */
-    background-color: #f0f0f0; /* Gray background */
+    border-radius: 20px;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Gray background */
     font-size: 14px;
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
-    resize: vertical; /* Allows vertical resizing only */
-  }
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
+    resize: vertical;
+    /* Allows vertical resizing only */
+}
 
 /* Ensures consistent padding and border inclusion in width */
 .form-group input:focus {
-    border-color: coral; /* Highlight border on focus */
-    outline: none; /* Remove default focus outline */
+    border-color: coral;
+    /* Highlight border on focus */
+    outline: none;
+    /* Remove default focus outline */
 }
 
 .btn-submit {
-    width: calc(100% - 20px); /* Match the width to input fields */
+    width: calc(100% - 20px);
+    /* Match the width to input fields */
     padding: 10px;
     background-color: coral;
     color: white;
@@ -857,8 +940,10 @@ main .settings .edit-profile-button {
     font-size: 16px;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700;
-    margin-top: 10px; /* Space between the last input field and the button */
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    margin-top: 10px;
+    /* Space between the last input field and the button */
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
 }
 
 .btn-submit:hover {
@@ -872,7 +957,8 @@ main .settings .edit-profile-button {
 /* Info Card Styles */
 .info-card {
     margin-top: 2rem;
-    background: linear-gradient(135deg, coral, #0723c1); /* Gradient blue background */
+    background: linear-gradient(135deg, coral, #0723c1);
+    /* Gradient blue background */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -888,7 +974,7 @@ main .settings .edit-profile-button {
 }
 
 .card-icon {
-    
+
     width: 50px;
     height: 50px;
 }
@@ -917,12 +1003,14 @@ main .settings .edit-profile-button {
 .card-button:hover {
     background-color: #f0f0f0;
 }
+
 // *** END CONTACT US ***//
 
 // *** PAGINATION ***//
 .pagination {
     margin-top: 20px;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .pagination button {
@@ -953,6 +1041,7 @@ main .settings .edit-profile-button {
 .pagination button.active:hover {
     background-color: coral;
 }
+
 // *** END PAGINATION ***//
 
 
@@ -968,12 +1057,17 @@ main .settings .edit-profile-button {
 .success-message {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Mengatur posisi vertikal ke tengah */
-    align-items: center; /* Mengatur posisi horizontal ke tengah */
-    text-align: center; /* Mengatur teks ke tengah */
-    margin-bottom: 1rem; /* Jarak bawah dari .success-message */
-    padding: 40px; /* Atur jarak antara isi dan tepi */
-    
+    justify-content: center;
+    /* Mengatur posisi vertikal ke tengah */
+    align-items: center;
+    /* Mengatur posisi horizontal ke tengah */
+    text-align: center;
+    /* Mengatur teks ke tengah */
+    margin-bottom: 1rem;
+    /* Jarak bawah dari .success-message */
+    padding: 40px;
+    /* Atur jarak antara isi dan tepi */
+
 }
 
 .success-message h1 {
@@ -982,12 +1076,16 @@ main .settings .edit-profile-button {
 
 .card-container {
     display: flex;
-    justify-content: center; /* Mengatur posisi horizontal ke tengah */
-    align-items: center; /* Mengatur posisi vertikal ke tengah */
-    height: 15vh; /* Mengisi tinggi layar penuh */
-    margin-top: 1rem; /* Jarak atas dari .card-container */
-    
-   
+    justify-content: center;
+    /* Mengatur posisi horizontal ke tengah */
+    align-items: center;
+    /* Mengatur posisi vertikal ke tengah */
+    height: 15vh;
+    /* Mengisi tinggi layar penuh */
+    margin-top: 1rem;
+    /* Jarak atas dari .card-container */
+
+
 }
 
 .custom-card {
@@ -1036,9 +1134,11 @@ main .settings .edit-profile-button {
 .product-status {
     background-color: #071C4D;
     border-radius: 40px;
-    padding: 5px;  
-    max-width: 80px; /* Atur lebar maksimum agar tidak terlalu panjang */
-    margin-top: 10px; /* Sesuaikan margin sesuai kebutuhan */
+    padding: 5px;
+    max-width: 80px;
+    /* Atur lebar maksimum agar tidak terlalu panjang */
+    margin-top: 10px;
+    /* Sesuaikan margin sesuai kebutuhan */
 }
 
 
@@ -1053,7 +1153,8 @@ main .settings .edit-profile-button {
     margin: 0;
     color: white;
     font-weight: 700;
-    padding: 5px 10px; /* Sesuaikan padding sesuai kebutuhan */
+    padding: 5px 10px;
+    /* Sesuaikan padding sesuai kebutuhan */
 }
 
 .icon-container {
@@ -1063,20 +1164,26 @@ main .settings .edit-profile-button {
 }
 
 .icon {
-    font-size: 24px; /* Sesuaikan ukuran ikon */
-    color: #333; /* Sesuaikan warna ikon */
-    margin-right: 10px; /* Jarak antara ikon dan teks keterangan */
+    font-size: 24px;
+    /* Sesuaikan ukuran ikon */
+    color: #333;
+    /* Sesuaikan warna ikon */
+    margin-right: 10px;
+    /* Jarak antara ikon dan teks keterangan */
 }
 
 .icon-description {
-    flex: 1; /* Memanfaatkan flex-grow untuk mengisi ruang tersisa */
+    flex: 1;
+    /* Memanfaatkan flex-grow untuk mengisi ruang tersisa */
 }
 
 .icon-description p {
-    font-size: 14px; /* Sesuaikan ukuran teks keterangan */
+    font-size: 14px;
+    /* Sesuaikan ukuran teks keterangan */
     margin: 0;
     font-weight: 700;
-    padding-left: 10px; /* Jarak antara ikon dan teks keterangan */
+    padding-left: 10px;
+    /* Jarak antara ikon dan teks keterangan */
 }
 
 .custom-card .divider {
@@ -1115,6 +1222,7 @@ main .settings .edit-profile-button {
     cursor: pointer;
     font-size: 14px;
 }
+
 .custom-card .action-button-secondary {
     padding: 10px 20px;
     background-color: #ddd;
@@ -1129,53 +1237,67 @@ main .settings .edit-profile-button {
 .custom-card .action-button:hover {
     background-color: rgb(253, 182, 155);
 }
+
 .custom-card .action-button-secondary:hover {
     background-color: rgb(240, 238, 237);
 }
 
 /* Untuk perangkat mobile */
 @media (max-width: 768px) {
-    
+
     .custom-card {
-        width: 90%; /* Mengurangi lebar maksimum kartu */
-        padding: 15px; /* Mengurangi padding pada kartu */
+        width: 90%;
+        /* Mengurangi lebar maksimum kartu */
+        padding: 15px;
+        /* Mengurangi padding pada kartu */
     }
 
     .custom-card .product-image {
-        width: 100px; /* Mengurangi ukuran gambar produk */
-        margin-right: 15px; /* Mengurangi margin kanan pada gambar produk */
+        width: 100px;
+        /* Mengurangi ukuran gambar produk */
+        margin-right: 15px;
+        /* Mengurangi margin kanan pada gambar produk */
     }
 
     .custom-card .product-title {
-        font-size: 16px; /* Mengurangi ukuran font judul produk */
+        font-size: 16px;
+        /* Mengurangi ukuran font judul produk */
     }
 
     .product-status p {
-        font-size: 10px; /* Mengurangi ukuran font status produk */
+        font-size: 10px;
+        /* Mengurangi ukuran font status produk */
     }
 
     .icon {
-        font-size: 20px; /* Mengurangi ukuran ikon */
+        font-size: 20px;
+        /* Mengurangi ukuran ikon */
     }
 
     .icon-description p {
-        font-size: 12px; /* Mengurangi ukuran teks keterangan ikon */
+        font-size: 12px;
+        /* Mengurangi ukuran teks keterangan ikon */
     }
 
     .custom-card .description h3 {
-        font-size: 14px; /* Mengurangi ukuran font judul deskripsi */
+        font-size: 14px;
+        /* Mengurangi ukuran font judul deskripsi */
     }
 
     .custom-card .description p {
-        font-size: 12px; /* Mengurangi ukuran font teks deskripsi */
+        font-size: 12px;
+        /* Mengurangi ukuran font teks deskripsi */
     }
 
     .custom-card .action-button,
     .custom-card .action-button-secondary {
-        padding: 8px 15px; /* Mengurangi padding tombol aksi */
-        font-size: 12px; /* Mengurangi ukuran font pada tombol aksi */
+        padding: 8px 15px;
+        /* Mengurangi padding tombol aksi */
+        font-size: 12px;
+        /* Mengurangi ukuran font pada tombol aksi */
     }
 }
+
 // ** END SUCCESS BOOK ** //
 
 /* CSS for dropdown */
@@ -1184,7 +1306,7 @@ main .settings .edit-profile-button {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 15%;
     border-radius: 5px;
@@ -1206,22 +1328,30 @@ main .settings .edit-profile-button {
 
 // *** DEVICE MOBILE ***//
 @media (max-width: 575px) {
+
     /* Container */
     .container {
-        display: block; /* Mengubah display menjadi block untuk mengabaikan grid template */
+        display: block;
+        /* Mengubah display menjadi block untuk mengabaikan grid template */
         width: 100%;
-        padding: 1rem; /* Tambahkan padding untuk memberikan ruang di sekitar konten */
+        padding: 1rem;
+        /* Tambahkan padding untuk memberikan ruang di sekitar konten */
     }
 
     /* Navbar */
     nav {
         display: flex;
-        justify-content: space-between; /* Memusatkan navbar secara horizontal */
-        align-items: center; /* Memusatkan navbar secara vertikal */
+        justify-content: space-between;
+        /* Memusatkan navbar secara horizontal */
+        align-items: center;
+        /* Memusatkan navbar secara vertikal */
         background-color: var(--clr-white);
-        padding: 1rem; /* Beri ruang di sekitar navbar */
-        border-radius: 20px; /* Tambahkan corner radius */
-        margin-bottom: 1rem; /* Memberikan ruang di bawah navbar */
+        padding: 1rem;
+        /* Beri ruang di sekitar navbar */
+        border-radius: 20px;
+        /* Tambahkan corner radius */
+        margin-bottom: 1rem;
+        /* Memberikan ruang di bawah navbar */
     }
 
     nav ul {
@@ -1248,7 +1378,7 @@ main .settings .edit-profile-button {
     }
 
     nav .user {
-        display: flex;  
+        display: flex;
         align-items: center;
         gap: 0.5rem;
     }
@@ -1257,52 +1387,62 @@ main .settings .edit-profile-button {
         font-size: 1.2rem;
     }
 
-     /* Navbar */
-     nav .toggle-btn .material-icons {
-        color: black; /* Mengatur warna ikon menjadi hitam */
+    /* Navbar */
+    nav .toggle-btn .material-icons {
+        color: black;
+        /* Mengatur warna ikon menjadi hitam */
     }
 
     nav .toggle-btn {
-        order: -1; /* Menempatkan tombol menu di sebelah kiri */
+        order: -1;
+        /* Menempatkan tombol menu di sebelah kiri */
         padding: 0.5rem;
     }
-    
+
     .search-container {
-        width: auto; /* Atur lebar kembali ke otomatis */
+        width: auto;
+        /* Atur lebar kembali ke otomatis */
     }
 
     .search-container input {
-        display: none; /* Sembunyikan input pada perangkat mobile */
+        display: none;
+        /* Sembunyikan input pada perangkat mobile */
     }
 
     .search-container .search-btn {
-        padding: 0.5rem; /* Atur padding untuk tombol search */
+        padding: 0.5rem;
+        /* Atur padding untuk tombol search */
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
     }
 
-   
-   .search-container .search-icon {
+
+    .search-container .search-icon {
         width: 7px !important;
         height: 7px !important;
     }
-    
+
     .search-container .search-btn .material-icons {
-        font-size: 1.5rem; /* Ukuran ikon search */
+        font-size: 1.5rem;
+        /* Ukuran ikon search */
         color: #333;
     }
 
     .user {
         display: flex;
         align-items: center;
-        gap: 0.5rem; /* Jarak antara elemen */
+        gap: 0.5rem;
+        /* Jarak antara elemen */
     }
 
     .user img {
-        max-width: 30px; /* Ukuran maksimal foto profil */
+        max-width: 30px;
+        /* Ukuran maksimal foto profil */
         max-height: 30px;
-        border-radius: 50%; /* Agar bundar */
+        border-radius: 50%;
+        /* Agar bundar */
     }
+
     .user span {
         display: none;
     }
@@ -1311,7 +1451,8 @@ main .settings .edit-profile-button {
     .toggle-btn {
         display: block;
         cursor: pointer;
-        margin-right: auto; /* Menggeser tombol menu ke kiri */
+        margin-right: auto;
+        /* Menggeser tombol menu ke kiri */
         padding: 0.5rem;
     }
 
@@ -1323,24 +1464,29 @@ main .settings .edit-profile-button {
     /* Adjust Images */
     nav .logo img,
     .profile-photo img {
-        max-width: 50px; /* Ukuran gambar maksimal */
+        max-width: 50px;
+        /* Ukuran gambar maksimal */
         max-height: 50px;
         width: auto;
         height: auto;
-        border-radius: 50%; /* Agar gambar bundar */
+        border-radius: 50%;
+        /* Agar gambar bundar */
     }
 
     /* Main Content */
     main {
         display: block;
         width: 100%;
-        padding: 1rem; /* Tambahkan padding untuk memberikan ruang di sekitar konten utama */
-        text-align: center; /* Memusatkan konten utama secara horizontal */
+        padding: 1rem;
+        /* Tambahkan padding untuk memberikan ruang di sekitar konten utama */
+        text-align: center;
+        /* Memusatkan konten utama secara horizontal */
     }
 
     main .insights {
         display: grid;
-        grid-template-columns: 1fr; /* Satu kolom untuk insights */
+        grid-template-columns: 1fr;
+        /* Satu kolom untuk insights */
         gap: 1.6rem;
     }
 
@@ -1351,7 +1497,8 @@ main .settings .edit-profile-button {
         margin-top: 1rem;
         box-shadow: var(--box-shadow);
         transition: all .3s ease;
-        text-align: left; /* Memastikan konten rata kiri */
+        text-align: left;
+        /* Memastikan konten rata kiri */
     }
 
     main .insights>div:hover {
@@ -1375,13 +1522,15 @@ main .settings .edit-profile-button {
     main .insights .middle h1 {
         font-size: 1.6rem;
     }
+
     main .insights .middle h2 {
         font-size: 20px;
     }
 
     main h1 {
         color: var(--clr-dark);
-        text-align: left; /* Memastikan konten rata kiri */
+        text-align: left;
+        /* Memastikan konten rata kiri */
     }
 
     main .desc-title {
@@ -1417,14 +1566,15 @@ main .settings .edit-profile-button {
         box-shadow: none;
     }
 
-   
+
     // TABLE
-    
+
     .recent_orders {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
     // .date-transaction {
     //     display: none;
     // }
@@ -1432,11 +1582,13 @@ main .settings .edit-profile-button {
     // .id-number {
     //     display: none;
     // }
-   
+
     .recent_order .cover {
 
-        max-width: 50px; /* Contoh pengaturan lebar maksimum */
-        height: auto; /* Biarkan tinggi sesuai dengan lebar yang disesuaikan */
+        max-width: 50px;
+        /* Contoh pengaturan lebar maksimum */
+        height: auto;
+        /* Biarkan tinggi sesuai dengan lebar yang disesuaikan */
     }
 
     // .status {
@@ -1449,28 +1601,32 @@ main .settings .edit-profile-button {
     }
 
     .detail-button {
-        background-color: #e5e9f2; /* Warna latar belakang tombol */
+        background-color: #e5e9f2;
+        /* Warna latar belakang tombol */
         color: white;
         border: none;
         padding: 0.5rem 1rem;
         border-radius: 20px;
         cursor: pointer;
     }
-    
-    
 
-    
+
+
+
 
     /* Sidebar */
     aside {
-        display: block; /* Sembunyikan sidebar pada ponsel */
+        display: block;
+        /* Sembunyikan sidebar pada ponsel */
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
-        width: 80%; /* Lebar sidebar */
+        width: 80%;
+        /* Lebar sidebar */
         background-color: var(--clr-white);
-        z-index: 1000; /* Pastikan tampil di atas konten lain */
+        z-index: 1000;
+        /* Pastikan tampil di atas konten lain */
         transform: translateX(-100%);
         transition: transform 0.3s ease;
     }
@@ -1487,8 +1643,10 @@ main .settings .edit-profile-button {
         user-select: none;
         overflow-x: hidden;
         background: var(--clr-color-background);
-        margin: 0; /* Hapus margin bawaan */
-        padding: 0; /* Hapus padding bawaan */
+        margin: 0;
+        /* Hapus margin bawaan */
+        padding: 0;
+        /* Hapus padding bawaan */
     }
 
     /* Typography Adjustments */
@@ -1557,20 +1715,22 @@ main .settings .edit-profile-button {
         right: 1rem;
         cursor: pointer;
     }
-    
+
     aside .close .material-icons {
         font-size: 1.5rem;
-        color: #333; /* Warna ikon close */
-        
+        color: #333;
+        /* Warna ikon close */
+
     }
 
 
     // TICKET
     main .ticket {
-        grid-template-columns: 1fr; /* Satu kolom */
+        grid-template-columns: 1fr;
+        /* Satu kolom */
     }
 
-    main .ticket > div {
+    main .ticket>div {
         margin-top: 1rem;
     }
 
@@ -1584,54 +1744,65 @@ main .settings .edit-profile-button {
         text-align: left;
     }
 
-   
+
     // settings
 
 
     main .settings {
         display: grid;
-        grid-template-columns: 1fr; /* Satu kolom untuk insights */
+        grid-template-columns: 1fr;
+        /* Satu kolom untuk insights */
         gap: 1.6rem;
     }
 
-    main .settings > div {
-        display: flex; /* Menggunakan flexbox untuk tata letak */
-        align-items: center; /* Memusatkan secara vertikal */
+    main .settings>div {
+        display: flex;
+        /* Menggunakan flexbox untuk tata letak */
+        align-items: center;
+        /* Memusatkan secara vertikal */
         width: auto;
     }
 
-    main .settings > div span {
-        margin-right: 1rem; /* Memberi jarak kanan antara ikon dan teks */
+    main .settings>div span {
+        margin-right: 1rem;
+        /* Memberi jarak kanan antara ikon dan teks */
     }
 
     main .settings .middle {
-        flex: 1; /* Mengisi sisa ruang kosong di kanan ikon */
+        flex: 1;
+        /* Mengisi sisa ruang kosong di kanan ikon */
     }
 
     main .settings .middle .left {
-        margin-bottom: 0.25rem; /* Jarak antara atas dan judul */
+        margin-bottom: 0.25rem;
+        /* Jarak antara atas dan judul */
     }
 
     main .settings .middle .right {
-        margin-top: 0.25rem; /* Jarak antara bawah dan tombol */
+        margin-top: 0.25rem;
+        /* Jarak antara bawah dan tombol */
     }
-    
+
     .edit-profile-button {
         display: none;
     }
 
     // edit profile
     .content {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center items horizontally */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
     }
 
     .profile-container {
-        width: 100%; /* Full width on mobile */
+        width: 100%;
+        /* Full width on mobile */
     }
 
     .info-card {
-        width: 100%; /* Full width on mobile */
+        width: 100%;
+        /* Full width on mobile */
     }
 
     .dropdown-content {
@@ -1639,37 +1810,39 @@ main .settings .edit-profile-button {
         position: absolute;
         background-color: #f9f9f9;
         min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         text-align: left;
         top: 22%;
         border-radius: 5px;
         left: 50%;
     }
-    
+
     .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
     }
-    
+
     .dropdown-content a:hover {
         background-color: #f1f1f1;
     }
 
-   
+
 }
 
 // *** DEVICE DESKTOP *** ///
 @media (min-width: 992px) {
     aside .close {
-        display: none; /* Sembunyikan tombol close di perangkat dengan lebar layar lebih dari 992px (laptop dan desktop) */
+        display: none;
+        /* Sembunyikan tombol close di perangkat dengan lebar layar lebih dari 992px (laptop dan desktop) */
     }
 }
 
 // *** DEVICE TABLET (LANDSACPE DAN PORTRAIT) & MOBILE LANDSACPE *** ///
 @media (min-width: 576px) and (max-width: 991px) {
+
     /* Hide Sidebar by Default */
     aside {
         display: block;
@@ -1677,7 +1850,8 @@ main .settings .edit-profile-button {
         top: 0;
         left: 0;
         bottom: 0;
-        width: 45%; /* Lebar sidebar */
+        width: 45%;
+        /* Lebar sidebar */
         background-color: var(--clr-white);
         z-index: 1000;
         transform: translateX(-100%);
@@ -1716,7 +1890,8 @@ main .settings .edit-profile-button {
 
     .toggle-btn .material-icons {
         font-size: 1.5rem;
-        color: #333; /* Warna ikon toggle */
+        color: #333;
+        /* Warna ikon toggle */
     }
 
     /* User Section */
@@ -1727,53 +1902,61 @@ main .settings .edit-profile-button {
     }
 
     .user .profile-image {
-        max-width: 30px; /* Sesuaikan ukuran foto profil */
+        max-width: 30px;
+        /* Sesuaikan ukuran foto profil */
         max-height: 30px;
     }
 
     .user span {
-        display: none; /* Sembunyikan nama pengguna di tablet */
+        display: none;
+        /* Sembunyikan nama pengguna di tablet */
     }
 
     nav .toggle-btn {
-        order: -1; /* Menempatkan tombol menu di sebelah kiri */
+        order: -1;
+        /* Menempatkan tombol menu di sebelah kiri */
         padding: 0.5rem;
     }
-    
+
     /* Search */
     .search-container {
-        width: auto; /* Atur lebar kembali ke otomatis */
+        width: auto;
+        /* Atur lebar kembali ke otomatis */
     }
 
     .search-container input {
-        display: none; /* Sembunyikan input pada perangkat mobile */
+        display: none;
+        /* Sembunyikan input pada perangkat mobile */
     }
 
     .search-container .search-btn {
-        padding: 0.5rem; /* Atur padding untuk tombol search */
+        padding: 0.5rem;
+        /* Atur padding untuk tombol search */
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
 
     }
 
     .search-container .search-btn .material-icons {
-        font-size: 1.5rem; /* Ukuran ikon search */
+        font-size: 1.5rem;
+        /* Ukuran ikon search */
         color: #333;
 
     }
 
-    /* Close button sidebar */ 
+    /* Close button sidebar */
     aside .close {
         position: absolute;
         top: 1rem;
         right: 1rem;
         cursor: pointer;
     }
-    
+
     aside .close .material-icons {
         font-size: 1.5rem;
-        color: #333; /* Warna ikon close */
-        
+        color: #333;
+        /* Warna ikon close */
+
     }
 
     .dropdown-content {
@@ -1781,23 +1964,22 @@ main .settings .edit-profile-button {
         position: absolute;
         background-color: #f9f9f9;
         min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         text-align: left;
         top: 10%;
         border-radius: 5px;
         left: 75%;
     }
-    
+
     .dropdown-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
     }
-    
+
     .dropdown-content a:hover {
         background-color: #f1f1f1;
     }
 }
-
