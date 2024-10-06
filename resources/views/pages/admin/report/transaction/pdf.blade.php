@@ -183,6 +183,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Order ID</th>
                     {{-- <th>Code</th> --}}
                     <th>Date</th>
                     <th>User</th>
@@ -197,6 +198,7 @@
                     {{-- @php $totalTransaction += $transaction->grand_total; @endphp --}}
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $transaction->order_id }}</td>
                         {{-- <td>ORD-001</td> --}}
                         <td>{{ $transaction->created_at->format('d-m-Y H:i:s') }}</td>
                         <td>{{ $transaction->user->name }}</td>

@@ -159,9 +159,11 @@ class TransactionController extends Controller
         Config::$isSanitized = config('midtrans.isSanitized');
         Config::$is3ds = config('midtrans.is3ds');
 
+        $random = rand(100, 999);
+        $transaction->order_id = 'WW' . date('Ymd') . $random;
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => $transaction->id,
+                'order_id' => $transaction->order_id,
                 'gross_amount' => (int) $transaction->grand_total,
             ],
             'customer_details' => [
@@ -205,7 +207,7 @@ class TransactionController extends Controller
         $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
 
         // Ambil semua data notifikasi Midtrans untuk transaksi ini
-        $midtransNotifications = MidtransNotification::where('order_id', $item->id)
+        $midtransNotifications = MidtransNotification::where('order_id', $item->order_id)
             ->orderBy('created_at', 'desc')
             ->get();
 

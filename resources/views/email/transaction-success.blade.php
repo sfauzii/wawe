@@ -200,7 +200,7 @@
                           <tbody>
                             <tr>
                               <td align="left" style="font-size:0px;padding:10px 25px;padding-right:25px;padding-left:25px;word-break:break-word;">
-                                <div style="font-family:Assistant, Helvetica, Arial sans-serif;font-size:18px;line-height:18px;text-align:left;color:#071C4D;">Hi, {{ $data->user->name }} <br><br> Tiket digital kamu sudah berhasil dicetak. <br> Booking ID <strong>#{{ $data->id }}</strong></div>
+                                <div style="font-family:Assistant, Helvetica, Arial sans-serif;font-size:18px;line-height:18px;text-align:left;color:#071C4D;">Hi, {{ $data->user->name }} <br><br> Tiket digital kamu sudah berhasil dicetak. <br> Booking ID <strong>#{{ $data->order_id }}</strong></div>
                               </td>
                             </tr>
                             <tr>

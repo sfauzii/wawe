@@ -25,9 +25,9 @@ class MyTransactionController extends Controller
 
 
         $transactions = Transaction::with(['details', 'travel_package.galleries'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc',)
             ->where('users_id', $user->id)
-            ->where('transaction_status', '!=', 'IN_CART')
+            ->whereIn('transaction_status', ['SUCCESS', 'PENDING'])
             ->get();
 
         return view('pages.users.transactions.my-transactions', [

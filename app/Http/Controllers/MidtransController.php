@@ -43,7 +43,9 @@ class MidtransController extends Controller
         // $order_id = $order[1];
 
         // cari transaksi berdasarkan id
-        $transaction = Transaction::findOrFail($order_id);
+        // $transaction = Transaction::findOrFail($order_id);
+
+        $transaction = Transaction::where('order_id', $order_id)->first();
 
         // Handle notification status midtrans
         if ($status == 'capture') {
@@ -120,7 +122,7 @@ class MidtransController extends Controller
         $transactionStatus = $request->input('transaction_status');
 
         // Ambil transaksi berdasarkan ID order
-        $transaction = Transaction::where('id', $orderId)->first();
+        $transaction = Transaction::where('order_id', $orderId)->first();
 
         // Jika pembayaran berhasil (status "settlement"), arahkan pengguna ke halaman success
         if ($statusCode == 200 && $transactionStatus == 'settlement') {

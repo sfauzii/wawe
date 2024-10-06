@@ -127,12 +127,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>ID Transaction</th>
-                    <td>{{ $item->id }}</td>
+                    <th>Order ID</th>
+                    <td>{{ $item->order_id }}</td>
                 </tr>
                 <tr>
                     <th>Package Name</td>
-                    <td>{{ $item->travel_package->title }}</td>
+                    <td>{{ ucwords($item->travel_package->title) }}</td>
                 </tr>
                 <tr>
                     <th>Pembeli</td>

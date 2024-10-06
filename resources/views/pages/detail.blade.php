@@ -158,7 +158,7 @@
                     <!-- Product Information Section -->
                     <aside class="card-information">
                         <div class="price">
-                            <h3>Rp {{ number_format($item->price, 0, ',') }}<span>/day</span></h3>
+                            <h3>Rp {{ number_format($item->price, 0, ',') }}<span>/person</span></h3>
                         </div>
                         <div>
                             Trip Information

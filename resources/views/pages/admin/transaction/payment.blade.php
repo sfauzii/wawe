@@ -18,6 +18,7 @@
                             <th scope="row">Transaction ID</th>
                             <td>{{ $transaction->id }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row">Username</th>
                             <td>{{ $transaction->user->username ?? 'N/A' }}</td>

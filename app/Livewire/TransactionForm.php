@@ -125,7 +125,7 @@ class TransactionForm extends Component
         // Create the transaction with the logged-in user as the creator
         $transaction = Transaction::create([
             'travel_packages_id' => $this->selectedPackageId,
-            'transaction_total' => $this->totalAmount,
+            // 'transaction_total' => $this->totalAmount,
             'transaction_status' => 'PENDING',
             'users_id' => Auth::id(),
             'payment_method' => $this->paymentMethod,

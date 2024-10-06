@@ -276,10 +276,13 @@ class CheckoutController extends Controller
         Config::$isSanitized = config('midtrans.isSanitized');
         Config::$is3ds = config('midtrans.is3ds');
 
-        // Buat array untuk dikirim ke midtrans
+
+        $random = rand(100, 999);
+        $transaction->order_id = 'WW' . date('Ymd') . $random;
+         // Buat array untuk dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => $transaction->id,
+                'order_id' => $transaction->order_id,
                 'gross_amount' => (int) $transaction->grand_total,
             ],
             'customer_details' => [

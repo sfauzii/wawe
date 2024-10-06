@@ -34,6 +34,11 @@
                                     <th>ID</th>
                                     <td>{{ $item->id }}</td>
                                 </tr>
+
+                                <tr>
+                                    <th>Order Id</th>
+                                    <td>{{ $item->order_id }}</td>
+                                </tr>
                                 
                                 <tr>
                                     <th>Pembeli</th>
@@ -81,10 +86,10 @@
                                                 </details>
 
                                                 <!-- Display specific fields -->
-                                <tr>
+                                {{-- <tr>
                                     <th>Transaction ID</th>
                                     <td>{{ $data['transaction_id'] ?? 'N/A' }}</td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <th>Fraud Status</th>
                                     <td>{{ strtoupper($data['fraud_status'] ?? 'N/A') }}</td>

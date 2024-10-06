@@ -36,7 +36,7 @@
                             // Bagian kedua dan seterusnya dari UUID
                             $remainingUuid = implode('-', array_slice($uuidParts, 1));
                         @endphp
-                        <h3>#{{ $shortUuid }}</h3>
+                        <h3>#{{ $transaction->order_id }}</h3>
                         <p>Product Name: <strong>{{ ucwords($transaction->travel_package->title) }}</strong></p>
                     </div>
                     <div class="right">

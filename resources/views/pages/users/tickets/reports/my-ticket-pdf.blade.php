@@ -234,7 +234,7 @@
                                                                     Hi, <strong>{{ ucfirst($user->name) }}</strong>! <br><br>
                                                                     Tiket digital kamu
                                                                     sudah berhasil dicetak. <br> Booking ID
-                                                                    <strong>#{{ $transaction->id }}</strong>
+                                                                    <strong>#{{ $transaction->order_id }}</strong>
                                                                 </div>
                                                             </td>
                                                         </tr>

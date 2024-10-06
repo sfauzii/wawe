@@ -15,12 +15,14 @@ class Transaction extends Model
     use HasFactory, SoftDeletes, HasUuids;
 
     protected $fillable = [
+        'order_id',
         'travel_packages_id',
         'users_id',
         'additional_visa',
         // 'transaction_total',
         'transaction_status',
         'payment_method',
+        'sub_total',
         'ppn',
         'grand_total'
     ];

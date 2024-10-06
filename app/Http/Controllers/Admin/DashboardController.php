@@ -132,12 +132,12 @@ class DashboardController extends Controller
                 break;
         }
 
-        $totalSales = $salesQuery->sum('transaction_total'); // Total transaction
+        $totalSales = $salesQuery->sum('grand_total'); // Total transaction
 
         $pastSalesQuery = transaction::where('created_at', '>=', Carbon::now()->subDays(30));
-        $pastTotalSales = $pastSalesQuery->sum('transaction_total'); // Total transaction
+        $pastTotalSales = $pastSalesQuery->sum('grand_total'); // Total transaction
         $previousPeriodSalesQuery = Transaction::where('created_at', '>=', Carbon::now()->subDays(60))->where('created_at', '<', Carbon::now()->subDays(30));
-        $previousPeriodTotalSales = $previousPeriodSalesQuery->sum('transaction_total');
+        $previousPeriodTotalSales = $previousPeriodSalesQuery->sum('grand_total');
 
         $increaseDecrease = $pastTotalSales - $previousPeriodTotalSales;
         $percentageChange = $previousPeriodTotalSales > 0 ? ($increaseDecrease / $previousPeriodTotalSales) * 100 : 0;

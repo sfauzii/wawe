@@ -177,7 +177,7 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>Order ID</th>
                                 <th>Travel</th>
                                 <th>User</th>
                                 <th>Date</th>
@@ -191,7 +191,7 @@
                             @forelse ($items as $item)
                                 <tr>
                                     {{-- <td>{{ $item->id }}</td> --}}
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->order_id }}</td>
                                     <td>{{ ucwords($item->travel_package->title) }}</td>
                                     <td>{{ ucwords($item->user->name) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i') }}</td>

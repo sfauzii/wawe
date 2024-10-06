@@ -31,7 +31,7 @@
                                     $uuidParts = explode('-', $item->id);
                                     $shortUuid = $uuidParts[0];
                                 @endphp
-                                <td class="id-number" style="font-weight: bold;">{{ $shortUuid }}</td>
+                                <td class="id-number" style="font-weight: bold;">{{ $item->order_id }}</td>
                                 <td>
                                     @if ($item->travel_package->galleries->isNotEmpty())
                                         @php
