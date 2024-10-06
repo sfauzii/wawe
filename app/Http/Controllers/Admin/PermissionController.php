@@ -9,6 +9,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PermissionController extends Controller
 {
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('permission:create permission')->only(['create', 'store']);
+        $this->middleware('permission:edit permission')->only(['edit', 'update']);
+        $this->middleware('permission:delete permission')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -34,9 +42,9 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required','string','unique:permissions,name']
+            'name' => ['required', 'string', 'unique:permissions,name']
         ]);
-        
+
         Permission::create([
             'name' => $request->name
         ]);
@@ -63,7 +71,6 @@ class PermissionController extends Controller
         return view('pages.admin.roles-permissions.permission.edit', [
             'permission' => $permission
         ]);
-
     }
 
     /**
@@ -76,7 +83,7 @@ class PermissionController extends Controller
         ]);
 
         $permission->update([
-            'name'=> $request->name
+            'name' => $request->name
         ]);
 
         Alert::success('Success', 'Permission was successfully updated');
@@ -89,12 +96,12 @@ class PermissionController extends Controller
      */
     public function destroy(string $id)
     {
-        $permission = Permission::find( $id );
-        if($permission) {
+        $permission = Permission::find($id);
+        if ($permission) {
             $permission->delete();
-            Alert::success('Success','Permission deleted successfully');
-        }else {
-            Alert::error('Error','Permission not found');
+            Alert::success('Success', 'Permission deleted successfully');
+        } else {
+            Alert::error('Error', 'Permission not found');
         }
 
         return redirect()->route('permissions.index');

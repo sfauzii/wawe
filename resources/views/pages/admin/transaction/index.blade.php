@@ -170,8 +170,10 @@
                     <h5 class="card-title"></h5>
                     <h5 class="card-title"></h5>
 
-                    <a href="{{ route('transaction.create') }}" class="btn btn-primary btn-right"
-                        style="float: right; margin-top: -40px; margin-right: 10px">Create Transaction</a>
+                    @can('create transaction')
+                        <a href="{{ route('transaction.create') }}" class="btn btn-primary btn-right"
+                            style="float: right; margin-top: -40px; margin-right: 10px">Create Transaction</a>
+                    @endcan
 
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
@@ -222,36 +224,56 @@
 
                                         @if ($item->transaction_status === 'PENDING')
                                             @if (!empty($item->payment_url))
-                                                <a href="{{ $item->payment_url }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
+                                                <a href="{{ $item->payment_url }}" class="btn btn-primary"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
                                                     <i class="ri-bank-card-line"></i>
                                                 </a>
                                             @else
                                                 <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
-                                                    class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
+                                                    class="btn btn-primary" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Pay Now">
                                                     <i class="ri-bank-card-line"></i>
                                                 </a>
                                             @endif
                                         @endif
 
-                                        <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
-                                            class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
-                                            <i class="ri-file-pdf-2-line"></i>
-                                        </a>
-                                        <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                        <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Transaction">
-                                            <i class="ri-edit-line" style="color: white;"></i>
-                                        </a>
-                                        <form action="{{ route('transaction.destroy', $item->id) }}" method="POST"
-                                            class="d-inline" id="delete-form-{{ $item->id }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Transaction">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-                                        </form>
+                                        @can('print transaction')
+                                            <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
+                                                class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Print">
+                                                <i class="ri-file-pdf-2-line"></i>
+                                            </a>
+                                        @endcan
+
+                                        @can('view transaction')
+                                            <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        @endcan
+
+
+                                        @can('edit transaction')
+                                            <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Transaction">
+                                                <i class="ri-edit-line" style="color: white;"></i>
+                                            </a>
+                                        @endcan
+
+                                        @can('delete transaction')
+                                            <form action="{{ route('transaction.destroy', $item->id) }}" method="POST"
+                                                class="d-inline" id="delete-form-{{ $item->id }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Delete Transaction">
+                                                    <i class="ri-delete-bin-6-line"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
+
                                     </td>
                                 </tr>
                             @empty

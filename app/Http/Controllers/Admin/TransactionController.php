@@ -24,6 +24,15 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('permission:create transaction')->only(['create', 'store']);
+        $this->middleware('permission:edit transaction')->only(['edit', 'update']);
+        $this->middleware('permission:delete transaction')->only(['destroy']);
+    }
+
     public function index()
     {
         $status = request()->get('status', 'ALL');
@@ -212,9 +221,9 @@ class TransactionController extends Controller
             ->get();
 
         $midtransData = $midtransNotifications->map(function ($notification) {
-        return json_decode($notification->payload, true);
+            return json_decode($notification->payload, true);
         });
-        
+
         return view('pages.admin.transaction.detail', [
             'item' => $item,
             'transactionDetails' => $transactionDetails,
@@ -282,7 +291,8 @@ class TransactionController extends Controller
         return $pdf->download('Invoice ' . ucfirst($item->user->name) . '.pdf');
     }
 
-    public function ticketPdf(string $id) {
+    public function ticketPdf(string $id)
+    {
 
         $transaction = Transaction::with(['details', 'travel_package'])->findOrFail($id);
 
@@ -295,7 +305,5 @@ class TransactionController extends Controller
         $pdf = Pdf::loadView('pages.admin.tickets.ticket-pdf', compact('transaction', 'user', 'item', 'transactionDetails'))->setPaper('a4', 'potrait');
 
         return $pdf->stream('Ticket ' . $item->details->first()->username . '.pdf');
-        
     }
-
 }

@@ -236,7 +236,7 @@
                                         @foreach ($recent_sales as $sale)
                                             <tr>
                                                 @php
-                                                    $uuidParts = explode('-', $sale->id);
+                                                    $uuidParts = explode('-', $sale->order_id);
                                                     $shortUuid = $uuidParts[0];
                                                 @endphp
                                                 <th scope="row" style="font-weight: bold;"><a

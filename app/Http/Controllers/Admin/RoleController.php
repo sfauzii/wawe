@@ -11,6 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('permission:create role')->only(['create', 'store']);
+        $this->middleware('permission:edit role')->only(['edit', 'update']);
+        $this->middleware('permission:delete role')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -45,7 +53,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> ['required', 'string', 'unique:roles,name'],
+            'name' => ['required', 'string', 'unique:roles,name'],
         ]);
 
         Role::create([
@@ -82,7 +90,7 @@ class RoleController extends Controller
 
     {
         $request->validate([
-            'name' => ['required', 'string', 'unique:roles,name,' .$role->id],
+            'name' => ['required', 'string', 'unique:roles,name,' . $role->id],
         ]);
 
         $role->update([
@@ -107,21 +115,23 @@ class RoleController extends Controller
         return redirect()->route('roles.index');
     }
 
-    public function addPermissionsToRole($roleId) {
+    public function addPermissionsToRole($roleId)
+    {
         $permissions = Permission::get();
         $role = Role::findOrFail($roleId);
         $rolePermissions = DB::table('role_has_permissions')
-                ->where('role_has_permissions.role_id', $role->id)
-                ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
-                ->all();
+            ->where('role_has_permissions.role_id', $role->id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
+            ->all();
         return view('pages.admin.roles-permissions.role.add-permissions', [
-            'role'=> $role,
-            'permissions'=> $permissions,
-            'rolePermissions'=> $rolePermissions,
+            'role' => $role,
+            'permissions' => $permissions,
+            'rolePermissions' => $rolePermissions,
         ]);
     }
 
-    public function givePermissionsToRole(Request $request, $roleId) {
+    public function givePermissionsToRole(Request $request, $roleId)
+    {
 
         $request->validate([
             'permission' => 'required|array',
@@ -136,4 +146,4 @@ class RoleController extends Controller
 
         return redirect()->back();
     }
- }
+}
