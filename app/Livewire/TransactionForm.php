@@ -25,6 +25,7 @@ class TransactionForm extends Component
     public $subTotal = 0;
     public $ppn = 0;
     public $grandTotal = 0;
+    public $uniqueCode = 0; // Unique code property
 
     public function mount()
     {
@@ -36,6 +37,7 @@ class TransactionForm extends Component
         if (!empty($this->newUsername)) {
             $this->usernames[] = $this->newUsername;
             $this->newUsername = '';
+            $this->generateUniqueCode();
             $this->calculateTotal();
         }
     }
@@ -50,6 +52,16 @@ class TransactionForm extends Component
     public function updatedSelectedPackageId()
     {
         $this->calculateTotal();
+    }
+
+    private function generateUniqueCode()
+    {
+        if ($this->selectedPackageId) {
+            $package = TravelPackage::find($this->selectedPackageId);
+            if ($package && $package->kuota > 0) {
+                $this->uniqueCode = rand(100, 999); // Generate a 3-digit random number
+            }
+        }
     }
 
     public function updatedPaymentMethod() // Update payment method
@@ -74,7 +86,7 @@ class TransactionForm extends Component
 
             // calculate PPN and grand total
             $this->ppn = $this->subTotal * 0.11;
-            $this->grandTotal = $this->subTotal + $this->ppn;
+            $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;
         } else {
             $this->totalAmount = 0;
             $this->remainingQuota = 0;
@@ -131,6 +143,7 @@ class TransactionForm extends Component
             'payment_method' => $this->paymentMethod,
             'sub_total' => $this->subTotal,
             'ppn' => $this->ppn,
+            'unique_code' => $this->uniqueCode, // Save unique code to database
             'grand_total' => $this->grandTotal,
         ]);
 

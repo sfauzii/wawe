@@ -17,16 +17,24 @@ class CheckoutCalculator extends Component
     public $subTotal = 0;
     public $ppn = 0;
     public $grandTotal = 0;
+    public $uniqueCode = 0;
 
     public function mount($transactionId)
     {
         $this->transaction = Transaction::findOrFail($transactionId);
+        $this->generateUniqueCode();
         $this->calculateTotals();
     }
 
     public function updatedPaymentMethod()
     {
+        $this->generateUniqueCode();
         $this->calculateTotals();
+    }
+
+    public function generateUniqueCode()
+    {
+        $this->uniqueCode = rand(100, 999); // Generate 3-digit random number
     }
 
     public function calculateTotals()
@@ -41,13 +49,14 @@ class CheckoutCalculator extends Component
         }
 
         $this->ppn = $this->subTotal * 0.11; // 11% PPN
-        $this->grandTotal = $this->subTotal + $this->ppn;
+        $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode; // Subtract unique code from grand total
 
         // Update transaction
         $this->transaction->update([
             'payment_method' => $this->paymentMethod,
             'sub_total' => $this->subTotal,
             'ppn' => $this->ppn,
+            'unique_code' => $this->uniqueCode, // Save unique code
             'grand_total' => $this->grandTotal,
         ]);
     }

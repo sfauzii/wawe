@@ -24,6 +24,7 @@ class Transaction extends Model
         'payment_method',
         'sub_total',
         'ppn',
+        'unique_code',
         'grand_total'
     ];
 

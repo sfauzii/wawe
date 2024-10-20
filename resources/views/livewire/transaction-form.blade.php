@@ -119,6 +119,14 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Unique Code <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="{{ number_format($uniqueCode, 0, ',', '.') }}"
+                                        style="font-weight: bold;" class="form-control mb-3" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">PPN (11%) <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
