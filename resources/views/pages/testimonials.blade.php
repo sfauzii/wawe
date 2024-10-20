@@ -13,11 +13,11 @@
 
 
     <!--<section class="section-heading-review">
-                <div class="container">
-                    <h1>Our Clients Say</h1>
-                    <p>What our clients have to say about our services</p>
-                </div>
-            </section>-->
+                    <div class="container">
+                        <h1>Our Clients Say</h1>
+                        <p>What our clients have to say about our services</p>
+                    </div>
+                </section>-->
 
     <!-- Section Client Says -->
     <section class="section-client-says">
@@ -91,7 +91,8 @@
                     From exotic getaways to guided tours of iconic cities, we aim to make your travel dreams a
                     reality. Let us take you on an adventure you'll never forget!
                 </p>
-                <button class="learn-more-btn">Learn More</button>
+                <button class="learn-more-btn" onclick="window.location.href = '{{ route('catalog') }}';">Get
+                    Started</button>
             </div>
         </div>
     </section>

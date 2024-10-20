@@ -598,8 +598,8 @@ main .recent_order .detail-button {
 }
 
 main .recent_order .detail-button:hover {
-    background-color: #677483;
-    color: white;
+    box-shadow: 0 0 0 .25rem #dddddd89 !important;
+    transition: all .4s;
 
 }
 
@@ -616,7 +616,9 @@ main .recent_order .detail-button:hover {
 }
 
 .paynow-button:hover {
-    background-color: rgb(242, 74, 12);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 
 }
 
@@ -813,7 +815,9 @@ main .settings .edit-profile-button {
 }
 
 .edit-profile-button:hover {
-    background-color: rgb(236, 188, 129);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
     /* Ubah warna latar saat tombol dihover */
 }
 
@@ -950,7 +954,9 @@ main .settings .edit-profile-button {
 }
 
 .btn-submit:hover {
-    background-color: rgb(250, 147, 110);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 }
 
 // *** END EDIT PROFILE & PASS MENU ***//
@@ -1004,7 +1010,8 @@ main .settings .edit-profile-button {
 }
 
 .card-button:hover {
-    background-color: #f0f0f0;
+    box-shadow: 0 0 0 .25rem #dddddd89 !important;
+    transition: all .4s;
 }
 
 // *** END CONTACT US ***//

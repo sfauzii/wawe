@@ -135,8 +135,8 @@
                                         Add Now
                                     </button>
                                 </form>
-                                <h3 class="mt-2 mb-0">Note</h3>
-                                <p class="disclaimer mb-0">You are only able invite member that has registered in Poling</p>
+                                {{-- <h3 class="mt-2 mb-0">Note</h3>
+                                <p class="disclaimer mb-0">You are only able invite member that has registered in Poling</p> --}}
                             </div>
 
                         </div>

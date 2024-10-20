@@ -1,5 +1,6 @@
 /* Ensure the body and html take up the full viewport height and prevent scrolling */
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -10,11 +11,16 @@ body, html {
 /* Style for the container holding the login card */
 .login-container {
   display: flex;
-  justify-content: start; /* Align to the left */
-  align-items: center; /* Center vertically */
-  min-height: 100vh; /* Ensure it covers at least the full viewport height */
-  padding-left: 100px; /* Adjust the left padding as needed */
-  position: relative; /* Position relative for the fixed background */
+  justify-content: start;
+  /* Align to the left */
+  align-items: center;
+  /* Center vertically */
+  min-height: 100vh;
+  /* Ensure it covers at least the full viewport height */
+  padding-left: 100px;
+  /* Adjust the left padding as needed */
+  position: relative;
+  /* Position relative for the fixed background */
 }
 
 /* Fixed background image with blur effect */
@@ -24,11 +30,16 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/landing-1.jpg"); /* Replace with your background image */
-  background-size: cover; /* Display the whole image without zooming */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: center; /* Center the image */
-  z-index: -1; /* Ensure background image is behind other content */
+  background-image: url("../images/landing-1.jpg");
+  /* Replace with your background image */
+  background-size: cover;
+  /* Display the whole image without zooming */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
+  background-position: center;
+  /* Center the image */
+  z-index: -1;
+  /* Ensure background image is behind other content */
 }
 
 .background-image-register {
@@ -37,11 +48,16 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/regis.jpg"); /* Replace with your background image */
-  background-size: cover; /* Display the whole image without zooming */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: center; /* Center the image */
-  z-index: -1; /* Ensure background image is behind other content */
+  background-image: url("../images/regis.jpg");
+  /* Replace with your background image */
+  background-size: cover;
+  /* Display the whole image without zooming */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
+  background-position: center;
+  /* Center the image */
+  z-index: -1;
+  /* Ensure background image is behind other content */
 }
 
 /* Style for the login card */
@@ -49,12 +65,15 @@ body, html {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 350px; /* Adjust width as needed */
+  width: 350px;
+  /* Adjust width as needed */
   max-width: 80%;
   padding: 30px;
   text-align: left;
-  position: relative; /* Ensure positioning context for pseudo-element */
-  margin: 20px 0; /* Add vertical margin for spacing when scrolling */
+  position: relative;
+  /* Ensure positioning context for pseudo-element */
+  margin: 20px 0;
+  /* Add vertical margin for spacing when scrolling */
 }
 
 .login-card::before {
@@ -74,7 +93,8 @@ body, html {
 }
 
 .logo img {
-  width: 80px; /* Adjust logo size */
+  width: 80px;
+  /* Adjust logo size */
   margin-bottom: 20px;
 }
 
@@ -105,8 +125,10 @@ body, html {
 }
 
 .input-icon img {
-  width: 20px; /* Adjust the width as needed */
-  height: 20px; /* Adjust the height as needed */
+  width: 20px;
+  /* Adjust the width as needed */
+  height: 20px;
+  /* Adjust the height as needed */
 }
 
 .input-icon i {
@@ -122,24 +144,31 @@ input[type=password] {
   border-radius: 20px;
   outline: none;
   font-size: 14px;
-  padding-left: 40px; /* Ensure space for icon */
+  padding-left: 40px;
+  /* Ensure space for icon */
 }
 
 /* Hover effect for text and password inputs */
 input[type=text]:hover,
 input[type=email]:hover,
 input[type=password]:hover {
-  border-color: coral; /* Change border color on hover */
-  box-shadow: 0 0 8px rgb(246, 176, 151); /* Add a subtle shadow */
-  background-color: #f0f8ff; /* Slightly change background color (optional) */
+  border-color: coral;
+  /* Change border color on hover */
+  box-shadow: 0 0 8px rgb(246, 176, 151);
+  /* Add a subtle shadow */
+  background-color: #f0f8ff;
+  /* Slightly change background color (optional) */
 }
 
 /* Focus effect for text and password inputs (optional) */
 input[type=text]:focus,
 input[type=password]:focus {
-  border-color: coral; /* Change border color on focus */
-  box-shadow: 0 0 8px rgb(253, 188, 164); /* Enhance shadow on focus */
-  background-color: #e6f2ff; /* Slightly change background color on focus */
+  border-color: coral;
+  /* Change border color on focus */
+  box-shadow: 0 0 8px rgb(253, 188, 164);
+  /* Enhance shadow on focus */
+  background-color: #e6f2ff;
+  /* Slightly change background color on focus */
 }
 
 .remember-me {
@@ -161,10 +190,10 @@ input[type=password]:focus {
   flex-direction: column;
 }
 
-.login-button,
-.register-button {
+.login-button {
   padding: 12px;
-  background-color: coral; /* Adjust button colors */
+  background-color: coral;
+  /* Adjust button colors */
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -175,91 +204,237 @@ input[type=password]:focus {
 }
 
 .register-button {
-  background-color: #ddd; /* Adjust register button color */
+  background-color: #ddd;
+  /* Adjust register button color */
   color: #666;
+  padding: 12px;
+  /* Adjust button colors */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.login-button:hover,
 .register-button:hover {
-  opacity: 0.8;
+  box-shadow: 0 0 0 0.25rem rgba(221, 221, 221, 0.537254902) !important;
+  transition: all 0.4s;
+}
+
+.login-button:hover {
+  box-shadow: 0 0 0 0.25rem rgba(253, 181, 13, 0.2509803922) !important;
+  background-color: coral;
+  transition: all 0.4s;
 }
 
 .custom-link {
-  color: #666; /* Ubah warna sesuai kebutuhan */
+  color: #666;
+  /* Ubah warna sesuai kebutuhan */
   margin-bottom: 8px;
 }
 
 .custom-link:hover {
-  color: coral; /* Ubah warna saat hover jika diperlukan */
+  color: coral;
+  /* Ubah warna saat hover jika diperlukan */
+}
+
+.question-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* Agar section penuh tinggi viewport */
+  padding: 20px;
+  /* Menambahkan padding di dalam section */
+}
+
+.question-card {
+  position: relative;
+  /* Agar gambar overlay dapat diposisikan dengan absolute relatif terhadap kartu */
+  background: url("../svg/images/bg-verify.svg") no-repeat center center;
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  height: 400px;
+  width: 1000px;
+  color: #fff;
+  /* Mengatur warna teks menjadi putih agar kontras dengan background */
+  margin: 20px;
+  /* Menambahkan ruang di luar kartu */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Mengatur konten di tengah secara vertikal */
+  align-items: flex-end;
+  /* Mengatur konten di rata kiri secara horizontal */
+}
+
+.overlay-image {
+  position: absolute;
+  top: -40px;
+  /* Menempatkan gambar di atas batas atas kartu */
+  left: 0;
+  /* Menempatkan gambar di sisi kanan kartu */
+  width: 350px;
+  /* Ukuran gambar */
+  height: auto;
+  /* Mempertahankan rasio aspek gambar */
+  z-index: 1;
+  /* Menjaga gambar di atas kartu */
+}
+
+.question-content {
+  text-align: right;
+  /* Teks dalam konten diatur rata kiri */
+  z-index: 2;
+  /* Menjaga konten di atas gambar */
+  position: relative;
+  /* Agar z-index dapat diterapkan */
+}
+
+.question-content h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-content h5 {
+  font-weight: 600;
+}
+
+.question-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.question-content .btn {
+  display: inline-block;
+  background-color: coral;
+  /* Warna latar belakang tombol dengan transparansi */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.question-content .btn:hover {
+  background-color: rgb(242, 74, 12);
+  /* Mengatur warna latar belakang tombol saat hover */
 }
 
 /* Styles for tablets and larger smartphones (widths up to 1024px) */
 @media (max-width: 1024px) {
   .login-container {
-    justify-content: center; /* Center the login card horizontally */
-    padding-left: 20px; /* Reduce padding */
-    padding-right: 20px; /* Add right padding for centering */
+    justify-content: center;
+    /* Center the login card horizontally */
+    padding-left: 20px;
+    /* Reduce padding */
+    padding-right: 20px;
+    /* Add right padding for centering */
   }
   .login-card {
     width: 100%;
-    max-width: 400px; /* Adjust card width for tablets */
-    margin: 0 20px; /* Add margin for spacing on small screens */
-    padding: 20px; /* Reduce padding inside the card */
+    max-width: 400px;
+    /* Adjust card width for tablets */
+    margin: 0 20px;
+    /* Add margin for spacing on small screens */
+    padding: 20px;
+    /* Reduce padding inside the card */
   }
   .background-image {
-    background-size: cover; /* Ensure the image covers the background */
+    background-size: cover;
+    /* Ensure the image covers the background */
   }
 }
 /* Styles for smartphones (widths up to 768px) */
 @media (max-width: 768px) {
   .login-container {
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center the card vertically */
-    padding: 20px; /* Adjust padding for small screens */
+    flex-direction: column;
+    /* Stack elements vertically */
+    justify-content: center;
+    /* Center the card vertically */
+    padding: 20px;
+    /* Adjust padding for small screens */
   }
   .login-card {
     width: 100%;
-    max-width: 350px; /* Adjust card width for smartphones */
-    padding: 15px; /* Further reduce padding inside the card */
+    max-width: 350px;
+    /* Adjust card width for smartphones */
+    padding: 15px;
+    /* Further reduce padding inside the card */
   }
   .logo img {
-    width: 60px; /* Adjust logo size */
+    width: 60px;
+    /* Adjust logo size */
   }
   .title h1 {
-    font-size: 20px; /* Adjust title font size */
+    font-size: 20px;
+    /* Adjust title font size */
   }
   .title p {
-    font-size: 12px; /* Adjust subtitle font size */
+    font-size: 12px;
+    /* Adjust subtitle font size */
   }
   input[type=text],
   input[type=password] {
-    width: 100%; /* Use full width for inputs */
-    padding-left: 35px; /* Adjust padding for icon */
+    width: 100%;
+    /* Use full width for inputs */
+    padding-left: 35px;
+    /* Adjust padding for icon */
   }
   .login-button,
   .register-button {
-    font-size: 14px; /* Adjust button font size */
-    padding: 10px; /* Reduce button padding */
+    font-size: 14px;
+    /* Adjust button font size */
+    padding: 10px;
+    /* Reduce button padding */
+  }
+  .overlay-image {
+    display: none;
+  }
+  .question-card {
+    align-items: center;
+    background: url("../svg/images/bg-verify.svg");
+    width: 100%;
+    /* Kartu akan menggunakan seluruh lebar viewport */
+    padding: 20px;
+    /* Menyesuaikan padding kartu */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Menambahkan warna semi-transparan di belakang gambar */
+  }
+  .question-content {
+    text-align: center;
+    margin-bottom: 0;
   }
 }
 /* Styles for smaller smartphones (widths up to 480px) */
 @media (max-width: 480px) {
   .login-card {
-    max-width: 300px; /* Further reduce card width */
+    max-width: 300px;
+    /* Further reduce card width */
   }
   .title h1 {
-    font-size: 18px; /* Adjust title font size */
+    font-size: 18px;
+    /* Adjust title font size */
   }
   .title p {
-    font-size: 10px; /* Adjust subtitle font size */
+    font-size: 10px;
+    /* Adjust subtitle font size */
   }
   input[type=text],
   input[type=password] {
-    font-size: 12px; /* Adjust input font size */
+    font-size: 12px;
+    /* Adjust input font size */
   }
   .login-button,
   .register-button {
-    font-size: 12px; /* Adjust button font size */
-    padding: 8px; /* Further reduce button padding */
+    font-size: 12px;
+    /* Adjust button font size */
+    padding: 8px;
+    /* Further reduce button padding */
   }
 }/*# sourceMappingURL=auth.css.map */

@@ -1,241 +1,272 @@
 :root {
-    --clr-primary: coral;
-    --clr-danger: #ff7782;
-    --clr-success: #41f1b6;
-    --clr-white: #fff;
-    --clr-info-dark: #363949;
-    --clr-info-light: #dce1eb;
-    --clr-dark: #363949;
-    --clr-warnig: #ff4edc;
-    --clr-light: rgba(132, 139, 200, 0.18);
-    --clr-primary-variant: #111e88;
-    --clr-dark-variant: #677483;
-    --clr-color-background: #f6f6f9;
-    --card-border-radius: 2rem;
-    --border-radius-1: 0.4rem;
-    --border-radius-2: 0.8rem;
-    --border-radius-3: 1.2rem;
-    --card-padding: 1.8rem;
-    --padding-1: 1.2rem;
-    --box-shadow: 0 2rem 3rem var(-- clr-light);
-  }
-  
-  body {
-    font-family: "Poppins", sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    overflow-x: hidden;
-    /* Prevent horizontal scrolling */
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 640px;
-    /* Maksimum lebar kontainer */
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
+  --clr-primary: coral;
+  --clr-danger: #ff7782;
+  --clr-success: #41f1b6;
+  --clr-white: #fff;
+  --clr-info-dark: #363949;
+  --clr-info-light: #dce1eb;
+  --clr-dark: #363949;
+  --clr-warnig: #ff4edc;
+  --clr-light: rgba(132, 139, 200, 0.18);
+  --clr-primary-variant: #111e88;
+  --clr-dark-variant: #677483;
+  --clr-color-background: #f6f6f9;
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+  --box-shadow: 0 2rem 3rem var(-- clr-light);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+  /* Maksimum lebar kontainer */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  /* Sesuaikan padding */
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.title-section p {
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 100px;
+  border-radius: 20%;
+  margin-right: 20px;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.badge {
+  background-color: #071c4d;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  width: 70px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* Icon list */
+.icon-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Divider styling */
+.divider {
+  width: 100%;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+/* Description styling */
+.description h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.description p {
+  color: #555;
+}
+
+/* Button styling */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.action-button,
+.action-button-secondary {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-button {
+  background-color: coral;
+  color: white;
+  font-weight: 700;
+}
+
+.action-button:hover {
+  box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+  background-color: coral;
+  transition: all .4s;
+}
+
+.action-button-secondary {
+  background-color: #ddd;
+  color: #000;
+  font-weight: 700;
+}
+
+.action-button-secondary:hover {
+  box-shadow: 0 0 0 .25rem #dddddd89 !important;
+  transition: all .4s;
+}
+
+/* Responsive adjustments */
+/* Tablet adjustments */
+@media only screen and (max-width: 1024px) {
   .card-container {
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 40px;
-    /* Sesuaikan padding */
-    width: 100%;
-    max-width: 640px;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    width: 90%;
+    padding: 20px;
   }
-  
-  .title-section p {
-    margin-top: -10px;
-    margin-bottom: 40px;
-  }
-  
-  .card-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
+
   .profile-img {
-    width: 150px;
-    height: 100px;
-    border-radius: 20%;
-    margin-right: 20px;
+    width: 120px;
+    height: 80px;
   }
-  
-  .header-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   .header-info h2 {
-    margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
-  
-  .badge {
-    background-color: #071c4d;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    width: 70px;
-    text-align: center;
-    font-weight: 600;
-    margin-top: 5px;
-  }
-  
-  /* Icon list */
+
   .icon-list {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    flex-wrap: wrap;
   }
-  
+
   .icon-item {
-    display: flex;
-    align-items: center;
     margin-bottom: 10px;
   }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
-  
-  /* Divider styling */
-  .divider {
-    width: 100%;
-    border: 1px solid #ddd;
-    margin: 20px 0;
-  }
-  
-  /* Description styling */
-  .description h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-  }
-  
-  .description p {
-    color: #555;
-  }
-  
-  /* Button styling */
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
+
   .action-button,
   .action-button-secondary {
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-family: "Poppins", sans-serif;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
+    padding: 8px 15px;
+    font-size: 12px;
   }
-  
-  .action-button {
-    background-color: coral;
-    color: white;
-    font-weight: 700;
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 767px) {
+  body {
+    padding: 10px;
   }
-  
+
+  .title-section {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .card-container {
+    width: 100%;
+    /* Set width to 100% to fit mobile screen */
+    padding: 20px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 70px;
+  }
+
+  .header-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+  }
+
+  .icon-list {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .icon-item {
+    width: 45%;
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-button,
   .action-button-secondary {
-    background-color: #ddd;
-    color: #000;
-    font-weight: 700;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 12px;
   }
-  
-  /* Responsive adjustments */
-  /* Tablet adjustments */
-  @media only screen and (max-width: 1024px) {
-    .card-container {
-      width: 90%;
-      padding: 20px;
-    }
-    .profile-img {
-      width: 120px;
-      height: 80px;
-    }
-    .header-info h2 {
-      font-size: 1.3rem;
-    }
-    .icon-list {
-      flex-wrap: wrap;
-    }
-    .icon-item {
-      margin-bottom: 10px;
-    }
-    .action-button,
-    .action-button-secondary {
-      padding: 8px 15px;
-      font-size: 12px;
-    }
-  }
-  /* Mobile adjustments */
-  @media only screen and (max-width: 767px) {
-    body {
-      padding: 10px;
-    }
-    .title-section {
-      padding: 10px;
-    }
-    .container {
-      padding: 0;
-    }
-    .card-container {
-      width: 100%;
-      /* Set width to 100% to fit mobile screen */
-      padding: 20px;
-    }
-    .profile-img {
-      width: 100px;
-      height: 70px;
-    }
-    .header-info h2 {
-      font-size: 1.2rem;
-    }
-    .badge {
-      font-size: 0.8rem;
-      padding: 3px 8px;
-    }
-    .icon-list {
-      flex-wrap: wrap;
-      padding: 0;
-    }
-    .icon-item {
-      width: 45%;
-      margin-bottom: 15px;
-    }
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-    .button-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    .action-button,
-    .action-button-secondary {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      font-size: 12px;
-    }
-  }
-  footer {
-    text-align: center;
-  }/*# sourceMappingURL=ticket-detail.css.map */
+}
+
+footer {
+  text-align: center;
+}
+
+/*# sourceMappingURL=ticket-detail.css.map */

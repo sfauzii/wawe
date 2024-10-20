@@ -34,13 +34,18 @@
                         <td width="50%" class="text-right text-blue">Rp {{ number_format($subTotal, 0, ',', '.') }}</td>
                     </tr>
                     <tr>
-                        <th width="50%">PPN 11%</th>
-                        <td width="50%" class="text-right text-blue">Rp {{ number_format($ppn, 0, ',', '.') }}</td>
+                        <th width="50%">Unique Code</th>
+                        <td width="50%" class="text-right text-green">-Rp 242</td>
                     </tr>
+                    <tr>
+                        <th width="50%">PPN 11%</th>
+                        <td width="50%" class="text-right text-green">+Rp {{ number_format($ppn, 0, ',', '.') }}</td>
+                    </tr>
+                    
                     <tr>
                         <th width="50%">Grand Total</th>
                         <td width="50%" class="text-right text-total">
-                            <span class="text-blue">Rp {{ number_format($grandTotal, 0, ',', '.') }}</span>
+                            <span class="text-total">Rp {{ number_format($grandTotal, 0, ',', '.') }}</span>
                         </td>
                     </tr>
                 </table>

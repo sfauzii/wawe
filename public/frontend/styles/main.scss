@@ -31,6 +31,10 @@ body {
     // E4E6EB
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 
 // Navbar
 
@@ -205,11 +209,10 @@ body {
 
 /* Hover effect untuk tombol login */
 .btn-login:hover {
-    background-color: #FF9E53;
-    /* Warna latar belakang saat di-hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Bayangan lebih jelas saat di-hover */
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
     color: #fff;
+    transition: all .4s;
     /* Warna teks tetap putih */
 }
 
@@ -1059,6 +1062,11 @@ body {
     border-radius: 20px;
 }
 
+.testimonials a {
+    text-decoration: none;
+    color: coral;
+}
+
 .product-features {
     display: flex;
     margin-top: 0.75rem;
@@ -1131,7 +1139,9 @@ body {
 }
 
 .contact-seller-btn:hover {
-    background-color: rgb(242, 74, 12);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 }
 
 .product-description {
@@ -1237,6 +1247,20 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Bayangan yang lebih soft */
+}
+
+.testimonies-card {
+
+    /* Hide the scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Optional: For Firefox, hide scrollbar */
+    scrollbar-width: none;
+
+    /* Allow scrolling, but hide the scrollbar */
+    overflow: auto;
 }
 
 .testimoni-card {
@@ -1351,7 +1375,9 @@ body {
 }
 
 .purchase-btn:hover {
-    background-color: rgb(242, 74, 12);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 }
 
 /* Responsive styling untuk perangkat dengan lebar kurang dari 768px (mobile) */
@@ -1891,8 +1917,8 @@ body {
 }
 
 .get-started-button:hover {
-    background-color: rgb(242, 74, 12);
-    /* Darker shade on hover */
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    transition: all .4s;
 }
 
 
@@ -2044,7 +2070,11 @@ body {
 }
 
 .question-content .btn:hover {
-    background-color: rgb(242, 74, 12);
+    // background-color: rgb(242, 74, 12);
+
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
     /* Mengatur warna latar belakang tombol saat hover */
 }
 
@@ -2272,8 +2302,9 @@ body {
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
-    background-color: #f5b776;
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 }
 
 .btn-secondary {
@@ -2283,8 +2314,9 @@ body {
 }
 
 .btn-secondary:hover {
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
     background-color: coral;
-    color: white;
+    transition: all .4s;
 }
 
 .buttons button {
@@ -2685,6 +2717,7 @@ footer {
             color: #071C4D;
             cursor: pointer;
         }
+
         &.active {
             font-weight: bold;
             color: #071C4D;
@@ -2717,13 +2750,13 @@ footer {
         .trip-informations {
             th {
                 font-weight: 300;
-                font-size: 18px;
+                font-size: 16px;
                 color: #071C4D;
             }
 
             td {
                 font-weight: 300;
-                font-size: 18px;
+                font-size: 16px;
                 color: #b1b1b1;
             }
 
@@ -2732,8 +2765,14 @@ footer {
                 font-weight: bold;
             }
 
-            .text-orange {
-                color: #FF9E53;
+            .text-green {
+                color: #00bd49;
+                font-weight: bold;
+            }
+
+            .text-total {
+                color: #071C4D;
+                font-size: 20px;
                 font-weight: bold;
             }
         }
@@ -2797,12 +2836,15 @@ footer {
         }
 
         .btn-add-now {
-            background-color: #071C4D;
+            background-color: coral;
+            border-radius: 15px;
+            font-weight: bold;
             color: #FFF;
 
             &:hover {
-                background-color: #1b3b86;
-                color: #FFF;
+                box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+                background-color: coral;
+                transition: all .4s;
             }
         }
 
@@ -2888,9 +2930,14 @@ footer {
         font-weight: 700;
 
         &:hover {
-            background-color: #FFB57C;
-            color: #FFF;
+            box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+            background-color: coral;
+            transition: all .4s;
         }
+    }
+
+    .tab-pane p {
+        font-size: 14px;
     }
 
 }
@@ -3236,7 +3283,7 @@ footer {
 .hero-title {
     margin-bottom: 20px;
     padding: 0 30px;
-    
+
 }
 
 .hero-title h1 {
@@ -3790,11 +3837,9 @@ footer {
     padding: 25px;
     /* Atur padding card agar tidak terlalu besar */
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    box-shadow: 20px 20px 61px #d9d9d9,
-        -20px -20px 61px #e7e7e7;
+
     /* Mengatur elemen di dalam card secara vertikal */
 }
 
@@ -3932,11 +3977,9 @@ footer {
 }
 
 .learn-more-btn:hover {
-    opacity: 0.9;
-    background-color: #f5b776;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    /* Tambahkan bayangan */
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
     /* Animasi transisi saat hover */
 }
 
@@ -3980,11 +4023,9 @@ footer {
 }
 
 .get-started-btn:hover {
-    opacity: 0.9;
-    background-color: #f5b776;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    /* Tambahkan bayangan */
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
     /* Animasi transisi saat hover */
 }
 

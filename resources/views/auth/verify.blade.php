@@ -1,28 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+    <section class="question-section">
+        <div class="question-card">
+            <img src="{{ url('frontend/svg/images/nunjuk.svg') }}" alt="Overlay Image" class="overlay-image" />
+            <div class="question-content">
+                @if (session('resent'))
+                    <div class="alert alert-success" role="alert">
+                        {{ __('A fresh verification link has been sent to your email address.') }}
+                    </div>
+                @endif
+                <h1>Hi, {{ ucwords(Auth::user()->name) }}!</h1>
+                <h5>Verify your Email</h5>
+                <p>
+                    Account activation link sent to your email address:<br> <span
+                        style="font-weight: bold;">{{ Auth::user()->email }}</span>. Please follow the button inside to
+                    continue.
+                </p>
+                <form action="{{ route('verification.resend') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button class="btn btn-primary">Resend</button>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection

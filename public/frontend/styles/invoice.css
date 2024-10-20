@@ -17,7 +17,7 @@
   --border-radius-3: 1.2rem;
   --card-padding: 1.8rem;
   --padding-1: 1.2rem;
-  --box-shadow: 0 2rem 3rem var( -- clr-light);
+  --box-shadow: 0 2rem 3rem var(-- clr-light);
 }
 
 body {
@@ -34,7 +34,7 @@ body {
   border-radius: 15px;
   padding: 50px;
   width: 640px;
-  height: 660px;
+  height: auto;
   margin-bottom: 50px;
   max-width: 100%;
   display: flex;
@@ -184,27 +184,34 @@ table th {
 }
 
 .button-container button:hover {
-  background-color: rgb(253, 114, 63);
+  box-shadow: 0 0 0 0.25rem rgba(253, 181, 13, 0.2509803922) !important;
+  background-color: coral;
+  transition: all 0.4s;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .background-container {
     padding: 30px;
-    width: 90%; /* Adjust width to fit tablets */
-    height: auto; /* Allow height to adjust based on content */
+    width: 90%;
+    /* Adjust width to fit tablets */
+    height: auto;
+    /* Allow height to adjust based on content */
     margin-bottom: 30px;
   }
   .title-section {
     width: 100%;
     margin-top: 30px;
-    left: 0; /* Remove the left offset */
+    left: 0;
+    /* Remove the left offset */
     text-align: center;
   }
   .title-section h1 {
-    font-size: 28px; /* Adjust font size for tablets */
+    font-size: 28px;
+    /* Adjust font size for tablets */
   }
   .title-section p {
-    font-size: 16px; /* Adjust font size for tablets */
+    font-size: 16px;
+    /* Adjust font size for tablets */
   }
   .invoice-card {
     width: 100%;
@@ -235,31 +242,37 @@ table th {
     text-align: left;
   }
   table {
-    font-size: 16px; /* Adjust table font size for tablets */
+    font-size: 16px;
+    /* Adjust table font size for tablets */
   }
   .button-container button {
     padding: 14px 28px;
-    font-size: 17px; /* Adjust button font size for tablets */
+    font-size: 17px;
+    /* Adjust button font size for tablets */
   }
 }
 @media (max-width: 767px) {
   .background-container {
     padding: 20px;
     width: 100%;
-    height: auto; /* Allow the height to adjust based on content */
+    height: auto;
+    /* Allow the height to adjust based on content */
     margin-bottom: 20px;
   }
   .title-section {
     width: 100%;
     margin-top: 20px;
-    left: 0; /* Remove the left offset */
+    left: 0;
+    /* Remove the left offset */
     text-align: center;
   }
   .title-section h1 {
-    font-size: 24px; /* Adjust font size for smaller screens */
+    font-size: 24px;
+    /* Adjust font size for smaller screens */
   }
   .title-section p {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
+    /* Adjust font size for smaller screens */
   }
   .invoice-card {
     width: 100%;
@@ -290,10 +303,12 @@ table th {
     text-align: left;
   }
   table {
-    font-size: 14px; /* Adjust table font size for smaller screens */
+    font-size: 14px;
+    /* Adjust table font size for smaller screens */
   }
   .button-container button {
     padding: 12px 25px;
-    font-size: 16px; /* Adjust button font size for smaller screens */
+    font-size: 16px;
+    /* Adjust button font size for smaller screens */
   }
 }/*# sourceMappingURL=invoice.css.map */

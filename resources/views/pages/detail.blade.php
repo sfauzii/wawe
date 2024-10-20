@@ -17,7 +17,7 @@
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('details', $item->slug) }}">Package {{ ucwords($item->title) }}</a> 
+                                    <a href="{{ route('details', $item->slug) }}">Package {{ ucwords($item->title) }}</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     Details
@@ -62,7 +62,7 @@
                         <div class="category-badge">{{ ucwords($item->type) }}</div>
                         <div class="title-and-testimonials">
                             <h1 class="product__title">{{ ucwords($item->title) }}</h1>
-                            <span class="testimonials">{{ $testimoniesCount }} Testimonials</span>
+                            <span class="testimonials"><a href="#review">{{ $testimoniesCount }} Testimonials</a></span>
                         </div>
                         <div class="product-features">
                             <div class="feature">
@@ -131,7 +131,7 @@
 
                 <div class="details-container">
                     <!-- Testimonies Section -->
-                    <aside class="testimonies-card w-100">
+                    <aside class="testimonies-card w-100" id="review">
                         <h3 class="testimonies-header">From Happy Customers</h3>
                         @foreach ($testimonies as $testimony)
                             <div class="testimoni-card">

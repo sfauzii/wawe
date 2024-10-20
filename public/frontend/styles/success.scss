@@ -178,11 +178,9 @@ body {
 
 /* Hover effect untuk tombol login */
 .btn-login:hover {
-    background-color: #FF9E53;
-    /* Warna latar belakang saat di-hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Bayangan lebih jelas saat di-hover */
-    color: #fff;
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
     /* Warna teks tetap putih */
 }
 
