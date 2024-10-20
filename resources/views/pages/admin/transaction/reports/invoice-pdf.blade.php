@@ -162,6 +162,13 @@
                     <th>Total</td>
                     <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
                 </tr>
+                @if($remainingFullPayment)
+                <tr>
+                    <th>Remaining Full Payment</td>
+                    <td>IDR {{ number_format($remainingFullPayment, 0, ',') }}</td>
+                </tr>
+                    
+                @endif
                 <tr>
                     <th>Pembelian</th>
                     <td>

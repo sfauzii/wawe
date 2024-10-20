@@ -226,6 +226,12 @@
                         <td>{{ $transactionDetails->count() }}</td>
                         <td>IDR {{ number_format($transaction->grand_total, 0, ',') }}
                         </td>
+                        @if ($remainingFullPayment)
+                    <tr>
+                        <th>Remaining Full Payment</td>
+                        <td style="font-weight: bold;">IDR {{ number_format($remainingFullPayment, 0, ',') }}</td>
+                    </tr>
+                    @endif
                     </tr>
                 </tbody>
             </table>

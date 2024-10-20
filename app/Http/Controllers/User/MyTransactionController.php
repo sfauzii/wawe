@@ -42,27 +42,65 @@ class MyTransactionController extends Controller
         $transaction = Transaction::with(['details', 'travel_package'])->findOrFail($id);
         $user = Auth::user();
 
-        $transactionDetails = TransactionDetail::where('transactions_id', $transaction->id);
+        // Get transaction details
+        $transactionDetails = TransactionDetail::where('transactions_id', $transaction->id)->get();
+
+        // Count the number of users (transaction details)
+        $userCount = $transactionDetails->count();
+
+        // Get the price per user
+        $pricePerUser = $transaction->travel_package->price;
+
+        // Calculate full payment (without any down payment)
+        $fullPayment = $userCount * $pricePerUser;
+
+        // Initialize remaining full payment as null
+        $remainingFullPayment = null;
+
+        // Check if the payment method is down_payment
+        if ($transaction->payment_method === 'down_payment') {
+            $remainingPayment = $fullPayment * 0.7; // Remaining 70% after down payment
+            $remainingPPN = $remainingPayment * 0.11; // 11% PPN on remaining amount
+            $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+        }
 
         return view('pages.users.transactions.invoice', [
             'transaction' => $transaction,
             'user' => $user,
             'transactionDetails' => $transactionDetails,
+            'remainingFullPayment' => $remainingFullPayment, // Pass the calculated remaining full payment
         ]);
     }
 
 
-    public function invoicepdf($id) {
+    public function invoicepdf($id)
+    {
         $transaction =  Transaction::with(['details', 'travel_package'])->findOrFail($id);
         $user = Auth::user();
 
         $transactionDetails = TransactionDetail::where('transactions_id', $transaction->id);
 
-        $pdf = Pdf::loadview('pages.users.transactions.reports.invoice-pdf', compact('transaction', 'user', 'transactionDetails'))->setPaper('a4', 'potrait');
+        // Count the number of users (transaction details)
+        $userCount = $transactionDetails->count();
+
+        // Get the price per user
+        $pricePerUser = $transaction->travel_package->price;
+
+        // Calculate full payment (without any down payment)
+        $fullPayment = $userCount * $pricePerUser;
+
+        // Initialize remaining full payment as null
+        $remainingFullPayment = null;
+
+        // Check if the payment method is down_payment
+        if ($transaction->payment_method === 'down_payment') {
+            $remainingPayment = $fullPayment * 0.7; // Remaining 70% after down payment
+            $remainingPPN = $remainingPayment * 0.11; // 11% PPN on remaining amount
+            $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+        }
+
+        $pdf = Pdf::loadview('pages.users.transactions.reports.invoice-pdf', compact('transaction', 'user', 'transactionDetails', 'remainingFullPayment'))->setPaper('a4', 'potrait');
 
         return $pdf->stream('Invoice ' . $user->name . '.pdf');
-
     }
-
-    
 }

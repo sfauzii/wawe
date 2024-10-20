@@ -215,6 +215,25 @@ class TransactionController extends Controller
 
         $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
 
+        // Count the number of users (transaction details)
+        $userCount = $transactionDetails->count();
+
+        // Get the price per user
+        $pricePerUser = $item->travel_package->price;
+
+        // Calculate full payment (without any down payment)
+        $fullPayment = $userCount * $pricePerUser;
+
+        // Initialize remaining full payment as null
+        $remainingFullPayment = null;
+
+        // Check if the payment method is down_payment
+        if ($item->payment_method === 'down_payment') {
+            $remainingPayment = $fullPayment * 0.7; // Remaining 70% after down payment
+            $remainingPPN = $remainingPayment * 0.11; // 11% PPN on remaining amount
+            $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+        }
+
         // Ambil semua data notifikasi Midtrans untuk transaksi ini
         $midtransNotifications = MidtransNotification::where('order_id', $item->order_id)
             ->orderBy('created_at', 'desc')
@@ -228,6 +247,7 @@ class TransactionController extends Controller
             'item' => $item,
             'transactionDetails' => $transactionDetails,
             'midtransData' => $midtransData,
+            'remainingFullPayment' => $remainingFullPayment,
         ]);
     }
 
@@ -283,9 +303,29 @@ class TransactionController extends Controller
 
         $transactionDetails = TransactionDetail::where('transactions_id', $item->id);
 
+        // Count the number of users (transaction details)
+        $userCount = $transactionDetails->count();
+
+        // Get the price per user
+        $pricePerUser = $item->travel_package->price;
+
+        // Calculate full payment (without any down payment)
+        $fullPayment = $userCount * $pricePerUser;
+
+        // Initialize remaining full payment as null
+        $remainingFullPayment = null;
+
+        // Check if the payment method is down_payment
+        if ($item->payment_method === 'down_payment') {
+            $remainingPayment = $fullPayment * 0.7; // Remaining 70% after down payment
+            $remainingPPN = $remainingPayment * 0.11; // 11% PPN on remaining amount
+            $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+        }
+
         $pdf = Pdf::loadView('pages.admin.transaction.reports.invoice-pdf', [
             'item' => $item,
             'transactionDetails' => $transactionDetails,
+            'remainingFullPayment' => $remainingFullPayment
         ]);
 
         return $pdf->download('Invoice ' . ucfirst($item->user->name) . '.pdf');

@@ -39,7 +39,7 @@
                                     <th>Order Id</th>
                                     <td>{{ $item->order_id }}</td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>Pembeli</th>
                                     <td>{{ '@' . $item->user->name }}</td>
@@ -56,6 +56,12 @@
                                     <th>Total Transaksi</th>
                                     <td>IDR {{ number_format($item->grand_total, 0, ',') }}</td>
                                 </tr>
+                                @if ($remainingFullPayment)
+                                    <tr>
+                                        <th>Remaining Full Payment</th>
+                                        <td>IDR {{ number_format($remainingFullPayment, 0, ',') }}</td>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <th>Payment Method</th>
                                     <td>{{ ucwords(str_replace('_', ' ', $item->payment_method)) }}</td>
@@ -86,7 +92,7 @@
                                                 </details>
 
                                                 <!-- Display specific fields -->
-                                {{-- <tr>
+                                                {{-- <tr>
                                     <th>Transaction ID</th>
                                     <td>{{ $data['transaction_id'] ?? 'N/A' }}</td>
                                 </tr> --}}

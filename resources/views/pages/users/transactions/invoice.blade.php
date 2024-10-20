@@ -81,8 +81,17 @@
                                 {{ number_format($transaction->grand_total, 0, ',') }}
                             </td>
                         </tr>
-                        <tr>
+
                     </tbody>
+
+                    @if ($remainingFullPayment)
+                        <tr>
+                            <th width="50%">Remaining Full Payment</th>
+                            <td width="50%" class="text-right text-green" style="font-weight: bold">
+                                Rp {{ number_format($remainingFullPayment, 0, ',',) }}
+                            </td>
+                        </tr>
+                    @endif
                 </table>
 
                 <div class="divider"></div>
