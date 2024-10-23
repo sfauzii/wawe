@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
+
     /**
      * Show the application dashboard.
      *
@@ -17,7 +17,12 @@ class HomeController extends Controller
     public function index()
     {
 
-        $items = TravelPackage::with('galleries')->latest()->get();
+        $items = TravelPackage::with('galleries')
+            ->withCount('transactions') // Hitung jumlah transaksi
+            // ->where('kuota', '>', 0) // Tampilkan hanya paket yang memiliki kuota
+            ->orderBy('transactions_count', 'desc') // Urutkan berdasarkan jumlah transaksi terbanyak
+            ->take(4) // Ambil 4 travel package teratas
+            ->get();
 
         $testimonies = Testimony::latest()->take(4)->get();
 
@@ -31,11 +36,9 @@ class HomeController extends Controller
         $totalTestimonies = Testimony::count();
 
         return view('pages.home', [
-            'items'=> $items,
+            'items' => $items,
             'testimonies' => $testimonies,
             'totalTestimonies' => $totalTestimonies,
         ]);
     }
-
-    
 }

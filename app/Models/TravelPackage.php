@@ -12,16 +12,28 @@ class TravelPackage extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
 
-    protected $fillable =[
-        'title', 'slug', 'location', 'about', 'features', 'departure_date', 'duration',
-        'kuota', 'type', 'price'
+    protected $fillable = [
+        'title',
+        'slug',
+        'location',
+        'about',
+        'features',
+        'departure_date',
+        'duration',
+        'kuota',
+        'type',
+        'price'
     ];
 
-    protected $hidden = [
-        
-    ];
+    protected $hidden = [];
 
-    public function galleries(){
+    public function galleries()
+    {
         return $this->hasMany(Gallery::class, 'travel_packages_id', 'id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'travel_packages_id');
     }
 }

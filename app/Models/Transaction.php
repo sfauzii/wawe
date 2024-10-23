@@ -18,7 +18,7 @@ class Transaction extends Model
         'order_id',
         'travel_packages_id',
         'users_id',
-        'additional_visa',
+        // 'additional_visa',
         // 'transaction_total',
         'transaction_status',
         'payment_method',
