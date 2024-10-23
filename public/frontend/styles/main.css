@@ -550,7 +550,6 @@ body {
   /* Bagikan lebar yang sama untuk setiap item */
   padding: 20px;
   /* Sesuaikan padding untuk konten dan ikon */
-  border-bottom: 1px solid #ddd;
   /* Tambahkan garis pemisah yang halus antar item */
   text-align: center;
   /* Pusatkan konten di dalam setiap item */
@@ -2255,6 +2254,47 @@ footer .container-fluid {
   font-size: 16px;
   color: #b1b1b1;
 }
+.section-details-content .card-details .trip-informations .tooltip-icon {
+  display: inline-block;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.section-details-content .card-details .trip-informations .icon-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(15, 244, 126, 0.231372549);
+  border-radius: 50%;
+  color: #0ff47e;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  position: relative;
+}
+.section-details-content .card-details .trip-informations .tooltip-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -30px;
+  background-color: #fff;
+  color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-top: 8px;
+  font-weight: bold;
+  z-index: 1;
+  width: 250px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.section-details-content .card-details .trip-informations .tooltip-icon:hover .tooltip-text {
+  display: block;
+}
 .section-details-content .card-details .trip-informations .text-blue {
   color: #071C4D;
   font-weight: bold;
@@ -2370,6 +2410,60 @@ footer .container-fluid {
 }
 .section-details-content .tab-pane p {
   font-size: 14px;
+}
+
+.terms-conditions-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.terms-conditions-wrapper input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #071C4D;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+}
+
+.terms-conditions-wrapper input[type=radio]:checked::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background-color: #071C4D;
+  border-radius: 50%;
+  border-color: #071C4D;
+  top: 48%;
+  left: 49.59%;
+  transform: translate(-50%, -50%);
+}
+
+.terms-text {
+  margin-left: 10px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  color: #071C4D;
+}
+
+.terms-text p {
+  color: #071C4D !important;
+}
+
+.terms-text a {
+  color: #071C4D;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.terms-text a:hover {
+  text-decoration: none;
 }
 
 .section-success {

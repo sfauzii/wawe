@@ -42,7 +42,14 @@
                     <td width="50%" class="text-right text-green">-Rp {{ number_format($uniqueCode) }}</td>
                 </tr>
                 <tr>
-                    <th width="50%">PPN 11%</th>
+                    <th width="50%">
+                        PPN 11%
+                        <div class="tooltip-icon">
+                            <span class="icon-img">?</span>
+                            <span class="tooltip-text">Biaya untuk fee payment gateway dan platform service
+                                lainnya!</span>
+                        </div>
+                    </th>
                     <td width="50%" class="text-right text-green">+Rp {{ number_format($ppn, 0, ',', '.') }}</td>
                 </tr>
 
@@ -53,6 +60,14 @@
                     </td>
                 </tr>
             </table>
+            <hr>
+
+            {{-- Radio Button --}}
+            <div class="terms-conditions-wrapper">
+                <input type="radio" id="agreeTerms" name="terms" onclick="disableUncheck(this)" required />
+                <p class="terms-text" style="color: #071C4D;">Saya setuju dengan <a href="#">Terms & Condition</a>
+                </p>
+            </div>
             {{-- </div> --}}
         </div>
     </div>

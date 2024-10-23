@@ -148,7 +148,7 @@
                         <div class="card card-details card-right">
                             @livewire('checkout-calculator', ['transactionId' => $item->id])
 
-                            <hr>
+                            {{-- <hr> --}}
                             <p style="font-size: 14px;"></p>
                             Presented By
                             </p>
