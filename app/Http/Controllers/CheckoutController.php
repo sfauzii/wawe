@@ -47,6 +47,8 @@ class CheckoutController extends Controller
             TransactionDetail::create([
                 'transactions_id' => $transaction->id,
                 'username' => Auth::user()->username,
+                'phone' => Auth::user()->phone, // Simpan phone dari user yang login
+                'phone' => $request->phone, // Simpan phone yang diinputkan
             ]);
 
             // Kirim notifikasi ke admin dan super-admin
@@ -130,7 +132,8 @@ class CheckoutController extends Controller
     public function create(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required|string|exists:users,username',
+            'username' => 'required|string',
+            'phone' => 'required|string|min:10', // Tambahkan validasi untuk phone
         ]);
 
         $userPhone = Auth::user()->phone;
@@ -141,13 +144,12 @@ class CheckoutController extends Controller
         // Check if there's enough quota available
         if ($travelPackage->kuota <= 0) {
             // return back()->withErrors(['message' => 'No more quota available for this travel package.']);
-            Alert::error('Error','No more quota available for this travel package.')
+            Alert::error('Error', 'No more quota available for this travel package.')
                 // ->position('top-end')
                 ->autoClose(3000)
                 ->timerProgressBar();
 
             return back();
-
         }
 
         $data = $request->all();
@@ -197,7 +199,7 @@ class CheckoutController extends Controller
         })->get();
 
         Notification::send($admins, new NewTransactionNotification($transaction));
-        
+
         // Set konfigurasi Midtrans
         // Config::$serverKey = config('midtrans.serverKey');
         // Config::$isProduction = config('midtrans.isProduction');
@@ -279,7 +281,7 @@ class CheckoutController extends Controller
 
         $random = rand(100, 999);
         $transaction->order_id = 'WW' . date('Ymd') . $random;
-         // Buat array untuk dikirim ke midtrans
+        // Buat array untuk dikirim ke midtrans
         $midtrans_params = [
             'transaction_details' => [
                 'order_id' => $transaction->order_id,
@@ -316,6 +318,4 @@ class CheckoutController extends Controller
             echo 'Error: ' . $e->getMessage();
         }
     }
-
-    
 }

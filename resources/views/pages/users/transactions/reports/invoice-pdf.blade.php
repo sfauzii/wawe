@@ -246,11 +246,13 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Username</th>
+                                        <th>Phone</th>
                                     </tr>
                                     @foreach ($transaction->details as $detail)
                                         <tr>
                                             <td>{{ $detail->id }}</td>
                                             <td>{{ '@' . $detail->username }}</td>
+                                            <td>{{ $detail->phone }}</td>
                                         </tr>
                                     @endforeach
                                 </table>

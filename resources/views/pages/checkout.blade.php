@@ -68,18 +68,15 @@
                                                     {{ $detail->username }}
                                                 </td>
                                                 <td class="align-middle">
-                                                    {{ $detail->transaction->user->phone }}
+                                                    @if ($detail->phone)
+                                                        {{ $detail->phone }} <!-- Nomor telepon dari TransactionDetail -->
+                                                    @else
+                                                        {{ $detail->transaction->user->phone }}
+                                                        <!-- Jika tidak ada, tampilkan phone dari user yang login -->
+                                                    @endif
                                                     <!-- Menampilkan nomor telepon pengguna -->
                                                 </td>
-                                                {{-- <td class="align-middle">
-                                                    {{ $detail->nationality }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $detail->is_visa ? '30 Days' : 'N/A' }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ \Carbon\Carbon::createFromDate($detail->doe_passport) > \Carbon\Carbon::now() ? 'Active' : 'Inactive' }}
-                                                </td> --}}
+
                                                 <td class="align-middle">
                                                     <a href="{{ route('checkout-remove', $detail->id) }}">
                                                         <img src="{{ url('frontend/images/ic_remove.png') }}"
@@ -109,7 +106,7 @@
                                         id="username" placeholder="Username">
 
                                     <label for="phone" class="sr-only">Phone</label>
-                                    <input type="text" name="phone" required class="form-control mb-2 mr-sm-2"
+                                    <input type="number" name="phone" required class="form-control mb-2 mr-sm-2"
                                         id="phone" placeholder="Phone">
 
                                     {{-- <label for="nationality" class="sr-only">Nationality</label>
@@ -155,7 +152,8 @@
 
                             <div class="bank">
                                 <div class="bank-item pb-3">
-                                    <img src="{{ url('frontend/svg/images/midtrans-logo.svg') }}" alt="" class="bank-image">
+                                    <img src="{{ url('frontend/svg/images/midtrans-logo.svg') }}" alt=""
+                                        class="bank-image">
                                     <div class="description"></div>
                                     <div class="clearfix"></div>
                                 </div>

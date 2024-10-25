@@ -13,17 +13,18 @@ class TransactionDetail extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
 
-    protected $fillable =[
-        'transactions_id', 'username', 
+    protected $fillable = [
+        'transactions_id',
+        'username',
+        'phone',
         // 'nationality', 'is_visa', 'doe_passport'
     ];
 
-    protected $hidden = [
+    protected $hidden = [];
 
-    ];
-
-    public function transaction(){
-        return $this->belongsTo(Transaction::class, 'transactions_id', 'id'); 
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class, 'transactions_id', 'id');
     }
 
     public function travel_package()
