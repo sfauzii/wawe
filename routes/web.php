@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CarouselController;
+use App\Models\TravelPackage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -11,11 +11,14 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SettingController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\User\MyTicketController;
 use App\Http\Controllers\User\OverviewController;
+use App\Http\Controllers\Admin\CarouselController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\User\TestimonyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -23,9 +26,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
-use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
-use App\Models\TravelPackage;
 
 /*
 |--------------------------------------------------------------------------
@@ -141,9 +142,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 // Auth::routes();
 Route::auth(['verify' => true]);
 
+// Socialite
+Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
+
 
 // Midtrans
 Route::post('/midtrans/callback', [MidtransController::class, 'notificationHandler']);
 Route::get('/midtrans/finish', [MidtransController::class, 'finishRedirect']);
 Route::get('/midtrans/unfinish', [MidtransController::class, 'unfinishRedirect']);
 Route::get('/midtrans/error', [MidtransController::class, 'errorRedirect']);
+

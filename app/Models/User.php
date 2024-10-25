@@ -50,4 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
         'id' => 'string',
     ];
+
+    public function socialite()
+    {
+        return $this->hasMany(Socialite::class);
+    }
 }

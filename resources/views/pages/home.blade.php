@@ -28,8 +28,8 @@
                                 <label for="username">Username</label>
                                 <input id="username" name="username" type="text"
                                     class="form-control @error('username') is-invalid @enderror rounded-input"
-                                    value="{{ old('username') }}" placeholder="Enter username" required autocomplete="username"
-                                    autofocus>
+                                    value="{{ old('username') }}" placeholder="Enter username" required
+                                    autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
                             <hr>
                             <div class="action-buttons">
                                 <button type="button" class="btn-dark google"
-                                    onclick="window.location.href = 'register.html';">
+                                    onclick="window.location.href = '{{ route('socialite.redirect', 'google') }}';">
                                     <img src="frontend/images/icons/icon-google.svg" alt="Google Icon" class="google-icon">
                                     Masuk/Daftar
                                 </button>
