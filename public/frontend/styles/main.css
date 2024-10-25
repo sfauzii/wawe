@@ -3635,6 +3635,17 @@ footer .container-fluid {
   margin-bottom: 10px;
 }
 
+.login-button:hover {
+  box-shadow: 0 0 0 0.25rem rgba(253, 181, 13, 0.2509803922) !important;
+  background-color: coral;
+  transition: all 0.4s;
+}
+
+.register-button:hover {
+  box-shadow: 0 0 0 0.25rem rgba(221, 221, 221, 0.537254902) !important;
+  transition: all 0.4s;
+}
+
 .btn-dark.google {
   background-color: #34364a;
   padding: 12px;
@@ -3671,11 +3682,6 @@ footer .container-fluid {
   background-color: #ddd;
   /* Adjust register button color */
   color: #666;
-}
-
-.login-button:hover,
-.register-button:hover {
-  opacity: 0.8;
 }
 
 /* For tablet devices (screen width less than or equal to 768px) */

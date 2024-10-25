@@ -4370,6 +4370,17 @@ footer {
     margin-bottom: 10px;
 }
 
+.login-button:hover {
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
+}
+
+.register-button:hover {
+    box-shadow: 0 0 0 .25rem #dddddd89 !important;
+    transition: all .4s;
+}
+
 .btn-dark.google {
     background-color: #34364a;
     padding: 12px;
@@ -4408,10 +4419,10 @@ footer {
     color: #666;
 }
 
-.login-button:hover,
-.register-button:hover {
-    opacity: 0.8;
-}
+// .login-button:hover,
+// .register-button:hover {
+//     opacity: 0.8;
+// }
 
 /* For tablet devices (screen width less than or equal to 768px) */
 @media (max-width: 768px) {
