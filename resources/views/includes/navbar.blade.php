@@ -11,10 +11,12 @@
         <div class="collapse navbar-collapse justify-content-center" id="navb">
             <ul class="navbar-nav">
                 <li class="nav-item mx-md-2">
-                    <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">Home</a>
+                    <a href="{{ route('home') }}"
+                        class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="{{ route('catalog') }}" class="nav-link {{ Route::currentRouteName() == 'catalog' ? 'active' : '' }}">Destinations</a>
+                    <a href="{{ route('catalog') }}"
+                        class="nav-link {{ Route::currentRouteName() == 'catalog' ? 'active' : '' }}">Destinations</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
@@ -34,12 +36,13 @@
                     </div>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="{{ route('testimonials') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials' ? 'active' : '' }}">Testimonial</a>
+                    <a href="{{ route('testimonials') }}"
+                        class="nav-link {{ Route::currentRouteName() == 'testimonials' ? 'active' : '' }}">Testimonial</a>
                 </li>
             </ul>
             <!-- Tambahkan tombol login di dalam collapse agar muncul di mobile -->
             @guest
-                <a href="{{ route('login') }}" class="btn btn-login ml-auto d-lg-none">Login</a>
+                <a id="login-btn" href="{{ route('login') }}" class="btn btn-login ml-auto d-lg-none">Login</a>
             @endguest
 
             <!-- Profil untuk mobile di dalam collapse -->
@@ -104,7 +107,9 @@
 
         @guest
 
-            <a href="{{ route('login') }}" class="btn btn-login d-none d-lg-inline-block ml-auto">Login</a>
+            {{-- <a href="{{ route('login') }}" class="btn btn-login d-none d-lg-inline-block ml-auto">Login</a> --}}
+            <button id="login-btn" class="btn btn-login d-none d-lg-inline-block ml-auto">Login</button>
+
 
         @endguest
     </nav>
