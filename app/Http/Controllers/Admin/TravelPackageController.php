@@ -106,4 +106,15 @@ class TravelPackageController extends Controller
 
         return redirect()->route('travel-package.index');
     }
+
+    public function toggleStatus($id)
+    {
+        $item = TravelPackage::findOrFail($id);
+        $item->is_active = !$item->is_active;
+        $item->save();
+
+        toast('Package successfully is active', 'success');
+
+        return redirect()->route('travel-package.index');
+    }
 }

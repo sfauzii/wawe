@@ -20,6 +20,7 @@ class HomeController extends Controller
         $items = TravelPackage::with('galleries')
             ->withCount('transactions') // Hitung jumlah transaksi
             // ->where('kuota', '>', 0) // Tampilkan hanya paket yang memiliki kuota
+            ->where('is_active', true)
             ->orderBy('transactions_count', 'desc') // Urutkan berdasarkan jumlah transaksi terbanyak
             ->take(4) // Ambil 4 travel package teratas
             ->get();

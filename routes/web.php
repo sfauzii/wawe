@@ -25,6 +25,7 @@ use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
+use App\Models\TravelPackage;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('travel-package', TravelPackageController::class);
+    Route::post('/travel-package/{id}/toggle-status', [TravelPackageController::class, 'toggleStatus'])->name('travel-packages.toggleStatus');
+
     Route::resource('gallery', GalleryController::class);
     Route::delete('gallery/{id}/image/{index}', [GalleryController::class, 'deleteImage'])->name('gallery.delete_image');
 

@@ -10,7 +10,8 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = TravelPackage::with('galleries');
+        $query = TravelPackage::with('galleries')
+            ->where('is_active', true);
 
         // Sorting Logic
         if ($request->has('sort')) {

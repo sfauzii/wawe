@@ -22,7 +22,8 @@ class TravelPackage extends Model
         'duration',
         'kuota',
         'type',
-        'price'
+        'price',
+        'is_active'
     ];
 
     protected $hidden = [];

@@ -68,6 +68,19 @@
                                             @endforelse
                                         </td>
                                         <td>
+                                            <form action="{{ route('travel-packages.toggleStatus', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('POST')
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="statusSwitch{{ $item->id }}" onchange="this.form.submit()"
+                                                        {{ $item->is_active ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="statusSwitch{{ $item->id }}"></label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
                                             <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
                                                 class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Package">
                                                 <i class="ri-eye-line"></i>

@@ -2,9 +2,7 @@
 
 
 @section('title')
-
-WaWe | Purbalingga, Jawa Tengah
-    
+    WaWe | Purbalingga, Jawa Tengah
 @endsection
 
 @section('content')
@@ -25,7 +23,8 @@ WaWe | Purbalingga, Jawa Tengah
             <div class="carousel-inner">
                 @foreach ($carousels as $index => $carousel)
                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                        <img class="d-block w-100" src="{{ Storage::url($carousel->image_carousel) }}" alt="Slide {{ $index + 1 }}" />
+                        <img class="d-block w-100" src="{{ Storage::url($carousel->image_carousel) }}"
+                            alt="Slide {{ $index + 1 }}" />
                         <div class="overlay">
                             <h1>{{ ucwords($carousel->title_carousel) }}</h1>
                             <p>{{ ucwords($carousel->description_carousel) }}</p>
@@ -135,6 +134,11 @@ WaWe | Purbalingga, Jawa Tengah
         <section class="section-popular-content" id="popularContent">
             <div class="container">
                 <div class="section-popular-travel row justify-content-center">
+
+                    {{-- @php
+                        $items = \App\Models\TravelPackage::where('is_active', true)->get();
+                    @endphp --}}
+
                     @foreach ($items as $item)
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <a href="{{ route('details', $item->slug) }}" class="card-link">
@@ -149,9 +153,10 @@ WaWe | Purbalingga, Jawa Tengah
                                             <span>{{ $item->duration }}</span>
                                             <ion-icon name="people-outline"></ion-icon>
                                             <span>{{ $item->kuota }} Persons</span>
-                                            <ion-icon name="star-outline"></ion-icon> <span>{{ $item->testimonies_count }}</span>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            <span>{{ $item->testimonies_count }}</span>
                                         </div>
-                                    </div>  
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -190,34 +195,35 @@ WaWe | Purbalingga, Jawa Tengah
                     <h2>What Our Clients Say</h2>
                     <p>Discover how we have helped our clients achieve their goals.</p>
                     <div class="buttons">
-                        <button class="btn-primary" onclick="window.location.href = '{{ route('catalog') }}';">Get Started</button>
-                        <button class="btn-secondary" onclick="window.location.href = '{{ route('testimonials') }}';">Learn More</button>
+                        <button class="btn-primary" onclick="window.location.href = '{{ route('catalog') }}';">Get
+                            Started</button>
+                        <button class="btn-secondary"
+                            onclick="window.location.href = '{{ route('testimonials') }}';">Learn More</button>
                     </div>
                 </div>
                 <div class="testimonial-right">
-                    @foreach ($testimonies as  $testimony)
-
-                    <div class="testimonial-card">
-                        <h3>{{ ucwords($testimony->transactionDetail->transaction->travel_package->title) }}</h3>
-                        <p>
-                            "{{ $testimony->message }}."
-                        </p>
-                        <div class="author-info">
-                            <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}" alt="{{ $testimony->user->name }}" alt="Author Photo" style="width: auto;" />
-                            <!-- Replace with actual image path -->
-                            <div>
-                                <span class="author-name">{{ $testimony->user->name }}</span>
-                                <span class="author-title">{{ $testimony->created_at }}</span>
+                    @foreach ($testimonies as $testimony)
+                        <div class="testimonial-card">
+                            <h3>{{ ucwords($testimony->transactionDetail->transaction->travel_package->title) }}</h3>
+                            <p>
+                                "{{ $testimony->message }}."
+                            </p>
+                            <div class="author-info">
+                                <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
+                                    alt="{{ $testimony->user->name }}" alt="Author Photo" style="width: auto;" />
+                                <!-- Replace with actual image path -->
+                                <div>
+                                    <span class="author-name">{{ $testimony->user->name }}</span>
+                                    <span class="author-title">{{ $testimony->created_at }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                        
                     @endforeach
                 </div>
             </div>
         </section>
 
-        
+
 
         <!-- MY SERVICE -->
         <section class="my-service-section">
@@ -261,10 +267,11 @@ WaWe | Purbalingga, Jawa Tengah
                         </li>
                         <!-- Add more services as needed -->
                     </ul>
-                    <button class="get-started-button" onclick="window.location.href = '{{ route('catalog') }}';">Get Started</button>
+                    <button class="get-started-button" onclick="window.location.href = '{{ route('catalog') }}';">Get
+                        Started</button>
                 </div>
                 <div class="my-service-image">
-                    <img src="frontend/images/services-copy.png" alt="Service Image"/>
+                    <img src="frontend/images/services-copy.png" alt="Service Image" />
                 </div>
             </div>
         </section>
