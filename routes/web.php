@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\User\MyTransactionController;
 use App\Http\Controllers\Admin\TravelPackageController;
+use App\Http\Controllers\Auth\AdminsController;
 use App\Http\Controllers\User\ProfileController as ProfileUserController;
 
 /*
@@ -98,8 +99,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
+Route::get('/admins/login', [AdminsController::class, 'loginForm'])->name('admins-form');
+Route::post('/admins/logins', [AdminsController::class, 'login'])->name('admins-login');
+Route::post('/admin-logout', [AdminsController::class, 'logoutAdmins'])->name('admin-logout');
+
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admins/{role}', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('travel-package', TravelPackageController::class);
     Route::post('/travel-package/{id}/toggle-status', [TravelPackageController::class, 'toggleStatus'])->name('travel-packages.toggleStatus');
@@ -152,4 +158,3 @@ Route::post('/midtrans/callback', [MidtransController::class, 'notificationHandl
 Route::get('/midtrans/finish', [MidtransController::class, 'finishRedirect']);
 Route::get('/midtrans/unfinish', [MidtransController::class, 'unfinishRedirect']);
 Route::get('/midtrans/error', [MidtransController::class, 'errorRedirect']);
-

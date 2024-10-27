@@ -43,6 +43,7 @@
                                     <th>Kuota</th>
                                     <th>Departure Date</th>
                                     <th>Gallery</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -68,25 +69,28 @@
                                             @endforelse
                                         </td>
                                         <td>
-                                            <form action="{{ route('travel-packages.toggleStatus', $item->id) }}" method="POST"
-                                                style="display:inline;">
+                                            <form action="{{ route('travel-packages.toggleStatus', $item->id) }}"
+                                                method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" role="switch"
                                                         id="statusSwitch{{ $item->id }}" onchange="this.form.submit()"
                                                         {{ $item->is_active ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="statusSwitch{{ $item->id }}"></label>
+                                                    <label class="form-check-label"
+                                                        for="statusSwitch{{ $item->id }}"></label>
                                                 </div>
                                             </form>
                                         </td>
                                         <td>
                                             <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
-                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Package">
+                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Show Package">
                                                 <i class="ri-eye-line"></i>
                                             </a>
                                             <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
-                                                class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Package">
+                                                class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Edit Package">
                                                 <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                             <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}"
@@ -95,7 +99,8 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
+                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
                                                     <i class="ri-delete-bin-6-line"></i>
 
                                                 </button>

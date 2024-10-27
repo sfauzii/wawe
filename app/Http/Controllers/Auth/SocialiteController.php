@@ -67,6 +67,9 @@ class SocialiteController extends Controller
                     'phone' => $phone,
                     'password' => bcrypt(Str::random(24)),
                 ]);
+
+                // Assign the default role 'user' to the new user
+                $user->assignRole('user'); // Ensure 'user' role exists
             }
 
             // Create the social account

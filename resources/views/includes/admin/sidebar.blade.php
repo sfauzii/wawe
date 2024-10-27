@@ -18,7 +18,7 @@
                 class="nav-content collapse {{ in_array(Route::currentRouteName(), ['dashboard']) ? 'show' : '' }}"
                 data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('dashboard') }}"
+                    <a href="{{ route('dashboard', ['role' => Auth::user()->getRoleNames()->first()]) }}"
                         class="{{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Overview</span>
                     </a>

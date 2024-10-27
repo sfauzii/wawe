@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $role)
     {
         // Ambil data transaksi terbaru
         $recentSales = $this->getRecentSales();
@@ -91,6 +91,7 @@ class DashboardController extends Controller
 
         // kembalikan view dengan data yang diperoleh
         return view('pages.admin.dashboard', [
+            'role' => $role,
             'filter' => $filter,
             'filter_revenue' => $filter_revenue,
             'filter_customers' => $filter_customers,
