@@ -26,8 +26,8 @@
                                 <label for="username">Username</label>
                                 <input id="username" name="username" type="text"
                                     class="form-control @error('username') is-invalid @enderror rounded-input"
-                                    value="{{ old('username') }}" placeholder="Enter username" required autocomplete="username"
-                                    autofocus>
+                                    value="{{ old('username') }}" placeholder="Enter username" required
+                                    autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -87,11 +87,11 @@
 
 
     <!--<section class="section-heading-review">
-                        <div class="container">
-                            <h1>Our Clients Say</h1>
-                            <p>What our clients have to say about our services</p>
-                        </div>
-                    </section>-->
+                                                <div class="container">
+                                                    <h1>Our Clients Say</h1>
+                                                    <p>What our clients have to say about our services</p>
+                                                </div>
+                                            </section>-->
 
     <!-- Section Client Says -->
     <section class="section-client-says">
@@ -102,47 +102,53 @@
             </div>
             <div class="review-cards">
                 <!-- Review Card Example -->
-                <div class="review-card">
-                    <h3>Excellent Service!</h3>
-                    <p class="review-message">
-                        The team was professional and delivered the project on time. Highly recommended!
-                        <span class="more" style="display:none;">
-                            They went above and beyond to ensure that everything was perfect. I can't thank them
-                            enough for their hard work and dedication!
-                        </span>
-                        <span class="read-more">...more</span> <!-- Pindah ...more ke sini -->
-                    </p>
-                    <div class="review-footer">
-                        <img src="profile.jpg" alt="user" class="review-image">
-                        <div class="review-details">
-                            <p class="name-user-review">John Doe</p>
-                            <p class="created_at">Reviewed on September 28, 2024</p>
-                        </div>
-                    </div>
-                </div>
+                @foreach ($testimonies as $testimonial)
+                    <div class="review-card">
+                        <h3>{{ ucwords($testimonial->transactionDetail->transaction->travel_package->title) }}</h3>
+                        <p class="review-message">
+                            @php
+                                // Menghitung jumlah kata dalam message
+                                $wordCount = str_word_count($testimonial->message);
 
-                <div class="review-card">
-                    <h3>Fantastic Experience!</h3>
-                    <p class="review-message">Amazing support and the results exceeded my expectations!</p>
-                    <div class="review-footer">
-                        <img src="frontend/images/avatar.png" alt="user" class="review-image">
-                        <div class="review-details">
-                            <p class="name-user-review">Jane Smith</p>
-                            <p class="created_at">Reviewed on September 29, 2024</p>
+                                // Memotong message jika lebih dari 100 kata
+                                if ($wordCount > 30) {
+                                    // Mengambil 30 kata pertama
+                                    $trimmedMessage = implode(
+                                        ' ',
+                                        array_slice(explode(' ', $testimonial->message), 0, 30),
+                                    );
+                                    $remainingMessage = implode(
+                                        ' ',
+                                        array_slice(explode(' ', $testimonial->message), 30),
+                                    );
+                                } else {
+                                    // Jika tidak lebih dari 100 kata, tampilkan seluruh message
+                                    $trimmedMessage = $testimonial->message;
+                                    $remainingMessage = '';
+                                }
+                            @endphp
+
+                            {{ $trimmedMessage }}
+
+                            @if ($remainingMessage)
+                                <span class="more" style="display:none;">
+                                    {{ $remainingMessage }}
+                                </span>
+                                <span class="read-more" style="cursor: pointer;">...more</span>
+                            @endif <!-- Pindah ...more ke sini -->
+                        </p>
+                        <div class="review-footer">
+                            <img src="{{ $testimonial->user->photo ? asset('storage/' . $testimonial->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimonial->user->name }}"
+                                alt="{{ $testimonial->user->name }}" class="review-image">
+                            <div class="review-details">
+                                <p class="name-user-review">{{ ucwords($testimonial->user->name) }}</p>
+                                <p class="created_at">Reviewed on {{ $testimonial->created_at->format('M, j Y') }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="review-card">
-                    <h3>Fantastic Experience!</h3>
-                    <p class="review-message">Amazing support and the results exceeded my expectations!</p>
-                    <div class="review-footer">
-                        <img src="frontend/images/avatar.png" alt="user" class="review-image">
-                        <div class="review-details">
-                            <p class="name-user-review">Jane Smith</p>
-                            <p class="created_at">Reviewed on September 29, 2024</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
                 <!-- Tambahkan lebih banyak review-card sesuai kebutuhan -->
             </div>
         </div>
@@ -152,7 +158,7 @@
     <!-- Section About Us -->
     <section class="section-about-us">
         <div class="container-about">
-            <img src="frontend/svg/images/about.svg" alt="About Us" class="about-image">
+            <img src="{{ url('frontend/svg/images/about.svg') }}" alt="About Us" class="about-image">
             <div class="about-content">
                 <h3>Who We Are</h3>
                 <h1>About Our Company</h1>
@@ -202,6 +208,33 @@
                 // Mengatur tinggi card sesuai isi pesan
                 card.style.height = 'auto'; // Mengatur tinggi menjadi otomatis untuk menyesuaikan isi
             });
+        });
+    </script>
+@endsection
+
+
+@section('script')
+    <script>
+        document.querySelectorAll('.review-card').forEach(card => {
+            const reviewMessage = card.querySelector('.review-message');
+            const moreText = card.querySelector('.more');
+            const readMoreLink = card.querySelector('.read-more');
+
+            if (moreText) { // Pastikan ada elemen lebih
+                readMoreLink.addEventListener('click', () => {
+                    // Toggle visibility of the additional message
+                    if (moreText.style.display === 'none') {
+                        moreText.style.display = 'inline'; // Tampilkan teks lebih banyak
+                        readMoreLink.innerText = '...less'; // Ubah teks menjadi less
+                    } else {
+                        moreText.style.display = 'none'; // Sembunyikan teks lebih banyak
+                        readMoreLink.innerText = '...more'; // Kembalikan teks menjadi more
+                    }
+
+                    // Mengatur tinggi card sesuai isi pesan
+                    card.style.height = 'auto'; // Mengatur tinggi menjadi otomatis untuk menyesuaikan isi
+                });
+            }
         });
     </script>
 @endsection
