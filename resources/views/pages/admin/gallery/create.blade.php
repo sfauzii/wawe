@@ -58,9 +58,20 @@
                                     <label for="image" class="col-sm-2 col-form-label">Image <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="images[]" multiple
-                                            placeholder="Image">
+                                        {{-- <input class="form-control" type="file" name="images[]" multiple
+                                            placeholder="Image"> --}}
+
+                                        <!-- File uploader with multiple files upload -->
+                                        <input type="file" name="images[]" class="image-preview-filepond"
+                                            accept="image/png,image/jpeg,image/jpg,image/webp" multiple>
+                                        @error('images')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        @error('images.*')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-text text-muted">Foto. img, jpg, jpeg, png. Wajib diisi</small>
+
 
                                     </div>
                                 </div>

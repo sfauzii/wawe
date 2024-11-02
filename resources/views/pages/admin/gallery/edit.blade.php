@@ -55,8 +55,18 @@
                                 <div class="row mb-3">
                                     <label for="image" class="col-sm-2 col-form-label">Image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="images[]" multiple
-                                            placeholder="Image">
+                                        {{-- <input class="form-control" type="file" name="images[]" multiple
+                                            placeholder="Image"> --}}
+
+                                        <!-- File uploader with multiple files upload -->
+                                        <input type="file" name="images[]" class="image-preview-filepond"
+                                            accept="image/png,image/jpeg,image/jpg,image/webp" multiple>
+                                        @error('images')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        @error('images.*')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <small class="text-muted">You can select multiple images. Existing images will be
                                             preserved unless removed.</small>
                                     </div>

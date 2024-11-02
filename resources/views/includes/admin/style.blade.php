@@ -19,3 +19,9 @@
 
 <!-- Template Main CSS File -->
 <link href="{{ url('backend/assets/css/style.css') }}" rel="stylesheet">
+
+{{-- filepond --}}
+<link rel="stylesheet" href="{{ url('backend/assets/libraries/filepond/filepond.css') }}">
+<link rel="stylesheet"
+    href="{{ url('backend/assets/libraries/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
+<link rel="stylesheet" href="{{ url('backend/assets/libraries/toastify-js/src/toastify.css') }}">

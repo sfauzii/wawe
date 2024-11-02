@@ -32,29 +32,33 @@
                         <div class="my-4 p-4 pb-0">
                             <form action="{{ route('carousels.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label for="image_carousel">Image</label>
-                                        <input type="file" name="image_carousel" class="form-control @error('image_carousel') is-invalid @enderror">
-                            
+                                        {{-- <input type="file" name="image_carousel" class="form-control @error('image_carousel') is-invalid @enderror"> --}}
+                                        <!-- File uploader with multiple files upload -->
+                                        <input type="file" name="image_carousel" class="image-preview-filepond"
+                                            accept="image/png,image/jpeg,image/jpg,image/webp">
                                         @error('image_carousel')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
+
                                     </div>
                                 </div>
-                        
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label for="title_carousel">Title</label>
-                                        <input type="text" name="title_carousel" class="form-control @error('title_carousel') is-invalid @enderror">
-                            
+                                        <input type="text" name="title_carousel"
+                                            class="form-control @error('title_carousel') is-invalid @enderror">
+
                                         @error('title_carousel')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                        
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label for="description_carousel">Description</label>
@@ -64,7 +68,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                        
+
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>
@@ -78,7 +82,5 @@
         </div>
     </section>
 
-    
+
 @endsection
-
-

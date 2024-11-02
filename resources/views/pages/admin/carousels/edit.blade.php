@@ -32,10 +32,11 @@
                     <div class="card-body">
 
                         <div class="my-4 p-4 pb-0">
-                            <form action="{{ route('carousels.update', $carousel->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('carousels.update', $carousel->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                        
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         {{-- <label for="image_carousel">Current Image</label>
@@ -43,24 +44,31 @@
                                         <img src="{{ Storage::url($carousel->image_carousel) }}" alt="{{ $carousel->title_carousel }}" width="150">
                                         <br><br> --}}
                                         <label for="image_carousel">Upload New Image (optional)</label>
-                                        <input type="file" name="image_carousel" class="form-control @error('image_carousel') is-invalid @enderror">
+                                        {{-- <input type="file" name="image_carousel" class="form-control @error('image_carousel') is-invalid @enderror"> --}}
+                                        <input type="file" name="image_carousel"
+                                            class="image-preview-filepond @error('image_carousel') is-invalid @enderror"
+                                            accept="image/png,image/jpeg,image/jpg,image/webp">
                                         @error('image_carousel')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                        {{-- @error('image_carousel')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror --}}
                                     </div>
                                 </div>
-                        
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label for="title_carousel">Title</label>
-                                        <input type="text" name="title_carousel" value="{{ old('title_carousel', $carousel->title_carousel) }}"
+                                        <input type="text" name="title_carousel"
+                                            value="{{ old('title_carousel', $carousel->title_carousel) }}"
                                             class="form-control @error('title_carousel') is-invalid @enderror" required>
                                         @error('title_carousel')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                        
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label for="description_carousel">Description</label>
@@ -70,11 +78,11 @@
                                         @enderror
                                     </div>
                                 </div>
-                        
+
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
-                    
+
 
                     </div>
                 </div>
@@ -93,7 +101,8 @@
                             <div class="row mb-5">
                                 <div class="col-sm-10">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ Storage::url($carousel->image_carousel) }}" alt="{{ $carousel->title_carousel }}" width="390">
+                                        <img src="{{ Storage::url($carousel->image_carousel) }}"
+                                            alt="{{ $carousel->title_carousel }}" width="390">
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +141,6 @@
         </div>
     </section>
 
-    
+
 
 @endsection
