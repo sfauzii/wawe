@@ -23,7 +23,7 @@ let currentScrollPos = window.pageYOffset;
 if (prevScrollpos > currentScrollPos) {
 document.getElementById("navbar").style.top = "20px"; /* Scroll ke atas, tampilkan navbar */
 } else {
-document.getElementById("navbar").style.top = "-80px"; /* Scroll ke bawah, sembunyikan navbar */
+document.getElementById("navbar").style.top = "-110px"; /* Scroll ke bawah, sembunyikan navbar */
 }
 prevScrollpos = currentScrollPos;
 }

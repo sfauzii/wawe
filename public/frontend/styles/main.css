@@ -49,7 +49,7 @@ html {
   /* Ensure it is above other elements */
   border-radius: 30px;
   /* Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   /* Add shadow for better visibility */
   transition: all 0.3s ease;
   /* Smooth transition for appearance changes */
@@ -103,7 +103,7 @@ body {
 .navbar-scrolled {
   background-color: rgba(255, 255, 255, 0.95);
   /* Sedikit transparan saat di-scroll */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   /* Menambah bayangan saat di-scroll */
 }
 
@@ -150,7 +150,7 @@ body {
   /* Warna latar belakang tombol */
   color: #fff;
   /* Warna teks */
-  padding: 6px 15px;
+  padding: 10px 25px;
   /* Padding untuk ukuran tombol, ditambahkan lebih besar untuk kapsul */
   border: none;
   /* Menghapus border default */
@@ -161,9 +161,9 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   /* Animasi transisi */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
   /* Menambahkan pointer pada mouse saat hover */
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 /* Hover effect untuk tombol login */
