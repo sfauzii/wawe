@@ -18,10 +18,11 @@ class IsAdmin
     {
 
         if (Auth::check()) {
-            /** @var App\Models\User **/ 
+            /** @var App\Models\User **/
 
             $user = Auth::user();
-            if($user->hasRole(['super-admin', 'admin'])) {
+            // if($user->hasRole(['super-admin', 'admin', 'marketing'])) {
+            if ($user->hasPermissionTo('login dashboard')) {
                 return $next($request);
             }
 

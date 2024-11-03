@@ -37,15 +37,14 @@ class AdminsController extends Controller
         if (Auth::attempt($request->only('username', 'password'))) {
             $user = Auth::user(); // Get the authenticated user
 
-            // Check if the user has the 'super-admin' or 'admin' role
-            if ($user->hasRole(['super-admin', 'admin'])) {
+            // Check if the user has the 'login dashboard' permission
+            if ($user->hasPermissionTo('login dashboard')) {
 
-                // Get the role name dynamically
-                $roleName = $user->getRoleNames()->first(); // Assumes one role per user
+                // Get the role name dynamically (assuming one role per user)
+                $roleName = $user->getRoleNames()->first();
 
                 // Redirect to a dynamic URL based on the role name
                 return redirect()->route('dashboard', ['role' => $roleName]);
-                // return redirect('/admin'); // Redirect to admin dashboard
             }
 
             // Log out the user if they don't have the appropriate role

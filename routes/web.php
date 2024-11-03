@@ -100,12 +100,12 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/admins/login', [AdminsController::class, 'loginForm'])->name('admins-form');
-Route::post('/admins/logins', [AdminsController::class, 'login'])->name('admins-login');
+Route::get('/dashboard/login', [AdminsController::class, 'loginForm'])->name('admins-form');
+Route::post('/dashboard/login', [AdminsController::class, 'login'])->name('admins-login');
 Route::post('/admin-logout', [AdminsController::class, 'logoutAdmins'])->name('admin-logout');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admins/{role}', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/{role}', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('travel-package', TravelPackageController::class);
     Route::post('/travel-package/{id}/toggle-status', [TravelPackageController::class, 'toggleStatus'])->name('travel-packages.toggleStatus');
