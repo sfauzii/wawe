@@ -113,7 +113,8 @@ class TravelPackageController extends Controller
         $item->is_active = !$item->is_active;
         $item->save();
 
-        toast('Package successfully is active', 'success');
+        $status = $item->is_active ? 'activated' : 'deactivated';
+        toast("Package successfully {$status}", 'success');
 
         return redirect()->route('travel-package.index');
     }

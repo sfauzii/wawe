@@ -119,7 +119,8 @@ class CarouselController extends Controller
         $carousel->is_active = !$carousel->is_active;
         $carousel->save();
 
-        toast('Carousel successfully is active', 'success');
+        $status = $carousel->is_active ? 'activated' : 'deactivated';
+        toast("Package successfully {$status}", 'success');
 
         return redirect()->route('carousels.index');
     }
