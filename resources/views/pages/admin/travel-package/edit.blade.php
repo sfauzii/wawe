@@ -65,7 +65,10 @@
                                         style="font-weight: bold; color: #012970;">About <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <textarea name="about" class="form-control" style="height: 100px">{{ $item->about }}</textarea>
+                                        {{-- <textarea name="about" class="form-control" style="height: 100px">{{ $item->about }}</textarea> --}}
+
+                                        <textarea name="about" class="form-control tinymce-editor" style="background: white">{{ $item->about }}</textarea><!-- End TinyMCE Editor -->
+
                                         <small class="form-text text-muted">Keterangan package. Contoh: Deskripsi dari
                                             tempat package</small>
                                     </div>

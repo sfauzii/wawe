@@ -61,7 +61,16 @@
                                     <label for="about" class="col-sm-2 col-form-label">About <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <textarea name="about" class="form-control" style="height: 100px">{{ old('about') }}</textarea>
+                                        {{-- <textarea name="about" class="form-control quill-editor-full" style="height: 100px">{{ old('about') }}</textarea> --}}
+                                        <!-- TinyMCE Editor -->
+                                        <textarea name="about" class="form-control tinymce-editor" style="background: white">{{ old('about') }}</textarea><!-- End TinyMCE Editor -->
+
+                                        {{-- <div class="quill-editor-full mb-lg-auto" style="margin-bottom: 100px;">
+                                            <!-- Input hidden untuk menyimpan konten dari Quill -->
+                                            <input type="hidden" name="about" id="about" value="{{ old('about') }}">
+
+                                        </div> --}}
+
                                         <small class="form-text text-muted">Keterangan package. Contoh: Deskripsi dari
                                             tempat
                                             package</small>
