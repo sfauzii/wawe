@@ -17,6 +17,16 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create user')->only(['create', 'store']);
+        $this->middleware('check.permission:view user')->only('index');
+        $this->middleware('check.permission:edit user')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete user')->only(['destroy']);
+    }
     public function index()
     {
         $users = User::all();
@@ -58,7 +68,7 @@ class UserController extends Controller
 
         // $path = $request->file('photos') ? $request->file('photos')->store('public/photos') : null; // Menyimpan file photo jika ada
 
-       $user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
@@ -120,7 +130,7 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             // 'photos' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Menambahkan validasi untuk field photos
             'roles' => 'array',
-            'roles.*'=> 'exists:roles,id',
+            'roles.*' => 'exists:roles,id',
         ]);
 
 
@@ -130,7 +140,7 @@ class UserController extends Controller
             'email' => $request->email,
         ];
 
-        if(!empty($request->password)) {
+        if (!empty($request->password)) {
             $data += [
                 'password' => Hash::make($request->password),
             ];

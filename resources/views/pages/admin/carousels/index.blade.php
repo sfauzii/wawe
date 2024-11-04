@@ -1,5 +1,3 @@
-
-
 @extends('layouts.admin')
 
 @section('content')
@@ -28,8 +26,11 @@
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <h5 class="card-title"></h5>
-                        <a href="{{ route('carousels.create') }}" class="btn btn-primary btn-right"
-                            style="float: right; margin-top: -40px; margin-right: 10px">Add Carousel</a>
+
+                        @can('create carousel')
+                            <a href="{{ route('carousels.create') }}" class="btn btn-primary btn-right"
+                                style="float: right; margin-top: -40px; margin-right: 10px">Add Carousel</a>
+                        @endcan
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -46,36 +47,46 @@
                                 @forelse ($carousels as $carousel)
                                     <tr>
                                         <td><img src="{{ Storage::url($carousel->image_carousel) }}"
-                                                alt="{{ ucwords($carousel->title_carousel) }}" style="width: 100px; height:auto;">
+                                                alt="{{ ucwords($carousel->title_carousel) }}"
+                                                style="width: 100px; height:auto;">
                                         </td>
                                         <td>{{ ucwords($carousel->title_carousel) }}</td>
                                         <td>{{ ucfirst($carousel->description_carousel) }}</td>
                                         <td>
-                                            <form action="{{ route('carousels.toggleStatus', $carousel->id) }}" method="POST"
-                                                style="display:inline;">
+                                            <form action="{{ route('carousels.toggleStatus', $carousel->id) }}"
+                                                method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" role="switch"
                                                         id="statusSwitch{{ $carousel->id }}" onchange="this.form.submit()"
                                                         {{ $carousel->is_active ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="statusSwitch{{ $carousel->id }}"></label>
+                                                    <label class="form-check-label"
+                                                        for="statusSwitch{{ $carousel->id }}"></label>
                                                 </div>
                                             </form>
                                         </td>
                                         <td>
-                                            <a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Carousel"><i class="ri-edit-line" style="color: white;"></i></a>
-                                            <form action="{{ route('carousels.destroy', $carousel->id) }}" method="POST" class="d-inline"
-                                                id="delete-form-{{ $carousel->id }}">
-                    
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDeletion('{{ $carousel->id }}', 'delete-form-{{ $carousel->id }}')" data-bs-placement="top" title="Delete Carousel">
-                                                    <i class="ri-delete-bin-6-line"></i>
-                    
-                                                </button>
-                                            </form>
+                                            @can('edit carousel')
+                                                <a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-info"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Carousel"><i
+                                                        class="ri-edit-line" style="color: white;"></i></a>
+                                            @endcan
+
+                                            @can('delete carousel')
+                                                <form action="{{ route('carousels.destroy', $carousel->id) }}" method="POST"
+                                                    class="d-inline" id="delete-form-{{ $carousel->id }}">
+
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDeletion('{{ $carousel->id }}', 'delete-form-{{ $carousel->id }}')"
+                                                        data-bs-placement="top" title="Delete Carousel">
+                                                        <i class="ri-delete-bin-6-line"></i>
+
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

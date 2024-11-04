@@ -26,8 +26,10 @@
                         <h5 class="card-title"></h5>
                         <h5 class="card-title"></h5>
 
-                        <a href="{{ route('travel-package.create') }}" class="btn btn-primary btn-right"
-                            style="float: right; margin-top: -40px; margin-right: 10px">Add Package</a>
+                        @can('create package')
+                            <a href="{{ route('travel-package.create') }}" class="btn btn-primary btn-right"
+                                style="float: right; margin-top: -40px; margin-right: 10px">Add Package</a>
+                        @endcan
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -83,28 +85,36 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
-                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Show Package">
-                                                <i class="ri-eye-line"></i>
-                                            </a>
-                                            <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
-                                                class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Edit Package">
-                                                <i class="ri-edit-line" style="color: white;"></i>
-                                            </a>
-                                            <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}"
-                                                method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
+                                            @can('view package')
+                                                <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
+                                                    class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Show Package">
+                                                    <i class="ri-eye-line"></i>
+                                                </a>
+                                            @endcan
 
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-danger"
-                                                    onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
-                                                    <i class="ri-delete-bin-6-line"></i>
+                                            @can('edit package')
+                                                <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
+                                                    class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Edit Package">
+                                                    <i class="ri-edit-line" style="color: white;"></i>
+                                                </a>
+                                            @endcan
 
-                                                </button>
-                                            </form>
+                                            @can('delete package')
+                                                <form action="{{ route('travel-package.destroy', encrypt($item->id)) }}"
+                                                    method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
+
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
+                                                        <i class="ri-delete-bin-6-line"></i>
+
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

@@ -28,9 +28,10 @@ class TransactionController extends Controller
     public function __construct()
     {
         // Apply permission middleware dynamically to resource actions
-        $this->middleware('permission:create transaction')->only(['create', 'store']);
-        $this->middleware('permission:edit transaction')->only(['edit', 'update']);
-        $this->middleware('permission:delete transaction')->only(['destroy']);
+        $this->middleware('check.permission:create transaction')->only(['create', 'store']);
+        $this->middleware('check.permission:view transaction')->only('index');
+        $this->middleware('check.permission:edit transaction')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete transaction')->only(['destroy']);
     }
 
     public function index()

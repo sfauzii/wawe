@@ -9,7 +9,18 @@ use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class ReportController extends Controller
+
+
 {
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create report package')->only('generatePackagePDF');
+        $this->middleware('check.permission:view report package')->only('showFormPackage');
+        $this->middleware('check.permission:create report transaction')->only('generatePDF');
+        $this->middleware('check.permission:view report transaction')->only('showFormTransaction');
+    }
+
     public function showFormTransaction(Request $request)
     {
         $startDate = $request->input('start_date', ''); // Default kosong jika tidak ada input

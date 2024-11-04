@@ -13,6 +13,15 @@ class CarouselController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create carousel')->only(['create', 'store']);
+        $this->middleware('check.permission:view carousel')->only('index');
+        $this->middleware('check.permission:edit carousel')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete carousel')->only(['destroy']);
+    }
     public function index()
     {
         $carousels = Carousel::all();

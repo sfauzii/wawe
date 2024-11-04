@@ -222,20 +222,22 @@
                                     </td>
                                     <td>
 
-                                        @if ($item->transaction_status === 'PENDING')
-                                            @if (!empty($item->payment_url))
-                                                <a href="{{ $item->payment_url }}" class="btn btn-primary"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
-                                                    <i class="ri-bank-card-line"></i>
-                                                </a>
-                                            @else
-                                                <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
-                                                    class="btn btn-primary" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Pay Now">
-                                                    <i class="ri-bank-card-line"></i>
-                                                </a>
+                                        @can('pay transaction')
+                                            @if ($item->transaction_status === 'PENDING')
+                                                @if (!empty($item->payment_url))
+                                                    <a href="{{ $item->payment_url }}" class="btn btn-primary"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
+                                                        <i class="ri-bank-card-line"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
+                                                        class="btn btn-primary" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Pay Now">
+                                                        <i class="ri-bank-card-line"></i>
+                                                    </a>
+                                                @endif
                                             @endif
-                                        @endif
+                                        @endcan
 
                                         @can('print transaction')
                                             <a href="{{ route('transaction_print', ['id' => $item->id]) }}"

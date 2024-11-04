@@ -30,7 +30,8 @@
                             <div class="d-flex align-items-center">
                                 <div class="ps-3">
                                     <h1 style="font-weight: bold; color: #012970">{{ $package->galleries_count }}</h1>
-                                    <span class="text-muted large pt-1 ps-1" style="font-size: 14px; font-weight: 500;">Gallery in</span>
+                                    <span class="text-muted large pt-1 ps-1"
+                                        style="font-size: 14px; font-weight: 500;">Gallery in</span>
                                     <span class="text-success small pt-2 fw-bold">{{ ucwords($package->title) }}</span>
                                 </div>
                             </div>
@@ -38,7 +39,6 @@
                     </div>
                 </div>
             </div>
-            
         @endforeach
     </div>
 
@@ -50,8 +50,11 @@
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <h5 class="card-title"></h5>
-                        <a href="{{ route('gallery.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add Gallery</a>
 
+                        @can('create gallery')
+                            <a href="{{ route('gallery.create') }}" class="btn btn-primary btn-right"
+                                style="float: right; margin-top: -40px; margin-right: 10px">Add Gallery</a>
+                        @endcan
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
@@ -71,20 +74,31 @@
                                         <td>{{ ucwords($item->travel_package->title) }}</td>
                                         <td>
                                             @foreach ($item->image as $image)
-                                                <img src="{{ Storage::url($image) }}" alt="Image" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 5px; object-fit: cover;"  class="img-thumbnail" />
+                                                <img src="{{ Storage::url($image) }}" alt="Image"
+                                                    style="width: 80px; height: 80px; border-radius: 50%; margin-right: 5px; object-fit: cover;"
+                                                    class="img-thumbnail" />
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Gallery">
-                                                <i class="ri-edit-line" style="color: white;"></i>
-                                            </a>
-                                            <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Gallery">
-                                                    <i class="ri-delete-bin-6-line"></i>
-                                                </button>
-                                            </form>
+                                            @can('edit gallery')
+                                                <a href="{{ route('gallery.edit', encrypt($item->id)) }}" class="btn btn-info"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Gallery">
+                                                    <i class="ri-edit-line" style="color: white;"></i>
+                                                </a>
+                                            @endcan
+
+                                            @can('delete gallery')
+                                                <form action="{{ route('gallery.destroy', encrypt($item->id)) }}" method="POST"
+                                                    class="d-inline" id="delete-form-{{ $item->id }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Gallery">
+                                                        <i class="ri-delete-bin-6-line"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

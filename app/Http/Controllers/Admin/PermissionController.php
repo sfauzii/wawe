@@ -13,9 +13,10 @@ class PermissionController extends Controller
     public function __construct()
     {
         // Apply permission middleware dynamically to resource actions
-        $this->middleware('permission:create permission')->only(['create', 'store']);
-        $this->middleware('permission:edit permission')->only(['edit', 'update']);
-        $this->middleware('permission:delete permission')->only(['destroy']);
+        $this->middleware('check.permission:create permission')->only(['create', 'store']);
+        $this->middleware('check.permission:view permission')->only('index');
+        $this->middleware('check.permission:edit permission')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete permission')->only(['destroy']);
     }
     /**
      * Display a listing of the resource.

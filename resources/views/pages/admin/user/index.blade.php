@@ -26,8 +26,10 @@
                         <h5 class="card-title"></h5>
                         <h5 class="card-title"></h5>
 
-                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-right" style="float: right; margin-top: -40px; margin-right: 10px">Add User</a>
-
+                        @can('create user')
+                            <a href="{{ route('user.create') }}" class="btn btn-primary btn-right"
+                                style="float: right; margin-top: -40px; margin-right: 10px">Add User</a>
+                        @endcan
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
@@ -69,12 +71,16 @@
                                             @endif --}}
                                         </td>
                                         <td>
-                                            <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Show User">
-                                                <i class="ri-eye-line"></i>
-                                            </a>
+                                            @can('view user')
+                                                <a href="{{ route('user.show', encrypt($user->id)) }}" class="btn btn-success"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Show User">
+                                                    <i class="ri-eye-line"></i>
+                                                </a>
+                                            @endcan
 
                                             @can('edit user')
-                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit User">
+                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit User">
                                                     <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
@@ -85,7 +91,9 @@
 
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="button" class="btn btn-danger" onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete User">
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDeletion('{{ encrypt($user->id) }}', 'delete-form-{{ $user->id }}')"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete User">
                                                         <i class="ri-delete-bin-6-line"></i>
 
                                                     </button>

@@ -15,9 +15,10 @@ class RoleController extends Controller
     public function __construct()
     {
         // Apply permission middleware dynamically to resource actions
-        $this->middleware('permission:create role')->only(['create', 'store']);
-        $this->middleware('permission:edit role')->only(['edit', 'update']);
-        $this->middleware('permission:delete role')->only(['destroy']);
+        $this->middleware('check.permission:create role')->only(['create', 'store']);
+        $this->middleware('check.permission:edit role')->only(['edit', 'update']);
+        $this->middleware('check.permission:view role')->only('index');
+        $this->middleware('check.permission:delete role')->only(['destroy']);
     }
     /**
      * Display a listing of the resource.

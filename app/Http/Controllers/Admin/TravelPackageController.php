@@ -16,6 +16,15 @@ class TravelPackageController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create package')->only(['create', 'store']);
+        $this->middleware('check.permission:view package')->only('index');
+        $this->middleware('check.permission:edit package')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete package')->only(['destroy']);
+    }
     public function index()
     {
         $items = TravelPackage::with('galleries')->get();
