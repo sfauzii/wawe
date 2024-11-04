@@ -48,7 +48,7 @@
                         <table class="table datatable">
 
                             <thead>
-                                <div class="mt-3">
+                                <div class="mt-3 d-flex align-items-center gap-0">
                                     @if ($transactions->isNotEmpty())
                                         <form action="{{ route('report-transaction-download') }}" method="GET"
                                             class="no-print">
@@ -56,6 +56,13 @@
                                             <input type="hidden" name="end_date" value="{{ $endDate }}">
                                             <button class="btn btn-danger" type="submit" style="margin: 30px 0 30px 10px;"><i
                                                     class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
+                                        </form>
+                                        <form action="{{ route('report-transaction-excel') }}" method="GET"
+                                            class="no-print">
+                                            <input type="hidden" name="start_date" value="{{ $startDate }}">
+                                            <input type="hidden" name="end_date" value="{{ $endDate }}">
+                                            <button class="btn btn-success" type="submit" style="margin: 30px 0 30px 10px;"><i
+                                                    class="bi bi-file-earmark-excel-fill"></i> Download Excel</button>
                                         </form>
                                     @endif
                                 </div>

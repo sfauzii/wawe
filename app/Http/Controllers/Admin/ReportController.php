@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\TransactionDataExport;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 
@@ -131,5 +133,17 @@ class ReportController extends Controller
 
         $pdf = FacadePdf::loadView('pages.admin.report.travel-package.pdf', compact('packages', 'start_date', 'end_date'))->setPaper('a4', 'portrait');
         return $pdf->stream('laporan_paket_perjalanan.pdf');
+    }
+
+
+    function genereteTransactionExcel(Request $request) //+
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Format the filename with the period range
+        $fileName = 'transaction_' . $startDate . '_to_' . $endDate . '.xlsx';
+
+        return Excel::download(new TransactionDataExport($startDate, $endDate), $fileName);
     }
 }

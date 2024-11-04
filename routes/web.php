@@ -131,6 +131,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('report-transaction', [ReportController::class, 'showFormTransaction'])->name('report-transaction');
     Route::get('report-transaction/download', [ReportController::class, 'generatePDF'])->name('report-transaction-download');
+    Route::get('report-transaction/export-excel', [ReportController::class, 'genereteTransactionExcel'])->name('report-transaction-excel');
 
     Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
 
