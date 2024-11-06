@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" required />
+                    <input type="text" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" required />
                 </div>
                 <button type="submit" class="btn-submit">Save My Profile</button>
             </form>
