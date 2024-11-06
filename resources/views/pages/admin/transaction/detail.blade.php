@@ -153,10 +153,12 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Nama</th>
+                                                    <th>Phone</th>
                                                     @foreach ($item->details as $detail)
                                                 <tr>
                                                     <td>{{ str_pad($detail->id, 10, '0', STR_PAD_LEFT) }}</td>
                                                     <td>{{ '@' . $detail->username }}</td>
+                                                    <td>{{ $detail->phone }}</td>
                                                     {{-- <td>{{ $detail->nationality }}</td>
                                                         <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
                                                         <td>{{ $detail->doe_passport }}</td> --}}

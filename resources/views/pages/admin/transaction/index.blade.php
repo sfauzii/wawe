@@ -226,13 +226,14 @@
                                             @if ($item->transaction_status === 'PENDING')
                                                 @if (!empty($item->payment_url))
                                                     <a href="{{ $item->payment_url }}" class="btn btn-primary"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now">
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Now"
+                                                        style="margin-bottom: 5px;">
                                                         <i class="ri-bank-card-line"></i>
                                                     </a>
                                                 @else
                                                     <a href="{{ route('transaction.payment', ['transaction' => $item->id]) }}"
                                                         class="btn btn-primary" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Pay Now">
+                                                        data-bs-placement="top" title="Pay Now" style="margin-bottom: 10px;">
                                                         <i class="ri-bank-card-line"></i>
                                                     </a>
                                                 @endif
@@ -242,22 +243,23 @@
                                         @can('print transaction')
                                             <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
                                                 class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Print">
+                                                title="Print" style="margin-bottom: 10px;">
                                                 <i class="ri-file-pdf-2-line"></i>
                                             </a>
                                         @endcan
 
                                         @can('view transaction')
                                             <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction">
-                                                <i class="ri-eye-line"></i>
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction" style="margin-bottom: 10px;">
+                                                <i class="ri-eye-line" ></i>
                                             </a>
                                         @endcan
 
 
                                         @can('edit transaction')
                                             <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Transaction">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Transaction"
+                                                style="margin-bottom: 10px;">
                                                 <i class="ri-edit-line" style="color: white;"></i>
                                             </a>
                                         @endcan
@@ -270,7 +272,7 @@
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="confirmDeletion('{{ $item->id }}', 'delete-form-{{ $item->id }}')"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Delete Transaction">
+                                                    title="Delete Transaction" style="margin-bottom: 10px;">
                                                     <i class="ri-delete-bin-6-line"></i>
                                                 </button>
                                             </form>
