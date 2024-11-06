@@ -153,7 +153,7 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|min_digits:10', 
+            'phone' => 'required|numeric|min_digits:10',
         ], [
             'phone.min' => 'The phone number must be at least 10 digits.',
             'phone.required' => 'The phone number is required.',
@@ -211,6 +211,18 @@ class CheckoutController extends Controller
     public function success(Request $request, $id)
     {
         $transaction = Transaction::with(['details', 'travel_package.galleries', 'user'])->findOrFail($id);
+
+        // Check if there are no users in the transaction details
+        if ($transaction->details->isEmpty()) {
+            // Show error alert if there are no users
+            Alert::error('Error', 'No users found for this transaction. Please add users before proceeding.')
+                ->autoClose(3000)
+                ->timerProgressBar();
+
+            // Redirect back to the previous page
+            return back();
+        }
+
         $transaction->transaction_status = 'PENDING';
 
         $transaction->save();
