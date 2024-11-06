@@ -50,10 +50,6 @@
                                             <td>Picture</td>
                                             <td>Name</td>
                                             <td>Phone</td>
-
-                                            {{-- <td>Nationality</td>
-                                            <td>VISA</td>
-                                            <td>Pasport</td> --}}
                                             <td></td>
                                         </tr>
                                     </thead>
@@ -102,12 +98,24 @@
                                 <form class="form-inline" method="post" action="{{ route('checkout-create', $item->id) }}">
                                     @csrf
                                     <label for="username" class="sr-only">Userame</label>
-                                    <input type="text" name="username" required class="form-control mb-2 mr-sm-2"
+                                    <input type="text" name="username"  value="{{ old('username') }}" required class="form-control mb-2 mr-sm-2"
                                         id="username" placeholder="Username">
 
                                     <label for="phone" class="sr-only">Phone</label>
-                                    <input type="number" name="phone" required class="form-control mb-2 mr-sm-2"
+                                    <input type="text" name="phone" value="{{ old('phone') }}" required class="form-control mb-2 mr-sm-2"
                                         id="phone" placeholder="Phone">
+
+
+                                    {{-- <label for="phone" class="sr-only">Phone</label>
+                                    <input type="text" name="phone" value="{{ Auth::user()->phone ?? '' }}" required
+                                        class="form-control mb-2 mr-sm-2" id="phone" placeholder="Phone">
+
+                                    <!-- Form validation error message display -->
+                                    @if ($errors->has('phone'))
+                                        <div class="alert alert-danger">
+                                            {{ $errors->first('phone') }}
+                                        </div>
+                                    @endif --}}
 
                                     {{-- <label for="nationality" class="sr-only">Nationality</label>
                                     <input type="text" name="nationality" style="width: 50px" required

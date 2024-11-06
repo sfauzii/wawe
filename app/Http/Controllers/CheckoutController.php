@@ -31,27 +31,50 @@ class CheckoutController extends Controller
     {
         $travel_package = TravelPackage::findOrFail($id);
 
+        // Check if the logged-in user has a phone number
+        if (empty(Auth::user()->phone)) {
+            Alert::html('Error', 'Please complete your phone details in your profile before proceeding.', 'error')
+                ->showConfirmButton('<button onclick="window.location.href=\'' . route('edit-profile', Auth::user()->id) . '\'" style="background-color: #3085d6; color: #fff; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor=\'#2a75d4\'" onmouseout="this.style.backgroundColor=\'#3085d6\'">Edit Profile</button>')
+                ->autoClose(false);
+
+            return back();
+        }
+
+        // Generate order_id
+        $random = rand(1000, 9999);
+        $order_id = 'WW' . date('Ymd') . $random;
+
         if ($travel_package->kuota > 0) {
-            // Kurangi kuota
+            // Reduce quota
             $travel_package->kuota--;
             $travel_package->save();
 
-            // Buat transaksi
+            // Create transaction
             $transaction = Transaction::create([
                 'travel_packages_id' => $id,
                 'users_id' => Auth::user()->id,
-                // 'transaction_total' => $travel_package->price,
+                'order_id' => $order_id,
                 'transaction_status' => 'IN_CART',
             ]);
 
+            // Ensure phone number is filled in, either from the user's profile or form input
+            $phone = $request->phone ?? Auth::user()->phone;
+
+            if (empty($phone)) {
+
+                Alert::error('Error', 'Phone number is required.');
+
+                return back();
+            }
+
+            // Create transaction detail
             TransactionDetail::create([
                 'transactions_id' => $transaction->id,
                 'username' => Auth::user()->username,
-                'phone' => Auth::user()->phone, // Simpan phone dari user yang login
-                'phone' => $request->phone, // Simpan phone yang diinputkan
+                'phone' => $phone,
             ]);
 
-            // Kirim notifikasi ke admin dan super-admin
+            // Send notification to admins
             $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
             $admins = User::whereHas('roles', function ($query) use ($roles) {
                 $query->whereIn('id', $roles->pluck('id'));
@@ -61,10 +84,7 @@ class CheckoutController extends Controller
 
             return redirect()->route('checkout', $transaction->id);
         } else {
-            // Jika kuota sudah habis, kembalikan pengguna ke halaman sebelumnya dengan pesan error
-
             toast('Sorry, the quota for this travel package has been exhausted.', 'error');
-
             return back();
         }
     }
@@ -133,7 +153,11 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|string|min:10', // Tambahkan validasi untuk phone
+            'phone' => 'required|numeric|min_digits:10', 
+        ], [
+            'phone.min' => 'The phone number must be at least 10 digits.',
+            'phone.required' => 'The phone number is required.',
+            'phone.numeric' => 'The phone number must only contain numbers.',
         ]);
 
         $userPhone = Auth::user()->phone;
