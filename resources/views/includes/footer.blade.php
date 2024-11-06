@@ -4,7 +4,7 @@
     <div class="container container-footer">
         <div class="row row-footer">
             <div class="col col-footer" id="company">
-                <img src="{{ url('frontend/images/logo.png') }}" alt="" class="logo-footer" />
+                <img src="{{ url('frontend/svg/images/logo.svg') }}" alt="" class="logo-footer" />
                 <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
                     ullam.
