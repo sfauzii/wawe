@@ -562,11 +562,14 @@ body {
 }
 
 .custom-card .action-button:hover {
-  background-color: rgb(253, 182, 155);
+  box-shadow: 0 0 0 0.25rem rgba(253, 181, 13, 0.2509803922) !important;
+  background-color: coral;
+  transition: all 0.4s;
 }
 
 .custom-card .action-button-secondary:hover {
-  background-color: rgb(240, 238, 237);
+  box-shadow: 0 0 0 0.25rem rgba(221, 221, 221, 0.537254902) !important;
+  transition: all 0.4s;
 }
 
 /* Untuk perangkat mobile */

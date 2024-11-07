@@ -79,20 +79,23 @@
                     <hr class="divider">
                     <div class="description">
                         <h3>What's Next?</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero et
-                            fringilla.</p>
+                        <p>Silakan cek tiket Anda pada menu Ticket untuk informasi lebih lanjut.</p>
                     </div>
                     <div class="buttons">
-                        <button class="action-button">Message Owner</button>
+                        <button class="action-button"
+                            onclick="window.location.href='{{ route('my-ticket', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}';">My
+                            Ticket</button>
                         <button class="action-button-secondary"
                             onclick="window.location.href='{{ route('home') }}';">Explore Again</button>
                         {{-- <button class="action-button-secondary" onclick="window.location.href = '{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}';">My
                             Dashboard</button> --}}
                         @if (Auth::check())
-                            <button class="action-button-secondary"
+                            <a href="https://api.whatsapp.com/send?phone=+6288229877220&text=Halo%20WaWe Tour and Travel%20Travel%2C%20saya%20butuh%20bantuan%20dengan%20pemesanan%20saya."
+                                class="action-button-secondary">Contact Us</a>
+                            {{-- <button class="action-button-secondary"
                                 onclick="window.location.href = '{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}';">
                                 My Profile
-                            </button>
+                            </button> --}}
                         @else
                             <script>
                                 window.location.href = '/';
@@ -113,15 +116,13 @@
                             ullam.
                         </p>
                         <div class="social">
-                            <!-- <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                            <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a> -->
-                            <a href="#"><img src="{{ url('frontend/images/icons/facebook-white.png') }}" alt="Facebook Icon"
-                                    class="social-icon" /></a>
-                            <a href="#"><img src="{{ url('frontend/images/icons/instagram-white.png') }}" alt="Instagram Icon"
-                                    class="social-icon" /></a>
-                            <a href="#"><img src="{{ url('frontend/images/icons/whatsapp-white.png') }}" alt="WhatsApp Icon"
-                                    class="social-icon" /></a>
+
+                            <a href="#"><img src="{{ url('frontend/images/icons/facebook-white.png') }}"
+                                    alt="Facebook Icon" class="social-icon" /></a>
+                            <a href="#"><img src="{{ url('frontend/images/icons/instagram-white.png') }}"
+                                    alt="Instagram Icon" class="social-icon" /></a>
+                            <a href="#"><img src="{{ url('frontend/images/icons/whatsapp-white.png') }}"
+                                    alt="WhatsApp Icon" class="social-icon" /></a>
                         </div>
                     </div>
                     <div class="col col-footer" id="services">
@@ -142,7 +143,7 @@
                             <a href="#">Testimonials</a>
                         </div>
                     </div>
-        
+
                     <div class="col col-footer" id="contact">
                         <h3>Contact</h3>
                         <div class="contact-details-footer">
@@ -158,7 +159,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="container-fluid">
                 <div class="row border-top justify-content-center align-items-center pt-4">
                     <div class="col-auto text-gray-500 font-weight-light">

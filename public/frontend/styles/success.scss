@@ -647,11 +647,14 @@ body {
 }
 
 .custom-card .action-button:hover {
-    background-color: rgb(253, 182, 155);
+    box-shadow: 0 0 0 .25rem #fdb50d40 !important;
+    background-color: coral;
+    transition: all .4s;
 }
 
 .custom-card .action-button-secondary:hover {
-    background-color: rgb(240, 238, 237);
+    box-shadow: 0 0 0 .25rem #dddddd89 !important;
+    transition: all .4s;
 }
 
 /* Untuk perangkat mobile */
