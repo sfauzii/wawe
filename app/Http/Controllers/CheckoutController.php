@@ -327,7 +327,7 @@ class CheckoutController extends Controller
                 'first_name' => $transaction->user->name,
                 'email' => $transaction->user->email,
             ],
-            'enabled_payments' => ['bank_transfer', 'qris'],
+            'enabled_payments' => ['bank_transfer', 'other_qris', 'gopay', 'dana', 'shopeepay'],
             'vtweb' => [],
         ];
 
