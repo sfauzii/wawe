@@ -91,7 +91,7 @@
                             Dashboard</button> --}}
                         @if (Auth::check())
                             <a href="https://api.whatsapp.com/send?phone=+6288229877220&text=Halo%20WaWe Tour and Travel%20Travel%2C%20saya%20butuh%20bantuan%20dengan%20pemesanan%20saya."
-                                class="action-button-secondary">Contact Us</a>
+                                class="action-button-secondary" style="text-decoration: none;">Contact Us</a>
                             {{-- <button class="action-button-secondary"
                                 onclick="window.location.href = '{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}';">
                                 My Profile
