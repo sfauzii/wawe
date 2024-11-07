@@ -5,12 +5,13 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CheckoutCalculator extends Component
 
-
-
 {
+
+    use LivewireAlert;
 
     public $transaction;
     public $paymentMethod = 'full_payment';
@@ -18,6 +19,7 @@ class CheckoutCalculator extends Component
     public $ppn = 0;
     public $grandTotal = 0;
     public $uniqueCode = 0;
+    public $terms; // Add terms property
 
     public function mount($transactionId)
     {
@@ -85,6 +87,26 @@ class CheckoutCalculator extends Component
             'grand_total' => $this->grandTotal,
         ]);
     }
+
+    public function processPayment()
+    {
+        // Validate that terms have been agreed to
+        if ($this->terms !== 'agree') {
+            $this->alert('error', 'Oppss', [
+                'text' => 'Mohon centang persetujuan Terms and Conditions sebelum melakukan process payment.',
+                'toast' => false,
+                'showConfirmButton' => true,
+                'confirmButtonText' => 'OK',
+                'position' => 'center',
+                'timer' => null
+            ]);
+            return;
+        }
+
+        // Redirect to the checkout success route if validation passes
+        return redirect()->route('checkout-success', $this->transaction->id);
+    }
+
     public function render()
     {
         return view('livewire.checkout-calculator');

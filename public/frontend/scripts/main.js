@@ -71,6 +71,7 @@ function submitForm(checkbox) {
 }
 
 
+// START LOGIN POPUP
 document.querySelectorAll('#login-btn').forEach(function (button) {
     button.addEventListener('click', function (event) {
         event.preventDefault()
@@ -85,3 +86,5 @@ window.addEventListener('click', function (event) {
         popup.style.display = 'none'
     }
 })
+// END LOGIN POPUP
+

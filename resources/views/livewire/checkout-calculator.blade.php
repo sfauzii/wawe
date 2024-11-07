@@ -63,12 +63,20 @@
             <hr>
 
             {{-- Radio Button --}}
-            <div class="terms-conditions-wrapper">
-                <input type="radio" id="agreeTerms" name="terms" onclick="disableUncheck(this)" required />
-                <p class="terms-text" style="color: #071C4D;">Saya setuju dengan <a href="#">Terms & Condition</a>
-                </p>
+
+            <div class="detail-item terms-condition">
+                <input type="radio" name="terms" value="agree" wire:model="terms">
+                <p>Saya setuju dengan <a id="terms-btn" href="#">Terms & Condition</a></p>
             </div>
-            {{-- </div> --}}
+
+
         </div>
     </div>
+
+    <!-- Process Payment Button -->
+    <div class="join-container">
+        <button wire:click="processPayment" class="btn btn-block btn-join-now mt-3 py-2">Process Payment</button>
+    </div>
+
+
 </div>
