@@ -8,6 +8,9 @@ use Midtrans\Config;
 use Midtrans\Notification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Mail\TransactionFailed;
+use App\Mail\TransactionFinish;
+use App\Mail\TransactionPending;
 use App\Mail\TransactionSuccess;
 use App\Models\TransactionDetail;
 use App\Models\MidtransNotification;
@@ -83,13 +86,26 @@ class MidtransController extends Controller
         }
 
         // kirimkan email
+        // Kirimkan notifikasi email berdasarkan status
         if ($transaction) {
-            if ($status == 'capture' && $fraud == 'accept') {
-                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+            if ($status == 'pending') {
+                Mail::to($transaction->user->email)->send(new TransactionPending($transaction));
+                $message = 'Transaction is pending. Please complete the payment.';
+            } elseif ($status == 'capture' && $fraud == 'accept') {
+                Mail::to($transaction->user->email)->send(new TransactionSuccess($transaction));
+                Mail::to($transaction->user->email)->send(new TransactionFinish($transaction));
+                $message = 'Transaction is successful.';
             } elseif ($status == 'settlement') {
-                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+                Mail::to($transaction->user->email)->send(new TransactionSuccess($transaction));
+                Mail::to($transaction->user->email)->send(new TransactionFinish($transaction));
+                $message = 'Transaction has been settled successfully.';
             } elseif ($status == 'success') {
-                Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+                Mail::to($transaction->user->email)->send(new TransactionSuccess($transaction));
+                Mail::to($transaction->user->email)->send(new TransactionFinish($transaction));
+                $message = 'Transaction was successful.';
+            } elseif ($status == 'deny' || $status == 'expire' || $status == 'cancel') {
+                Mail::to($transaction->user->email)->send(new TransactionFailed($transaction));
+                $message = 'Transaction has failed or been canceled.';
             } elseif ($status == 'capture' && $fraud == 'challenge') {
                 return response()->json([
                     'meta' => [
@@ -97,22 +113,57 @@ class MidtransController extends Controller
                         'message' => 'Midtrans Payment Challenge',
                     ],
                 ]);
-            } else {
-                return response()->json([
-                    'meta' => [
-                        'code' => 200,
-                        'message' => 'Midtrans Payment not settlement',
-                    ],
-                ]);
             }
 
+            // Kirim response JSON berdasarkan status transaksi
             return response()->json([
                 'meta' => [
                     'code' => 200,
-                    'message' => 'Midtrans notification success',
+                    'message' => $message,
                 ],
             ]);
         }
+
+        // Jika tidak ada transaksi, kirim respons error
+        return response()->json([
+            'meta' => [
+                'code' => 404,
+                'message' => 'Transaction not found',
+            ],
+        ]);
+
+        // if ($transaction) {
+        //     if ($status == 'pending') {
+        //         Mail::to($transaction->user)->send(new TransactionPending($transaction));
+        //     } elseif ($status == 'capture' && $fraud == 'accept') {
+        //         Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+        //     } elseif ($status == 'settlement' || $status == 'success') {
+        //         Mail::to($transaction->user)->send(new TransactionSuccess($transaction));
+        //     } elseif ($status == 'deny' || $status == 'expire' || $status == 'cancel') {
+        //         Mail::to($transaction->user)->send(new TransactionFailed($transaction));
+        //     } elseif ($status == 'capture' && $fraud == 'challenge') {
+        //         return response()->json([
+        //             'meta' => [
+        //                 'code' => 200,
+        //                 'message' => 'Midtrans Payment Challenge',
+        //             ],
+        //         ]);
+        //     } else {
+        //         return response()->json([
+        //             'meta' => [
+        //                 'code' => 200,
+        //                 'message' => 'Midtrans Payment not settlement',
+        //             ],
+        //         ]);
+        //     }
+
+        //     return response()->json([
+        //         'meta' => [
+        //             'code' => 200,
+        //             'message' => 'Midtrans notification success',
+        //         ],
+        //     ]);
+        // }
     }
 
     public function finishRedirect(Request $request)
