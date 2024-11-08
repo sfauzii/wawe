@@ -169,7 +169,7 @@
                                                                     <div
                                                                         style="font-family:Assistant, Helvetica, Arial, sans-serif;font-size:14px;line-height:1;text-align:center;color:#6c757d;">
                                                                         {{ $transaction->created_at->format('d F Y -
-                                                                                                                                                H:i:s') }}
+                                                                                                                                                                                                                        H:i:s') }}
                                                                     </div>
                                                                     <!--[if mso | IE]></td></tr><![endif]-->
                                                                     <!-- Total Payment -->
@@ -181,7 +181,7 @@
                                                                             $transaction->grand_total,
                                                                             0,
                                                                             '
-                                                                                                                                                ',
+                                                                                                                                                                                                                        ',
                                                                         ) }}
                                                                     </div>
                                                                     <!--[if mso | IE]></td></tr><![endif]-->
@@ -254,8 +254,8 @@
                                                                                                                 </td>
                                                                                                                 <td
                                                                                                                     style="width: 50%; padding: 10px; color: #071C4D; font-size: 16px; font-weight: bold; text-align: right;">
-                                                                                                                    Bank
-                                                                                                                    Transfer
+                                                                                                                    {{ isset($midtransData[0]['payment_type']) ? ucwords(str_replace('_', ' ', $midtransData[0]['payment_type'])) : 'N/A' }}
+
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>
@@ -366,23 +366,25 @@
                                                                                                                 </td>
                                                                                                                 <td
                                                                                                                     style="width: 50%; padding: 10px; color: #071C4D; font-size: 16px; font-weight: bold; text-align: right;">
-                                                                                                                    BRI
-                                                                                                                    Virtual
-                                                                                                                    Account
+                                                                                                                    {{ isset($midtransData[0]['va_numbers'][0]['bank']) ? strtoupper($midtransData[0]['va_numbers'][0]['bank']) . ' Virtual Account' : 'N/A' }}
                                                                                                                 </td>
                                                                                                             </tr>
-                                                                                                            <tr>
-                                                                                                                <td
-                                                                                                                    style="width: 50%; padding: 10px; color: #071C4D; font-size: 14px; text-align: left;">
-                                                                                                                    No.
-                                                                                                                    Virtual
-                                                                                                                    Account
-                                                                                                                </td>
-                                                                                                                <td
-                                                                                                                    style="width: 50%; padding: 10px; color: #071C4D; font-size: 16px; font-weight: bold; text-align: right;">
-                                                                                                                    124123220646397388
-                                                                                                                </td>
-                                                                                                            </tr>
+
+                                                                                                            @if (isset($midtransData[0]['va_numbers']) && is_array($midtransData[0]['va_numbers']))
+                                                                                                                <tr>
+                                                                                                                    <td
+                                                                                                                        style="width: 50%; padding: 10px; color: #071C4D; font-size: 14px; text-align: left;">
+                                                                                                                        No.
+                                                                                                                        Virtual
+                                                                                                                        Account
+                                                                                                                    </td>
+                                                                                                                    <td
+                                                                                                                        style="width: 50%; padding: 10px; color: #071C4D; font-size: 16px; font-weight: bold; text-align: right;">
+                                                                                                                        {{ $midtransData[0]['va_numbers'][0]['va_number'] ?? 'N/A' }}
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            @endif
+
                                                                                                             <tr>
                                                                                                                 <td
                                                                                                                     style="width: 50%; padding: 10px; color: #071C4D; font-size: 14px; text-align: left;">
@@ -391,13 +393,10 @@
                                                                                                                 </td>
                                                                                                                 <td
                                                                                                                     style="width: 50%; padding: 10px; color: #f5473a; font-size: 16px; font-weight: bold; text-align: right;">
-                                                                                                                    10
-                                                                                                                    Oktober
-                                                                                                                    2024
-                                                                                                                    -
-                                                                                                                    16:59:00
+                                                                                                                    {{ isset($midtransData[0]['expiry_time']) ? \Carbon\Carbon::parse($midtransData[0]['expiry_time'])->format('d F Y - H:i:s') : 'N/A' }}
                                                                                                                 </td>
                                                                                                             </tr>
+
                                                                                                         </table>
                                                                                                     </td>
                                                                                                 </tr>
@@ -486,7 +485,7 @@
                                                                                                                         $transaction->travel_package->price,
                                                                                                                         0,
                                                                                                                         '
-                                                                                                                                                                                                                                        ',
+                                                                                                                                                                                                                                                                                                                                                            ',
                                                                                                                     ) }}
                                                                                                                 </td>
                                                                                                             </tr>
@@ -503,7 +502,7 @@
                                                                                                                         $transaction->grand_total,
                                                                                                                         0,
                                                                                                                         '
-                                                                                                                                                                                                                                        ',
+                                                                                                                                                                                                                                                                                                                                                            ',
                                                                                                                     ) }}
                                                                                                                 </td>
                                                                                                             </tr>

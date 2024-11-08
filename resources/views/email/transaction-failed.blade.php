@@ -379,8 +379,7 @@
                                                             font-weight: bold;
                                                             text-align: right;
                                                           ">
-                                                                                                                    Bank
-                                                                                                                    Transfer
+                                                                                                                    {{ isset($midtransData[0]['payment_type']) ? ucwords(str_replace('_', ' ', $midtransData[0]['payment_type'])) : 'N/A' }}
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>

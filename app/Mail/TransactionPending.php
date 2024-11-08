@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\Transaction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use App\Models\MidtransNotification;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
@@ -20,11 +21,22 @@ class TransactionPending extends Mailable
 
     public $transaction;
     public $order_id;
+    public $midtransData;
 
     public function __construct(Transaction $transaction)
     {
         $this->transaction = $transaction;
         $this->order_id = $transaction->order_id; // Set order_id dari transaction
+
+        // Fetch and decode Midtrans notifications for the current transaction
+        $midtransNotifications = MidtransNotification::where('order_id', $transaction->order_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Decode the JSON payload and store it as an array
+        $this->midtransData = $midtransNotifications->map(function ($notification) {
+            return json_decode($notification->payload, true);
+        });
     }
 
     /**
@@ -37,6 +49,7 @@ class TransactionPending extends Mailable
             ->view('email.transaction-pending')
             ->with([
                 'transaction' => $this->transaction,
+                'midtransData' => $this->midtransData, // Pass decoded data to the view
             ]);
     }
 
