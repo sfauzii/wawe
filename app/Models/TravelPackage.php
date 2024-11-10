@@ -23,10 +23,18 @@ class TravelPackage extends Model
         'kuota',
         'type',
         'price',
-        'is_active'
+        'is_active',
+        'discount_percentage', // New attribute for discount percentage
+        'original_price', // New attribute for discount percentage
     ];
 
     protected $hidden = [];
+
+    // Method to calculate discounted price
+    public function getDiscountedPriceAttribute()
+    {
+        return $this->price - ($this->price * ($this->discount_percentage / 100));
+    }
 
     public function galleries()
     {

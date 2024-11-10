@@ -143,6 +143,17 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-3">
+                                    <label for="discount_percentage" class="col-sm-2 col-form-label"
+                                        style="font-weight: bold; color: #012970;">Price <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="discount_percentage" placeholder="Discount Amount"
+                                            value="{{ $item->discount_percentage }}" min="0" max="100">
+                                        <small class="form-text text-muted">Harga. Contoh: 10. Wajib diisi</small>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary btn-block w-100"
                                     style="background-color: #012970;">
                                     Edit

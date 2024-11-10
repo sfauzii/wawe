@@ -50,6 +50,12 @@ class TravelPackageController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
 
+        // Store the original price and calculate the discounted price
+        $data['original_price'] = $data['price'];
+        if ($request->discount_percentage > 0) {
+            $data['price'] = $data['price'] - ($data['price'] * ($data['discount_percentage'] / 100));
+        }
+
         TravelPackage::create($data);
 
         // Flash a success message to the session
@@ -91,6 +97,33 @@ class TravelPackageController extends Controller
         $data['slug'] = Str::slug($request->title);
 
         $item = TravelPackage::findOrFail(decrypt($id));
+
+        // Only include price-related fields if they are actually being updated
+        if ($request->has('price')) {
+            $data['original_price'] = $request->price; // Store new price as original
+
+            if ($request->has('discount_percentage')) {
+                // Calculate discounted price if there's a discount
+                if ($request->discount_percentage > 0) {
+                    $data['price'] = $request->price - ($request->price * ($request->discount_percentage / 100));
+                } else {
+                    $data['price'] = $request->price;
+                }
+            } elseif ($item->discount_percentage > 0) {
+                // If price is updated but discount isn't, apply existing discount
+                $data['price'] = $request->price - ($request->price * ($item->discount_percentage / 100));
+            }
+        } else {
+            // If price is not being updated, remove price-related fields from the update data
+            unset($data['price']);
+            unset($data['original_price']);
+
+            // If only discount_percentage is updated, recalculate price based on existing original price
+            if ($request->has('discount_percentage') && $request->discount_percentage != $item->discount_percentage) {
+                $data['price'] = $item->original_price - ($item->original_price * ($request->discount_percentage / 100));
+            }
+        }
+
 
         $item->update($data);
 
