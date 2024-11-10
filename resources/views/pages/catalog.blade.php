@@ -28,8 +28,8 @@
                                 <label for="username">Username</label>
                                 <input id="username" name="username" type="text"
                                     class="form-control @error('username') is-invalid @enderror rounded-input"
-                                    value="{{ old('username') }}" placeholder="Enter username" required autocomplete="username"
-                                    autofocus>
+                                    value="{{ old('username') }}" placeholder="Enter username" required
+                                    autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                     <div class="menu-item">
                         <input type="checkbox" id="sort2" name="sort" value="murah"
                             {{ request('sort') == 'murah' ? 'checked' : '' }} onclick="submitForm(this);" />
-                        <label for="sort2">Murah</label>
+                        <label for="sort2">Harga Termurah</label>
                     </div>
                 </form>
 
@@ -118,34 +118,78 @@
                 $items = $items->sortByDesc('created_at'); // Sort items by 'created_at' in descending order
             @endphp --}}
                 @foreach ($items as $item)
-                    <a href="{{ route('details', $item->slug) }}" class="card-link">
-                        <div class="card-catalogue">
-                            <div class="card-background"
-                                style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image[0]) : '' }} ');">
-                                <div class="card-overlay"></div>
-                            </div>
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <h3>{{ ucwords($item->title) }}</h3>
-                                    <p class="price">Rp {{ number_format($item->price, 0, ',') }}</p>
+                    <div class="card card-package">
+                        <!-- Custom Carousel -->
+                        <div class="custom-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-track">
+                                    @foreach ($item->galleries as $gallery)
+                                        @foreach ($gallery->image as $image)
+                                            <div class="carousel-slide">
+                                                <img src="{{ Storage::url($image) }}" alt="Image from gallery">
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+
                                 </div>
-                                <div class="icons">
-                                    <div class="icon-item">
-                                        <ion-icon name="calendar-outline"></ion-icon>
-                                        <span>{{ $item->duration }}</span>
-                                    </div>
-                                    <div class="icon-item">
-                                        <ion-icon name="people-outline"></ion-icon>
-                                        <span>{{ $item->kuota }} Persons</span>
-                                    </div>
-                                    <div class="icon-item">
-                                        <ion-icon name="star-outline"></ion-icon>
-                                        <span>{{ $item->testimonies_count }}</span>
-                                    </div>
-                                </div>
+
+                                <!-- Navigation Buttons -->
+                                <button class="carousel-button prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-button next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <!-- Dots Navigation -->
+                                <div class="carousel-dots"></div>
                             </div>
                         </div>
-                    </a>
+                        <div class="card-content-popular">
+                            <a href="{{ route('details', $item->slug) }}">
+                                <h1 class="card-title">{{ ucwords($item->title) }}
+                            </a>
+                            </h1>
+                            <div class="price-container">
+                                @if ($item->discount_percentage > 0 && $item->original_price)
+                                    <p class="price-discount">Rp {{ number_format($item->original_price, 0, ',', '.') }}
+                                    </p>
+                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                    <div class="tooltip-icon package">
+                                        <span class="icon-img package">?</span>
+                                        <span class="tooltip-text package">
+                                            <h1 class="tooltip-title">Promo Package</h1>
+                                            Promo sedang berlangsung sebesar {{ $item->discount_percentage }}%
+                                        </span>
+                                    </div>
+                                @else
+                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                @endif
+                                {{-- <p class="price-discount">Rp 600.000</p>
+                                <p class="card-description">Rp {{ number_format($item->price, 0, ',') }}</p>
+                                <div class="tooltip-icon package">
+                                    <span class="icon-img package">?</span>
+                                    <span class="tooltip-text package">
+                                        <h1 class="tooltip-title">Promo Package</h1>
+                                        Biaya untuk fee payment gateway dan
+                                        platform service
+                                        lainnya!
+                                    </span>
+                                </div> --}}
+                            </div>
+                            <div class="card-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <!-- Example of a half-star -->
+                            </div>
+                            <button class="view-details" onclick="window.location.href='details.html';">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
                 @endforeach
             </div>
 

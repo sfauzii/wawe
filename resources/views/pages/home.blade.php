@@ -203,42 +203,153 @@
             </div>
         </section>
 
-        <section class="section-popular-content" id="popularContent">
-            <div class="container">
-                <div class="section-popular-travel row justify-content-center">
+        <!-- Package Section -->
+        <section class="section-package-popular row justify-content-center">
+            <div class="card-container-popular">
 
-                    {{-- @php
-                        $items = \App\Models\TravelPackage::where('is_active', true)->get();
-                    @endphp --}}
+                @foreach ($items as $item)
+                    <div class="card card-package">
 
-                    @foreach ($items as $item)
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <a href="{{ route('details', $item->slug) }}" class="card-link">
-                                <div class="card-travel text-center d-flex flex-column"
-                                    style="background-image: url('{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image[0]) : '' }}');">
-                                    <div class="overlay"></div>
-                                    <div class="card-travel-content">
-                                        <div class="travel-location">{{ ucwords($item->title) }}</div>
-                                        <div class="travel-price">Rp {{ number_format($item->price, 0, ',') }}</div>
-                                        <div class="travel-icons">
-                                            <ion-icon name="calendar-outline"></ion-icon>
-                                            <span>{{ $item->duration }}</span>
-                                            <ion-icon name="people-outline"></ion-icon>
-                                            <span>{{ $item->kuota }} Persons</span>
-                                            <ion-icon name="star-outline"></ion-icon>
-                                            <span>{{ $item->testimonies_count }}</span>
-                                        </div>
-                                    </div>
+                        <!-- Custom Carousel -->
+                        <div class="custom-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-track">
+                                    @foreach ($item->galleries as $gallery)
+                                        @foreach ($gallery->image as $image)
+                                            <div class="carousel-slide">
+                                                <img src="{{ Storage::url($image) }}" alt="Image from gallery">
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+
                                 </div>
-                            </a>
+
+                                <!-- Navigation Buttons -->
+                                <button class="carousel-button prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-button next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <!-- Dots Navigation -->
+                                <div class="carousel-dots"></div>
+                            </div>
                         </div>
-                    @endforeach
+
+                        <div class="card-content-popular">
+                            <a href="{{ route('details', $item->slug) }}">
+                                <h1 class="card-title">{{ ucwords($item->title) }}
+                            </a>
+                            </h1>
+                            <div class="price-container">
+                                @if ($item->discount_percentage > 0 && $item->original_price)
+                                    <p class="price-discount">Rp {{ number_format($item->original_price, 0, ',', '.') }}
+                                    </p>
+                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                    <div class="tooltip-icon package">
+                                        <span class="icon-img package">?</span>
+                                        <span class="tooltip-text package">
+                                            <h1 class="tooltip-title">Promo Package</h1>
+                                            Promo sedang berlangsung sebesar {{ $item->discount_percentage }}%
+                                        </span>
+                                    </div>
+                                @else
+                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                @endif
+                                {{-- <p class="price-discount">Rp 600.000</p>
+                                <p class="card-description">Rp {{ number_format($item->price, 0, ',') }}</p>
+                                <div class="tooltip-icon package">
+                                    <span class="icon-img package">?</span>
+                                    <span class="tooltip-text package">
+                                        <h1 class="tooltip-title">Promo Package</h1>
+                                        Biaya untuk fee payment gateway dan
+                                        platform service
+                                        lainnya!
+                                    </span>
+                                </div> --}}
+                            </div>
+                            <div class="card-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <!-- Example of a half-star -->
+                            </div>
+                            <button class="view-details" onclick="window.location.href='details.html';">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
 
 
-                </div>
+                {{-- <div class="card card-package">
+
+                    <!-- Custom Carousel -->
+                    <div class="custom-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="frontend/images/landing-1.jpg" alt="Image 1">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="frontend/images/services.png" alt="Image 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="frontend/images/landing-1.jpg" alt="Image 3">
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <button class="carousel-button prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-button next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Dots Navigation -->
+                            <div class="carousel-dots"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-content-popular">
+                        <a href="details.html">
+                            <h1 class="card-title">Avanza Veloz Toyota Package Pantai Pangadaran</h1>
+                        </a>
+                        <div class="price-container">
+                            <p class="price-discount">Rp 600.000</p>
+                            <p class="card-description">Rp 450.000</p>
+                            <div class="tooltip-icon package">
+                                <span class="icon-img package">?</span>
+                                <span class="tooltip-text package">
+                                    <h1 class="tooltip-title">Promo Package</h1>
+                                    Biaya untuk fee payment gateway dan
+                                    platform service
+                                    lainnya!
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="card-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <!-- Example of a half-star -->
+                        </div>
+                        <button class="view-details" onclick="window.location.href='details.html';">
+                            View Details
+                        </button>
+                    </div>
+                </div> --}}
+
             </div>
         </section>
-
 
 
         <!-- Our Network -->
