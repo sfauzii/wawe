@@ -31,7 +31,6 @@ class TravelPackageRequest extends FormRequest
             'kuota' => 'required|integer|min:0',
             'type' => 'required|max:255',
             'price' => 'required|integer|min:0',
-            'discount_percentage' => 'required|integer|min:0|max:100',
         ];
     }
 }

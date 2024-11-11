@@ -144,16 +144,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
-                                    <label for="price" class="col-sm-2 col-form-label">Promo <span
-                                            class="text-danger">*</span></label>
-                                    <div class="col-sm-10">
-                                        <input type="price" class="form-control" name="discount_percentage" placeholder="Discount Price"
-                                            value="{{ old('discount_percentage') }}" min="0" max="100">
-                                        <small class="form-text text-muted">Harga. Contoh: 10. Wajib diisi</small>
-                                    </div>
-                                </div>
-
                                 <button type="submit" class="btn btn-primary btn-block w-100">
                                     Simpan
                                 </button>

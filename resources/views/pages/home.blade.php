@@ -243,7 +243,7 @@
                             </a>
                             </h1>
                             <div class="price-container">
-                                @if ($item->discount_percentage > 0 && $item->original_price)
+                                {{--@if ($item->discount_percentage > 0 && $item->original_price)
                                     <p class="price-discount">Rp {{ number_format($item->original_price, 0, ',', '.') }}
                                     </p>
                                     <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
@@ -256,10 +256,10 @@
                                     </div>
                                 @else
                                     <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
-                                @endif
-                                {{-- <p class="price-discount">Rp 600.000</p>
+                                @endif--}}
+                                 {{-- <p class="price-discount">Rp 600.000</p> --}}
                                 <p class="card-description">Rp {{ number_format($item->price, 0, ',') }}</p>
-                                <div class="tooltip-icon package">
+                                {{-- <div class="tooltip-icon package">
                                     <span class="icon-img package">?</span>
                                     <span class="tooltip-text package">
                                         <h1 class="tooltip-title">Promo Package</h1>
@@ -267,7 +267,7 @@
                                         platform service
                                         lainnya!
                                     </span>
-                                </div> --}}
+                                </div>  --}}
                             </div>
                             <div class="card-rating">
                                 <i class="fas fa-star"></i>
