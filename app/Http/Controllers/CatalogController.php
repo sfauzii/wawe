@@ -22,10 +22,15 @@ class CatalogController extends Controller
                 case 'murah':
                     $query->orderBy('price', 'asc');
                     break;
+                case 'harga-tertinggi':
+                    $query->orderBy('price', 'desc');
+                    break;
                 default:
                     break;
             }
         }
+
+        $query->orderBy('created_at', 'desc');
 
         $items = $query->get();
 

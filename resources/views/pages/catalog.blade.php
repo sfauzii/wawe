@@ -97,9 +97,14 @@
                             {{ request('sort') == 'murah' ? 'checked' : '' }} onclick="submitForm(this);" />
                         <label for="sort2">Harga Termurah</label>
                     </div>
+                    <div class="menu-item">
+                        <input type="checkbox" id="sort3" name="sort" value="harga-tertinggi"
+                            {{ request('sort') == 'harga-tertinggi' ? 'checked' : '' }} onclick="submitForm(this);" />
+                        <label for="sort3">Harga Tertinggi</label>
+                    </div>
                 </form>
 
-                <h2 style="margin-top: 30px;">Type</h2>
+                {{-- <h2 style="margin-top: 30px;">Type</h2>
                 <div class="menu-item">
                     <input type="checkbox" id="type1" name="type1" />
                     <label for="type1">Type Option 1</label>
@@ -111,7 +116,7 @@
                 <div class="menu-item">
                     <input type="checkbox" id="type3" name="type3" />
                     <label for="type3">Type Option 3</label>
-                </div>
+                </div> --}}
             </div>
             <div class="catalog-cards">
                 {{-- @php
@@ -216,10 +221,15 @@
                 <div class="menu-item">
                     <input type="checkbox" id="sort2" name="sort" value="murah"
                         {{ request('sort') == 'murah' ? 'checked' : '' }} onclick="submitForm(this);" />
-                    <label for="sort2">Murah</label>
+                    <label for="sort2">Harga Terendah</label>
+                </div>
+                <div class="menu-item">
+                    <input type="checkbox" id="sort3" name="sort" value="harga-tertinggi"
+                        {{ request('sort') == 'harga-tertinggi' ? 'checked' : '' }} onclick="submitForm(this);" />
+                    <label for="sort3">Harga Tertinggi</label>
                 </div>
             </form>
-            <h2 style="margin-top: 30px;">Type</h2>
+            {{-- <h2 style="margin-top: 30px;">Type</h2>
             <div class="menu-item">
                 <input type="checkbox" id="type1-mobile" name="type1" />
                 <label for="type1-mobile">Type Option 1</label>
@@ -231,7 +241,7 @@
             <div class="menu-item">
                 <input type="checkbox" id="type3-mobile" name="type3" />
                 <label for="type3-mobile">Type Option 3</label>
-            </div>
+            </div> --}}
         </div>
 
 
