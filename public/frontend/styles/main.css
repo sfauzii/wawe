@@ -3443,7 +3443,7 @@ footer .container-fluid {
   padding: 100px 0;
 }
 
-.card-test {
+.card.card-test {
   padding: 50px;
   background: url("../svg/images/bg-verify.svg") center center/cover no-repeat;
   border-radius: 12px;
