@@ -63,7 +63,7 @@
                             <div class="action-buttons">
                                 <button type="button" class="btn-dark google"
                                     onclick="window.location.href = '{{ route('socialite.redirect', 'google') }}';">
-                                    <img src="frontend/images/icons/icon-google.svg" alt="Google Icon" class="google-icon">
+                                    <img src="{{ url('frontend/images/icons/icon-google.svg') }}" alt="Google Icon" class="google-icon">
                                     Masuk/Daftar
                                 </button>
                                 {{-- <button type="button" class="btn-dark google"
