@@ -409,7 +409,7 @@ body {
   height: 500px;
   border-radius: 20px;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 80px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -2740,7 +2740,7 @@ footer .container-fluid {
   }
 }
 .catalogue {
-  padding: 50px 50px;
+  padding: 80px 50px;
   justify-content: center;
 }
 
@@ -3222,7 +3222,7 @@ footer .container-fluid {
 }
 
 .container-header-review {
-  margin-bottom: -60px;
+  margin-bottom: -120px;
 }
 
 .section-review-header h1 {

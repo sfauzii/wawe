@@ -76,7 +76,7 @@
         </div>
         <!-- Tambahkan elemen profil di sini -->
         @auth
-            <div class="navbar-profile d-none d-lg-flex align-items-center ml-auto">
+            <div class="navbar-profile d-none d-lg-flex py-3 align-items-center ml-auto">
                 <span class="profile-name ml-2">Hi, {{ ucfirst(Auth::user()->name) }}</span>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
