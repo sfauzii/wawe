@@ -18,13 +18,15 @@
         <div class="row mb-3">
             <label for="startDate" class="col-sm-2 col-form-label">Star Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="startDate" class="form-control" name="start_date" required value="{{ $startDate }}">
+                <input type="date" id="startDate" class="form-control" name="start_date" required
+                    value="{{ $startDate }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="endDate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="endDate" class="form-control" name="end_date" required value="{{ $endDate }}">
+                <input type="date" id="endDate" class="form-control" name="end_date" required
+                    value="{{ $endDate }}">
             </div>
         </div>
 
@@ -50,20 +52,24 @@
                             <thead>
                                 <div class="mt-3 d-flex align-items-center gap-0">
                                     @if ($transactions->isNotEmpty())
-                                        <form action="{{ route('report-transaction-download') }}" method="GET"
-                                            class="no-print">
-                                            <input type="hidden" name="start_date" value="{{ $startDate }}">
-                                            <input type="hidden" name="end_date" value="{{ $endDate }}">
-                                            <button class="btn btn-danger" type="submit" style="margin: 30px 0 30px 10px;"><i
-                                                    class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
-                                        </form>
-                                        <form action="{{ route('report-transaction-excel') }}" method="GET"
-                                            class="no-print">
-                                            <input type="hidden" name="start_date" value="{{ $startDate }}">
-                                            <input type="hidden" name="end_date" value="{{ $endDate }}">
-                                            <button class="btn btn-success" type="submit" style="margin: 30px 0 30px 10px;"><i
-                                                    class="bi bi-file-earmark-excel-fill"></i> Download Excel</button>
-                                        </form>
+                                        @can('create report transaction')
+                                            <form action="{{ route('report-transaction-download') }}" method="GET"
+                                                class="no-print">
+                                                <input type="hidden" name="start_date" value="{{ $startDate }}">
+                                                <input type="hidden" name="end_date" value="{{ $endDate }}">
+                                                <button class="btn btn-danger" type="submit"
+                                                    style="margin: 30px 0 30px 10px;"><i
+                                                        class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
+                                            </form>
+                                            <form action="{{ route('report-transaction-excel') }}" method="GET"
+                                                class="no-print">
+                                                <input type="hidden" name="start_date" value="{{ $startDate }}">
+                                                <input type="hidden" name="end_date" value="{{ $endDate }}">
+                                                <button class="btn btn-success" type="submit"
+                                                    style="margin: 30px 0 30px 10px;"><i
+                                                        class="bi bi-file-earmark-excel-fill"></i> Download Excel</button>
+                                            </form>
+                                        @endcan
                                     @endif
                                 </div>
                                 <tr>
@@ -86,17 +92,23 @@
                                         <td>{{ ucwords($transaction->travel_package->title) }}</td>
                                         <td>
                                             @if ($transaction->transaction_status === 'SUCCESS')
-                                                <span class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-success">{{ $transaction->transaction_status }}</span>
                                             @elseif($transaction->transaction_status === 'IN_CART')
-                                                <span class="badge rounded-pill text-bg-primary">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-primary">{{ $transaction->transaction_status }}</span>
                                             @elseif($transaction->transaction_status === 'PENDING')
-                                                <span class="badge rounded-pill text-bg-warning">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-warning">{{ $transaction->transaction_status }}</span>
                                             @elseif($transaction->transaction_status === 'CANCEL')
-                                                <span class="badge rounded-pill text-bg-secondary">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-secondary">{{ $transaction->transaction_status }}</span>
                                             @elseif($transaction->transaction_status === 'FAILED')
-                                                <span class="badge rounded-pill text-bg-danger">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-danger">{{ $transaction->transaction_status }}</span>
                                             @else
-                                                <span class="badge rounded-pill text-bg-dark">{{ $transaction->transaction_status }}</span>
+                                                <span
+                                                    class="badge rounded-pill text-bg-dark">{{ $transaction->transaction_status }}</span>
                                             @endif
                                         </td>
                                     </tr>

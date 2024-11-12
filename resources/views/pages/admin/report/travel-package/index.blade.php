@@ -52,14 +52,16 @@
                             <thead>
                                 <div class="mt-3">
                                     @if ($packages->isNotEmpty())
-                                        <form action="{{ route('report-travel-package-download') }}" method="GET"
-                                            class="no-print">
-                                            <input type="hidden" name="start_date" value="{{ $start_date }}">
-                                            <input type="hidden" name="end_date" value="{{ $end_date }}">
-                                            <button class="btn btn-danger" type="submit"
-                                                style="margin: 30px 0 30px 10px;"><i
-                                                    class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
-                                        </form>
+                                        @can('create report package')
+                                            <form action="{{ route('report-travel-package-download') }}" method="GET"
+                                                class="no-print">
+                                                <input type="hidden" name="start_date" value="{{ $start_date }}">
+                                                <input type="hidden" name="end_date" value="{{ $end_date }}">
+                                                <button class="btn btn-danger" type="submit"
+                                                    style="margin: 30px 0 30px 10px;"><i
+                                                        class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
+                                            </form>
+                                        @endcan
                                     @endif
                                 </div>
                                 <tr>
