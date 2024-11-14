@@ -69,8 +69,9 @@
                                         <td>
                                             @can('edit carousel')
                                                 <a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-info"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Carousel"><i
-                                                        class="ri-edit-line" style="color: white;"></i></a>
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Carousel"
+                                                    style="margin-bottom: 5px;"><i class="ri-edit-line"
+                                                        style="color: white;"></i></a>
                                             @endcan
 
                                             @can('delete carousel')
@@ -81,7 +82,8 @@
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger"
                                                         onclick="confirmDeletion('{{ $carousel->id }}', 'delete-form-{{ $carousel->id }}')"
-                                                        data-bs-placement="top" title="Delete Carousel">
+                                                        data-bs-placement="top" title="Delete Carousel"
+                                                        style="margin-bottom: 5px;">
                                                         <i class="ri-delete-bin-6-line"></i>
 
                                                     </button>

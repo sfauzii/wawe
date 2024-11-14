@@ -88,7 +88,7 @@
                                             @can('view package')
                                                 <a href="{{ route('travel-package.show', encrypt($item->id)) }}"
                                                     class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Show Package">
+                                                    title="Show Package" style="margin-bottom: 5px;">
                                                     <i class="ri-eye-line"></i>
                                                 </a>
                                             @endcan
@@ -96,7 +96,7 @@
                                             @can('edit package')
                                                 <a href="{{ route('travel-package.edit', encrypt($item->id)) }}"
                                                     class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Edit Package">
+                                                    title="Edit Package" style="margin-bottom: 5px;">
                                                     <i class="ri-edit-line" style="color: white;"></i>
                                                 </a>
                                             @endcan
@@ -109,7 +109,8 @@
                                                     @method('delete')
                                                     <button type="button" class="btn btn-danger"
                                                         onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package">
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Package"
+                                                        style="margin-bottom: 5px;">
                                                         <i class="ri-delete-bin-6-line"></i>
 
                                                     </button>
