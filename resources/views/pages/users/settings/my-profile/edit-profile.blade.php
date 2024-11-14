@@ -63,7 +63,7 @@
                                     </div> -->
             </div>
             <p class="card-description">Hubungi via WhatsApp</p>
-            <button class="card-button">Contact Us</button>
+            <button class="card-button" onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact Us</button>
         </div>
     @endsection
 

@@ -532,7 +532,7 @@
                         If you have any questions or need further information, <br />feel
                         free to contact us.
                     </p>
-                    <button class="btn btn-primary">Contact Us</button>
+                    <button class="btn btn-primary" onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact Us</button>
                 </div>
             </div>
         </section>
