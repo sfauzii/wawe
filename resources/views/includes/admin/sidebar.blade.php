@@ -25,6 +25,10 @@
             </ul>
         </li>
 
+        @if (Auth::user()->can('view package') && Auth::user()->can('view gallery'))
+            <li class="nav-heading">Package</li>
+        @endif
+
         {{-- travel packages --}}
         @can('view package')
             <li class="nav-item">
