@@ -114,14 +114,14 @@
                                     </span>
                                 </div> --}}
                             </div>
-                            <div class="card-rating">
+                            {{--<div class="card-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                                 <!-- Example of a half-star -->
-                            </div>
+                            </div>--}}
                             <button class="view-details" onclick="window.location.href='details.html';">
                                 View Details
                             </button>
