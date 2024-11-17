@@ -59,8 +59,7 @@
                                     <div class="action">
                                         @if ($item->transaction_status == 'PENDING')
                                             <button class="paynow-button"
-                                                onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay
-                                                Now</button>
+                                                onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay Now</button>
                                         @elseif ($item->transaction_status == 'SUCCESS')
                                             <button class="detail-button"
                                                 onclick="window.open('{{ route('invoice', ['id' => $item->id]) }}', '_blank');">Invoice</button>
