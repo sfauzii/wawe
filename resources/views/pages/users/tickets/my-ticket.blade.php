@@ -12,32 +12,44 @@
         @foreach ($items as $item)
             @if ($item->user->id === Auth::id())
                 <div class="list-ticket">
-                    <a href="{{ route('ticket-detail', ['id' => $item->id]) }}" target="_blank" class="list-ticket"
-                        style="text-decoration: none; display: block; cursor: pointer;">
-                        @if ($item->travel_package->galleries->isNotEmpty())
-                            @php
-                                $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
-                                $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
-                            @endphp
-                            @if ($firstImagePath)
-                                <img src="{{ asset('storage/' . $firstImagePath) }}" alt="{{ ucwords($item->travel_package->title) }}">
-                            @else
-                                <!-- Fallback content if there is no image -->
-                                <p>No image available.</p>
-                            @endif
+                    @if ($item->travel_package->galleries->isNotEmpty())
+                        @php
+                            $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
+                            $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
+                        @endphp
+                        @if ($firstImagePath)
+                            <img src="{{ asset('storage/' . $firstImagePath) }}"
+                                alt="{{ ucwords($item->travel_package->title) }}">
                         @else
-                            <!-- Fallback content if there are no galleries -->
-                            <p>No galleries available.</p>
+                            <!-- Fallback content if there is no image -->
+                            <p>No image available.</p>
                         @endif
-                        <div class="middle">
-                            <div class="left">
-                                <h2 class="ticket-title">{{ ucwords($item->travel_package->title) }}</h2>
+                    @else
+                        <!-- Fallback content if there are no galleries -->
+                        <p>No galleries available.</p>
+                    @endif
+                    <div class="middle">
+                        <div class="left">
+                            <h2 class="ticket-title"
+                                onclick="window.open('{{ route('ticket-detail', ['id' => $item->id]) }}', '_blank')">
+                                Pantai
+                                {{ ucwords($item->travel_package->title) }}</h2>
+                            <div class="date-tooltip-container">
                                 <h3 class="date-ticket">
                                     {{ \Carbon\Carbon::create($item->travel_package->departure_date)->format('d F Y') }}
                                 </h3>
+                                <div class="tooltip-icon package">
+                                    <span class="icon-img package">?</span>
+                                    <span class="tooltip-text package">
+                                        <h1 class="tooltip-title">Info Ticket</h1>
+                                        Jangan lupa untuk mendowload ticket sebelum keberangkatan
+                                    </span>
+                                </div>
                             </div>
+
                         </div>
-                    </a>
+
+                    </div>
                 </div>
             @endif
         @endforeach

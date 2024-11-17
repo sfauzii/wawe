@@ -592,42 +592,156 @@ main .recent_order .detail-button:hover {
 }
 main .ticket {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  max-width: 100%;
+  padding: 1rem;
+  margin-left: -20px;
 }
 
+/* Style untuk setiap card ticket */
 main .ticket > div {
   background-color: var(--clr-white);
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
-  margin-top: 1rem;
   box-shadow: var(--box-shadow);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Style untuk gambar dalam list-ticket */
+.list-ticket img {
+  width: 100%;
+  height: 200px;
+  /* Fixed height untuk konsistensi */
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Style untuk judul ticket */
+.ticket-title {
+  color: var(--clr-dark);
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Hover effect untuk judul yang panjang */
+.ticket-title:hover {
+  white-space: normal;
+  overflow: visible;
+  position: relative;
+}
+
+/* Tooltip untuk judul panjang saat di-hover */
+.ticket-title:hover::before {
+  content: attr(title);
+  position: absolute;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 1000;
+  width: 100%;
+  top: 100%;
+  left: 0;
+}
+
+/* Style untuk tanggal */
+/* Container untuk date dan tooltip */
+.date-tooltip-container {
+  margin-top: 10px;
+  display: flex;
   align-items: center;
-  /* Memusatkan secara vertikal */
+  gap: 8px;
+}
+
+/* Style untuk date ticket */
+.date-ticket {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Tooltip Icon */
+.tooltip-icon.package {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+}
+
+/* Icon style with circle background */
+.icon-img.package {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(15, 244, 126, 0.231372549);
+  border-radius: 50%;
+  color: #0ff47e;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip-text.package {
+  display: none;
+  position: absolute;
+  top: -100px;
+  left: -100px !important;
+  background-color: #fff;
+  color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500 !important;
+  z-index: 1000 !important;
+  width: 180px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.tooltip-text.package h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #0ff47e;
+}
+
+/* Show tooltip on hover */
+.tooltip-icon.package:hover .tooltip-text.package {
+  display: block;
+}
+
+/* List ticket styling */
+.list-ticket {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .list-ticket img {
   width: 100%;
-  /* Sesuaikan ukuran gambar sesuai kebutuhan */
   border-radius: 10px;
   height: auto;
-  /* Biarkan tinggi gambar menyesuaikan proporsi */
-  margin-right: 0;
-  /* Menghilangkan margin di sebelah kanan gambar */
-  padding: 0;
-  /* Menghilangkan padding di sekitar gambar */
   -o-object-fit: cover;
      object-fit: cover;
 }
 
 .ticket-title {
-  color: var(--clr-dark);
-}
-
-.date-ticket {
-  font-size: 14px;
-  font-weight: 500;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 main .settings {
