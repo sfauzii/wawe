@@ -13,7 +13,7 @@ class Testimony extends Model
 
     protected $table = 'testimonies';
 
-    protected $fillable = ['users_id', 'transactions_detail_id', 'travel_packages_id', 'name', 'message', 'photos'];
+    protected $fillable = ['users_id', 'transactions_detail_id', 'travel_packages_id', 'message', 'photos'];
 
     protected $casts = [
         'photos' => 'array',

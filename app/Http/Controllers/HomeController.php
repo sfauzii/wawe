@@ -25,7 +25,8 @@ class HomeController extends Controller
             ->take(4) // Ambil 4 travel package teratas
             ->get();
 
-        $testimonies = Testimony::latest()->take(4)->get();
+        // Ambil 4 testimonies secara random
+        $testimonies = Testimony::inRandomOrder()->take(4)->get();
 
         foreach ($items as $item) {
             $item->testimonies_count = Testimony::whereHas('transactionDetail', function ($query) use ($item) {

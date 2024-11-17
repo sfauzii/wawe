@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('transactions_detail_id');
             $table->uuid('travel_packages_id');
 
-            $table->string('name');
+            // $table->string('name');
             $table->text('message');
             $table->softDeletes();
             $table->timestamps();

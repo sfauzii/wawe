@@ -18,12 +18,13 @@
 
                 <div class="form-group">
                     <label for="full-name">Full Name</label>
-                    <input type="text" id="name" name="name" value="{{ $user->name }}" name="full-name"
-                        required>
+                    <input type="text" id="name" value="{{ $user->name }}" name="full-name" required readonly
+                        disabled style="opacity: 0.6; cursor: not-allowed;">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ $user->email }}" required readonly>
+                    <input type="email" id="email" name="email" value="{{ $user->email }}" required readonly
+                        disabled style="opacity: 0.6; cursor: not-allowed;">
                 </div>
                 <div class="form-group">
                     <label for="full-name">Message</label>

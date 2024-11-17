@@ -60,7 +60,7 @@ class TestimonyController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            // 'name' => 'required',
             'message' => 'required',
             'transaction_detail_id' => 'required|exists:transaction_details,id',
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -94,7 +94,7 @@ class TestimonyController extends Controller
             'transactions_detail_id' => $request->transaction_detail_id,
             'travel_packages_id' => $travelPackageId,
             'message' => $request->message,
-            'name' => $request->name,
+            // 'name' => $request->name,
             'photos' => $photos, // Menyimpan path foto ke dalam kolom 'photos' yang telah di-cast sebagai array    
         ]);
 
