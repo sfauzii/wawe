@@ -32,7 +32,6 @@
                         <div class="left">
                             <h2 class="ticket-title"
                                 onclick="window.open('{{ route('ticket-detail', ['id' => $item->id]) }}', '_blank')">
-                                Pantai
                                 {{ ucwords($item->travel_package->title) }}</h2>
                             <div class="date-tooltip-container">
                                 <h3 class="date-ticket">
