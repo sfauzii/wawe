@@ -139,7 +139,7 @@ nav .user span {
 
 
 main {
-    grid-column: 2 / 3;
+    grid-column: 2 / 4;
     padding: 1rem;
     overflow-y: auto;
     /* Agar konten yang panjang bisa di-scroll */
@@ -629,7 +629,7 @@ main .recent_order .detail-button {
     background-color: var(--clr-white);
     padding: 1rem;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #77777725;
     white-space: nowrap;
 }
