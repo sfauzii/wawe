@@ -38,4 +38,9 @@ class TravelPackage extends Model
     {
         return $this->hasMany(Transaction::class, 'travel_packages_id');
     }
+
+    // public function users()
+    // {
+    //     return $this->hasManyThrough(User::class, Transaction::class, 'travel_packages_id', 'id', 'id', 'users_id');
+    // }
 }

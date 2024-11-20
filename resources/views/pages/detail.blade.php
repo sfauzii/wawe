@@ -67,7 +67,8 @@
                         <div class="category-badge">{{ ucwords($item->type) }}</div>
                         <div class="title-and-testimonials">
                             <h1 class="product__title">{{ ucwords($item->title) }}</h1>
-                            <span class="testimonials"><a href="#review">{{ $testimoniesCount }} Testimonials</a></span>
+                            {{-- <span class="testimonials"><a href="#review">{{ $testimoniesCount }} Testimonials</a></span> --}}
+                            <span class="testimonials">Last updated: {{ $item->updated_at->diffForHumans() }}</span>
                         </div>
                         <div class="product-features">
                             <div class="feature">
@@ -96,14 +97,15 @@
 
                             <!-- Tambahkan feature lainnya di sini -->
                         </div>
-                        <div class="seller-card">
+                        {{-- <div class="seller-card">
                             <img src="{{ url('frontend/images/avatar.png') }}" alt="Seller Image" class="seller-image">
                             <div class="seller-info">
-                                <h2 class="seller-name">Seller Name</h2>
-                                <p class="seller-description">Brief description of the seller</p>
+                                {{~~ <h2 class="seller-name">{{ ucwords($item->users->first()->name ?? 'Unknown') }}</h2> ~~}}
+                                {{~~ <h2 class="seller-name">Last Updated: {{ $item->updated_at->diffForHumans() }}</h2> ~~}}
+                                <p class="seller-description">Last Updated: {{ $item->updated_at->diffForHumans()  }}</p>
                             </div>
                             <button class="contact-seller-btn">Contact Seller</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </section>
 
@@ -137,7 +139,7 @@
                 <div class="details-container">
                     <!-- Testimonies Section -->
                     <aside class="testimonies-card w-100" id="review">
-                        <h3 class="testimonies-header">From Happy Customers</h3>
+                        <h3 class="testimonies-header">From Happy Customers ({{ $testimoniesCount }})</h3>
                         @foreach ($testimonies as $testimony)
                             <div class="testimoni-card">
                                 <img src="{{ $testimony->user->photo ? asset('storage/' . $testimony->user->photo) : 'https://ui-avatars.com/api/?name=' . $testimony->user->name }}"
