@@ -4221,4 +4221,8 @@ footer .container-fluid {
     grid-template-columns: 1fr;
     margin: 0;
   }
+}
+.card.reset__password {
+  margin-bottom: 100px;
+  margin-top: 100px;
 }/*# sourceMappingURL=main.css.map */
