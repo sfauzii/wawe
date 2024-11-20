@@ -136,6 +136,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('report-travel-package', [ReportController::class, 'showFormPackage'])->name('report-travel-package');
 
     Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
+    Route::get('/report/travel-package/excel', [ReportController::class, 'generatePackageExcel'])
+        ->name('report-travel-package-excel');
+
 
     Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
     Route::get('notifications-all', [NotificationController::class, 'index'])->name('notifications-all');

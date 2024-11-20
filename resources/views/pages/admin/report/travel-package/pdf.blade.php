@@ -194,6 +194,8 @@
                     <th>Pakcage</th>
                     <th>Location</th>
                     <th>Departure Date</th>
+                    <th>Sales</th>
+                    <th>Total Sales (Rp)</th>
                 </tr>
             </thead>
             <tbody>
@@ -204,6 +206,9 @@
                         <td>{{ ucwords($package->title) }}</td>
                         <td>{{ ucwords($package->location) }}</td>
                         <td>{{ \Carbon\Carbon::parse($package->departure_date)->format('d F Y') }}</td>
+                        <td>{{ $package->sales }}</td>
+                        <td>Rp {{ number_format($package->total_sales_rupiah, 0, ',', '.') }}</td>
+                        <!-- Total penjualan -->
                         {{-- <td><img src="{{ $package->travel_package->galleries->count() ? Storage::url($package->travel_package->galleries->first()->image) : '' }}"
                             alt="Package Image" style="width: 100px; height: auto;"></td> --}}
 

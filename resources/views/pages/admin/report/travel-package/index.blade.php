@@ -50,7 +50,7 @@
                         <table class="table datatable">
 
                             <thead>
-                                <div class="mt-3">
+                                <div class="mt-3 d-flex align-items-center gap-0">
                                     @if ($packages->isNotEmpty())
                                         @can('create report package')
                                             <form action="{{ route('report-travel-package-download') }}" method="GET"
@@ -60,6 +60,15 @@
                                                 <button class="btn btn-danger" type="submit"
                                                     style="margin: 30px 0 30px 10px;"><i
                                                         class="bi bi-file-earmark-pdf-fill"></i> Download PDF</button>
+                                            </form>
+                                            <form action="{{ route('report-travel-package-excel') }}" method="GET"
+                                                class="no-print">
+                                                <input type="hidden" name="start_date" value="{{ $start_date }}">
+                                                <input type="hidden" name="end_date" value="{{ $end_date }}">
+                                                <button class="btn btn-success" type="submit"
+                                                    style="margin: 30px 0 30px 10px;">
+                                                    <i class="bi bi-file-earmark-excel-fill"></i> Download Excel
+                                                </button>
                                             </form>
                                         @endcan
                                     @endif

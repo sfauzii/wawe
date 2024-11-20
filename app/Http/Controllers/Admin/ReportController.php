@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\TransactionDataExport;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TravelPackage;
+use App\Exports\TravelPackageExport;
 use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TransactionDataExport;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class ReportController extends Controller
 
@@ -128,11 +129,28 @@ class ReportController extends Controller
     {
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
-        $packages = TravelPackage::with('galleries')
-            ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])->get();
+
+        // Ambil paket perjalanan dengan jumlah penjualan dan total nilai dalam Rupiah
+        $packages = TravelPackage::with(['galleries'])
+            ->withCount(['transactions as sales' => function ($query) {
+                $query->where('transaction_status', 'SUCCESS');
+            }])
+            ->withSum(['transactions as total_sales_rupiah' => function ($query) {
+                $query->where('transaction_status', 'SUCCESS');
+            }], 'grand_total')
+            ->whereBetween('created_at', [$start_date . ' 00:00:00', $end_date . ' 23:59:59'])
+            ->get();
 
         $pdf = FacadePdf::loadView('pages.admin.report.travel-package.pdf', compact('packages', 'start_date', 'end_date'))->setPaper('a4', 'portrait');
         return $pdf->stream('laporan_paket_perjalanan.pdf');
+    }
+
+    public function generatePackageExcel(Request $request)
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        return Excel::download(new TravelPackageExport($start_date, $end_date), 'laporan_paket_perjalanan.xlsx');
     }
 
 
