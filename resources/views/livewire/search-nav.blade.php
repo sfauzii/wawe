@@ -1,77 +1,83 @@
-<div class="search-container">
-    <input type="search" wire:model.live="searchTerm" placeholder="Search...">
+<div class="transaction-search-component">
+    <div class="search-container">
+        <input type="text" placeholder="Search..." wire:click="toggleModal" readonly>
+        <button wire:click="toggleModal">
+            <span class="material-icons">search</span>
+        </button>
+    </div>
 
-    @if ($searchTerm && $transactions->isEmpty())
-        <div class="alert alert-warning">
-            No results found for "{{ $searchTerm }}"
-        </div>
-    @elseif($searchTerm)
-        <div class="row">
-            @foreach ($transactions as $transaction)
-                <div class="col-md-4 mb-3">
-                    <a href="{{ route('invoice', ['id' => $transaction->id]) }}" target="_blank" class="custom-card-link">
-                        <div class="custom-card">
-                            <div class="card-body">
-                                @php
-                                    $uuidParts = explode('-', $transaction->id);
-                                    $shortUuid = $uuidParts[0];
-                                @endphp
-                                <p class="card-text">ID: <span style="font-weight: bold;"> {{ $shortUuid }}</span>
-                                </p>
-                                <p class="card-text">User: <span
-                                        style="font-weight: bold;">{{ $transaction->user->name }}</span></p>
-                                <p class="card-text">Travel Package: <span
-                                        style="font-weight: bold;">{{ $transaction->travel_package->name }}</span></p>
-                                <p class="card-text">Status: <span
-                                        style="font-weight: bold;">{{ $transaction->transaction_status }}</span></p>
-                                <p class="card-text">Total: <span
-                                        style="font-weight: bold;">{{ $transaction->transaction_total }}</span></p><br>
-                            </div>
-                        </div>
-                    </a>
+    <!-- Search Modal -->
+    @if ($showModal)
+        <div class="modal-overlay">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3>Search</h3>
+                    <button class="close-button" wire:click="toggleModal">&times;</button>
                 </div>
-            @endforeach
+
+                <div class="modal-body">
+                    <div class="search-input">
+                        <input type="text"
+                            placeholder="Search by package name, order ID, or payment method (min. 3 characters)"
+                            wire:model.live="search" autofocus>
+                    </div>
+
+                    <!-- Search Results -->
+                    <div class="search-results">
+                        @if ($searchResults && count($searchResults) > 0)
+                            @foreach ($searchResults as $transaction)
+                                <div class="transaction-item">
+                                    <div class="transaction-content">
+                                        <div class="transaction-info">
+                                            <h4>Package: {{ ucwords($transaction->travel_package->title ?? 'N/A') }}
+                                            </h4>
+                                            <p>Order ID: <strong>{{ $transaction->order_id }}</strong></p>
+                                            <p>Status:
+                                                <span
+                                                    class="status-badge {{ strtolower($transaction->transaction_status) }}">
+                                                    {{ $transaction->transaction_status }}
+                                                </span>
+                                            </p>
+                                            <p>Payment Method:
+                                                {{ ucwords(str_replace('_', ' ', $transaction->payment_method)) }}</p>
+                                            <p class="total">Total: Rp
+                                                {{ number_format($transaction->grand_total, 0, ',', '.') }}</p>
+                                        </div>
+
+                                        <div class="transaction-actions">
+                                            @if ($transaction->transaction_status === 'SUCCESS')
+                                                <button
+                                                    onclick="window.open('{{ route('ticket-detail', ['id' => $transaction->id]) }}')"
+                                                    class="btn btn-ticket">
+                                                    Ticket
+                                                </button>
+                                                <button
+                                                    onclick="window.open('{{ route('invoice', ['id' => $transaction->id]) }}')"
+                                                    class="btn btn-invoice">
+                                                    Invoice
+                                                </button>
+                                            @else
+                                                <button onclick="window.open('{{ $transaction->payment_url }}')"
+                                                    class="btn btn-pay">
+                                                    Pay Now
+                                                </button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @elseif(strlen($search) >= 3)
+                            <p class="no-results">No data found</p>
+                        @else
+                            <p class="search-hint">Type at least 3 characters to search</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="close-btn" wire:click="toggleModal">Close</button>
+                </div>
+            </div>
         </div>
     @endif
-
-    <button>
-        <span class="material-icons">search</span>
-    </button>
-
-
-    <style>
-        .alert-warning {
-            color: #333 !important;
-        }
-
-
-        .custom-card-link {
-            text-decoration: none;
-            /* Remove underline from link */
-        }
-
-        .custom-card {
-            height: 160px;
-            width: 300px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .custom-card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            /* Add a stronger shadow on hover */
-            transform: translateY(-5px);
-            /* Slightly move the card up on hover */
-        }
-
-        .custom-card .card-body {
-            padding: 5px;
-        }
-
-        .custom-card {
-            margin: 1rem
-        }
-    </style>
 </div>

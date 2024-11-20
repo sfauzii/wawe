@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@yield('title')</title>
 
-    @livewireStyles
-    @include('includes.users.style')
+        @livewireStyles
+        @include('includes.users.style')
 
-</head>
+    </head>
 
-<body>
-    <div class="container">
+    <body>
+        <div class="container">
 
-        @include('includes.users.sidebar')
+            @include('includes.users.sidebar')
 
-        <!-- main section start -->
-        <main>
+            <!-- main section start -->
+            <main>
 
-            @include('includes.users.navbar')
-
-
-
-            @yield('content')
-
-            @include('sweetalert::alert')
-
-        </main>
-        <!-- main section end -->
+                @include('includes.users.navbar')
 
 
-    </div>
+
+                @yield('content')
+
+                @include('sweetalert::alert')
+
+            </main>
+            <!-- main section end -->
 
 
-    @livewireScripts
-
-</body>
+        </div>
 
 
-@include('includes.users.script')
+        @livewireScripts
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <x-livewire-alert::scripts />
+
+    </body>
+
+
+    @include('includes.users.script')
 
 </html>
