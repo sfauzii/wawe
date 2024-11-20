@@ -5,7 +5,8 @@
         <h1>List Group</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('dashboard', ['role' => Auth::user()->getRoleNames()->first()]) }}">Home</a></li>
                 <li class="breadcrumb-item">Notification</li>
                 <li class="breadcrumb-item active">All</li>
             </ol>
@@ -22,7 +23,7 @@
 
                         @livewire('notification-list')
 
-                       
+
                     </div>
                 </div>
 
