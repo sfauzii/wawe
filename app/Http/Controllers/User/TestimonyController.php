@@ -99,13 +99,19 @@ class TestimonyController extends Controller
         ]);
 
         // Mengirim notifikasi ke admin dan super-admin
-        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-        $admins = User::whereHas('roles', function ($query) use ($roles) {
-            $query->whereIn('id', $roles->pluck('id'));
-        })->get();
+        $usersWithPermission = User::permission('get-notification')->get();
 
-        Notification::send($admins, new TestimonyCreated($testimoni));
-        
+        Notification::send(
+            $usersWithPermission,
+            new TestimonyCreated($testimoni)
+        );
+        // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        // $admins = User::whereHas('roles', function ($query) use ($roles) {
+        //     $query->whereIn('id', $roles->pluck('id'));
+        // })->get();
+
+        // Notification::send($admins, new TestimonyCreated($testimoni));
+
         Alert::success('Success', 'Horeee!! Kamu berhasil melakukan testimoni');
 
         return redirect()->back();

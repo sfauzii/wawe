@@ -14,6 +14,7 @@ use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewTransactionNotification;
 
@@ -74,13 +75,21 @@ class CheckoutController extends Controller
                 'phone' => $phone,
             ]);
 
-            // Send notification to admins
-            $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-            $admins = User::whereHas('roles', function ($query) use ($roles) {
-                $query->whereIn('id', $roles->pluck('id'));
-            })->get();
 
-            Notification::send($admins, new NewTransactionNotification($transaction));
+            // Send notification to admins
+            // Send notification only to users with 'get-notification' permission
+            $usersWithPermission = User::permission('get-notification')->get();
+
+            Notification::send(
+                $usersWithPermission,
+                new NewTransactionNotification($transaction)
+            );
+            // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+            // $admins = User::whereHas('roles', function ($query) use ($roles) {
+            //     $query->whereIn('id', $roles->pluck('id'));
+            // })->get();
+
+            // Notification::send($admins, new NewTransactionNotification($transaction));
 
             return redirect()->route('checkout', $transaction->id);
         } else {
@@ -114,6 +123,15 @@ class CheckoutController extends Controller
         // Update the transaction status
         $transaction->transaction_status = 'CANCEL';
         $transaction->save();
+
+        // Send notification to admins
+        // Send notification only to users with 'get-notification' permission
+        $usersWithPermission = User::permission('get-notification')->get();
+
+        Notification::send(
+            $usersWithPermission,
+            new NewTransactionNotification($transaction)
+        );
 
         Alert::success('Success', 'Booking canceled successfully.');
 
@@ -198,12 +216,20 @@ class CheckoutController extends Controller
         toast('User success added', 'success');
 
         // Kirim notifikasi ke admin dan super-admin
-        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-        $admins = User::whereHas('roles', function ($query) use ($roles) {
-            $query->whereIn('id', $roles->pluck('id'));
-        })->get();
+        // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        // $admins = User::whereHas('roles', function ($query) use ($roles) {
+        //     $query->whereIn('id', $roles->pluck('id'));
+        // })->get();
 
-        Notification::send($admins, new NewTransactionNotification($transaction));
+        // Notification::send($admins, new NewTransactionNotification($transaction));
+
+        // Send notification only to users with 'get-notification' permission
+        $usersWithPermission = User::permission('get-notification')->get();
+
+        Notification::send(
+            $usersWithPermission,
+            new NewTransactionNotification($transaction)
+        );
 
         return redirect()->route('checkout', $id);
     }
@@ -229,12 +255,19 @@ class CheckoutController extends Controller
 
 
         // Kirim notifikasi ke admin dan super-admin
-        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-        $admins = User::whereHas('roles', function ($query) use ($roles) {
-            $query->whereIn('id', $roles->pluck('id'));
-        })->get();
+        // Send notification only to users with 'get-notification' permission
+        $usersWithPermission = User::permission('get-notification')->get();
 
-        Notification::send($admins, new NewTransactionNotification($transaction));
+        Notification::send(
+            $usersWithPermission,
+            new NewTransactionNotification($transaction)
+        );
+        // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        // $admins = User::whereHas('roles', function ($query) use ($roles) {
+        //     $query->whereIn('id', $roles->pluck('id'));
+        // })->get();
+
+        // Notification::send($admins, new NewTransactionNotification($transaction));
 
         // Set konfigurasi Midtrans
         // Config::$serverKey = config('midtrans.serverKey');

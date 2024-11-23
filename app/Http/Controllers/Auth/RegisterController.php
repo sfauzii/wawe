@@ -76,13 +76,20 @@ class RegisterController extends Controller
 
         $user->assignRole('user');
 
-        // kirim notifikasi ke admin dan super-admin
-        $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-        $admins = User::whereHas('roles', function ($query) use ($roles) {
-            $query->whereIn('id', $roles->pluck('id'));
-        })->get();
+        // // kirim notifikasi ke admin dan super-admin
+        // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        // $admins = User::whereHas('roles', function ($query) use ($roles) {
+        //     $query->whereIn('id', $roles->pluck('id'));
+        // })->get();
 
-        Notification::send($admins, new UserRegisteredNotification($user));
+        // Notification::send($admins, new UserRegisteredNotification($user));
+
+        $usersWithPermission = User::permission('get-notification')->get();
+
+        Notification::send(
+            $usersWithPermission,
+            new UserRegisteredNotification($user)
+        );
 
         return $user;
     }

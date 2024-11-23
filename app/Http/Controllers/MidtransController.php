@@ -77,12 +77,19 @@ class MidtransController extends Controller
 
         if ($transaction->transaction_status == 'SUCCESS') {
             // Kirim notifikasi ke admin dan super-admin
-            $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-            $admins = User::whereHas('roles', function ($query) use ($roles) {
-                $query->whereIn('id', $roles->pluck('id'));
-            })->get();
+            // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+            // $admins = User::whereHas('roles', function ($query) use ($roles) {
+            //     $query->whereIn('id', $roles->pluck('id'));
+            // })->get();
 
-            \Illuminate\Support\Facades\Notification::send($admins, new TransactionSuccessNotification($transaction));
+            // \Illuminate\Support\Facades\Notification::send($admins, new TransactionSuccessNotification($transaction));
+
+            $usersWithPermission = User::permission('get-notification')->get();
+
+            \Illuminate\Support\Facades\Notification::send(
+                $usersWithPermission,
+                new TransactionSuccessNotification($transaction)
+            );
         }
 
         // kirimkan email
