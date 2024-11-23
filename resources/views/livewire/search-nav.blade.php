@@ -38,6 +38,9 @@
                                                     {{ $transaction->transaction_status }}
                                                 </span>
                                             </p>
+                                            <p>Issue:
+                                                {{ $transaction->created_at ?? 'N/A' }}
+                                            </p>
                                             <p>Payment Method:
                                                 {{ ucwords(str_replace('_', ' ', $transaction->payment_method)) }}</p>
                                             <p class="total">Total: Rp
