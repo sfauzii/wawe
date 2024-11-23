@@ -5,7 +5,8 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('dashboard', ['role' => Auth::user()->getRoleNames()->first()]) }}">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </nav>
@@ -30,10 +31,13 @@
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=today') }}">Today</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=this_month') }}">This Month</a>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter=today') }}">Today</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter=this_month') }}">This Month</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=this_year') }}">This Year</a>
+                                    <li><a class="dropdown-item" href="{{ url('/dashboard/{role}?filter=this_year') }}">This
+                                            Year</a>
                                     </li>
                                 </ul>
                             </div>
@@ -71,12 +75,15 @@
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter_revenue=today') }}">Today</a>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter_revenue=today') }}">Today</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter_revenue=this_month') }}">This
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter_revenue=this_month') }}">This
                                             Month</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter_revenue=this_year') }}">This
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter_revenue=this_year') }}">This
                                             Year</a></li>
                                 </ul>
                             </div>
@@ -121,11 +128,13 @@
                                         <h6>Filter</h6>
                                     </li>
                                     <li><a class="dropdown-item"
-                                            href="{{ url('/admin?filter_customers=today') }}">Today</a></li>
+                                            href="{{ url('/dashboard/{role}?filter_customers=today') }}">Today</a></li>
                                     <li><a class="dropdown-item"
-                                            href="{{ url('/admin?filter_customers=this_month') }}">This Month</a>
+                                            href="{{ url('/dashboard/{role}?filter_customers=this_month') }}">This
+                                            Month</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter_customers=this_year') }}">This
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter_customers=this_year') }}">This
                                             Year</a>
                                     </li>
                                 </ul>
@@ -170,10 +179,13 @@
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=today') }}">Today</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=this_month') }}">This
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter=today') }}">Today</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter=this_month') }}">This
                                             Month</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('/admin?filter=this_year') }}">This Year</a>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/dashboard/{role}?filter=this_year') }}">This Year</a>
                                     </li>
                                 </ul>
                             </div>
@@ -193,7 +205,7 @@
                                 <script>
                                     function applyFilter() {
                                         var filter = document.getElementById('filter').value;
-                                        window.location.href = '/admin?filter=' + filter;
+                                        window.location.href = '/dashboard/{role}?filter=' + filter;
                                     }
 
                                     document.addEventListener('DOMContentLoaded', function() {
@@ -303,7 +315,8 @@
                             @foreach ($notif as $notification)
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">{{ $notification->created_at->diffForHumans() }}</div>
-                                    <i class='bi bi-circle-fill activity-badge {{ $notification->read_at ? 'text-muted' : 'text-primary' }} align-self-start'></i>
+                                    <i
+                                        class='bi bi-circle-fill activity-badge {{ $notification->read_at ? 'text-muted' : 'text-primary' }} align-self-start'></i>
                                     <div class="activity-content">
                                         @if (isset($notification->data['name']))
                                             <!-- Menampilkan detail testimoni -->
@@ -314,7 +327,8 @@
                                             <!-- Menampilkan detail transaksi -->
                                             <strong>{{ $notification->data['user_name'] }}</strong> made a transaction:
                                             <br>
-                                            Amount: <strong>Rp {{ number_format($notification->data['amount'], 0, ',') }}</strong> <br>
+                                            Amount: <strong>Rp
+                                                {{ number_format($notification->data['amount'], 0, ',') }}</strong> <br>
                                             Status:
                                             @if ($notification->data['status'] === 'SUCCESS')
                                                 <span class="badge bg-success">{{ $notification->data['status'] }}</span>
@@ -323,7 +337,8 @@
                                             @elseif($notification->data['status'] === 'PENDING')
                                                 <span class="badge bg-warning">{{ $notification->data['status'] }}</span>
                                             @elseif($notification->data['status'] === 'CANCEL')
-                                                <span class="badge bg-secondary">{{ $notification->data['status'] }}</span>
+                                                <span
+                                                    class="badge bg-secondary">{{ $notification->data['status'] }}</span>
                                             @elseif($notification->data['status'] === 'FAILED')
                                                 <span class="badge bg-danger">{{ $notification->data['status'] }}</span>
                                             @else
