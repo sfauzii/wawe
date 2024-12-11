@@ -48,7 +48,7 @@ class TravelPackageController extends Controller
     public function store(TravelPackageRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        $data['slug'] = Str::slug($request->title) . '-' . Str::random(4);
 
         TravelPackage::create($data);
 
@@ -88,7 +88,7 @@ class TravelPackageController extends Controller
     public function update(TravelPackageRequest $request, string $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        $data['slug'] = Str::slug($request->title) . '-' . Str::random(4);
 
         $item = TravelPackage::findOrFail(decrypt($id));
 
