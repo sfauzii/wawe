@@ -45,57 +45,92 @@ class CheckoutController extends Controller
         $random = rand(1000, 9999);
         $order_id = 'WW' . date('Ymd') . $random;
 
-        if ($travel_package->kuota > 0) {
-            // Reduce quota
-            $travel_package->kuota--;
-            $travel_package->save();
+        // Create transaction
+        $transaction = Transaction::create([
+            'travel_packages_id' => $id,
+            'users_id' => Auth::user()->id,
+            'order_id' => $order_id,
+            'transaction_status' => 'IN_CART',
+        ]);
 
-            // Create transaction
-            $transaction = Transaction::create([
-                'travel_packages_id' => $id,
-                'users_id' => Auth::user()->id,
-                'order_id' => $order_id,
-                'transaction_status' => 'IN_CART',
-            ]);
+        // Ensure phone number is filled in, either from the user's profile or form input
+        $phone = $request->phone ?? Auth::user()->phone;
 
-            // Ensure phone number is filled in, either from the user's profile or form input
-            $phone = $request->phone ?? Auth::user()->phone;
-
-            if (empty($phone)) {
-
-                Alert::error('Error', 'Phone number is required.');
-
-                return back();
-            }
-
-            // Create transaction detail
-            TransactionDetail::create([
-                'transactions_id' => $transaction->id,
-                'username' => Auth::user()->username,
-                'phone' => $phone,
-            ]);
-
-
-            // Send notification to admins
-            // Send notification only to users with 'get-notification' permission
-            $usersWithPermission = User::permission('get-notification')->get();
-
-            Notification::send(
-                $usersWithPermission,
-                new NewTransactionNotification($transaction)
-            );
-            // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
-            // $admins = User::whereHas('roles', function ($query) use ($roles) {
-            //     $query->whereIn('id', $roles->pluck('id'));
-            // })->get();
-
-            // Notification::send($admins, new NewTransactionNotification($transaction));
-
-            return redirect()->route('checkout', $transaction->id);
-        } else {
-            toast('Sorry, the quota for this travel package has been exhausted.', 'error');
+        if (empty($phone)) {
+            Alert::error('Error', 'Phone number is required.');
             return back();
         }
+
+        // Create transaction detail
+        TransactionDetail::create([
+            'transactions_id' => $transaction->id,
+            'username' => Auth::user()->username,
+            'phone' => $phone,
+        ]);
+
+        // Send notification to admins
+        // Send notification only to users with 'get-notification' permission
+        $usersWithPermission = User::permission('get-notification')->get();
+
+        Notification::send(
+            $usersWithPermission,
+            new NewTransactionNotification($transaction)
+        );
+
+        // Redirect to checkout
+        return redirect()->route('checkout', $transaction->id);
+
+        // if ($travel_package->kuota > 0) {
+        //     // Reduce quota
+        //     $travel_package->kuota--;
+        //     $travel_package->save();
+
+        //     // Create transaction
+        //     $transaction = Transaction::create([
+        //         'travel_packages_id' => $id,
+        //         'users_id' => Auth::user()->id,
+        //         'order_id' => $order_id,
+        //         'transaction_status' => 'IN_CART',
+        //     ]);
+
+        //     // Ensure phone number is filled in, either from the user's profile or form input
+        //     $phone = $request->phone ?? Auth::user()->phone;
+
+        //     if (empty($phone)) {
+
+        //         Alert::error('Error', 'Phone number is required.');
+
+        //         return back();
+        //     }
+
+        //     // Create transaction detail
+        //     TransactionDetail::create([
+        //         'transactions_id' => $transaction->id,
+        //         'username' => Auth::user()->username,
+        //         'phone' => $phone,
+        //     ]);
+
+
+        //     // Send notification to admins
+        //     // Send notification only to users with 'get-notification' permission
+        //     $usersWithPermission = User::permission('get-notification')->get();
+
+        //     Notification::send(
+        //         $usersWithPermission,
+        //         new NewTransactionNotification($transaction)
+        //     );
+        //     // $roles = Role::whereIn('name', ['super-admin', 'admin'])->get();
+        //     // $admins = User::whereHas('roles', function ($query) use ($roles) {
+        //     //     $query->whereIn('id', $roles->pluck('id'));
+        //     // })->get();
+
+        //     // Notification::send($admins, new NewTransactionNotification($transaction));
+
+        //     return redirect()->route('checkout', $transaction->id);
+        // } else {
+        //     toast('Sorry, the quota for this travel package has been exhausted.', 'error');
+        //     return back();
+        // }
     }
 
     public function cancelBooking($id)
@@ -184,15 +219,15 @@ class CheckoutController extends Controller
         $travelPackage = $transaction->travel_package;
 
         // Check if there's enough quota available
-        if ($travelPackage->kuota <= 0) {
-            // return back()->withErrors(['message' => 'No more quota available for this travel package.']);
-            Alert::error('Error', 'No more quota available for this travel package.')
-                // ->position('top-end')
-                ->autoClose(3000)
-                ->timerProgressBar();
+        // if ($travelPackage->kuota <= 0) {
+        //     // return back()->withErrors(['message' => 'No more quota available for this travel package.']);
+        //     Alert::error('Error', 'No more quota available for this travel package.')
+        //         // ->position('top-end')
+        //         ->autoClose(3000)
+        //         ->timerProgressBar();
 
-            return back();
-        }
+        //     return back();
+        // }
 
         $data = $request->all();
         $data['transactions_id'] = $id;

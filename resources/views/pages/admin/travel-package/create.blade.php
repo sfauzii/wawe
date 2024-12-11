@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label for="kuota" class="col-sm-2 col-form-label">Kuota <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
@@ -119,7 +119,7 @@
                                             oninput="validateKuota(this)">
                                         <small class="form-text text-muted">Kuota. Contoh: 10. Wajib diisi</small>
                                     </div>
-                                </div>
+                                </div> --}}
 
 
 

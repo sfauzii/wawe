@@ -77,12 +77,12 @@
                                     class="icon">
                                 <span>{{ \Carbon\Carbon::create($item->departure_date)->format('d F Y') }}</span>
                             </div>
-                            <div class="feature">
+                            {{-- <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
                                 <img src="{{ url('frontend/images/icons/people.png') }}" alt="Facebook Icon"
                                     class="icon">
                                 <span>{{ $item->kuota }} person</span>
-                            </div>
+                            </div> --}}
                             <div class="feature">
                                 <!-- <ion-icon name="calendar-outline" class="icon"></ion-icon> -->
                                 <img src="{{ url('frontend/images/icons/tag.png') }}" alt="Facebook Icon" class="icon">
@@ -178,8 +178,8 @@
                             <p>{{ ucwords($item->location) }}</p>
                             <h4>Duration</h4>
                             <p>{{ $item->duration }}</p>
-                            <h4>Kuota</h4>
-                            <p>{{ $item->kuota }} person</p>
+                            {{-- <h4>Kuota</h4>
+                            <p>{{ $item->kuota }} person</p> --}}
                             <h4>Type</h4>
                             <p>{{ ucwords($item->type) }}</p>
                         </div>

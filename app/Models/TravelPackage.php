@@ -20,7 +20,7 @@ class TravelPackage extends Model
         'features',
         'departure_date',
         'duration',
-        'kuota',
+        // 'kuota',
         'type',
         'price',
         'is_active',
