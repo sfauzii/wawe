@@ -49,16 +49,15 @@
                     <div class="bill-from">
                         <p class="b-color">Bill From:</p>
                         <h3>WaWe Tour and Travel</h3>
-                        <p>Address Line 1</p>
-                        <p>City, State, ZIP</p>
-                        <p>Country</p>
+                        <p>Kutasari RT05 RW03,</p>
+                        <p> Kutasari, Purbalingga, </p>
+                        <p>Jawa Tengah 53361</p>
                     </div>
                     <div class="bill-to">
                         <p class="b-color">Bill To:</p>
                         <h3>{{ ucfirst($transaction->user->name) }}</h3>
-                        <p>Address Line 1</p>
-                        <p>City, State, ZIP</p>
-                        <p>Country</p>
+                        <p>{{ $transaction->user->email }}</p>
+                        <p>{{ $transaction->user->phone }}</p>
                     </div>
                 </div>
                 <table>
@@ -88,7 +87,7 @@
                         <tr>
                             <th width="50%">Remaining Full Payment</th>
                             <td width="50%" class="text-right text-green" style="font-weight: bold">
-                                Rp {{ number_format($remainingFullPayment, 0, ',',) }}
+                                Rp {{ number_format($remainingFullPayment, 0, ',') }}
                             </td>
                         </tr>
                     @endif

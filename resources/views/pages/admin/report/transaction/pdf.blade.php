@@ -158,14 +158,13 @@
         <table class="header" cellpadding="0" cellspacing="0">
             <tr>
                 <td width="25%" style="vertical-align: top; padding-right: 15px; padding-bottom: 10px">
-                    <img src="https://via.placeholder.com/100x100" alt="Logo Perusahaan" class="logo">
+                    <img src="https://i.imgur.com/3BoHMWF.png" alt="Logo Perusahaan" class="logo">
                 </td>
                 <td width="75%" style="vertical-align: top;">
                     <div class="company-name">WaWe Tour and Travel</div>
                     <div class="company-address">
-                        Jalan Gundul Perkasa (RT 00/RW 00) No. 404, Kel. Botak Cemerlang,<br>
-                        Kec. Bekasi Berkilau, 90210<br>
-                        Telp: 0856-BATU-KECE (0856-2288-5323) | Email: info@batukerenrambut.com
+                        Kutasari RT05 RW03, Kutasari, Purbalingga, Jawa Tengah 53361<br>
+                        Telp: 085786192909
                     </div>
                 </td>
             </tr>

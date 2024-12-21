@@ -111,11 +111,10 @@
 
             <!-- Company Information Section -->
             <div class="company-info">
-                <h1>Company Name</h1>
-                <p>1234 Street Address</p>
-                <p>City, State, 56789</p>
-                <p>Email: info@company.com</p>
-                <p>Phone: (123) 456-7890</p>
+                <h1>WaWe Tour and Travel</h1>
+                <p>Kutasari RT05 RW03, Kutasari, Purbalingga, Jawa Tengah 53361</p>
+                {{-- <p>Email: info@company.com</p> --}}
+                <p>Phone: 085786192909</p>
             </div>
         </div>
 
