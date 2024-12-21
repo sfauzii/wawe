@@ -17,7 +17,7 @@
                                         <option value="">Select Package</option>
                                         @foreach ($travelPackages as $package)
                                             <option value="{{ $package->id }}" data-price="{{ $package->price }}">
-                                                {{ ucwords($package->title) }} (Quota: {{ $package->kuota }}) - Rp
+                                                {{ ucwords($package->title) }} - Rp
                                                 {{ number_format($package->price, 0, ',') }}
                                             </option>
                                         @endforeach
@@ -53,12 +53,14 @@
                                             </div>
                                         @endif --}}
                                     </div>
-                                    @if ($remainingQuota > 0)
-                                        <div class="input-group-append">
-                                            <button type="button" wire:click="addUser" class="btn btn-primary">Add
-                                                User</button>
-                                        </div>
-                                    @endif
+                                    {{-- @if ($remainingQuota > 0) --}}
+                                    <div class="input-group-append">
+                                        <button type="button" wire:click="addUser" class="btn btn-primary"
+                                            @if (!$selectedPackageId) disabled @endif>
+                                            Add User
+                                        </button>
+                                    </div>
+                                    {{-- @endif --}}
                                 </div>
                             </div>
 
@@ -153,7 +155,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        {{-- <div class="col-lg-4">
 
             <div class="card">
                 <div class="card-body">
@@ -165,8 +167,8 @@
                         </h5>
 
                         <div class="row mb-3">
-                            {{-- <label class="col-sm-2 col-form-label">Remaining Quota <span
-                                    class="text-danger"></span></label> --}}
+                            {{~~ <label class="col-sm-2 col-form-label">Remaining Quota <span
+                                    class="text-danger"></span></label> ~~}}
                             <div class="col-sm-10">
                                 <label for="" class="mx-0 my-2 mt-0">Remaining Quota</label>
                                 <input type="text" value="{{ $remainingQuota }}" style="font-weight: bold;"
@@ -180,6 +182,6 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 </section>

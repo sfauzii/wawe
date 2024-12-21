@@ -30,6 +30,9 @@ class TransactionForm extends Component
     public function mount()
     {
         $this->travelPackages = TravelPackage::all();
+
+        // Get unique code from session if exists
+        $this->uniqueCode = session('unique_code', 0);
     }
 
     public function addUser()
@@ -37,7 +40,9 @@ class TransactionForm extends Component
         if (!empty($this->newUsername)) {
             $this->usernames[] = $this->newUsername;
             $this->newUsername = '';
-            $this->generateUniqueCode();
+            if (!session()->has('unique_code')) {
+                $this->generateUniqueCode();
+            }
             $this->calculateTotal();
         }
     }
@@ -52,15 +57,19 @@ class TransactionForm extends Component
     public function updatedSelectedPackageId()
     {
         $this->calculateTotal();
+
+        // Clear previous unique code when package changes
+        session()->forget('unique_code');
+        $this->uniqueCode = 0;
     }
 
     private function generateUniqueCode()
     {
         if ($this->selectedPackageId) {
             $package = TravelPackage::find($this->selectedPackageId);
-            if ($package && $package->kuota > 0) {
-                $this->uniqueCode = rand(100, 999); // Generate a 3-digit random number
-            }
+            $this->uniqueCode = rand(100, 999);
+            // Store in session
+            session(['unique_code' => $this->uniqueCode]);
         }
     }
 
@@ -122,16 +131,16 @@ class TransactionForm extends Component
         $package = TravelPackage::findOrFail($this->selectedPackageId);
         $userCount = count($this->usernames);
 
-        if ($package->kuota < $userCount) {
-            $this->alert('error', 'Quota Error', [
-                'text' => 'No more quota available for this package.'
-            ]);
+        // if ($package->kuota < $userCount) {
+        //     $this->alert('error', 'Quota Error', [
+        //         'text' => 'No more quota available for this package.'
+        //     ]);
 
-            return;
-        }
+        //     return;
+        // }
 
-        // Deduct the quota by the number of users (excluding the admin/super-admin)
-        $package->kuota -= $userCount;
+        // // Deduct the quota by the number of users (excluding the admin/super-admin)
+        // $package->kuota -= $userCount;
         $package->save();
 
         // Create the transaction with the logged-in user as the creator
@@ -146,6 +155,9 @@ class TransactionForm extends Component
             'unique_code' => $this->uniqueCode, // Save unique code to database
             'grand_total' => $this->grandTotal,
         ]);
+
+        // After successful transaction, clear the session
+        session()->forget('unique_code');
 
         // Process each username and add to TransactionDetail
         foreach ($this->usernames as $username) {
