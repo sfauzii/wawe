@@ -25,7 +25,7 @@
                 <tr>
                     <th width="50%">Payment</th>
                     <td width="50%" class="text-right text-blue">
-                        {{ $paymentMethod === 'down_payment' ? 'Down Payment 30%' : 'Full Payment' }}</td>
+                        {{ $paymentMethod === 'down_payment' ? 'Down Payment 25%' : 'Full Payment' }}</td>
                 </tr>
                 <tr>
                     <th width="50%">Harga Paket</th>
@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <th width="50%">
-                        PPN 11%
+                        PPN
                         <div class="tooltip-icon">
                             <span class="icon-img">?</span>
                             <span class="tooltip-text">Biaya untuk fee payment gateway dan platform service

@@ -68,11 +68,12 @@ class CheckoutCalculator extends Component
             $this->subTotal = $userCount * $price;
 
             if ($this->paymentMethod === 'down_payment') {
-                $this->subTotal *= 0.3; // 30% for down payment
+                $this->subTotal *= 0.25; // 25% for down payment
             }
 
             // Calculate PPN (11% VAT)
-            $this->ppn = $this->subTotal * 0.11;
+            // $this->ppn = $this->subTotal * 0.11;
+            $this->ppn = 10000;
 
             // Calculate grand total, subtracting the unique code
             $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;

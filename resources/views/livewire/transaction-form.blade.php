@@ -32,7 +32,7 @@
                                 <div class="col-sm-10">
                                     <select wire:model.live="paymentMethod" id="paymentMethod" class="form-select">
                                         <option value="full_payment">Full Payment</option>
-                                        <option value="down_payment">Down Payment (30%)</option>
+                                        <option value="down_payment">Down Payment (25%)</option>
                                     </select>
                                 </div>
 

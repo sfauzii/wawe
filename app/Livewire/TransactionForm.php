@@ -88,13 +88,15 @@ class TransactionForm extends Component
 
             // calculate subtotal based on the payment method
             if ($this->paymentMethod === 'down_payment') {
-                $this->subTotal = $this->totalAmount * 0.3; //down payment
+                $this->subTotal = $this->totalAmount * 0.25; //down payment
             } else {
                 $this->subTotal = $this->totalAmount; //full payment
             }
 
             // calculate PPN and grand total
-            $this->ppn = $this->subTotal * 0.11;
+            // $this->ppn = $this->subTotal * 0.11;
+            $this->ppn = 10000;
+
             $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;
         } else {
             $this->totalAmount = 0;
