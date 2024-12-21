@@ -28,6 +28,16 @@ class TravelPackage extends Model
 
     protected $hidden = [];
 
+    // Accessor for image
+    public function getImageAttribute($value)
+    {
+        if (empty($value)) {
+            return ['https://via.placeholder.com/150'];
+        }
+
+        return is_array($value) ? $value : [$value];
+    }
+
 
     public function galleries()
     {

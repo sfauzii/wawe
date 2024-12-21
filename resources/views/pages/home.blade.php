@@ -145,15 +145,29 @@
                         <div class="custom-carousel">
                             <div class="carousel-container">
                                 <div class="carousel-track">
-                                    @foreach ($item->galleries as $gallery)
-                                        @foreach ($gallery->image as $image)
-                                            <div class="carousel-slide">
-                                                <img src="{{ Storage::url($image) }}" alt="Image from gallery">
-                                            </div>
+                                    @if ($item->galleries->isNotEmpty())
+                                        @foreach ($item->galleries as $gallery)
+                                            @if (!empty($gallery->image) && count($gallery->image) > 0)
+                                                @foreach ($gallery->image as $image)
+                                                    <div class="carousel-slide">
+                                                        <img src="{{ Storage::url($image) }}" alt="Image from gallery">
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <!-- Jika gallery kosong atau tidak ada gambar -->
+                                                <div class="carousel-slide">
+                                                    <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                                                </div>
+                                            @endif
                                         @endforeach
-                                    @endforeach
-
+                                    @else
+                                        <!-- Jika tidak ada gallery sama sekali -->
+                                        <div class="carousel-slide">
+                                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                                        </div>
+                                    @endif
                                 </div>
+
 
                                 <!-- Navigation Buttons -->
                                 <button class="carousel-button prev">
@@ -174,40 +188,11 @@
                             </a>
                             </h1>
                             <div class="price-container">
-                                {{-- @if ($item->discount_percentage > 0 && $item->original_price)
-                                    <p class="price-discount">Rp {{ number_format($item->original_price, 0, ',', '.') }}
-                                    </p>
-                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
-                                    <div class="tooltip-icon package">
-                                        <span class="icon-img package">?</span>
-                                        <span class="tooltip-text package">
-                                            <h1 class="tooltip-title">Promo Package</h1>
-                                            Promo sedang berlangsung sebesar {{ $item->discount_percentage }}%
-                                        </span>
-                                    </div>
-                                @else
-                                    <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
-                                @endif --}}
-                                {{-- <p class="price-discount">Rp 600.000</p> --}}
+
                                 <p class="card-description">Rp {{ number_format($item->price, 0, ',') }}</p>
-                                {{-- <div class="tooltip-icon package">
-                                    <span class="icon-img package">?</span>
-                                    <span class="tooltip-text package">
-                                        <h1 class="tooltip-title">Promo Package</h1>
-                                        Biaya untuk fee payment gateway dan
-                                        platform service
-                                        lainnya!
-                                    </span>
-                                </div>  --}}
+
                             </div>
-                            {{-- <div class="card-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <!-- Example of a half-star -->
-                            </div> --}}
+
                             <button class="view-details" onclick="window.location.href='details.html';">
                                 View Details
                             </button>
@@ -407,10 +392,12 @@
                         <p>
                             Anda memiliki dua pilihan dalam melakukan pembayaran:
                             <br><br>
-                            <strong>1. Uang Muka (DP) 25%:</strong> Anda dapat membayar uang muka sebesar 25% dari total biaya paket
+                            <strong>1. Uang Muka (DP) 25%:</strong> Anda dapat membayar uang muka sebesar 25% dari total
+                            biaya paket
                             wisata, dan sisa pembayaran dapat dilunasi sebelum tanggal keberangkatan.
                             <br><br>
-                            <strong>2. Pembayaran Penuh (Full Payment):</strong> Anda juga bisa memilih untuk membayar seluruh biaya
+                            <strong>2. Pembayaran Penuh (Full Payment):</strong> Anda juga bisa memilih untuk membayar
+                            seluruh biaya
                             paket wisata langsung di awal.
                         </p>
                     </div>
