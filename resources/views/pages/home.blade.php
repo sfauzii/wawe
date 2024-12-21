@@ -174,7 +174,7 @@
                             </a>
                             </h1>
                             <div class="price-container">
-                                {{--@if ($item->discount_percentage > 0 && $item->original_price)
+                                {{-- @if ($item->discount_percentage > 0 && $item->original_price)
                                     <p class="price-discount">Rp {{ number_format($item->original_price, 0, ',', '.') }}
                                     </p>
                                     <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
@@ -187,8 +187,8 @@
                                     </div>
                                 @else
                                     <p class="card-description">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
-                                @endif--}}
-                                 {{-- <p class="price-discount">Rp 600.000</p> --}}
+                                @endif --}}
+                                {{-- <p class="price-discount">Rp 600.000</p> --}}
                                 <p class="card-description">Rp {{ number_format($item->price, 0, ',') }}</p>
                                 {{-- <div class="tooltip-icon package">
                                     <span class="icon-img package">?</span>
@@ -200,14 +200,14 @@
                                     </span>
                                 </div>  --}}
                             </div>
-                            {{--<div class="card-rating">
+                            {{-- <div class="card-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                                 <!-- Example of a half-star -->
-                            </div>--}}
+                            </div> --}}
                             <button class="view-details" onclick="window.location.href='details.html';">
                                 View Details
                             </button>
@@ -345,39 +345,38 @@
                 <div class="my-service-content">
                     <h2 class="my-service-title">My Services</h2>
                     <p class="my-service-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Nikmati pengalaman wisata terbaik dengan layanan lengkap dan kenyamanan maksimal, dirancang khusus untuk menciptakan momen tak terlupakan di setiap destinasi. 🌍✨.
                     </p>
                     <ul class="my-service-list">
                         <li>
                             <div class="my-service-icon">
                                 <i class="material-icons">check</i>
                             </div>
-                            <p>Service 1</p>
+                            <p>Destinasi Terbaik</p>
                         </li>
                         <li>
                             <div class="my-service-icon">
                                 <i class="material-icons">check</i>
                             </div>
-                            <p>Service 2</p>
+                            <p>Harga Terjangkau</p>
                         </li>
                         <li>
                             <div class="my-service-icon">
                                 <i class="material-icons">check</i>
                             </div>
-                            <p>Service 3</p>
+                            <p>Berpengalaman</p>
                         </li>
                         <li>
                             <div class="my-service-icon">
                                 <i class="material-icons">check</i>
                             </div>
-                            <p>Service 3</p>
+                            <p>Terpercaya</p>
                         </li>
                         <li>
                             <div class="my-service-icon">
                                 <i class="material-icons">check</i>
                             </div>
-                            <p>Service 3</p>
+                            <p>Layanan pelanggan 24/7</p>
                         </li>
                         <!-- Add more services as needed -->
                     </ul>
@@ -463,7 +462,9 @@
                         If you have any questions or need further information, <br />feel
                         free to contact us.
                     </p>
-                    <button class="btn btn-primary" onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact Us</button>
+                    <button class="btn btn-primary"
+                        onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact
+                        Us</button>
                 </div>
             </div>
         </section>

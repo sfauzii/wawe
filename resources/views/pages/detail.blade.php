@@ -51,11 +51,13 @@
                             </div>
                             <div class="xzoom-thumbs">
                                 @foreach ($item->galleries as $gallery)
-                                    @foreach ($gallery->image as $image)
-                                        <a href="{{ Storage::url($image) }}">
-                                            <img src="{{ Storage::url($image) }}" class="xzoom-gallery" width="128"
-                                                xpreview="{{ Storage::url($image) }}" alt="">
-                                        </a>
+                                    @foreach ($gallery->image as $index => $image)
+                                        @if ($index <= 2)
+                                            <a href="{{ Storage::url($image) }}">
+                                                <img src="{{ Storage::url($image) }}" class="xzoom-gallery" width="128"
+                                                    xpreview="{{ Storage::url($image) }}" alt="">
+                                            </a>
+                                        @endif
                                     @endforeach
                                 @endforeach
                                 <!-- Tambahkan gambar thumbnail lainnya di sini -->
@@ -64,6 +66,24 @@
                     @endif
 
                     <div class="product-info">
+                        <!-- Image Grid Section -->
+                        <div class="image-grid">
+                            <div class="scroll-container">
+                                <div class="grid-images">
+                                    @foreach ($item->galleries as $gallery)
+                                        @foreach ($gallery->image as $index => $image)
+                                            @if ($index > 2)
+                                                <a href="{{ Storage::url($image) }}">
+                                                    <img src="{{ Storage::url($image) }}" class="xzoom-gallery"
+                                                        width="128" xpreview="{{ Storage::url($image) }}"
+                                                        alt="">
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                         <div class="category-badge">{{ ucwords($item->type) }}</div>
                         <div class="title-and-testimonials">
                             <h1 class="product__title">{{ ucwords($item->title) }}</h1>
