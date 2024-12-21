@@ -15,8 +15,9 @@
                     <a href="https://www.facebook.com/WaWetourandtravell/"><img
                             src="{{ url('frontend/images/icons/facebook-white.png') }}" alt="Facebook Icon"
                             class="social-icon" /></a>
-                    <a href="https://www.instagram.com/wawetourandtravell/"><img src="{{ url('frontend/images/icons/instagram-white.png') }}"
-                            alt="Instagram Icon" class="social-icon" /></a>
+                    <a href="https://www.instagram.com/wawetourandtravell/"><img
+                            src="{{ url('frontend/images/icons/instagram-white.png') }}" alt="Instagram Icon"
+                            class="social-icon" /></a>
                     <a
                         href="https://wa.me/6285786192909?text=Halo%2C+saya+ingin+bertanya+tentang+paket+wisata.+Bisakah+Anda+memberikan+informasi+lebih+lanjut%3F"><img
                             src="{{ url('frontend/images/icons/whatsapp-white.png') }}" target="_blank"
@@ -25,6 +26,30 @@
             </div>
             <div class="col col-footer" id="services">
                 <h3>Services</h3>
+
+
+                <div class="links">
+                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('catalog') }}">Destinations</a>
+
+                    @auth
+                        <a href="{{ route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">Booking
+                        </a>
+
+                    @endauth
+
+                    @guest
+                        <a href="{{ route('login') }}">Booking
+                        </a>
+
+                    @endguest
+
+
+                    <a href="{{ route('testimonials') }}">Testimonials</a>
+                </div>
+            </div>
+            <div class="col col-footer" id="useful-link">
+                <h3>Links</h3>
                 <div class="links">
                     @auth
                         <a href="{{ route('overview', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">Overview
@@ -37,7 +62,8 @@
                     @endguest
 
                     @auth
-                        <a href="{{ route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">My
+                        <a
+                            href="{{ route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">My
                             Booking
                         </a>
                     @endauth
@@ -61,29 +87,6 @@
                         <a href="{{ route('login') }}">Settings</a>
 
                     @endguest
-                </div>
-            </div>
-            <div class="col col-footer" id="useful-link">
-                <h3>Links</h3>
-                <div class="links">
-                    <a href="{{ route('home') }}">Home</a>
-                    <a href="{{ route('catalog') }}">Destinations</a>
-
-                    @auth
-                        <a
-                            href="{{ route('my-transaction', ['username' => Auth::user()->username, 'id' => Auth::id()]) }}">Booking
-                        </a>
-
-                    @endauth
-
-                    @guest
-                        <a href="{{ route('login') }}">Booking
-                        </a>
-
-                    @endguest
-
-
-                    <a href="{{ route('testimonials') }}">Testimonials</a>
                 </div>
             </div>
 
