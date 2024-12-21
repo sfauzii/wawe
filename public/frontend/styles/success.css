@@ -22,7 +22,7 @@ body {
   /* Ensure it is above other elements */
   border-radius: 30px;
   /* Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   /* Add shadow for better visibility */
   transition: all 0.3s ease;
   /* Smooth transition for appearance changes */
@@ -393,6 +393,20 @@ body {
   /* Jarak bawah dari .success-message */
   padding: 40px;
   /* Atur jarak antara isi dan tepi */
+}
+
+.section-success h1 {
+  font-weight: bold;
+}
+
+.section-success p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.section-success {
+  margin-top: 50px;
 }
 
 .success-message h1 {
@@ -810,4 +824,21 @@ footer .container-fluid {
     left: 16px;
     transition: 0.3s ease;
   }
+}
+.get-started-button {
+  background-color: coral;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  padding: 12px 20px;
+  font-size: 1em;
+  border-radius: 30px;
+  /* Rounded border radius */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  box-shadow: 0 0 0 0.25rem rgba(253, 181, 13, 0.2509803922) !important;
+  transition: all 0.4s;
 }/*# sourceMappingURL=success.css.map */
