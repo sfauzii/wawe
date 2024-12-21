@@ -400,53 +400,61 @@
 
                 <div class="faq-card" onclick="toggleFaq(this)">
                     <div class="faq-question">
-                        <span>What is your return policy?</span>
+                        <span>Apakah saya bisa melakukan pembayaran dengan DP atau langsung full payment?</span>
                         <i class="faq-icon">+</i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            We accept returns within 30 days of purchase. Please ensure the
-                            items are in their original condition.
+                            Anda memiliki dua pilihan dalam melakukan pembayaran:
+                            <br><br>
+                            <strong>1. Uang Muka (DP) 25%:</strong> Anda dapat membayar uang muka sebesar 25% dari total biaya paket
+                            wisata, dan sisa pembayaran dapat dilunasi sebelum tanggal keberangkatan.
+                            <br><br>
+                            <strong>2. Pembayaran Penuh (Full Payment):</strong> Anda juga bisa memilih untuk membayar seluruh biaya
+                            paket wisata langsung di awal.
                         </p>
                     </div>
                 </div>
 
                 <div class="faq-card" onclick="toggleFaq(this)">
                     <div class="faq-question">
-                        <span>How can I track my order?</span>
+                        <span>Bagaimana cara memesan paket wisata?</span>
                         <i class="faq-icon">+</i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            You can track your order using the tracking link provided in
-                            your shipping confirmation email.
+                            Cukup kunjungi website kami dan pilih paket wisata yang Anda minati. Ikuti proses pemesanan
+                            untuk mengonfirmasi reservasi Anda.
                         </p>
                     </div>
                 </div>
+
                 <div class="faq-card" onclick="toggleFaq(this)">
                     <div class="faq-question">
-                        <span>How can I track my order?</span>
+                        <span>Apa saja yang termasuk dalam paket wisata?</span>
                         <i class="faq-icon">+</i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            You can track your order using the tracking link provided in
-                            your shipping confirmation email.
+                            Paket wisata kami mencakup akomodasi, makanan, transportasi, dan tur berpemandu. Beberapa paket
+                            juga termasuk aktivitas tambahan.
                         </p>
                     </div>
                 </div>
+
                 <div class="faq-card" onclick="toggleFaq(this)">
                     <div class="faq-question">
-                        <span>How can I track my order?</span>
+                        <span>Apakah saya bisa menyesuaikan paket wisata?</span>
                         <i class="faq-icon">+</i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            You can track your order using the tracking link provided in
-                            your shipping confirmation email.
+                            Tentu, kami menyediakan paket wisata yang dapat disesuaikan. Anda bisa menghubungi kami untuk
+                            mendiskusikan preferensi Anda, dan kami akan menyesuaikan paket khusus untuk Anda.
                         </p>
                     </div>
                 </div>
+
 
                 <!-- Add more FAQ cards as needed -->
             </div>
