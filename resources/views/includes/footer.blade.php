@@ -6,18 +6,20 @@
             <div class="col col-footer" id="company">
                 <img src="{{ url('frontend/svg/images/logo.svg') }}" alt="" class="logo-footer" />
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos,
-                    ullam.
+                    Hubungi Kami untuk Informasi Lebih Lanjut:
                 </p>
                 <div class="social">
                     <!-- <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
                     <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
                     <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a> -->
-                    <a href="#"><img src="{{ url('frontend/images/icons/facebook-white.png') }}"
-                            alt="Facebook Icon" class="social-icon" /></a>
-                    <a href="#"><img src="{{ url('frontend/images/icons/instagram-white.png') }}"
+                    <a href="https://www.facebook.com/WaWetourandtravell/"><img
+                            src="{{ url('frontend/images/icons/facebook-white.png') }}" alt="Facebook Icon"
+                            class="social-icon" /></a>
+                    <a href="https://www.instagram.com/wawetourandtravell/"><img src="{{ url('frontend/images/icons/instagram-white.png') }}"
                             alt="Instagram Icon" class="social-icon" /></a>
-                    <a href="#"><img src="{{ url('frontend/images/icons/whatsapp-white.png') }}"
+                    <a
+                        href="https://wa.me/6285786192909?text=Halo%2C+saya+ingin+bertanya+tentang+paket+wisata.+Bisakah+Anda+memberikan+informasi+lebih+lanjut%3F"><img
+                            src="{{ url('frontend/images/icons/whatsapp-white.png') }}" target="_blank"
                             alt="WhatsApp Icon" class="social-icon" /></a>
                 </div>
             </div>
@@ -90,12 +92,12 @@
                 <div class="contact-details-footer">
                     <!-- <ion-icon name="location-outline"></ion-icon> -->
                     <img src="{{ url('frontend/images/icons/location-white.png') }}" alt="" />
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    <p>Kutasari RT05 RW03, Kutasari, Purbalingga, Jawa Tengah 53361</p>
                 </div>
                 <div class="contact-details-footer">
                     <!-- <ion-icon name="call-outline"></ion-icon> -->
                     <img src="{{ url('frontend/images/icons/call-white.png') }}" alt="" />
-                    <p>+62 123 456 7890</p>
+                    <p>0857 8619 2909</p>
                 </div>
             </div>
         </div>

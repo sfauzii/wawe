@@ -345,7 +345,8 @@
                 <div class="my-service-content">
                     <h2 class="my-service-title">My Services</h2>
                     <p class="my-service-description">
-                        Nikmati pengalaman wisata terbaik dengan layanan lengkap dan kenyamanan maksimal, dirancang khusus untuk menciptakan momen tak terlupakan di setiap destinasi. 🌍✨.
+                        Nikmati pengalaman wisata terbaik dengan layanan lengkap dan kenyamanan maksimal, dirancang khusus
+                        untuk menciptakan momen tak terlupakan di setiap destinasi. 🌍✨.
                     </p>
                     <ul class="my-service-list">
                         <li>
@@ -463,7 +464,7 @@
                         free to contact us.
                     </p>
                     <button class="btn btn-primary"
-                        onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact
+                        onclick="window.open('https://wa.me/6285786192909?text=Halo%2C+saya+ingin+bertanya+tentang+paket+wisata.+Bisakah+Anda+memberikan+informasi+lebih+lanjut%3F', '_blank')">Contact
                         Us</button>
                 </div>
             </div>

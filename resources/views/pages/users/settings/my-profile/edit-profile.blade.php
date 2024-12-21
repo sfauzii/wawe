@@ -59,11 +59,13 @@
                 <!-- Icon can be replaced with any other relevant icon -->
                 <img src="{{ url('frontend/images/wa.png') }}" alt="Icon" class="card-icon" />
                 <!-- <div class="icon-container">
-                                        <i class="ri-whatsapp-line"></i>
-                                    </div> -->
+                                            <i class="ri-whatsapp-line"></i>
+                                        </div> -->
             </div>
             <p class="card-description">Hubungi via WhatsApp</p>
-            <button class="card-button" onclick="window.open('https://api.whatsapp.com/send?phone=088229877220&text=Hello%20I%20saya%20butuh%20to%20bantuan%20tentang...', '_blank')">Contact Us</button>
+            <button class="card-button"
+                onclick="window.open('https://wa.me/6285786192909?text=Halo%2C+saya+ingin+bertanya+tentang+paket+wisata.+Bisakah+Anda+memberikan+informasi+lebih+lanjut%3F', '_blank')">Contact
+                Us</button>
         </div>
     @endsection
 
