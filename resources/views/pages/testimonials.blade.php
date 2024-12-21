@@ -90,7 +90,7 @@
     <!-- Section About Us -->
     <section class="section-about-us">
         <div class="container-about">
-            <img src="{{ url('frontend/svg/images/about.svg') }}" alt="About Us" class="about-image">
+            <img src="{{ url('frontend/svg/images/aboutsection.svg') }}" alt="About Us" class="about-image">
             <div class="about-content">
                 <h3>Who We Are</h3>
                 <h1>About Our Company</h1>
