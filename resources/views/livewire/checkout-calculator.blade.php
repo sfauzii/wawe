@@ -43,14 +43,15 @@
                 </tr>
                 <tr>
                     <th width="50%">
-                        PPN
+                        Service fee
                         <div class="tooltip-icon">
                             <span class="icon-img">?</span>
                             <span class="tooltip-text">Biaya untuk fee payment gateway dan platform service
                                 lainnya!</span>
                         </div>
                     </th>
-                    <td width="50%" class="text-right text-green">+Rp {{ number_format($ppn, 0, ',', '.') }}</td>
+                    {{-- <td width="50%" class="text-right text-green">+Rp {{ number_format($ppn, 0, ',', '.') }}</td> --}}
+                    <td width="50%" class="text-right text-green">+Rp {{ number_format(10000, 0, ',', '.') }} (x{{ $transaction->details->count() }})</td>
                 </tr>
 
                 <tr>

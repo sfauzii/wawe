@@ -73,7 +73,9 @@ class CheckoutCalculator extends Component
 
             // Calculate PPN (11% VAT)
             // $this->ppn = $this->subTotal * 0.11;
-            $this->ppn = 10000;
+            
+            // Calculate PPN (Rp10.000 per user)
+            $this->ppn = 10000 * $userCount;
 
             // Calculate grand total, subtracting the unique code
             $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;
