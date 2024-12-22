@@ -104,22 +104,7 @@
                         syarat dan ketentuan dari Midtrans.
                     </p>
                 </div>
-                <div class="text-left-terms">
-                    <h2>5. Proses Pembayaran</h2>
-                    <p>Pembayaran dilakukan melalui payment gateway Midtrans, yang mendukung berbagai metode pembayaran
-                        seperti kartu kredit, transfer bank, dan e-wallet. Semua transaksi diproses secara aman sesuai
-                        dengan standar enkripsi yang berlaku. Dengan melanjutkan pembayaran, pengguna setuju dengan
-                        syarat dan ketentuan dari Midtrans.
-                    </p>
-                </div>
-                <div class="text-left-terms">
-                    <h2>5. Proses Pembayaran</h2>
-                    <p>Pembayaran dilakukan melalui payment gateway Midtrans, yang mendukung berbagai metode pembayaran
-                        seperti kartu kredit, transfer bank, dan e-wallet. Semua transaksi diproses secara aman sesuai
-                        dengan standar enkripsi yang berlaku. Dengan melanjutkan pembayaran, pengguna setuju dengan
-                        syarat dan ketentuan dari Midtrans.
-                    </p>
-                </div>
+                
                 <div class="text-left-terms">
                     <h2>6. Kebijakan Pembatalan</h2>
                     <p>Pembatalan pemesanan hanya dapat dilakukan sesuai kebijakan yang berlaku pada masing-masing paket
