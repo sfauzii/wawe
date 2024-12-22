@@ -272,7 +272,7 @@
         <section class="section-networks" id="networks">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <h2>Our Networks</h2>
                         <p>
                             Companies are trusted us
@@ -282,7 +282,7 @@
                     </div>
                     <div class="col-md-8 text-center">
                         <img src="frontend/images/network.png" alt="Logo Partner" class="img-partner" />
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
