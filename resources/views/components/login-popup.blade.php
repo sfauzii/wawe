@@ -52,12 +52,12 @@
 
                         <hr>
                         <div class="action-buttons">
-                            <button type="button" class="btn-dark google"
+                            {{-- <button type="button" class="btn-dark google"
                                 onclick="window.location.href = '{{ route('socialite.redirect', 'google') }}';">
                                 <img src="{{ url('frontend/images/icons/icon-google.svg') }}" alt="Google Icon"
                                     class="google-icon">
                                 Masuk/Daftar
-                            </button>
+                            </button> --}}
                             {{-- <button type="button" class="btn-dark google"
                                     onclick="window.location.href = 'register.html';">
                                     <img src="frontend/images/icons/icon-google.svg" alt="Google Icon" class="google-icon">

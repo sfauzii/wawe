@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -53,9 +54,19 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'unique:users,username'],
+            // 'username' => ['required', 'string', 'unique:users,username'],
+            'username' => [
+                'required',
+                'string',
+                'max:50',
+                'unique:users,username',
+                'regex:/^[a-zA-Z0-9_]+$/',
+            ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'username.unique' => 'Username must be unique.',
+            'username.regex' => 'Username must not contain spaces and can only include letters, numbers, and underscores.',
         ]);
     }
 
@@ -66,6 +77,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
+    
     {
         $user = User::create([
             'name' => $data['name'],

@@ -14,7 +14,7 @@
                 </div>
                 <div class="title">
                     <h1>Register</h1>
-                    <p>Welcome back! Please login to your account.</p>
+                    <p>Create an account to get started with booking your travel packages.</p>
                 </div>
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
