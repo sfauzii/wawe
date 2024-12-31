@@ -80,7 +80,7 @@
                             <img src="frontend/images/icons/profile-2user.png" alt="Members Icon" class="icons-stats" />
                         </div>
                         <div class="stats-content">
-                            <h2>20K</h2>
+                            <h2>Good</h2>
                             <p>Members</p>
                         </div>
                     </div>
