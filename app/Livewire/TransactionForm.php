@@ -29,7 +29,7 @@ class TransactionForm extends Component
 
     public function mount()
     {
-        $this->travelPackages = TravelPackage::all();
+        $this->travelPackages = TravelPackage::where('is_active', true)->get();
 
         // Get unique code from session if exists
         $this->uniqueCode = session('unique_code', 0);
@@ -44,6 +44,10 @@ class TransactionForm extends Component
                 $this->generateUniqueCode();
             }
             $this->calculateTotal();
+
+            $this->alert('success', 'Added user success', [
+                'text' =>  'Berhasil ditambahkan'
+            ]);
         }
     }
 
@@ -52,6 +56,10 @@ class TransactionForm extends Component
         unset($this->usernames[$index]);
         $this->usernames = array_values($this->usernames);
         $this->calculateTotal();
+
+        $this->alert('success', 'Remove user success', [
+            'text' =>  'Berhasil dihapus'
+        ]);
     }
 
     public function updatedSelectedPackageId()
@@ -95,7 +103,7 @@ class TransactionForm extends Component
 
             // calculate PPN and grand total
             // $this->ppn = $this->subTotal * 0.11;
-            $this->ppn = 10000;
+            $this->ppn = 10000 * $userCount;
 
             $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;
         } else {

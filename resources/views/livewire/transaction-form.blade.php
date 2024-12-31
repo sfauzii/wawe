@@ -16,10 +16,12 @@
                                         onchange="updateTotal()">
                                         <option value="">Select Package</option>
                                         @foreach ($travelPackages as $package)
-                                            <option value="{{ $package->id }}" data-price="{{ $package->price }}">
-                                                {{ ucwords($package->title) }} - Rp
-                                                {{ number_format($package->price, 0, ',') }}
-                                            </option>
+                                            @if ($package->is_active)
+                                                <option value="{{ $package->id }}" data-price="{{ $package->price }}">
+                                                    {{ ucwords($package->title) }} - Rp
+                                                    {{ number_format($package->price, 0, ',') }}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -129,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">PPN (11%) <span
+                                <label class="col-sm-2 col-form-label">Service Fee <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="{{ number_format($ppn, 0, ',', '.') }}"
