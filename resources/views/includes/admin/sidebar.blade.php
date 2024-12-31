@@ -158,7 +158,7 @@
             @endcan
         </li><!-- End Tables Nav -->
 
-        @if (Auth::user()->can('view user') || Auth::user()->can('view carousel'))
+        @if (Auth::user()->can('view user'))
             <li class="nav-heading">Settings</li>
         @endif
         {{-- user --}}
@@ -193,29 +193,7 @@
         @endcan
         <!-- End Tables Nav -->
 
-        @can('view carousel')
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ in_array(Route::currentRouteName(), ['carousels.index']) ? '' : 'collapsed' }}"
-                    data-bs-target="#carousel-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person"></i><span>Carousels</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="carousel-nav"
-                    class="nav-content collapse {{ in_array(Route::currentRouteName(), ['carousels.index']) ? 'show' : '' }}"
-                    data-bs-parent="#sidebar-nav">
-                    {{-- <li>
-                    <a href="{{ route('user.create') }}">
-                        <i class="bi bi-circle"></i><span>Add User</span>
-                    </a>
-                </li> --}}
-                    <li>
-                        <a href="{{ route('carousels.index') }}"
-                            class="{{ Route::currentRouteName() == 'carousels.index' ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Data Carousels</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endcan
+        
 
         @if (Auth::user()->can('view report transaction') || Auth::user()->can('view report package'))
             <li class="nav-heading">REPORT</li>
