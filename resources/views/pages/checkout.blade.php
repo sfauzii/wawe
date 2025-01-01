@@ -102,7 +102,7 @@
                                     @csrf
                                     <label for="username" class="sr-only">Userame</label>
                                     <input type="text" name="username" value="{{ old('username') }}" required
-                                        class="form-control mb-2 mr-sm-2" id="username" placeholder="Username">
+                                        class="form-control mb-2 mr-sm-2" id="username" placeholder="Name">
 
                                     <label for="phone" class="sr-only">Phone</label>
                                     <input type="text" name="phone" value="{{ old('phone') }}" required

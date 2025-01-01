@@ -19,7 +19,7 @@
     <body>
         <div class="title-section">
             <h1>Invoice</h1>
-            <p>Unduh bukti pembayaran kelas Premium <br>sebagai dokumentasi
+            <p>Unduh bukti pembayaran paket wisata <br>sebagai dokumentasi
                 pribadi</p>
         </div>
 
