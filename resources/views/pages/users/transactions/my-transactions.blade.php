@@ -17,7 +17,7 @@
                         <th class="id-number">#</th>
                         <th>Cover</th>
                         <th>Produt Name</th>
-                        <th>Price</th>
+                        <th>Total</th>
                         <th class="date-transaction">Date</th>
                         <th class="status">Status</th>
                         <th class="action">Action</th>
@@ -52,7 +52,7 @@
                                     @endif
                                 </td>
                                 <td class="product-name">{{ ucwords($item->travel_package->title) }}</td>
-                                <td class="price">{{ number_format($item->grand_total, 0, ',') }}</td>
+                                <td class="Total">Rp {{ number_format($item->grand_total, 0, ',') }}</td>
                                 <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>
                                 <td class="status success">{{ $item->transaction_status }}</td>
                                 <td>
