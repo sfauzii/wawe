@@ -22,6 +22,15 @@ class AdminsController extends Controller
     public function loginForm()
     {
 
+        // Periksa apakah pengguna sudah login
+        if (auth()->check()) {
+            // Ambil peran pengguna
+            $role = auth()->user()->getRoleNames()->first(); // Pastikan `role` sesuai dengan nama kolom di tabel user
+
+            // Redirect ke dashboard sesuai peran
+            return redirect()->route('dashboard', ['role' => $role]);
+        }
+
         return view('auth.admins.login-admins');
     }
 
