@@ -12,19 +12,19 @@ class Gallery extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
 
-    protected $fillable =[
-        'travel_packages_id', 'image',
+    protected $fillable = [
+        'travel_packages_id',
+        'image',
     ];
 
     protected $casts = [
         'image' => 'array',
     ];
 
-    protected $hidden = [
+    protected $hidden = [];
 
-    ];
-
-    public function travel_package(){
-        return $this->belongsTo(TravelPackage::class, 'travel_packages_id', 'id');
+    public function travel_package()
+    {
+        return $this->belongsTo(TravelPackage::class, 'travel_packages_id', 'id')->withTrashed();
     }
 }

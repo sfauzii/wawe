@@ -42,11 +42,13 @@
                                             aria-label="Default select example">
 
                                             <option selected>Open this select travel package</option>
-                                            @foreach ($travel_packages as $travel_package)
+                                            @forelse ($travel_packages as $travel_package)
                                                 <option value="{{ $travel_package->id }}">
                                                     {{ $travel_package->title }}
                                                 </option>
-                                            @endforeach
+                                            @empty
+                                                <option value="" disabled>Tidak ada paket travel tersedia</option>
+                                            @endforelse
                                         </select>
                                         <small class="form-text text-muted">Package. Contoh: Candi Borobuddur. Wajib
                                             diisi</small>

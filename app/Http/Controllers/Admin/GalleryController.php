@@ -28,9 +28,13 @@ class GalleryController extends Controller
 
     public function index()
     {
-        $items = Gallery::with(['travel_package'])->get();
+        $items = Gallery::with(['travel_package'])
+            ->whereNull('deleted_at')
+            ->get();
 
-        $packages = TravelPackage::withCount('galleries')->get();
+        $packages = TravelPackage::whereNull('deleted_at')
+            ->withCount('galleries')
+            ->get();
 
         return view('pages.admin.gallery.index', [
             'items' => $items,
@@ -43,7 +47,12 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $travel_packages = TravelPackage::all();
+        // Gunakan whereNull('deleted_at') dan where('is_active', 1) untuk memastikan
+        // hanya menampilkan paket travel yang aktif dan belum dihapus
+        $travel_packages = TravelPackage::whereNull('deleted_at')
+            ->where('is_active', 1)
+            ->get();
+
         return view('pages.admin.gallery.create', [
             'travel_packages' => $travel_packages,
         ]);
