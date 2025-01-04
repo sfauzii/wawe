@@ -58,15 +58,26 @@ class RegisterController extends Controller
             'username' => [
                 'required',
                 'string',
+                'min:3',
                 'max:50',
                 'unique:users,username',
                 'regex:/^[a-zA-Z0-9_]+$/',
             ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required'] // Add this
         ], [
-            'username.unique' => 'Username must be unique.',
-            'username.regex' => 'Username must not contain spaces and can only include letters, numbers, and underscores.',
+            'name.required' => 'The name field is required',
+            'username.required' => 'The username field is required',
+            'username.unique' => 'Username must be unique',
+            'username.regex' => 'Username must not contain spaces and can only include letters, numbers, and underscores',
+            'email.required' => 'The email field is required',
+            'email.email' => 'Please enter a valid email address',
+            'email.unique' => 'This email is already registered',
+            'password.required' => 'The password field is required',
+            'password.min' => 'Password must be at least 8 characters',
+            'password.confirmed' => 'Password confirmation does not match',
+            'password_confirmation.required' => 'The password confirmation field is required'
         ]);
     }
 
@@ -77,7 +88,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    
+
     {
         $user = User::create([
             'name' => $data['name'],
