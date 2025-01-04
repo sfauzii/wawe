@@ -24,53 +24,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($items as $item)
-                        @if ($item->user->id === Auth::id() && $item->transaction_status != 'IN_CART')
-                            <tr>
-                                @php
-                                    $uuidParts = explode('-', $item->id);
-                                    $shortUuid = $uuidParts[0];
-                                @endphp
-                                <td class="id-number" style="font-weight: bold;">{{ $item->order_id }}</td>
-                                <td>
-                                    @if ($item->travel_package->galleries->isNotEmpty())
-                                        @php
-                                            $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
-                                            $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
-                                        @endphp
-                                        @if ($firstImagePath)
-                                            <img src="{{ asset('storage/' . $firstImagePath) }}"
-                                                alt="{{ ucwords($item->travel_package->title) }}" class="cover"
-                                                style="width: 100px; height: auto; border-radius: 8px;">
+                    @if ($items->isEmpty())
+                        <tr>
+                            <td colspan="7" style="text-align: center;">No transactions available.</td>
+                        </tr>
+                    @else
+                        @foreach ($items as $item)
+                            @if ($item->user->id === Auth::id() && $item->transaction_status != 'IN_CART')
+                                <tr>
+                                    @php
+                                        $uuidParts = explode('-', $item->id);
+                                        $shortUuid = $uuidParts[0];
+                                    @endphp
+                                    <td class="id-number" style="font-weight: bold;">{{ $item->order_id }}</td>
+                                    <td>
+                                        @if ($item->travel_package->galleries->isNotEmpty())
+                                            @php
+                                                $firstImage = $item->travel_package->galleries->first()->image; // Get the first image array
+                                                $firstImagePath = is_array($firstImage) ? $firstImage[0] : ''; // Get the first image from the array
+                                            @endphp
+                                            @if ($firstImagePath)
+                                                <img src="{{ asset('storage/' . $firstImagePath) }}"
+                                                    alt="{{ ucwords($item->travel_package->title) }}" class="cover"
+                                                    style="width: 100px; height: auto; border-radius: 8px;">
+                                            @else
+                                                <!-- Fallback content if there is no image -->
+                                                <p>No image available.</p>
+                                            @endif
                                         @else
-                                            <!-- Fallback content if there is no image -->
+                                            <!-- Fallback content if there are no galleries -->
                                             <p>No image available.</p>
                                         @endif
-                                    @else
-                                        <!-- Fallback content if there are no galleries -->
-                                        <p>No image available.</p>
-                                    @endif
-                                </td>
-                                <td class="product-name">{{ ucwords($item->travel_package->title) }}</td>
-                                <td class="Total">Rp {{ number_format($item->grand_total, 0, ',') }}</td>
-                                <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>
-                                <td class="status success">{{ $item->transaction_status }}</td>
-                                <td>
-                                    <div class="action">
-                                        @if ($item->transaction_status == 'PENDING')
-                                            <button class="paynow-button"
-                                                onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay Now</button>
-                                        @elseif ($item->transaction_status == 'SUCCESS')
-                                            <button class="detail-button"
-                                                onclick="window.open('{{ route('invoice', ['id' => $item->id]) }}', '_blank');">Invoice</button>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                        @else
-                        @endif
-                    @endforeach
-
+                                    </td>
+                                    <td class="product-name">{{ ucwords($item->travel_package->title) }}</td>
+                                    <td class="Total">Rp {{ number_format($item->grand_total, 0, ',') }}</td>
+                                    <td class="date-transaction">{{ $item->created_at->format('M d, Y H:i:s') }}</td>
+                                    <td class="status success">{{ $item->transaction_status }}</td>
+                                    <td>
+                                        <div class="action">
+                                            @if ($item->transaction_status == 'PENDING')
+                                                <button class="paynow-button"
+                                                    onclick="window.open('{{ $item->payment_url }}', '_blank');">Pay
+                                                    Now</button>
+                                            @elseif ($item->transaction_status == 'SUCCESS')
+                                                <button class="detail-button"
+                                                    onclick="window.open('{{ route('invoice', ['id' => $item->id]) }}', '_blank');">Invoice</button>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
