@@ -47,6 +47,9 @@ class LoginController extends Controller
 
         if ($user->hasRole('user')) {
             // If the user has the 'user' role, allow login and redirect to the user dashboard
+
+            toast()->success('Welcome back!', 'Login Successful');
+
             return redirect('/'); // Update with your user dashboard route
         }
 
