@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item mx-md-2">
                     <a href="{{ route('catalog') }}"
-                        class="nav-link {{ Route::currentRouteName() == 'catalog' ? 'active' : '' }}">Destinations</a>
+                        class="nav-link {{ Route::currentRouteName() == 'catalog' ? 'active' : '' }}">Package</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item mx-md-2">
                     <a href="{{ route('testimonials') }}"
-                        class="nav-link {{ Route::currentRouteName() == 'testimonials' ? 'active' : '' }}">Testimonial</a>
+                        class="nav-link {{ Route::currentRouteName() == 'testimonials' ? 'active' : '' }}">Testimonials</a>
                 </li>
             </ul>
             <!-- Tambahkan tombol login di dalam collapse agar muncul di mobile -->

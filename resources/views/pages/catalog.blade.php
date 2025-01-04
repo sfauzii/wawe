@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    WaWe - Destinations
+    WaWe - Travel Package
 @endsection
 
 
@@ -12,7 +12,7 @@
 
     <section class="catalogue">
         <div class="hero-title">
-            <h1>Destinations</h1>
+            <h1>Travel Package</h1>
             <p>Explore Our Exclusive Travel Packages <br>to the Most Beautiful Places</p>
         </div>
         <div class="content">
