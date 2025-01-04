@@ -4,8 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaction;
-use App\Models\TransactionDetail;
 use App\Models\TravelPackage;
+use Illuminate\Support\Carbon;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -64,6 +65,28 @@ class TransactionForm extends Component
 
     public function updatedSelectedPackageId()
     {
+
+        if ($this->selectedPackageId) {
+            $package = TravelPackage::find($this->selectedPackageId);
+
+            // Check if departure date has passed
+            if (Carbon::parse($package->departure_date)->isPast()) {
+                $this->selectedPackageId = null; // Reset selection
+                $this->alert('error', 'Booking Not Available', [
+                    'text' => 'This package cannot be booked as the departure date (' . Carbon::parse($package->departure_date)->format('d F Y') . ') has passed. Please wait for new schedule openings.',
+                    'position' => 'center',
+                    'timer' => 3000,
+                    'toast' => true
+                ]);
+                return;
+            }
+
+            // If date hasn't passed, proceed with normal flow
+            $this->calculateTotal();
+            session()->forget('unique_code');
+            $this->uniqueCode = 0;
+        }
+
         $this->calculateTotal();
 
         // Clear previous unique code when package changes
@@ -139,6 +162,20 @@ class TransactionForm extends Component
         }
 
         $package = TravelPackage::findOrFail($this->selectedPackageId);
+
+        // Double check departure date before creating transaction
+        if (Carbon::parse($package->departure_date)->isPast()) {
+            $this->selectedPackageId = null;
+            $this->alert('error', 'Booking Not Available', [
+                'text' => 'This package cannot be booked as the departure date has passed. Please select another package.',
+                'position' => 'center',
+                'timer' => 3000,
+                'toast' => true
+            ]);
+            return;
+        }
+
+
         $userCount = count($this->usernames);
 
         // if ($package->kuota < $userCount) {

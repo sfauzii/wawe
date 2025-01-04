@@ -12,16 +12,15 @@
                                 <label class="col-sm-2 col-form-label">Travel Package <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <select wire:model.live="selectedPackageId" id="travel_package" class="form-select"
-                                        onchange="updateTotal()">
+                                    <select wire:model.live="selectedPackageId" id="travel_package" class="form-select">
                                         <option value="">Select Package</option>
                                         @foreach ($travelPackages as $package)
-                                            @if ($package->is_active)
-                                                <option value="{{ $package->id }}" data-price="{{ $package->price }}">
-                                                    {{ ucwords($package->title) }} - Rp
-                                                    {{ number_format($package->price, 0, ',') }}
-                                                </option>
-                                            @endif
+                                            <option value="{{ $package->id }}" data-price="{{ $package->price }}">
+                                                {{ ucwords($package->title) }} - Rp
+                                                {{ number_format($package->price, 0, ',') }}
+                                                (Departure:
+                                                {{ \Carbon\Carbon::parse($package->departure_date)->format('d F Y') }})
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,13 +40,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="newUsername" class="col-sm-2 col-form-label">Username <span
+                                <label for="newUsername" class="col-sm-2 col-form-label">Name <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                         <input type="text" wire:model="newUsername" id="newUsername"
-                                            class="form-control" placeholder="Enter Username">
+                                            class="form-control" placeholder="Enter Name">
                                         {{-- @if ($remainingQuota > 0)
                                             <div class="input-group-append">
                                                 <button type="button" wire:click="addUser" class="btn btn-primary">Add

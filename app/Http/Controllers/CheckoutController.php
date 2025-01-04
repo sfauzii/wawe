@@ -23,6 +23,17 @@ class CheckoutController extends Controller
     public function index(Request $request, $id)
     {
         $item = Transaction::with(['details', 'travel_package', 'user'])->findOrFail($id);
+
+        // Check if departure date has passed
+        $departureDate = Carbon::parse($item->travel_package->departure_date);
+        if ($departureDate->isPast()) {
+
+            alert()->error('Error', 'Perjalanan ini tidak dapat dipesan karena tanggal keberangkatan telah lewat. Harap tunggu jadwal baru yang tersedia.');
+
+            return redirect()->back();
+        }
+
+
         return view('pages.checkout', [
             'item' => $item,
         ]);

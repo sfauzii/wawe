@@ -27,7 +27,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- General Form Elements -->
                         <form action="{{ route('roles.update', $role->id) }}" method="POST">
