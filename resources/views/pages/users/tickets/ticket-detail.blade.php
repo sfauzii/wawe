@@ -68,9 +68,24 @@
                     </p>
                 </div>
 
+                @php
+                    $departureDate = \Carbon\Carbon::parse($transaction->travel_package->departure_date);
+                    $today = \Carbon\Carbon::now();
+                @endphp
+
                 <div class="button-container">
-                    <button class="action-button"
-                        onclick="window.location.href = '{{ route('testimony.create', $item->id) }}';">Testimonies</button>
+                    @if ($canGiveTestimony)
+                        <button class="action-button"
+                            onclick="window.location.href = '{{ route('testimony.create', $transaction->id) }}';">
+                            Testimonies
+                        </button>
+                    @else
+                        <button class="action-button disabled" disabled
+                            title="You can give testimony after {{ $departureDate->format('d F Y') }}"
+                            style="opacity: 0.6; cursor: not-allowed;">
+                            Testimonies (Available after trip)
+                        </button>
+                    @endif
                     <button class="action-button-secondary"
                         onclick="window.location.href = '{{ route('ticket-download', $item->id) }}';">Download
                         Ticket</button>
