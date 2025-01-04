@@ -88,9 +88,16 @@ class TravelPackageController extends Controller
     public function update(TravelPackageRequest $request, string $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title) . '-' . Str::random(4);
 
         $item = TravelPackage::findOrFail(decrypt($id));
+
+        // Only generate new slug if title changed
+        if ($item->title !== $request->title) {
+            $data['slug'] = Str::slug($request->title) . '-' . Str::random(4);
+        } else {
+            // Keep the existing slug
+            $data['slug'] = $item->slug;
+        }
 
         $item->update($data);
 
