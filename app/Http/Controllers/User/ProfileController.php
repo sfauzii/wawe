@@ -22,22 +22,34 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request)
-    {   
+    {
         $user = Auth::user();
 
         // Custom validation rules
         $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
             'username' => [
                 'required',
                 'string',
-                'max:50',
+                'min:3',
+                'max:20',
                 'regex:/^[a-zA-Z0-9_]+$/',
                 Rule::unique('users')->ignore($user->id),
             ],
             'photo' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'phone' => 'required|numeric|digits_between:10,15',
         ], [
+            'name.required' => 'The name field is required.',
+            'name.string' => 'The name must be a string.',
+            'name.max' => 'The name may not be greater than 255 characters.',
+            'photo.image' => 'The photo must be an image file.',
+            'photo.mimes' => 'The photo must be a file of type: jpeg, png, jpg, gif, webp.',
+            'photo.max' => 'The photo may not be greater than 2MB.',
             'username.unique' => 'Username must be unique',
             'username.regex' => 'Username must not contain spaces and can only include letters, numbers, and underscores.',
+            'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
+            'phone.required' => 'The phone number is required.',
+            'phone.numeric' => 'The phone number must only contain numbers.',
         ]);
 
         if ($validator->fails()) {
@@ -49,8 +61,31 @@ class ProfileController extends Controller
                     Alert::error('Error', 'Username must not contain spaces and can only include letters, numbers, and underscores.');
                 }
             }
-    
+
             return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Check if any data has changed
+        $hasChanges = false;
+
+        // Check text fields changes
+        $fields = ['name', 'username', 'phone'];
+        foreach ($fields as $field) {
+            if ($request->get($field) !== $user->$field) {
+                $hasChanges = true;
+                break;
+            }
+        }
+
+        // Check photo changes
+        if ($request->hasFile('photo')) {
+            $hasChanges = true;
+        }
+
+        // If no changes detected
+        if (!$hasChanges) {
+            Alert::info('Info', 'Tidak ada perubahan yang disimpan');
+            return redirect()->back();
         }
 
         // Handle the photo upload
@@ -71,14 +106,16 @@ class ProfileController extends Controller
         return redirect()->route('edit-profile', ['id' => $user->id]);
     }
 
-    public function editPassword($id) {
+    public function editPassword($id)
+    {
 
         $user = User::findOrFail($id);
 
         return view('pages.users.settings.my-password.edit-password');
     }
 
-    public function updatePassword(Request $request) {
+    public function updatePassword(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'old_password' => 'required|string',
@@ -91,7 +128,7 @@ class ProfileController extends Controller
             'confirm_password' => 'required|string|same:new_password',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
 
             $messages = $validator->errors()->all();
             $alertMessage = implode(' ', $messages);
@@ -103,7 +140,7 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        if(!Hash::check($request->old_password, $user->password)) {
+        if (!Hash::check($request->old_password, $user->password)) {
             Alert::error('Error', 'Your old password is incorrect');
             return redirect()->back();
         }

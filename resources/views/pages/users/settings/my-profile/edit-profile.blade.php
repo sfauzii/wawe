@@ -26,28 +26,53 @@
                                 alt="Profile Picture" />
                         @endif
                     </label>
-                    <input type="file" id="photo" name="photo" accept="image/*" onchange="loadFile(event)" />
+                    <input type="file" id="photo" name="photo" accept="image/*"
+                        class="@error('photo') is-invalid @enderror" onchange="loadFile(event)" />
                     <div class="file-info" id="file-info">
                         Format file jpg, jpeg, png.
                     </div>
+                    @error('photo')
+                        <div class="invalid-feedback" style="display: block; color: red;">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="full-name">Full Name</label>
-                    <input type="text" id="full-name" name="name" value="{{ old('name', $user->name) }}" required />
+                    <input type="text" id="full-name" name="name" class="@error('photo') is-invalid @enderror"
+                        value="{{ old('name', $user->name) }}" />
+
+                    @error('name')
+                        <div class="invalid-feedback" style="display: block; color: red;">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" readonly
-                        required />
+                        required disabled style="opacity: 0.6; cursor: not-allowed;" />
                 </div>
                 <div class="form-group">
                     <label for="full-name">Username</label>
-                    <input type="text" id="full-name" name="username" value="{{ old('username', $user->username) }}"
-                        required />
+                    <input type="text" id="full-name" class="@error('username') is-invalid @enderror" name="username"
+                        value="{{ old('username', $user->username) }}" />
+
+                    @error('username')
+                        <div class="invalid-feedback" style="display: block; color: red;">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="number" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" required />
+                    <input type="number" id="phone" name="phone" class="@error('phone') is-invalid @enderror"
+                        value="{{ old('phone', $user->phone) }}" />
+                    @error('phone')
+                        <div class="invalid-feedback" style="display: block; color: red;">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn-submit">Save My Profile</button>
             </form>
@@ -59,8 +84,8 @@
                 <!-- Icon can be replaced with any other relevant icon -->
                 <img src="{{ url('frontend/images/wa.png') }}" alt="Icon" class="card-icon" />
                 <!-- <div class="icon-container">
-                                            <i class="ri-whatsapp-line"></i>
-                                        </div> -->
+                                                                                        <i class="ri-whatsapp-line"></i>
+                                                                                    </div> -->
             </div>
             <p class="card-description">Hubungi via WhatsApp</p>
             <button class="card-button"
