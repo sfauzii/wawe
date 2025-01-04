@@ -20,80 +20,79 @@
                     @csrf
 
                     <div class="form-input">
-                        <!-- <span class="input-icon"><ion-icon name="person-circle-outline"></ion-icon></i></span> -->
                         <span class="input-icon">
                             <img src="frontend/images/icons/profile.png" alt="User Icon">
                         </span>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name') }}" placeholder="Name" required autocomplete="name"
-                            autofocus>
+                            name="name" value="{{ old('name') }}" placeholder="Name">
 
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
 
                     <div class="form-input">
-                        <!-- <span class="input-icon"><ion-icon name="mail-outline"></ion-icon></span> -->
                         <span class="input-icon">
                             <img src="frontend/images/icons/sms.png" alt="User Icon">
                         </span>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
+                            name="email" placeholder="Email" value="{{ old('email') }}">
 
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
 
                     <div class="form-input">
-                        <!-- <span class="input-icon"><ion-icon name="person-circle-outline"></ion-icon></i></span> -->
                         <span class="input-icon">
                             <img src="frontend/images/icons/tag-user.png" alt="User Icon">
                         </span>
                         <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                            name="username" placeholder="Username" value="{{ old('username') }}" required
-                            autocomplete="username" autofocus>
+                            name="username" placeholder="Username" value="{{ old('username') }}">
 
                         @error('username')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
 
                     <div class="form-input">
-                        <!-- <span class="input-icon"><ion-icon name="key-outline"></ion-icon></i></span> -->
                         <span class="input-icon">
                             <img src="frontend/images/icons/key.png" alt="User Icon">
                         </span>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" placeholder="Password" required autocomplete="new-password">
+                            name="password" placeholder="Password">
 
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
 
                     <div class="form-input">
-                        <!-- <span class="input-icon"><ion-icon name="key-outline"></ion-icon></i></span> -->
                         <span class="input-icon">
                             <img src="frontend/images/icons/key.png" alt="User Icon">
                         </span>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                            required autocomplete="new-password" placeholder="Password Confirm">
+                        <input id="password-confirm" type="password"
+                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                            name="password_confirmation" placeholder="Password Confirm">
 
+                        @error('password_confirmation')
+                            <div class="invalid-feedback" style="display: block;">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="action-buttons">
                         <button type="submit" class="login-button">Register</button>
-                        <button type="submit" class="register-button"
+                        <button type="button" class="register-button"
                             onclick="window.location.href='{{ route('login') }}';">Login</button>
                     </div>
                 </form>
