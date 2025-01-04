@@ -217,9 +217,9 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|min_digits:10',
+            'phone' => 'required|numeric|digits_between:10,15',
         ], [
-            'phone.min' => 'The phone number must be at least 10 digits.',
+            'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
             'phone.required' => 'The phone number is required.',
             'phone.numeric' => 'The phone number must only contain numbers.',
         ]);
