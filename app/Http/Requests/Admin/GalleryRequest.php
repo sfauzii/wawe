@@ -23,7 +23,21 @@ class GalleryRequest extends FormRequest
     {
         return [
             'travel_packages_id' => 'required|exists:travel_packages,id',
+            'images' => 'required|array|min:1',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'images.required' => 'Please select at least one image to upload.',
+            'images.array' => 'Invalid image format.',
+            'images.min' => 'Please select at least one image to upload.',
+            'images.*.required' => 'Each selected file must be an image.',
+            'images.*.image' => 'The file must be an image.',
+            'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg, webp.',
+            'images.*.max' => 'Each image must not be greater than 2MB.',
         ];
     }
 }

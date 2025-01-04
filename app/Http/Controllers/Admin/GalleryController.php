@@ -63,29 +63,42 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
-        // Ambil travel_packages_id dari request
-        $travelPackagesId = $request->input('travel_packages_id');
-
-        // Ambil semua file gambar
-        $images = $request->file('images');
-        $imagePaths = [];
-
-        // Simpan setiap gambar dan ambil path-nya
-        foreach ($images as $image) {
-            $path = $image->store('assets/gallery', 'public');
-            $imagePaths[] = $path;
+        // Validate that images are present
+        if (!$request->hasFile('images')) {
+            Alert::error('Error', 'Please select at least one image to upload.');
+            return redirect()->back();
         }
 
-        // Simpan data ke database dengan array gambar
-        Gallery::create([
-            'travel_packages_id' => $travelPackagesId,
-            'image' => $imagePaths, // Simpan array paths gambar
-        ]);
+        // Validate if images array is not empty
+        $images = $request->file('images');
+        if (empty($images)) {
+            Alert::error('Error', 'Please select at least one image to upload.');
+            return redirect()->back();
+        }
 
-        // Session::flash('success', 'Gallery package created successfully.');
-        Alert::success('Success', 'Gallery package created successfully.');
+        try {
+            // Get travel_packages_id from request
+            $travelPackagesId = $request->input('travel_packages_id');
+            $imagePaths = [];
 
-        return redirect()->route('gallery.index');
+            // Save each image and get its path
+            foreach ($images as $image) {
+                $path = $image->store('assets/gallery', 'public');
+                $imagePaths[] = $path;
+            }
+
+            // Save data to database with image array
+            Gallery::create([
+                'travel_packages_id' => $travelPackagesId,
+                'image' => $imagePaths,
+            ]);
+
+            Alert::success('Success', 'Gallery package created successfully.');
+            return redirect()->route('gallery.index');
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Failed to upload images. Please try again.');
+            return redirect()->back();
+        }
     }
 
     /**

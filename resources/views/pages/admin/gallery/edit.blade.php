@@ -91,10 +91,13 @@
                                                     style="width: 150px; height: auto;" class="img-thumbnail">
                                                 <form
                                                     action="{{ route('gallery.delete_image', ['id' => encrypt($item->id), 'index' => $index]) }}"
-                                                    method="POST" class="position-absolute top-0 end-0">
+                                                    method="POST" class="position-absolute top-0 end-0"
+                                                    id="delete-form-{{ $item->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="button"
+                                                        onclick="confirmDeletion('{{ encrypt($item->id) }}', 'delete-form-{{ $item->id }}')"
+                                                        class="btn btn-danger btn-sm">
                                                         <i class="ri-delete-bin-6-line"></i>
                                                     </button>
                                                 </form>
