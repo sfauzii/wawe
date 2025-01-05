@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'Register')
+
 @section('content')
     <div class="login-container">
         <div class="background-image-register"></div>

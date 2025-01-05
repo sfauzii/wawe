@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Email Reset Password')
+
+
 @section('content')
     <x-login-popup />
 

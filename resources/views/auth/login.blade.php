@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 
+@section('title', 'Login')
+
+
 @section('content')
     <div class="login-container">
         <div class="background-image-login"></div>

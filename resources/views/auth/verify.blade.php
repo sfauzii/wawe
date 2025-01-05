@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 
+@section('title', 'Email Verification')
+
+
 @section('content')
     <section class="question-section">
         <div class="question-card">
