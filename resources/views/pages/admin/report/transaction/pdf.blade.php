@@ -249,7 +249,7 @@
         </div>
 
         <div class="summary">
-            <p class="text-right">Nama Admin: <strong>{{ Auth::user()->name }}</strong></p>
+            <p class="text-right">Name Users Report: <strong>{{ Auth::user()->name }}</strong></p>
             {{-- <p class="text-right">Tanggal Cetak: <strong>31/12/2023 23:59:59</strong></p> --}}
         </div>
     </body>

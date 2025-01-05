@@ -14,23 +14,38 @@
     <form action="{{ route('report-transaction') }}" method="GET" class="my-5">
         @csrf
 
-
         <div class="row mb-3">
-            <label for="startDate" class="col-sm-2 col-form-label">Star Date <span class="text-danger">*</span></label>
+            <label for="startDate" class="col-sm-2 col-form-label">Start Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="startDate" class="form-control" name="start_date" required
-                    value="{{ $startDate }}">
+                <input type="date" id="startDate" class="form-control @error('start_date') is-invalid @enderror"
+                    name="start_date" required value="{{ old('start_date', $startDate) }}">
+                @error('start_date')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
+
         <div class="row mb-3">
             <label for="endDate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="date" id="endDate" class="form-control" name="end_date" required
-                    value="{{ $endDate }}">
+                <input type="date" id="endDate" class="form-control @error('end_date') is-invalid @enderror"
+                    name="end_date" required value="{{ old('end_date', $endDate) }}">
+                @error('end_date')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 
-
+        {{-- Tampilkan error umum jika ada --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <button type="submit" class="btn btn-primary btn-block w-100" style="background-color: #012970">
             Tampilkan Laporan
@@ -76,7 +91,6 @@
                                     <th>No</th>
                                     <th>Date and Time</th>
                                     <th>Transaksi</th>
-                                    {{-- <th>Jumlah</th> --}}
                                     <th>Pengguna</th>
                                     <th>Paket</th>
                                     <th>Status</th>

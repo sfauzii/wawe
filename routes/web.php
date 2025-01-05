@@ -138,6 +138,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('report-travel-package/download', [ReportController::class, 'generatePackagePDF'])->name('report-travel-package-download');
     Route::get('/report/travel-package/excel', [ReportController::class, 'generatePackageExcel'])
         ->name('report-travel-package-excel');
+    // Route::get('/report/travel-package/{package_id}/customer/{user_id}/details/pdf', [ReportController::class, 'generatePackageDetailsPdfByUser'])->name('report.package.details.customer.pdf');
+    // Route::get('/report/package/details/customer/excel/{package_id}/{user_id}', [ReportController::class, 'generatePackageDetailsExcelByUser'])->name('report.package.details.customer.excel');
+
+    Route::get('/report/transactions/{id}/excel', [ReportController::class, 'generateTransactionDetailsExcel'])
+        ->name('report-package-details-excel');
+
+    Route::get('/report/transaction/{transaction_id}/pdf', [ReportController::class, 'generateTransactionDetailsPdf'])
+        ->name('report.transaction.details.pdf');
+
 
 
     Route::post('notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
