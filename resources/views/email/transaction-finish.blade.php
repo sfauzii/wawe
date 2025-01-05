@@ -1129,9 +1129,9 @@
                                                       Untuk informasi lebih
                                                       lanjut, silakan hubungi
                                                       tim support WaWe Tour and
-                                                      Travel via e-mail
+                                                      Travel via e-mail/WA
                                                       <strong
-                                                        >team@wawe.com</strong
+                                                        >0857 8619 2909</strong
                                                       >
                                                       .
                                                     </div>

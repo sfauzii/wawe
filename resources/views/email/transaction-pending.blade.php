@@ -671,8 +671,8 @@
                                                                                                             support WaWe
                                                                                                             Tour and
                                                                                                             Travel via
-                                                                                                            e-mail
-                                                                                                            <strong>team@wawe.com</strong>
+                                                                                                            e-mail/WA
+                                                                                                            <strong>0857 8619 2909</strong>
                                                                                                             .
                                                                                                         </div>
                                                                                                     </td>
