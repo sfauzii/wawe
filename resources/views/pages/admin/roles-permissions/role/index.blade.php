@@ -92,7 +92,7 @@
                                             </a> --}}
                                             @can('manage-role-permission')
                                             <a href="{{ route('roles.give-permission', $role->id) }}"
-                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Manage Role">
+                                                class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Manage Permissions to Role">
                                                 <i class="ri-shield-user-line"></i>
                                             </a>
                                             @endcan

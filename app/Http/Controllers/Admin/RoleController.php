@@ -109,6 +109,13 @@ class RoleController extends Controller
     public function destroy(string $id)
     {
         $role = Role::find($id);
+
+        // Check if role is being used
+        if ($role->users()->exists()) {
+            Alert::error('Error', 'Cannot delete role because it is being used by users');
+            return redirect()->route('roles.index');
+        }
+
         $role->delete();
 
         Alert::success('Success', 'Role deleted successfully');
