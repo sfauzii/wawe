@@ -20,6 +20,7 @@ class CheckoutCalculator extends Component
     public $grandTotal = 0;
     public $uniqueCode = 0;
     public $terms; // Add terms property
+    public $remainingPayment = 0;
 
     public function mount($transactionId)
     {
@@ -58,26 +59,28 @@ class CheckoutCalculator extends Component
         $userCount = TransactionDetail::where('transactions_id', $this->transaction->id)->count();
         $price = $this->transaction->travel_package->price;
 
-        // If there are no users, set the grand total to zero
         if ($userCount == 0) {
             $this->subTotal = 0;
             $this->ppn = 0;
             $this->grandTotal = 0;
+            $this->remainingPayment = 0;
         } else {
-            // Otherwise, calculate the totals based on the number of users
-            $this->subTotal = $userCount * $price;
+            // Hitung total penuh
+            $fullTotal = $userCount * $price;
 
-            if ($this->paymentMethod === 'down_payment') {
-                $this->subTotal *= 0.25; // 25% for down payment
-            }
-
-            // Calculate PPN (11% VAT)
-            // $this->ppn = $this->subTotal * 0.11;
-            
-            // Calculate PPN (Rp10.000 per user)
+            // Hitung PPN
             $this->ppn = 10000 * $userCount;
 
-            // Calculate grand total, subtracting the unique code
+            if ($this->paymentMethod === 'down_payment') {
+                // Untuk down payment, ambil 25% dari total + PPN
+                $this->subTotal = $fullTotal * 0.25;
+                $this->remainingPayment = $fullTotal * 0.75; // Sisa 75% saja
+            } else {
+                $this->subTotal = $fullTotal;
+                $this->remainingPayment = 0;
+            }
+
+            // Grand total termasuk PPN untuk semua jenis pembayaran
             $this->grandTotal = $this->subTotal + $this->ppn - $this->uniqueCode;
         }
 
@@ -88,6 +91,7 @@ class CheckoutCalculator extends Component
             'ppn' => $this->ppn,
             'unique_code' => $this->uniqueCode, // Save the unique code
             'grand_total' => $this->grandTotal,
+            'remaining_payment' => $this->remainingPayment,
         ]);
     }
 

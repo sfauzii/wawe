@@ -59,9 +59,14 @@ class MyTransactionController extends Controller
 
         // Check if the payment method is down_payment
         if ($transaction->payment_method === 'down_payment') {
-            $remainingPayment = $fullPayment * 0.7; // Remaining 70% after down payment
-            $remainingPPN = $remainingPayment * 0.11; // 11% PPN on remaining amount
-            $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+            $remainingPayment = $fullPayment * 0.75; // Remaining 75%
+
+            // $ppnPerUser = 10000; // Fixed PPN per user
+            // $numberOfUsers = $transaction->details->count(); // Count the users in the transaction
+            // $remainingPPN = $ppnPerUser * $numberOfUsers; // Total PPN for the remaining amount
+
+            // $remainingFullPayment = $remainingPayment + $remainingPPN; // Total remaining payment
+            $remainingFullPayment = $remainingPayment; // Total remaining payment
         }
 
         return view('pages.users.transactions.invoice', [

@@ -12,11 +12,11 @@
 
     <div class="tab-content mt-4" id="paymentTabsContent">
         <div class="tab-pane fade show active" id="paymentInfo" role="tabpanel">
-            {{-- <div class="card card-details card-right"> --}}
             <h2>{{ $paymentMethod === 'down_payment' ? 'Down Payment' : 'Full Payment' }} Information</h2>
             <p>
                 @if ($paymentMethod === 'down_payment')
-                    Anda perlu melunasi pembayaran secara cash pada saat hari keberangkatan
+                    Anda perlu melunasi pembayaran minimal pada saat hari keberangkatan sebesar
+                    <strong class="text-danger">Rp {{ number_format($remainingPayment, 0, ',', '.') }}</strong>
                 @else
                     Anda tidak perlu membayar biaya tambahan apapun pada saat hari keberangkatan
                 @endif
@@ -32,7 +32,6 @@
                     <td width="50%" class="text-right text-blue">Rp
                         {{ number_format($transaction->travel_package->price, 0, ',', '.') }}</td>
                 </tr>
-
                 <tr>
                     <th width="50%">Sub Total x ({{ $transaction->details->count() }})</th>
                     <td width="50%" class="text-right text-blue">Rp {{ number_format($subTotal, 0, ',', '.') }}</td>
@@ -50,10 +49,24 @@
                                 lainnya!</span>
                         </div>
                     </th>
-                    {{-- <td width="50%" class="text-right text-green">+Rp {{ number_format($ppn, 0, ',', '.') }}</td> --}}
-                    <td width="50%" class="text-right text-green">+Rp {{ number_format(10000, 0, ',', '.') }} (x{{ $transaction->details->count() }})</td>
+                    <td width="50%" class="text-right text-green">
+                        +Rp {{ number_format(10000, 0, ',', '.') }} (x{{ $transaction->details->count() }})
+                    </td>
                 </tr>
-
+                @if ($paymentMethod === 'down_payment')
+                    <tr>
+                        <th width="50%">
+                            Remaining Payment
+                            <div class="tooltip-icon">
+                                <span class="icon-img">?</span>
+                                <span class="tooltip-text">Sisa pembayaran yang perlu Anda bayar!</span>
+                            </div>
+                        </th>
+                        <td width="50%" class="text-right text-blue" style="color: red;">
+                            Rp {{ number_format($remainingPayment, 0, ',', '.') }}
+                        </td>
+                    </tr>
+                @endif
                 <tr>
                     <th width="50%">Grand Total</th>
                     <td width="50%" class="text-right text-total">
@@ -63,21 +76,14 @@
             </table>
             <hr>
 
-            {{-- Radio Button --}}
-
             <div class="detail-item terms-condition">
                 <input type="radio" name="terms" value="agree" wire:model="terms">
                 <p>Saya setuju dengan <a id="terms-btn" href="#">Terms & Condition</a></p>
             </div>
-
-
         </div>
     </div>
 
-    <!-- Process Payment Button -->
     <div class="join-container">
         <button wire:click="processPayment" class="btn btn-block btn-join-now mt-3 py-2">Process Payment</button>
     </div>
-
-
 </div>
