@@ -98,12 +98,25 @@ class PermissionController extends Controller
     public function destroy(string $id)
     {
         $permission = Permission::find($id);
-        if ($permission) {
-            $permission->delete();
-            Alert::success('Success', 'Permission deleted successfully');
-        } else {
+        if (!$permission) {
             Alert::error('Error', 'Permission not found');
+            return redirect()->route('permissions.index');
         }
+
+        // Cek apakah permission terkait dengan role
+        if ($permission->roles()->count() > 0) {
+            Alert::error('Error', 'Cannot delete permission because it is assigned to one or more roles');
+            return redirect()->route('permissions.index');
+        }
+
+        // Cek apakah permission terkait langsung dengan user
+        if ($permission->users()->count() > 0) {
+            Alert::error('Error', 'Cannot delete permission because it is directly assigned to one or more users');
+            return redirect()->route('permissions.index');
+        }
+
+        $permission->delete();
+        Alert::success('Success', 'Permission deleted successfully');
 
         return redirect()->route('permissions.index');
     }
