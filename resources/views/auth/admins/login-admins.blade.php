@@ -1,5 +1,8 @@
 @extends('layouts.auth-alternative')
 
+@section('title', 'Login Dashboard')
+    
+
 @section('content')
     <main>
         <div class="container">
