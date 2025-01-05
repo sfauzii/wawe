@@ -45,23 +45,19 @@
                                 <div class="col-sm-10">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
-                                        <input type="text" wire:model="newUsername" id="newUsername"
-                                            class="form-control" placeholder="Enter Name">
-                                        {{-- @if ($remainingQuota > 0)
-                                            <div class="input-group-append">
-                                                <button type="button" wire:click="addUser" class="btn btn-primary">Add
-                                                    User</button>
-                                            </div>
-                                        @endif --}}
+                                        <input type="text" wire:model.defer="newUsername" id="newUsername"
+                                            class="form-control @error('newUsername') is-invalid @enderror"
+                                            placeholder="Enter Name">
                                     </div>
-                                    {{-- @if ($remainingQuota > 0) --}}
+                                    @error('newUsername')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <div class="input-group-append">
                                         <button type="button" wire:click="addUser" class="btn btn-primary"
                                             @if (!$selectedPackageId) disabled @endif>
                                             Add User
                                         </button>
                                     </div>
-                                    {{-- @endif --}}
                                 </div>
                             </div>
 

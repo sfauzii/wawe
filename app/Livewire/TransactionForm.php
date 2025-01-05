@@ -36,20 +36,33 @@ class TransactionForm extends Component
         $this->uniqueCode = session('unique_code', 0);
     }
 
+    protected $rules = [
+        'newUsername' => 'required|min:3'
+    ];
+
     public function addUser()
     {
-        if (!empty($this->newUsername)) {
-            $this->usernames[] = $this->newUsername;
-            $this->newUsername = '';
-            if (!session()->has('unique_code')) {
-                $this->generateUniqueCode();
-            }
-            $this->calculateTotal();
+        // Validasi field
+        $this->validate([
+            'newUsername' => 'required|min:3',
+        ], [
+            'newUsername.required' => 'The name field is required!',
+            'newUsername.min' => 'The name must be at least 3 characters!'
+        ]);
 
-            $this->alert('success', 'Added user success', [
-                'text' =>  'Berhasil ditambahkan'
-            ]);
+        // Jika validasi berhasil
+        $this->usernames[] = $this->newUsername;
+        $this->newUsername = '';
+
+        if (!session()->has('unique_code')) {
+            $this->generateUniqueCode();
         }
+
+        $this->calculateTotal();
+
+        $this->alert('success', 'Added user success', [
+            'text' =>  'Berhasil ditambahkan'
+        ]);
     }
 
     public function removeUser($index)
@@ -155,7 +168,7 @@ class TransactionForm extends Component
 
         if (count($this->usernames) === 0) {
             $this->alert('error', 'Validation Error', [
-                'text' => 'At least one usernames must be entered.'
+                'text' => 'At least one user must be entered.'
             ]);
 
             return;
