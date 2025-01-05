@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Users')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Add User</h1>
@@ -37,8 +40,11 @@
                                     <label for="name" class="col-sm-2 col-form-label">Name <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="name" placeholder="Name"
-                                            value="{{ old('name') }}">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            name="name" placeholder="Name" value="{{ old('name') }}">
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -46,8 +52,11 @@
                                     <label for="username" class="col-sm-2 col-form-label">Username <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="username" placeholder="Username"
-                                            value="{{ old('username') }}">
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                            name="username" placeholder="Username" value="{{ old('username') }}">
+                                        @error('username')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -55,8 +64,12 @@
                                     <label for="email" class="col-sm-2 col-form-label">Email <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input name="email" type="email" class="form-control" placeholder="Email"
-                                            value="{{ old('email') }}"></input>
+                                        <input name="email" type="email"
+                                            class="form-control @error('email') is-invalid @enderror" placeholder="Email"
+                                            value="{{ old('email') }}">
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -64,18 +77,25 @@
                                     <label for="password" class="col-sm-2 col-form-label">Password <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input name="password" type="password" class="form-control" placeholder="Password"
-                                            required autocomplete="new-password" {{ old('password') }}></input>
+                                        <input name="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            placeholder="Password" autocomplete="new-password">
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Passowrd <span
+                                    <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Password <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <input name="password_confirmation" type="password" placeholder="Confirm Password"
-                                            class="form-control" required autocomplete="new-password"
-                                            {{ old('password-confirm') }}></input>
+                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            autocomplete="new-password">
+                                        @error('password_confirmation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -83,12 +103,22 @@
                                     <label for="name" class="col-sm-2 col-form-label">Roles <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <select name="roles[]" class="form-control" multiple>
+                                        <select name="roles[]" class="form-control @error('roles') is-invalid @enderror"
+                                            multiple>
                                             <option value="">Select Roles</option>
                                             @foreach ($roles as $id => $role)
-                                                <option value="{{ $id }}">{{ $role }}</option>
+                                                <option value="{{ $id }}"
+                                                    {{ old('roles') && in_array($id, old('roles')) ? 'selected' : '' }}>
+                                                    {{ $role }}
+                                                </option>
                                             @endforeach
                                         </select>
+                                        @error('roles')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @error('roles.*')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 

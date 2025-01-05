@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Carousels')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Carousels</h1>

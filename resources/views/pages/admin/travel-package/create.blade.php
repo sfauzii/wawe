@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Add Travel Package')
+
 @section('content')
     <div class="pagetitle">
         <h1>Add Travel Package</h1>

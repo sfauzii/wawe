@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Roles')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Edit Role {{ $role->name }}</h1>
@@ -12,14 +15,14 @@
     </div>
 
     @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <section class="section">
         <div class="row">
@@ -35,12 +38,14 @@
                             @method('PUT')
 
                             <div class="row mb-3">
-                                <label for="name" class="col-sm-2 col-form-label">Name  <span class="text-danger">*</span></label>
+                                <label for="name" class="col-sm-2 col-form-label">Name <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $role->name }}">
+                                    <input type="text" class="form-control" name="name" placeholder="Name"
+                                        value="{{ $role->name }}">
                                 </div>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary btn-block w-100">
                                 Update
                             </button>

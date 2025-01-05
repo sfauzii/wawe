@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Permissions')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Permissions</h1>

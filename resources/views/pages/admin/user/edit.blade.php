@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Users')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Edit User {{ $user->name }}</h1>

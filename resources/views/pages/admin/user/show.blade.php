@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Users')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Profile {{ ucwords($user->name) }}</h1>

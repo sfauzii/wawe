@@ -241,17 +241,20 @@
                                         @endcan
 
                                         @can('print transaction')
-                                            <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
-                                                class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Print" style="margin-bottom: 10px;">
-                                                <i class="ri-file-pdf-2-line"></i>
-                                            </a>
+                                            @if (in_array($item->transaction_status, ['SUCCESS', 'PENDING']))
+                                                <a href="{{ route('transaction_print', ['id' => $item->id]) }}"
+                                                    class="btn btn-secondary" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Print" style="margin-bottom: 10px;">
+                                                    <i class="ri-file-pdf-2-line"></i>
+                                                </a>
+                                            @endif
                                         @endcan
 
                                         @can('view transaction')
                                             <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-success"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction" style="margin-bottom: 10px;">
-                                                <i class="ri-eye-line" ></i>
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Show Transaction"
+                                                style="margin-bottom: 10px;">
+                                                <i class="ri-eye-line"></i>
                                             </a>
                                         @endcan
 

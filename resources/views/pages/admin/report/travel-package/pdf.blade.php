@@ -122,28 +122,28 @@
                             <th>Harga</th>
                             <td>{{ number_format($package->price) }}</td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <th>Gallery</th>
                             <td>
-                                {{-- @foreach ($package->galleries as $gallery)
+                                {{~~ @foreach ($package->galleries as $gallery)
                             <img src="{{ asset('storage/' . $gallery->image) }}" alt="" class="x-zoom" style="width: 200px; height: auto;">
-                        @endforeach --}}
+                        @endforeach ~~}}
 
                                 @if ($package->galleries->count())
                                     <div class="gallery">
                                         <div class="xzoom-container">
-                                            {{-- <img src="{{ Storage::url($package->galleries->first()->image) }}" alt="Details gambar"
+                                            {{~~ <img src="{{ Storage::url($package->galleries->first()->image) }}" alt="Details gambar"
                                     class="xzoom" style="width: 200px; height: auto;" id="xzoom-default"
-                                    xoriginal="{{ Storage::url($package->galleries->first()->image) }}"> --}}
+                                    xoriginal="{{ Storage::url($package->galleries->first()->image) }}"> ~~}}
                                         </div>
                                         <div class="xzoom-thumbs">
-                                            {{-- @foreach ($package->galleries as $gallery)
+                                            {{~~ @foreach ($package->galleries as $gallery)
                                         <a href="{{ Storage::url($gallery->image) }}">
                                             <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery"
                                                 width="128" xpreview="{{ Storage::url($gallery->image) }}"
                                                 alt="">
                                         </a>
-                                    @endforeach --}}
+                                    @endforeach ~~}}
 
                                             @foreach ($package->galleries as $gallery)
                                                 @foreach ($gallery->image as $image)
@@ -158,7 +158,7 @@
                                     </div>
                                 @endif
                             </td>
-                        </tr>
+                        </tr> --}}
                     </table>
                     <div class="mt-5">
                         <hr>

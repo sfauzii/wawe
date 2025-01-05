@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Edit Travel Package')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Edit Travel Package {{ ucwords($item->title) }}</h1>

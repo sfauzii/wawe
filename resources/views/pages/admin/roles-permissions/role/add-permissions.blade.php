@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Roles')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Manage Role {{ $role->name }}</h1>

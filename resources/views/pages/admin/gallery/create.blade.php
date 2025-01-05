@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Galleries')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Add Gallery</h1>
