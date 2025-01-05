@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Payment Transactions')
+
+
 @section('content')
     <div class="container">
         <div class="card mt-5">

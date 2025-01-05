@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Edit Transactions')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Edit Transaction {{ $item->title }}</h1>

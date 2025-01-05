@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title', 'Detail Transactions')
+
+
 @section('content')
     <div class="pagetitle">
         <h1>Detail Transaction {{ ucwords($item->user->name) }}</h1>

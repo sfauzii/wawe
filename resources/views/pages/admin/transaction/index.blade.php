@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Transactions')
+
 @section('content')
     <div class="pagetitle">
         <h1>Transactions</h1>
