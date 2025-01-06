@@ -217,11 +217,12 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|digits_between:10,15',
+            'phone' => 'required|numeric|digits_between:10,15|unique:users,phone',
         ], [
             'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
             'phone.required' => 'The phone number is required.',
             'phone.numeric' => 'The phone number must only contain numbers.',
+            'phone.unique' => 'The phone number has already been taken.',
         ]);
 
         $userPhone = Auth::user()->phone;
