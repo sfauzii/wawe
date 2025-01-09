@@ -4,6 +4,38 @@
     <head>
         <title>Package Details Report</title>
         <style>
+            table.header {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            table.header td {
+                padding: 0;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            table.header .logo {
+                max-width: 100px;
+                /* Sesuaikan ukuran logo */
+                height: auto;
+            }
+
+            table.header .company-name {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333333;
+                /* Warna teks untuk nama perusahaan */
+            }
+
+            table.header .company-address {
+                font-size: 12px;
+                color: #555555;
+                /* Warna teks untuk alamat */
+                margin-top: 5px;
+            }
+
             .container {
                 padding: 20px;
             }
@@ -43,9 +75,22 @@
     </head>
 
     <body>
-
+        <table class="header" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="25%" style="vertical-align: top; padding-right: 15px; padding-bottom: 10px">
+                    <img src="https://i.imgur.com/3BoHMWF.png" alt="Logo Perusahaan" class="logo">
+                </td>
+                <td width="75%" style="vertical-align: top;">
+                    <div class="company-name">WaWe Tour and Travel</div>
+                    <div class="company-address">
+                        Kutasari RT05 RW03, Kutasari, Purbalingga, Jawa Tengah 53361<br>
+                        Telp: 085786192909
+                    </div>
+                </td>
+            </tr>
+        </table>
         <div class="container">
-            <h1>Transaction Details Report</h1>
+            {{-- <h1>Transaction Details Report</h1> --}}
             <div class="transaction-info">
                 <h2>Transaction Information</h2>
                 <table class="info-table">
