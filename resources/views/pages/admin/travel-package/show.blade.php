@@ -68,10 +68,6 @@
                             <td>{{ $travelPackage->duration }}</td>
                         </tr>
                         <tr>
-                            <th>Kuota</th>
-                            <td>{{ $travelPackage->kuota }}</td>
-                        </tr>
-                        <tr>
                             <th>Tipe</th>
                             <td>{{ ucwords($travelPackage->type) }}</td>
                         </tr>

@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TravelPackage;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 use App\Models\TransactionDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -217,12 +218,18 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'phone' => 'required|numeric|digits_between:10,15|unique:users,phone',
+            'phone' => [
+                'required',
+                'numeric',
+                'digits_between:10,15',
+                Rule::unique('transaction_details', 'phone')
+                    ->where('transactions_id', $id)
+            ]
         ], [
             'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
             'phone.required' => 'The phone number is required.',
             'phone.numeric' => 'The phone number must only contain numbers.',
-            'phone.unique' => 'The phone number has already been taken.',
+            'phone.unique' => 'This phone number is already used in this transaction.',
         ]);
 
         $userPhone = Auth::user()->phone;
